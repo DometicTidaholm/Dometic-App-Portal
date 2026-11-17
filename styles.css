@@ -23,14 +23,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .hero{border-radius:27px;background:linear-gradient(115deg,#0e2d3d 0%,#124157 53%,#176884 100%);color:#fff;min-height:326px;overflow:hidden;position:relative;display:flex;align-items:stretch;box-shadow:0 22px 44px #0e364a20}
 .hero:before{content:"";position:absolute;width:560px;height:560px;right:-200px;top:-325px;border-radius:50%;border:1px solid #ffffff15;box-shadow:0 0 0 85px #ffffff06,0 0 0 173px #ffffff05}
 .hero-copy{flex:1;z-index:1;padding:45px 48px 42px;max-width:790px}
-.eyebrow{display:inline-flex;align-items:center;gap:9px;color:#b6d6e0;font-weight:800;font-size:11px;letter-spacing:.145em}
-.live-dot{width:7px;height:7px;border-radius:50%;background:#65d1d0;box-shadow:0 0 0 4px #65d1d020}
 .hero h1{margin:16px 0 14px;line-height:1.13;font-size:clamp(33px,3.8vw,52px);letter-spacing:-.045em}
 .hero h1 span{display:block;color:#a7e0e3}
 .hero p{margin:0;max-width:650px;color:#d4e2e8;line-height:1.65;font-size:14px}
-.hero-links{display:flex;align-items:center;gap:19px;flex-wrap:wrap;margin-top:26px}
-.primary-cta{display:inline-flex;align-items:center;justify-content:center;gap:11px;padding:13px 19px;background:#eff9fa;border-radius:12px;color:#123e52;font-weight:800;font-size:13px;text-decoration:none;transition:.15s}
-.primary-cta:hover{background:#d8f2f3;color:#082e40}
 #installHint{font-size:11px;color:#a7cad6}
 .hero-visual{width:35%;position:relative;min-height:310px;flex-shrink:0;display:grid;place-items:center;overflow:hidden}
 .visual-center{position:relative;width:245px;height:245px;border:1px solid #ffffff35;border-radius:29px;transform:rotate(-9deg);background:linear-gradient(145deg,#ffffff18,#ffffff06);box-shadow:0 14px 40px #071d274d;display:flex;align-items:center;justify-content:center}
@@ -42,9 +37,6 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .visual-chip{position:absolute;background:#f1fcfc;color:#0c4558;border-radius:12px;box-shadow:0 14px 25px #00192140;padding:9px 15px;z-index:1;font-size:22px;font-weight:900;line-height:1.1;display:flex;flex-direction:column;transform:rotate(8deg)}
 .visual-chip small{font-size:9px;letter-spacing:.12em;color:#648592;margin-top:3px}
 .top-chip{top:33px;right:28px}.bottom-chip{bottom:35px;left:4px;font-size:18px;transform:rotate(-8deg)}
-.overview{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
-.overview-item{display:flex;align-items:center;gap:14px;padding:18px 24px;border:1px solid #e2eaed;background:#fff;border-radius:17px;box-shadow:0 6px 19px #14374608}
-.overview-icon{width:38px;height:38px;display:grid;place-items:center;background:#e5f2f4;border-radius:10px;color:#147895;font-size:22px;font-weight:800}
 .overview-item div{display:flex;flex-direction:column;gap:3px}
 .overview-item strong{font-size:20px;letter-spacing:-.02em}
 .overview-item small{font-size:12px;color:var(--muted)}
@@ -112,8 +104,6 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 body{background:radial-gradient(ellipse 950px 650px at 87% -15%,#354b57 0%,transparent 68%),radial-gradient(ellipse 1100px 600px at 2% 65%,#263b42 0%,transparent 72%),linear-gradient(145deg,#1e252b 0%,#161c21 55%,#202a30 100%);background-attachment:fixed;color:var(--ink)}
 .topbar{padding-top:23px;padding-bottom:22px}
 .brand{gap:15px}
-.brand-logo{width:clamp(158px,17vw,220px);height:auto;max-height:40px;object-fit:contain;display:block}
-.brand-location{display:flex;flex-direction:column;gap:3px;border-left:1px solid #6a7982;padding-left:13px;color:#e8f4f6;font-size:10px;letter-spacing:.15em;font-weight:750;white-space:nowrap}
 .brand-location span{color:#8daebd;font-size:9px;letter-spacing:.23em}
 .header-actions{gap:11px}
 .language-switch{display:inline-flex;align-items:center;gap:5px;padding:4px;border-radius:12px;background:#ffffff09;border:1px solid #56636b}
@@ -127,9 +117,6 @@ body{background:radial-gradient(ellipse 950px 650px at 87% -15%,#354b57 0%,trans
 .hero:before{border-color:#aeeeff16;box-shadow:0 0 0 90px #b9e3ed05,0 0 0 187px #ffffff05}
 .hero h1 span{color:#b4e4eb}
 .hero p{color:#d0dde1}
-.eyebrow{color:#b6e2e8}
-.primary-cta{background:#f4f8f9;color:#173240}
-.primary-cta:hover{background:#d2edf1}
 .hero-visual{width:37%;display:grid;place-items:center;min-height:320px}
 .visual-orbit{position:absolute;width:340px;height:340px;border-radius:50%;border:1px solid #d7f4f420;box-shadow:0 0 0 44px #a6e6ef08,0 0 0 98px #ffffff04;animation:orbitBreath 10s ease-in-out infinite}
 .visual-dashboard{position:absolute;width:245px;height:211px;left:12%;top:50%;translate:0 -50%;transform:rotate(-6deg);padding:19px;border-radius:18px;background:linear-gradient(155deg,#5073846e,#223640e0);border:1px solid #afdfed63;box-shadow:0 24px 45px #0006;backdrop-filter:blur(6px);animation:dashboardFloat 8s ease-in-out infinite}
@@ -159,8 +146,6 @@ body{background:radial-gradient(ellipse 950px 650px at 87% -15%,#354b57 0%,trans
 @keyframes phoneFloat{0%,100%{transform:translateY(0) rotate(10deg)}50%{transform:translateY(-7px) rotate(11deg)}}
 @keyframes barDance{0%,100%{transform:scaleY(.77);opacity:.8}50%{transform:scaleY(1);opacity:1}}
 @keyframes orbitBreath{0%,100%{transform:scale(.97);opacity:.7}50%{transform:scale(1.03);opacity:1}}
-.overview-item{background:#28323a;border-color:#40505a;box-shadow:0 8px 22px #0003}
-.overview-icon{background:#38505c;color:#c2ecf1}
 .overview-item small{color:#b5c2ca}
 .section-kicker{color:#9bd5df}
 .section-head p{color:#bbc8ce}
@@ -208,3 +193,47 @@ body{background:radial-gradient(ellipse 950px 650px at 87% -15%,#354b57 0%,trans
 @media(max-width:750px){.topbar{flex-wrap:wrap}.brand{flex:1;min-width:155px}.header-actions{flex:1 1 100%;justify-content:space-between}.language-switch{flex:1;justify-content:space-around}.language-button{flex:1}.hero-visual{display:none}}
 @media(max-width:460px){.brand-logo{width:160px}.brand-location{font-size:8px;padding-left:10px}.language-button{padding:7px 5px;gap:4px;font-size:10px}.language-button span:first-child{font-size:16px}.install-button{font-size:11px;padding:9px 12px}.video-actions{margin:0 0 15px}}
 @media(prefers-reduced-motion:reduce){.visual-dashboard,.visual-phone,.visual-orbit,.visual-dashboard .visual-bars i{animation:none!important;transform:none!important}}
+
+
+/* Hero simplification – Dometic identity in the welcome area */
+.topbar{justify-content:flex-end;padding:15px 0 17px}
+.header-actions{margin-left:auto}
+.hero{min-height:316px}
+.hero-copy{flex:1 1 62%;display:flex;flex-direction:column;justify-content:center;padding:38px 48px 40px;max-width:790px}
+.hero-lockup{display:flex;align-items:center;gap:18px;max-width:100%;margin-bottom:30px}
+.hero-logo{width:clamp(165px,17.7vw,244px);height:auto;max-height:42px;object-fit:contain;object-position:left center;display:block;filter:drop-shadow(0 4px 10px rgba(0,0,0,.15))}
+.hero-product{display:flex;flex-direction:column;gap:4px;padding-left:17px;border-left:1px solid rgba(227,241,246,.42);line-height:1.05;letter-spacing:.15em;white-space:nowrap}
+.hero-product strong{font-size:12px;color:#f4f8fa;font-weight:850}
+.hero-product span{font-size:10px;color:#aed2db;font-weight:750;letter-spacing:.20em}
+.hero h1{margin:0 0 17px;font-size:clamp(34px,3.9vw,53px)}
+.hero p{margin:0;max-width:555px;line-height:1.65}
+.hero-visual{flex:0 0 37%;min-width:0}
+.applications{padding-top:33px}
+@media(max-width:1050px){
+ .hero-copy{padding:37px 33px 37px;flex-basis:63%}
+ .hero-lockup{gap:13px;margin-bottom:24px}
+ .hero-logo{width:clamp(155px,21vw,205px)}
+ .hero-product{padding-left:13px}
+ .hero-product strong{font-size:11px}
+ .hero-product span{font-size:9px}
+ .hero h1{font-size:clamp(32px,4.3vw,45px)}
+}
+@media(max-width:750px){
+ .topbar{padding:16px 0 14px}
+ .header-actions{width:100%;flex:1 1 auto}
+ .hero{min-height:0}
+ .hero-copy{padding:32px 25px 34px;max-width:none;flex-basis:auto}
+ .hero-lockup{margin-bottom:22px}
+ .hero-logo{width:clamp(157px,38vw,206px)}
+ .hero h1{font-size:clamp(29px,6vw,42px)}
+ .applications{padding-top:30px}
+}
+@media(max-width:460px){
+ .hero-lockup{gap:10px;margin-bottom:20px}
+ .hero-logo{width:clamp(143px,41vw,175px)}
+ .hero-product{padding-left:10px}
+ .hero-product strong{font-size:10px}
+ .hero-product span{font-size:8px}
+ .hero-copy{padding:29px 21px 30px}
+ .hero h1{font-size:clamp(27px,8vw,37px)}
+}

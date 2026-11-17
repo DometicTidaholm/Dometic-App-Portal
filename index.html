@@ -19,10 +19,6 @@
 <body>
   <div class="shell">
     <header class="topbar">
-      <a class="brand" href="./" aria-label="Dometic App Portal">
-        <img class="brand-logo" src="./assets/dometic-logo-white.png" alt="Dometic">
-        <span class="brand-location">TIDAHOLM <span>APP PORTAL</span></span>
-      </a>
       <div class="header-actions">
         <div class="language-switch" role="group" aria-label="Välj språk / Choose language / Sprache wählen">
           <button type="button" class="language-button" data-lang="sv" lang="sv" aria-pressed="true" aria-label="Svenska"><span aria-hidden="true">🇸🇪</span><span>Svenska</span></button>
@@ -38,10 +34,12 @@
     <main>
       <section class="hero" aria-labelledby="heroHeading">
         <div class="hero-copy">
-          <div class="eyebrow"><span class="live-dot"></span><span id="eyebrow">DIGITALA VERKTYG · TIDAHOLM</span></div>
+          <div class="hero-lockup">
+            <img class="hero-logo" src="./assets/dometic-logo-white.png" alt="Dometic">
+            <div class="hero-product"><strong>TIDAHOLM</strong><span>APP PORTAL</span></div>
+          </div>
           <h1 id="heroHeading">Rätt verktyg.<span>Direkt till arbetet.</span></h1>
           <p id="heroDescription">Mät, analysera och förbättra. Alla våra appar och arbetsverktyg samlade på ett ställe – för dator, surfplatta och mobil.</p>
-          <div class="hero-links"><a href="#applications" id="exploreLink" class="primary-cta">Utforska appar <span aria-hidden="true">↗</span></a></div>
         </div>
         <div class="hero-visual" aria-hidden="true">
           <div class="visual-orbit"></div>
@@ -59,12 +57,6 @@
             <span class="phone-line half"></span>
           </div>
         </div>
-      </section>
-
-      <section class="overview" aria-label="Portalöversikt">
-        <div class="overview-item"><span class="overview-icon">▦</span><div><strong id="appCount">15</strong><small id="appCountLabel">appar & verktyg</small></div></div>
-        <div class="overview-item"><span class="overview-icon">◎</span><div><strong>4</strong><small id="categoryCountLabel">områden</small></div></div>
-        <div class="overview-item"><span class="overview-icon">↗</span><div><strong id="platformLabel">Webb & mobil</strong><small id="platformSubLabel">samma verktyg, överallt</small></div></div>
       </section>
 
       <section class="applications" id="applications" aria-labelledby="sectionTitle">

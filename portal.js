@@ -76,18 +76,12 @@
       button.setAttribute("aria-pressed",String(selected));
       button.classList.toggle("selected",selected);
     });
-    setText("eyebrow",t.eyebrow);
+
     const heading=$("heroHeading");
     heading.replaceChildren(document.createTextNode(t.heroFirst));
     const span=document.createElement("span");span.textContent=t.heroSecond;heading.appendChild(span);
     setText("heroDescription",t.heroDescription);
-    const explore=$("exploreLink");explore.replaceChildren(document.createTextNode(t.explore+" "));
-    const arrow=document.createElement("span");arrow.setAttribute("aria-hidden","true");arrow.textContent="↗";explore.appendChild(arrow);
-    setText("appCount",String(apps.length));
-    setText("appCountLabel",t.appCount);
-    setText("categoryCountLabel",t.categoryCount);
-    setText("platformLabel",t.platform);
-    setText("platformSubLabel",t.platformSub);
+
     setText("sectionKicker",t.sectionKicker);setText("sectionTitle",t.sectionTitle);setText("sectionDescription",t.sectionDescription);
     setText("searchLabel",t.searchLabel);$("search").placeholder=t.search;
     setText("resetFilter",t.clear);
