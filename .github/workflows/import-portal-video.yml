@@ -1,0 +1,32 @@
+name: Import App Portal film (one time)
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/import-portal-video.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  copy-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download ElevenLabs video and optimize for GitHub Pages
+        env:
+          SOURCE_URL: 'https://elevenlabsusercontent.com/database/workspace/2b4562f7b9644c1d8d0e99590f0f7631/content_generation/msmW7aN0UrSrgvquYk48/88JHNPVpCVF37Z2aysJo/content.mp4?Expires=1794945600&KeyName=assets-cdn-key-1&Signature=4fQKU3ARMojAUUVTnQcWUp6NydU='
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 2 --retry-delay 2 --silent --show-error "$SOURCE_URL" --output /tmp/portal-source.mp4
+          test "$(stat -c%s /tmp/portal-source.mp4)" -gt 1000000
+          ffprobe -hide_banner -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 /tmp/portal-source.mp4
+          mkdir -p media
+          ffmpeg -hide_banner -loglevel error -i /tmp/portal-source.mp4 -vf 'scale=1280:-2:flags=lanczos,fps=25' -c:v libx264 -preset fast -crf 27 -pix_fmt yuv420p -c:a aac -b:a 128k -movflags +faststart -y media/app-portal-intro-sv.mp4
+          test "$(stat -c%s media/app-portal-intro-sv.mp4)" -lt 90000000
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add media/app-portal-intro-sv.mp4
+          if ! git diff --cached --quiet; then
+            git commit -m "Add Swedish App Portal introduction film from ElevenLabs"
+            git push
+          fi
