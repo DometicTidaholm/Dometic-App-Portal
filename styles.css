@@ -287,3 +287,9 @@ body{background:radial-gradient(ellipse 950px 650px at 87% -15%,#354b57 0%,trans
  .hero-copy{padding:35px 22px 37px}
  .hero h1{font-size:clamp(34px,8.2vw,43px)}
 }
+
+/* White Dometic wordmark in top navigation – keep alpha transparency. */
+.topbar .brand-logo{
+  filter:brightness(0) invert(1) drop-shadow(0 2px 7px rgba(0,0,0,.13)) !important;
+  opacity:1;
+}
