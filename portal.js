@@ -8,8 +8,8 @@
   };
   const translations = {
     sv:{
-      eyebrow:"DIGITALA VERKTYG · TIDAHOLM",heroFirst:"Rätt verktyg.",heroSecond:"Direkt till arbetet.",
-      heroDescription:"Mät, analysera och förbättra. Alla våra appar och arbetsverktyg samlade på ett ställe – för dator, surfplatta och mobil.",
+      eyebrow:"DIGITALA VERKTYG · TIDAHOLM",heroFirst:"Från analys till förbättring.",heroSecond:"Allt på ett ställe.",
+      heroDescription:"Från cykeltidsmätning och ergonomi till produktionsstöd och information. Hitta rätt verktyg och kom igång direkt.",
       explore:"Utforska appar",hint:"Fungerar direkt i webbläsaren. Ingen GitHub-inloggning krävs.",
       appCount:"appar & verktyg",categoryCount:"arbetsområden",platform:"Webb & mobil",platformSub:"samma verktyg, överallt",
       sectionKicker:"APPBIBLIOTEK",sectionTitle:"Hitta ditt verktyg",sectionDescription:"Sök efter app eller välj arbetsområde.",
@@ -25,8 +25,8 @@
       doneMessage:"Installationen styrs av webbläsaren.",countSingular:"app visas"
     },
     en:{
-      eyebrow:"DIGITAL TOOLS · TIDAHOLM",heroFirst:"The right tool.",heroSecond:"Ready when you are.",
-      heroDescription:"Measure, analyze and improve. All our apps and shopfloor tools in one place – on desktop, tablet and mobile.",
+      eyebrow:"DIGITAL TOOLS · TIDAHOLM",heroFirst:"From analysis to improvement.",heroSecond:"All your tools in one place.",
+      heroDescription:"From cycle-time studies and ergonomics to production support and information. Find the right tool and get started.",
       explore:"Explore apps",hint:"Use directly in your browser. No GitHub account required.",
       appCount:"apps & tools",categoryCount:"work areas",platform:"Web & mobile",platformSub:"the same tools everywhere",
       sectionKicker:"APP LIBRARY",sectionTitle:"Find your tool",sectionDescription:"Search for an app or filter by work area.",
@@ -42,8 +42,8 @@
       doneMessage:"Installation is controlled by your browser.",countSingular:"app shown"
     },
     de:{
-      eyebrow:"DIGITALE WERKZEUGE · TIDAHOLM",heroFirst:"Das richtige Werkzeug.",heroSecond:"Direkt zur Arbeit.",
-      heroDescription:"Messen, analysieren und verbessern. Alle Apps und Werkzeuge an einem Ort – für Desktop, Tablet und Smartphone.",
+      eyebrow:"DIGITALE WERKZEUGE · TIDAHOLM",heroFirst:"Von der Analyse zur Verbesserung.",heroSecond:"Alle Werkzeuge an einem Ort.",
+      heroDescription:"Von Zykluszeitmessungen und Ergonomie bis zu Produktionsunterstützung und Informationen. Das passende Werkzeug direkt finden.",
       explore:"Apps entdecken",hint:"Direkt im Browser nutzbar. Kein GitHub-Konto erforderlich.",
       appCount:"Apps & Werkzeuge",categoryCount:"Arbeitsbereiche",platform:"Web & Mobil",platformSub:"gleiche Werkzeuge, überall",
       sectionKicker:"APP-ÜBERSICHT",sectionTitle:"Werkzeug finden",sectionDescription:"Nach App suchen oder Arbeitsbereich auswählen.",
