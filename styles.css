@@ -237,3 +237,14 @@ body{background:radial-gradient(ellipse 950px 650px at 87% -15%,#354b57 0%,trans
  .hero-copy{padding:29px 21px 30px}
  .hero h1{font-size:clamp(27px,8vw,37px)}
 }
+
+/* Make the complete card a single accessible link; keep instructional video buttons independent */
+.app-card{position:relative;cursor:pointer}
+.card-click-target{position:absolute;inset:0;z-index:1;border-radius:inherit;display:block}
+.card-click-target:focus-visible{outline:3px solid #b7e9f2;outline-offset:3px}
+.card-arrow{font-size:19px;line-height:1;color:#a9dce7;font-weight:800;transition:transform .18s ease}
+.app-card:hover .card-arrow{transform:translate(2px,-2px)}
+.video-actions{position:relative;z-index:3}
+.video-choice{position:relative;z-index:4}
+.hero-logo{filter:brightness(0) invert(1) drop-shadow(0 4px 10px rgba(0,0,0,.18))}
+@media(prefers-reduced-motion:reduce){.card-arrow{transition:none}}

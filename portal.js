@@ -157,9 +157,12 @@
     const desc=document.createElement("p");desc.textContent=copy.description;
     const bottom=document.createElement("div");bottom.className="card-bottom";
     const category=document.createElement("span");category.className="category-name";category.textContent=categories[language][app.category];
-    const link=document.createElement("a");link.className="open-link";link.href=app.url;link.target="_blank";link.rel="noopener noreferrer";
-    link.textContent=t.open+" ↗";link.setAttribute("aria-label",t.open+": "+copy.name);
-    bottom.append(category,link);
+    const arrow=document.createElement("span");arrow.className="card-arrow";
+    arrow.textContent="↗";arrow.setAttribute("aria-hidden","true");
+    bottom.append(category,arrow);
+    const hit=document.createElement("a");hit.className="card-click-target";
+    hit.href=app.url;hit.target="_blank";hit.rel="noopener noreferrer";
+    hit.setAttribute("aria-label",t.open+": "+copy.name);
     article.append(top,heading,desc);
     if(app.id==="20CycleCheck"){
       const row=document.createElement("div");row.className="video-actions";
@@ -170,6 +173,7 @@
       row.append(makeFilmButton(videoText[language].rtm,"rtm"));article.appendChild(row);
     }
     article.appendChild(bottom);
+    article.appendChild(hit);
     return article;
   }
   function renderApps(){
