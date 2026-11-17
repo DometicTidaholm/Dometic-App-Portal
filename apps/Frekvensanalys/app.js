@@ -1,10 +1,10 @@
 (() => {
   'use strict';
 
-  const REPO_OWNER = 'MrMartinPet';
-  const REPO_NAME = 'Frekvensanalys';
+  const REPO_OWNER = 'DometicTidaholm';
+  const REPO_NAME = 'Dometic-App-Portal';
   const REPO_BRANCH = 'main';
-  const API_ROOT = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/`;
+  const API_ROOT = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/apps/Frekvensanalys/`;
   const DRAFT_KEY = 'fa_draft_v3';
 
   const CATEGORIES = [
