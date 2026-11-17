@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <title>Flagg-generator</title>
+  <style>
+    html, body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      zoom: 1.5;              /* 150 % förstoring direkt */
+      transform-origin: top left;
+    }
+
+    h2 { margin-bottom: 10px; font-size: 1.5em; }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.6em;
+      color: #333;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 110px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      font-family: inherit;
+      font-size: 0.7em;
+    }
+
+    textarea.example { color: #777; }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    button {
+      padding: 8px 12px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      background: #fff;
+      cursor: pointer;
+      font-size: 0.7em;
+    }
+
+    .flags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .flag {
+      width: 8cm;
+      height: 8.6cm;
+      border: 2px solid black;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      page-break-inside: avoid;
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-weight: bold;
+      overflow: hidden;
+    }
+
+    .top, .bottom {
+      background: #ddd;
+      border-top: 1px solid black;
+      border-bottom: 1px solid black;
+      flex: 1;
+      padding: 4px;
+    }
+
+    .middle {
+      flex: 4;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4px;
+    }
+
+    .scale-text {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .scale-text div { line-height: 1.1; }
+
+    @media print {
+      html, body { zoom: 1; }
+      body *:not(.flags):not(.flags *) { display: none !important; }
+      body { margin: 0; }
+      .flags {
+        display: grid;
+        grid-template-columns: repeat(2, 8cm);
+        justify-content: center;
+        gap: 1cm;
+      }
+      .flag {
+        margin: 0;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2>Flagg-generator</h2>
+
+  <div class="grid-2">
+    <div>
+      <label>Flagga 1:</label>
+      <textarea id="f1" data-default="FORM
+SE1916
+YTTER
+FA80"></textarea>
+    </div>
+    <div>
+      <label>Flagga 2:</label>
+      <textarea id="f2" data-default="FRÄS
+SE1916
+INNER
+DB67"></textarea>
+    </div>
+    <div>
+      <label>Flagga 3:</label>
+      <textarea id="f3" data-default="H-LIM
+SE1916
+EC99"></textarea>
+    </div>
+    <div>
+      <label>Flagga 4:</label>
+      <textarea id="f4" data-default="LIM
+V8
+1100x550
+GG70"></textarea>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button id="genBtn">Generera flaggor</button>
+    <button onclick="window.print()">Skriv ut</button>
+    <button id="clearBtn" type="button">Rensa</button>
+  </div>
+
+  <div class="flags" id="flags"></div>
+
+  <script>
+    const ids = ['f1','f2','f3','f4'];
+    ids.forEach(id => {
+      const el = document.getElementById(id);
+      const def = (el.dataset.default || '').trim();
+      el.value = def;
+      el.classList.add('example');
+      const clearIfDefault = () => {
+        if (el.classList.contains('example') && el.value === def) {
+          el.value = '';
+          el.classList.remove('example');
+        }
+      };
+      el.addEventListener('focus', clearIfDefault);
+      el.addEventListener('keydown', clearIfDefault);
+      el.addEventListener('blur', () => {
+        if (!el.value.trim()) { el.value = def; el.classList.add('example'); }
+      });
+    });
+
+    function resizeText(el, maxWidth, maxHeight) {
+      let size = 500;
+      el.style.fontSize = size + 'px';
+      while ((el.scrollWidth > maxWidth || el.scrollHeight > maxHeight) && size > 10) {
+        size -= 2;
+        el.style.fontSize = size + 'px';
+      }
+    }
+
+    function parseBlock(text) {
+      const lines = text.replace(/\r\n/g, '\n').split('\n').map(s => s.trim()).filter(Boolean);
+      let top='', m1='', m2='', bot='';
+      if (lines.length === 1) { m1 = lines[0]; }
+      else if (lines.length === 2) { [m1, m2] = lines; }
+      else if (lines.length === 3) { [top, m1, bot] = lines; }
+      else if (lines.length >= 4) { [top, m1, m2] = lines; bot = lines.slice(3).join(' '); }
+      return { top, m1, m2, bot };
+    }
+
+    function createFlag(topRow, mid1, mid2, bottom) {
+      const flag = document.createElement('div'); flag.className = 'flag';
+      const top = document.createElement('div'); top.className = 'row top'; top.innerText = topRow || '';
+      const middle = document.createElement('div'); middle.className = 'row middle';
+      const midWrap = document.createElement('div'); midWrap.className = 'scale-text';
+      if (mid1) { const d1=document.createElement('div'); d1.innerText=mid1; midWrap.appendChild(d1); }
+      if (mid2) { const d2=document.createElement('div'); d2.innerText=mid2; midWrap.appendChild(d2); }
+      if (!mid1 && !mid2) { const d=document.createElement('div'); midWrap.appendChild(d); }
+      middle.appendChild(midWrap);
+      const bottomDiv = document.createElement('div'); bottomDiv.className = 'row bottom'; bottomDiv.innerText = bottom || '';
+      flag.appendChild(top); flag.appendChild(middle); flag.appendChild(bottomDiv);
+      requestAnimationFrame(() => {
+        resizeText(top, top.clientWidth, top.clientHeight);
+        resizeText(midWrap, middle.clientWidth, middle.clientHeight);
+        resizeText(bottomDiv, bottomDiv.clientWidth, bottomDiv.clientHeight);
+      });
+      return flag;
+    }
+
+    function generateFlags() {
+      const flagsDiv = document.getElementById('flags'); flagsDiv.innerHTML = '';
+      ids.forEach(id => {
+        const el = document.getElementById(id);
+        const isExample = el.classList.contains('example');
+        const text = isExample ? '' : el.value;
+        if (!text.trim()) return;
+        const { top, m1, m2, bot } = parseBlock(text);
+        flagsDiv.appendChild(createFlag(top, m1, m2, bot));
+      });
+    }
+
+    document.getElementById('genBtn').addEventListener('click', generateFlags);
+    document.getElementById('clearBtn').addEventListener('click', () => {
+      ids.forEach(id => {
+        const el = document.getElementById(id);
+        el.value = (el.dataset.default || '').trim();
+        el.classList.add('example');
+      });
+      document.getElementById('flags').innerHTML = '';
+    });
+  </script>
+</body>
+</html>
