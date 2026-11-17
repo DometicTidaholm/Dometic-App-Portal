@@ -1,0 +1,1010 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>20 Cycle Check — Process Observation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#ffffff">
+<style>
+  :root{
+    --bg:#f7f7f9; --paper:#ffffff; --ink:#0f172a; --muted:#6b7280; --line:#e5e7eb; --accent:#2563eb;
+    --radius:10px; --tap:40px; --fs:clamp(13px,2.2vw,15px); --fs-sm:clamp(11px,1.9vw,13px);
+    --blue-600:#2563eb; --blue-500:#3b82f6; --blue-400:#60a5fa; --blue-300:#93c5fd;
+  }
+  html[data-theme="dark"]{
+    --bg:#0b1020;--paper:#111827;--ink:#f8fafc;--muted:#94a3b8;--line:#334155;--accent:#60a5fa
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{font-family:system-ui,-apple-system,Segoe UI,Inter,Arial,sans-serif;font-size:var(--fs);background:var(--bg);color:var(--ink)}
+  .app{min-height:100%;padding:8px}
+
+  .menubar{
+    display:flex;flex-wrap:wrap;align-items:center;gap:8px;
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    padding:6px 10px;margin-bottom:8px
+  }
+  .logo{font-weight:800;font-size:16px;white-space:nowrap;margin-right:auto}
+  .menu-actions{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .langbtn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink);font-size:var(--fs-sm);cursor:pointer
+  }
+  .flag{font-size:16px;line-height:1;display:inline-flex;align-items:center}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:var(--tap);padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:inherit;cursor:pointer;touch-action:manipulation}
+  .btn:disabled{opacity:.45;cursor:not-allowed}
+  .btn.primary{background:var(--blue-600);color:#fff;border-color:#1d4ed8}
+  .btn.secondary{background:var(--paper);border-color:var(--line)}
+  .btn.danger{background:#dc2626;border-color:#ef4444;color:#fff;font-weight:800}
+  .btn.small{min-height:34px;padding:6px 10px;font-size:var(--fs-sm)}
+
+  .top-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius)}
+  .pad{padding:8px}
+  label{font-size:var(--fs-sm);color:var(--muted)}
+  input[type=text],input[type=number],input[type=time],input[type=date],select{width:100%;min-height:42px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);font-size:16px}
+
+  .lang-card .row2{display:grid;grid-template-columns:1.2fr 1.2fr 130px 120px 150px;gap:8px}
+  .study-details{margin-top:8px;border-top:1px solid var(--line);padding-top:8px}
+  .study-details summary{cursor:pointer;color:var(--muted);font-weight:700}
+  .details-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+
+  .timer-card .controls{display:grid;grid-template-columns:minmax(160px,1fr) minmax(130px,.75fr) minmax(92px,.45fr);gap:8px;align-items:center}
+  .timer-card .controls > *{min-width:0}
+  .timer-card .mid{display:flex;justify-content:center}
+  .timer{font-weight:800;font-size:18px;background:#0a0;color:#fff;padding:10px 12px;border-radius:8px;text-align:center;min-width:0;width:100%}
+
+  .wrap{display:grid;grid-template-columns:1.2fr 0.8fr;gap:8px;margin-top:8px}
+  .chart-card{display:flex;flex-direction:column}
+  .chart-header{display:flex;flex-direction:column;gap:8px;border-bottom:1px solid var(--line);padding-bottom:10px}
+  .chart-title{margin:0;font-size:18px;font-weight:700;color:var(--ink)}
+  .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+  .pill{padding:8px 10px;border:1px solid var(--line);border-radius:9px;background:var(--paper);font-size:var(--fs-sm)}
+  .pill b{display:block;margin-top:2px;font-size:15px}
+  .chart-wrap{padding:6px}
+  canvas{width:100%;height:360px;display:block}
+
+  .list-head,.list-row{display:grid;grid-template-columns:48px 92px 110px 1fr 40px;gap:8px;align-items:center}
+  .list-head{position:sticky;top:0;background:var(--paper);border-bottom:1px solid var(--line);padding:8px;font-weight:700;z-index:1}
+  .list{max-height:460px;overflow:auto;border-top:1px solid var(--line);padding:8px}
+  .list-row{
+    padding:10px;background:var(--paper);border:1px solid var(--line);border-radius:10px;margin-bottom:8px;box-shadow:0 1px 2px rgba(0,0,0,.04);
+  }
+  .list-row.selected{outline:2px solid #60a5fa}
+  .list-row.abnormal{border-left:5px solid #dc2626}
+  .list-row.ct-green{border-left:6px solid #16a34a;background:color-mix(in srgb,#16a34a 9%,var(--paper))}
+  .list-row.ct-orange{border-left:6px solid #f59e0b;background:color-mix(in srgb,#f59e0b 10%,var(--paper))}
+  .list-row.ct-red{border-left:6px solid #dc2626;background:color-mix(in srgb,#dc2626 10%,var(--paper))}
+  .badge{display:inline-block;background:#e2e8f0;color:#334155;padding:4px 8px;border-radius:999px;font-size:var(--fs-sm);font-weight:600}
+  .active-tag{display:none;margin-left:5px;padding:3px 6px;border-radius:999px;background:#2563eb;color:#fff;font-size:10px;font-weight:800}
+  textarea{width:100%;min-height:42px;border:1px solid var(--line);border-radius:8px;padding:7px;background:var(--paper);color:var(--ink);font:inherit;font-size:16px}
+  .flag-btn{min-height:40px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--muted);font-weight:700;cursor:pointer}
+  .flag-btn.active{background:#fee2e2;color:#991b1b;border-color:#fca5a5}
+  .piece-toggle,.reason-toggle{display:flex;gap:5px;flex-wrap:wrap}
+  .choice{min-height:38px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);font-weight:700;cursor:pointer}
+  .choice.active{background:var(--blue-600);border-color:var(--blue-600);color:#fff}
+  .reason-toggle{margin-bottom:6px}.reason-toggle .choice{font-size:12px;font-weight:600}
+  .shortcut-help{text-align:center;color:var(--muted);font-size:12px;margin-top:6px}
+  .delete-btn{cursor:pointer;border:none;background:none;font-size:18px;line-height:1;color:#dc2626}
+  .delete-btn:hover{color:#b91c1c}
+
+  @media (max-width:980px){
+    .wrap{grid-template-columns:1fr}
+    canvas{height:300px}
+    .top-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    .app{padding:6px;padding-bottom:116px}
+    .menubar{align-items:flex-start}
+    .menu-actions{width:100%;display:grid;grid-template-columns:repeat(4,1fr)}
+    .menu-actions .btn,.menu-actions .langbtn{padding:6px 4px;font-size:11px;min-width:0}
+    .lang-card .row2,.details-grid{grid-template-columns:1fr 1fr}
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .list-head{display:none}
+    .list{max-height:none;padding:8px}
+    .list-row{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:
+      "cycle time"
+      "pieces pieces"
+      "problems problems"
+      "delete delete"}
+    .list-row .cycle{grid-area:cycle}
+    .list-row .time{grid-area:time}
+    .list-row .pieces-cell{grid-area:pieces}
+    .list-row .problems{grid-area:problems}
+    .list-row .delete-cell{grid-area:delete;text-align:right}
+    .list-row.active-cycle{order:-1}
+    .list-row.active-cycle .active-tag{display:inline-block}
+    .timer-card{position:fixed;z-index:20;left:6px;right:6px;bottom:max(6px,env(safe-area-inset-bottom));box-shadow:0 12px 30px rgba(0,0,0,.28)}
+    .timer-card .controls{grid-template-columns:1fr .72fr .55fr;gap:6px}
+    .timer-card .btn{min-height:58px;font-size:20px!important}
+    .timer{font-size:20px;padding:16px 8px}
+    canvas{height:260px}
+  }
+  .toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);z-index:40;background:#0f172a;color:#fff;padding:10px 14px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.3)}
+  .hidden{display:none!important}
+  .setup-card{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:112px;border:2px solid var(--blue-500);background:linear-gradient(135deg,color-mix(in srgb,var(--blue-500) 12%,var(--paper)),var(--paper))}
+  .setup-copy{display:flex;flex-direction:column;gap:4px;min-width:0}.setup-copy span{color:var(--muted);font-size:var(--fs-sm)}.setup-copy strong{font-size:20px}.setup-copy #setupEyebrow{font-size:11px;font-weight:800;color:var(--blue-500);letter-spacing:.08em}.setup-btn{min-width:180px;font-weight:800}
+  .capacity-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:2px}.capacity-summary .pill{border-left:4px solid var(--blue-500)}
+  .modal-backdrop{position:fixed;inset:0;z-index:60;background:rgba(2,6,23,.72);display:flex;align-items:center;justify-content:center;padding:14px}.modal{width:min(620px,100%);max-height:92vh;overflow:auto;background:var(--paper);border:1px solid var(--line);border-radius:14px;box-shadow:0 24px 70px rgba(0,0,0,.45);padding:16px}.modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.modal-head h2{font-size:19px;margin:0}.modal-close{font-size:24px;line-height:1;border:0;background:none;color:var(--ink);cursor:pointer}.process-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}.calc-preview{margin-top:12px;padding:10px;border-radius:10px;background:color-mix(in srgb,var(--blue-500) 10%,var(--paper));border:1px solid color-mix(in srgb,var(--blue-500) 35%,var(--line));font-size:var(--fs-sm)}
+  @media(max-width:640px){.setup-card{align-items:stretch;flex-direction:column}.setup-btn{width:100%}.capacity-summary{grid-template-columns:1fr}.process-grid{grid-template-columns:1fr}.modal{padding:14px}.menu-actions{grid-template-columns:repeat(4,1fr)}}
+.language-picker{text-align:center;max-width:540px}.language-options{display:grid;gap:12px;margin-top:24px}.language-options .btn{font-size:18px;min-height:64px}.language-options .flag{font-size:30px}.langbtn{min-height:44px}button:focus-visible{outline:3px solid #60a5fa;outline-offset:3px}
+.field-invalid{border:2px solid #ef4444!important;background:color-mix(in srgb,#ef4444 12%,var(--paper))!important;box-shadow:0 0 0 3px rgba(239,68,68,.18)}
+.required-mark{color:#ef4444;font-weight:800;margin-left:4px}.field-error{color:#f87171;font-size:14px;margin-top:5px}.validation-alert{border:1px solid #ef4444;border-radius:8px;background:color-mix(in srgb,#ef4444 12%,var(--paper));color:var(--ink);padding:12px;margin-bottom:12px;font-size:14px}
+.field-label-row{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:36px}.info-btn{flex-shrink:0;min-width:36px;min-height:36px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--blue-400);font-size:16px;font-weight:800;cursor:pointer}.info-btn[aria-expanded="true"]{background:var(--blue-600);color:white}.field-help{margin:6px 0 10px;padding:10px;border-left:3px solid var(--blue-400);border-radius:6px;background:color-mix(in srgb,var(--blue-500) 10%,var(--paper));font-size:14px;line-height:1.5;color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- Menyrad -->
+  <div class="menubar">
+    <div class="logo">20 Cycle Check</div>
+    <div class="menu-actions">
+      <button id="btnLang" class="langbtn"><span class="flag"><svg aria-hidden="true" viewBox="0 0 60 40" width="30" height="20"><rect width="60" height="40" fill="#006aa7"/><path d="M0 20H60M21 0V40" stroke="#fecc00" stroke-width="8"/></svg></span><span id="langLabel">SV</span></button>
+      <button id="btnExport" class="btn small">Exportera</button>
+      <button id="btnReport" class="btn small">Rapport (PDF)</button>
+      <button id="btnReset" class="btn small danger">Nollställ</button>
+    </div>
+  </div>
+
+  <!-- Process/Datum/TAKT  |  Start/Timer/Stop -->
+  <div class="top-grid">
+    <div class="card pad setup-card">
+      <div class="setup-copy">
+        <span id="setupEyebrow">FÖRE MÄTNINGEN</span>
+        <strong id="setupTitle">Ange processdata</strong>
+        <span id="setupSummary">Process, datum, skift, tider, mix och planerade stopp</span>
+      </div>
+      <button id="btnProcessData" class="btn primary setup-btn" type="button">Ange processdata</button>
+      <div class="hidden" aria-hidden="true"><span id="lblProduct"></span><span id="lblBoundary"></span><span id="detailsSummary"></span><span id="lblTakt"></span><input id="product" type="text"><input id="boundary" type="text"><input id="takt" type="number"></div>
+    </div>
+
+    <div class="card pad timer-card">
+      <div class="controls">
+        <div class="start"><button id="btnToggle" class="btn primary" style="width:100%;font-size:16px;padding:12px 14px">Start</button></div>
+        <div class="mid"><div class="timer" id="timerDisp">00:00.00</div></div>
+        <div class="stop"><button id="btnStop" class="btn secondary" style="width:100%" disabled>Stoppa</button></div>
+      </div>
+      <div id="shortcutHelp" class="shortcut-help">Tips: tryck mellanslag (Space) för nästa cykel</div>
+    </div>
+  </div>
+
+  <!-- Diagram + KPI + Lista -->
+  <div class="wrap">
+    <div class="card chart-card">
+      <div class="chart-header pad">
+        <h3 id="resultsTitle" class="chart-title">Resultat</h3>
+        <div class="kpis">
+          <div class="pill"><span id="kpiTaktLabel">Takttid</span> <b id="kpiTakt">–</b></div>
+          <div class="pill"><span id="kpiProgressLabel"></span> <b id="kpiProgress">0 / 20</b></div>
+          <div class="pill"><span id="kpiAvgLabel"></span> <b id="kpiAvg">00:00.00</b></div>
+          <div class="pill"><span id="kpiBrctLabel"></span> <b id="kpiBrct">–</b></div>
+          <div class="pill"><span id="kpiDistLabel"></span> <b id="kpiDist">–</b></div>
+          <div class="pill"><span id="kpiOneLabel"></span> <b id="kpiOne">–</b></div>
+          <div class="pill"><span id="kpiTwoLabel"></span> <b id="kpiTwo">–</b></div>
+        </div>
+        <div id="capacitySummary" class="capacity-summary hidden"><div class="pill"><span id="capCyclesLabel">Cykler/skift</span><b id="capCycles">–</b></div><div class="pill"><span id="capProductsLabel">Produkter/skift</span><b id="capProducts">–</b></div><div class="pill"><span id="capTargetLabel">Rimligt mål</span><b id="capTarget">–</b></div></div>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="chart" height="360"></canvas>
+      </div>
+    </div>
+
+    <div class="card pad">
+      <div class="list-head">
+        <div id="thCycle">CYCLE</div>
+        <div id="thTime">TIME(S)</div>
+        <div id="thPieces">RUTOR</div>
+        <div id="thProblems">OBSERVED PROBLEMS</div>
+        <div> </div>
+      </div>
+      <div id="list" class="list"></div>
+    </div>
+  </div>
+</div>
+<div id="processModal" class="modal-backdrop hidden" role="dialog" aria-modal="true"><div class="modal"><div class="modal-head"><h2 id="processModalTitle">Processdata och skiftmål</h2><button id="closeProcessModal" class="modal-close">×</button></div><div id="validationAlert" class="validation-alert hidden" role="alert" aria-live="assertive"></div><div class="process-grid">
+<div><label id="lblProcess">PROCESS</label><input id="process" type="text" placeholder="Ange processnamn…"></div><div><label id="lblSubprocess">UNDERPROCESS</label><input id="subprocess" type="text" list="subprocessOptions" placeholder="Välj eller skriv…" autocomplete="off"><datalist id="subprocessOptions"></datalist></div><div><label id="lblDate">DATUM</label><input id="date" type="date"></div><div><label id="lblStandard">STANDARD WORK CT</label><input id="standard" type="number" min="0" step="0.1" placeholder="sek"><div id="colorRule" style="font-size:11px;color:var(--muted);margin-top:4px">Grön ≤ standard · Orange ≤ +20 % · Röd &gt; +20 %</div></div><div><label id="lblAnnualDemand">ÅRSVOLYM (ANTAL ENHETER/ÅR)</label><input id="annualDemand" type="number" min="0" step="1" inputmode="numeric" placeholder="t.ex. 100000"></div><div><label id="lblWeeklyHours">VECKOTAKT – KÖRBARA TIMMAR PER VECKA</label><input id="weeklyHours" type="number" min="0" step="0.1" inputmode="decimal" placeholder="t.ex. 78"></div>
+<div><label id="lblShiftType">AKTUELLT SKIFT</label><select id="shiftType"><option value="1">1:a skift</option><option value="2">2:a skift</option></select></div><div><label id="lblProductsCycle">PRODUKTER PER CYKEL / MIX</label><input id="productsPerCycle" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="t.ex. 1,5"></div><div><label id="lblStartTime">STARTTID</label><input id="startTime" type="time"></div><div><label id="lblEndTime">SLUTTID</label><input id="endTime" type="time"></div><div><label id="lblPlannedStop">PLANERAD STOPPTID (MIN)</label><input id="plannedStopMinutes" type="number" min="0" step="1" inputmode="decimal" placeholder="Uppstart, städ, rast"></div><div><label id="lblSetups">PLANERAT ANTAL STÄLL</label><input id="setupsPerShift" type="number" min="0" step="1" inputmode="numeric" placeholder="0"></div><div><label id="lblSetupMinutes">PLANERAD STÄLLTID PER STÄLL (MIN)</label><input id="setupMinutes" type="number" min="0" step="1" inputmode="decimal" placeholder="0"></div></div><div id="processPreview" class="calc-preview"></div><div class="modal-actions"><button id="cancelProcessData" class="btn secondary">Avbryt</button><button id="saveProcessData" class="btn primary">Spara och beräkna</button></div></div></div>
+<div id="languageModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="languageTitle"><div class="modal language-picker"><h1 id="languageTitle">Choose language</h1><p>Välj språk · Sprache wählen</p><div class="language-options"><button class="btn" data-language="sv" lang="sv"><span class="flag"><svg aria-hidden="true" viewBox="0 0 60 40" width="30" height="20"><rect width="60" height="40" fill="#006aa7"/><path d="M0 20H60M21 0V40" stroke="#fecc00" stroke-width="8"/></svg></span> Svenska</button><button class="btn" data-language="en" lang="en"><span class="flag"><svg aria-hidden="true" viewBox="0 0 60 40" width="30" height="20"><rect width="60" height="40" fill="#012169"/><path d="M0 0L60 40M60 0L0 40" stroke="#fff" stroke-width="8"/><path d="M0 0L60 40M60 0L0 40" stroke="#c8102e" stroke-width="3"/><path d="M30 0V40M0 20H60" stroke="#fff" stroke-width="13"/><path d="M30 0V40M0 20H60" stroke="#c8102e" stroke-width="7"/></svg></span> English</button><button class="btn" data-language="de" lang="de"><span class="flag"><svg aria-hidden="true" viewBox="0 0 60 40" width="30" height="20"><path fill="#000" d="M0 0H60V14H0Z"/><path fill="#d00" d="M0 14H60V27H0Z"/><path fill="#ffce00" d="M0 27H60V40H0Z"/></svg></span> Deutsch</button></div></div></div>
+<div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+<!-- jsPDF för PDF-export -->
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"></script>
+
+<script>
+/* ===== i18n ===== */
+const L={
+  sv:{PROCESS:"PROCESS",SUBPROCESS:"UNDERPROCESS",DATE:"DATUM",PH_PROCESS:"Ange processnamn…",PH_SUBPROCESS:"Välj eller skriv…",PH_DATE:"yyyy-mm-dd",
+      STANDARD:"STANDARD WORK CT",TAKT:"TAKTTID",PH_TAKT:"sek",STANDARD_LABEL:"Standard:",TAKT_LABEL:"Takt:",
+      TOGGLE_START:"Start",TOGGLE_LAP:"Nästa cykel",STOP:"Stoppa",RESET:"Nollställ",EXPORT:"Excel",REPORT:"PDF",SHORTCUT:"Tips: tryck mellanslag (Space) för nästa cykel",COLOR_RULE:"Grön ≤ standard · Orange ≤ +20 % · Röd > +20 %",
+      RESULTS_TITLE:"Resultat",
+      KPI_PROGRESS:"Cykler",KPI_AVG:"Ø CT (medel)",KPI_BRCT:"BRCT (5 snabbaste)",KPI_DIST:"Störningsgrad",KPI_ONE:"Ø CT · 1 ruta",KPI_TWO:"Ø CT · 2 rutor",
+      KPI_AVG_SHORT:"Ø CT:",KPI_BRCT_SHORT:"BRCT:",CSV_DECIMAL:",",
+      LONGEST:"Längsta CT:", SHORTEST:"Kortaste CT:", DISTURBANCE:"D %:",
+      PRODUCT:"ARTIKEL / VARIANT",BOUNDARY:"MÄTGRÄNS",DETAILS:"Mätdetaljer (valfritt)",PH_PRODUCT:"Artikel, familj eller variant",PH_BOUNDARY:"Startpunkt → slutpunkt",
+      CYCLE:"CYKEL",TIME:"TID",PIECES:"RUTOR",PROBLEMS:"AVVIKELSE / KOMMENTAR",ACTIVE:"AKTIV",CURRENT:"PÅGÅR",NOTE_PLACEHOLDER:"Kommentar till pågående cykel",THEME:"Tema",QUALITY:"Kvalitetsproblem / kontroll",CHANGEOVER:"Ställtid",LOAD_UNLOAD:"Ladda/lossa",MACHINE:"Maskinfel",OTHER:"Annat",
+      COMPLETE:"20 cykler klara",DELETED:"Cykel raderad",UNDO:"Ångra",NO_DATA:"Inga cykler att exportera.",
+      CALC_TAKT_BTN:"Beräkna", /* NEW */
+      PROMPT_VOLUME:"Ange årsvolym (antal enheter/år):", /* NEW */
+      PROMPT_HOURS:"Ange arbetstid per vecka (timmar) — 78 är standard:", /* NEW */
+      ALERT_BAD_INPUT:"Ogiltiga värden. Försök igen." /* NEW */
+  },
+  en:{PROCESS:"PROCESS",SUBPROCESS:"SUBPROCESS",DATE:"DATE",PH_PROCESS:"Enter process name…",PH_SUBPROCESS:"Choose or type…",PH_DATE:"yyyy-mm-dd",
+      STANDARD:"STANDARD WORK CT",TAKT:"TAKT TIME",PH_TAKT:"sec",STANDARD_LABEL:"Standard:",TAKT_LABEL:"Takt:",
+      TOGGLE_START:"Start",TOGGLE_LAP:"Next cycle",STOP:"Stop",RESET:"Reset",EXPORT:"Excel",REPORT:"PDF",SHORTCUT:"Tip: press Space for the next cycle",COLOR_RULE:"Green ≤ standard · Orange ≤ +20% · Red > +20%",
+      RESULTS_TITLE:"Results",
+      KPI_PROGRESS:"Cycles",KPI_AVG:"Ø CT (mean)",KPI_BRCT:"BRCT (5 fastest)",KPI_DIST:"Disturbance rate",KPI_ONE:"Ø CT · 1 panel",KPI_TWO:"Ø CT · 2 panels",
+      KPI_AVG_SHORT:"Ø CT:",KPI_BRCT_SHORT:"BRCT:",CSV_DECIMAL:".",
+      LONGEST:"Longest CT:", SHORTEST:"Shortest CT:", DISTURBANCE:"D %:",
+      PRODUCT:"ARTICLE / VARIANT",BOUNDARY:"MEASUREMENT BOUNDARY",DETAILS:"Study details (optional)",PH_PRODUCT:"Article, family or variant",PH_BOUNDARY:"Start point → end point",
+      CYCLE:"CYCLE",TIME:"TIME",PIECES:"PANELS",PROBLEMS:"DEVIATION / COMMENT",ACTIVE:"ACTIVE",CURRENT:"RUNNING",NOTE_PLACEHOLDER:"Comment on current cycle",THEME:"Theme",QUALITY:"Quality problem / inspection",CHANGEOVER:"Changeover",LOAD_UNLOAD:"Load/unload",MACHINE:"Machine fault",OTHER:"Other",
+      COMPLETE:"20 cycles completed",DELETED:"Cycle deleted",UNDO:"Undo",NO_DATA:"No cycles to export.",
+      CALC_TAKT_BTN:"Calculate", /* NEW */
+      PROMPT_VOLUME:"Enter annual volume (units/year):", /* NEW */
+      PROMPT_HOURS:"Enter working hours per week — 78 is default:", /* NEW */
+      ALERT_BAD_INPUT:"Invalid values. Please try again." /* NEW */
+  }
+};
+L.de={"PROCESS": "PROZESS", "SUBPROCESS": "TEILPROZESS", "DATE": "DATUM", "PH_PROCESS": "Prozessname eingeben…", "PH_SUBPROCESS": "Auswählen oder eingeben…", "PH_DATE": "yyyy-mm-dd", "STANDARD": "STANDARDZYKLUSZEIT", "TAKT": "TAKTZEIT", "PH_TAKT": "s", "STANDARD_LABEL": "Standard:", "TAKT_LABEL": "Takt:", "TOGGLE_START": "Start", "TOGGLE_LAP": "Nächster Zyklus", "STOP": "Stopp", "RESET": "Zurücksetzen", "EXPORT": "Excel", "REPORT": "PDF", "SHORTCUT": "Tipp: Leertaste für den nächsten Zyklus drücken", "COLOR_RULE": "Grün ≤ Standard · Orange ≤ +20 % · Rot > +20 %", "RESULTS_TITLE": "Ergebnisse", "KPI_PROGRESS": "Zyklen", "KPI_AVG": "Ø Zykluszeit", "KPI_BRCT": "BRCT (5 schnellste)", "KPI_DIST": "Störungsanteil", "KPI_ONE": "Ø Zykluszeit · 1 Platte", "KPI_TWO": "Ø Zykluszeit · 2 Platten", "KPI_AVG_SHORT": "Ø CT:", "KPI_BRCT_SHORT": "BRCT:", "CSV_DECIMAL": ",", "LONGEST": "Längste Zykluszeit:", "SHORTEST": "Kürzeste Zykluszeit:", "DISTURBANCE": "Störungsanteil:", "PRODUCT": "ARTIKEL / VARIANTE", "BOUNDARY": "MESSGRENZE", "DETAILS": "Messdetails (optional)", "PH_PRODUCT": "Artikel, Familie oder Variante", "PH_BOUNDARY": "Startpunkt → Endpunkt", "CYCLE": "ZYKLUS", "TIME": "ZEIT", "PIECES": "PLATTEN", "PROBLEMS": "ABWEICHUNG / KOMMENTAR", "ACTIVE": "AKTIV", "CURRENT": "LÄUFT", "NOTE_PLACEHOLDER": "Kommentar zum aktuellen Zyklus", "THEME": "Design", "QUALITY": "Qualitätsproblem / Prüfung", "CHANGEOVER": "Rüsten", "LOAD_UNLOAD": "Be-/Entladen", "MACHINE": "Maschinenstörung", "OTHER": "Sonstiges", "COMPLETE": "20 Zyklen abgeschlossen", "DELETED": "Zyklus gelöscht", "UNDO": "Rückgängig", "NO_DATA": "Keine Zyklen zum Exportieren.", "CALC_TAKT_BTN": "Berechnen", "PROMPT_VOLUME": "Jahresvolumen eingeben (Stück/Jahr):", "PROMPT_HOURS": "Arbeitsstunden pro Woche eingeben — Standard: 78", "ALERT_BAD_INPUT": "Ungültige Werte. Bitte erneut versuchen."};
+let lang='en';
+const languageFlags={"sv": "<svg aria-hidden=\"true\" viewBox=\"0 0 60 40\" width=\"30\" height=\"20\"><rect width=\"60\" height=\"40\" fill=\"#006aa7\"/><path d=\"M0 20H60M21 0V40\" stroke=\"#fecc00\" stroke-width=\"8\"/></svg>", "de": "<svg aria-hidden=\"true\" viewBox=\"0 0 60 40\" width=\"30\" height=\"20\"><path fill=\"#000\" d=\"M0 0H60V14H0Z\"/><path fill=\"#d00\" d=\"M0 14H60V27H0Z\"/><path fill=\"#ffce00\" d=\"M0 27H60V40H0Z\"/></svg>", "en": "<svg aria-hidden=\"true\" viewBox=\"0 0 60 40\" width=\"30\" height=\"20\"><rect width=\"60\" height=\"40\" fill=\"#012169\"/><path d=\"M0 0L60 40M60 0L0 40\" stroke=\"#fff\" stroke-width=\"8\"/><path d=\"M0 0L60 40M60 0L0 40\" stroke=\"#c8102e\" stroke-width=\"3\"/><path d=\"M30 0V40M0 20H60\" stroke=\"#fff\" stroke-width=\"13\"/><path d=\"M30 0V40M0 20H60\" stroke=\"#c8102e\" stroke-width=\"7\"/></svg>"};
+function tr(sv,en,de){return ({sv,en,de})[lang];}
+function displayDate(v){return /^\d{4}-\d{2}-\d{2}$/.test(v)?new Date(v+'T12:00:00').toLocaleDateString(locale()):v;}
+function locale(){return ({sv:'sv-SE',en:'en-GB',de:'de-DE'})[lang];}
+function num(v,d=1){return Number(v).toLocaleString(locale(),{minimumFractionDigits:d,maximumFractionDigits:d,useGrouping:false});}
+function reasonText(v){return v?L[lang][({quality:'QUALITY',changeover:'CHANGEOVER',load_unload:'LOAD_UNLOAD',machine:'MACHINE',other:'OTHER'})[v]]||v:'';}
+
+const $=s=>document.querySelector(s);
+
+/* ===== Helpers ===== */
+function pad(n,w=2){return String(n).padStart(w,'0')}
+function formatMs(ms){const cs=Math.round(ms/10),m=Math.floor(cs/6000),s=Math.floor((cs%6000)/100),c=cs%100; return `${pad(m)}:${pad(s)}.${pad(c)}`}
+function formatSecondsForCSV(ms){const secs=(ms/1000).toFixed(2); return secs.replace('.',L[lang].CSV_DECIMAL)}
+
+/* ===== State ===== */
+let laps=[];
+let running=false, tStart=0, tick=null;
+let pendingCycle={note:'',pieces:1,reason:''};
+let processData={shiftType:'1',startTime:'06:18',endTime:'14:42',plannedStopMinutes:0,setupsPerShift:0,setupMinutes:0,productsPerCycle:1,annualDemand:0,weeklyHours:78};
+let selectedIndex=-1;
+const STORAGE_KEY='cycle-check-state-v8';
+const LEGACY_STORAGE_KEY='cycle-check-state-v6';
+const SUBPROCESS_HISTORY_KEY='cycle-check-subprocesses-v1';
+const theme='dark';
+let wakeLock=null, deletedLap=null, toastTimer=null;
+
+let rafId=null;
+
+/* ===== UI refs ===== */
+const processInput=$('#process'), subprocessInput=$('#subprocess'), dateInput=$('#date'), standardInput=$('#standard'), taktInput=$('#takt');
+const productInput=$('#product'), boundaryInput=$('#boundary');
+const toggleBtn=$('#btnToggle'), stopBtn=$('#btnStop'), timerDisp=$('#timerDisp');
+const chart=$('#chart');
+
+/* ===== i18n apply ===== */
+function setLangTexts(){
+  document.documentElement.lang=lang;
+  $('#shiftType').options[0].textContent=shiftText('1');$('#shiftType').options[1].textContent=shiftText('2');
+  $('#annualDemand').placeholder=tr('t.ex. 100000','e.g. 100000','z. B. 100000');$('#weeklyHours').placeholder=tr('t.ex. 78','e.g. 78','z. B. 78');$('#productsPerCycle').placeholder=num(1.5);$('#plannedStopMinutes').placeholder=tr('Uppstart, städ, rast','Startup, cleaning, breaks','Anlauf, Reinigung, Pausen');
+  $('#closeProcessModal').setAttribute('aria-label',tr('Stäng','Close','Schließen'));
+
+  $('#lblProcess').textContent=L[lang].PROCESS;
+  $('#lblSubprocess').textContent=L[lang].SUBPROCESS;
+  $('#lblDate').textContent=L[lang].DATE;
+  $('#lblStandard').textContent=L[lang].STANDARD;
+  $('#lblTakt').textContent=L[lang].TAKT;
+  $('#process').placeholder=L[lang].PH_PROCESS;
+  $('#subprocess').placeholder=L[lang].PH_SUBPROCESS;
+  $('#date').placeholder=L[lang].PH_DATE;
+  standardInput.placeholder=L[lang].PH_TAKT;
+  taktInput.placeholder=L[lang].PH_TAKT;
+  $('#btnProcessData').textContent=tr("Ange processdata","Enter process data","Prozessdaten eingeben");
+  $('#setupEyebrow').textContent=tr("FÖRE MÄTNINGEN","BEFORE THE STUDY","VOR DER MESSUNG");
+  $('#setupTitle').textContent=tr("Ange processdata","Enter process data","Prozessdaten eingeben");
+  $('#btnExport').textContent=L[lang].EXPORT;
+  $('#btnReport').textContent=L[lang].REPORT;
+  $('#btnReset').textContent=L[lang].RESET;
+  $('#resultsTitle').textContent=L[lang].RESULTS_TITLE;
+  $('#kpiTaktLabel').textContent=tr("Takttid","Takt time","Taktzeit");
+  $('#kpiProgressLabel').textContent=L[lang].KPI_PROGRESS;
+  $('#kpiAvgLabel').textContent=L[lang].KPI_AVG;
+  $('#kpiBrctLabel').textContent=L[lang].KPI_BRCT;
+  $('#kpiDistLabel').textContent=L[lang].KPI_DIST;
+  $('#kpiOneLabel').textContent=L[lang].KPI_ONE;
+  $('#kpiTwoLabel').textContent=L[lang].KPI_TWO;
+  $('#lblProduct').textContent=L[lang].PRODUCT;
+  $('#lblBoundary').textContent=L[lang].BOUNDARY;
+  $('#detailsSummary').textContent=L[lang].DETAILS;
+  productInput.placeholder=L[lang].PH_PRODUCT;
+  boundaryInput.placeholder=L[lang].PH_BOUNDARY;
+  $('#thCycle').textContent=L[lang].CYCLE;
+  $('#thTime').textContent=L[lang].TIME;
+  $('#thPieces').textContent=L[lang].PIECES;
+  $('#thProblems').textContent=L[lang].PROBLEMS;
+  toggleBtn.textContent = running ? L[lang].TOGGLE_LAP : L[lang].TOGGLE_START;
+  stopBtn.textContent = L[lang].STOP;
+  $('#shortcutHelp').textContent=L[lang].SHORTCUT;
+  $('#colorRule').textContent=L[lang].COLOR_RULE;
+  $('#langLabel').textContent = ({sv:'Svenska',en:'English',de:'Deutsch'})[lang];
+  $('#btnLang').querySelector('.flag').innerHTML=languageFlags[lang];
+  applyProcessDataTexts();
+  requiredFields.forEach(f=>{const mark=document.createElement('span');mark.className='required-mark';mark.textContent='*';mark.setAttribute('aria-hidden','true');$('#'+f.label).appendChild(mark);});
+  updateFieldHelp();
+  if(validationActive)validateRequiredFields();
+  renderList();
+}
+
+const processFieldHelp={"process": ["lblProcess", ["Ange processen eller stationen du mäter, till exempel Limhjul 1 eller Fräscell 2. Obligatoriskt.", "Enter the process or station you are measuring, for example Gluing wheel 1 or Milling cell 2. Required.", "Den gemessenen Prozess oder Arbeitsplatz eingeben, zum Beispiel Kleberad 1 oder Fräszelle 2. Pflichtfeld."]], "subprocess": ["lblSubprocess", ["Ange ett mer specifikt område inom processen. Valfritt.", "Enter a more specific area within the process. Optional.", "Einen spezifischeren Bereich innerhalb des Prozesses angeben. Optional."]], "date": ["lblDate", ["Välj datumet då mätningen genomförs. Datumet följer med i rapporterna. Obligatoriskt.", "Choose the date of the measurement. This date appears in the reports. Required.", "Das Datum der Messung auswählen. Dieses Datum erscheint in den Berichten. Pflichtfeld."]], "standard": ["lblStandard", ["Ange den redan kända cykeltiden i sekunder. Om den saknas, ange en uppskattning. Skriv 0 om du inte vet. Tiden används som referens för vad maskinen borde kunna producera.", "Enter the known cycle time in seconds. If none is available, enter an estimate. Enter 0 if you do not know. This time is used as a reference for what the machine should be able to produce.", "Die bereits bekannte Zykluszeit in Sekunden eingeben. Falls sie nicht bekannt ist, einen Schätzwert angeben. Bei unbekannter Zykluszeit 0 eingeben. Die Zeit dient als Referenz dafür, was die Maschine produzieren können sollte."]], "annualDemand": ["lblAnnualDemand", ["Ange årsbehovet i antal färdiga produkter, inte antal cykler. Exempel: 100000 produkter per år. Tillsammans med veckotimmar och mix beräknas takttiden. Beräkningen använder 45 produktionsveckor per år. Utan årsvolym beräknas ingen takttid.", "Enter annual demand in finished products, not cycles. Example: 100000 products per year. Together with weekly hours and mix, this determines takt time. The calculation uses 45 production weeks per year. Without annual volume, no takt time is calculated.", "Den Jahresbedarf an fertigen Produkten eingeben, nicht die Anzahl der Zyklen. Beispiel: 100000 Produkte pro Jahr. Zusammen mit Wochenstunden und Mix ergibt sich die Taktzeit. Die Berechnung verwendet 45 Produktionswochen pro Jahr. Ohne Jahresvolumen wird keine Taktzeit berechnet."]], "weeklyHours": ["lblWeeklyHours", ["Ange tillgängliga produktionstimmar under en normal arbetsvecka. Tillsammans med årsvolymen beräknas en takttid som du kan jämföra cykeltiderna med. Beräkningen utgår från 45 produktionsveckor per år.", "Enter the available production hours in a normal working week. Together with annual volume, this calculates a takt time to compare cycle times against. The calculation assumes 45 production weeks per year.", "Die verfügbaren Produktionsstunden einer normalen Arbeitswoche eingeben. Zusammen mit dem Jahresvolumen wird eine Taktzeit berechnet, mit der die Zykluszeiten verglichen werden können. Die Berechnung basiert auf 45 Produktionswochen pro Jahr."]], "shiftType": ["lblShiftType", ["Välj skiftet du mäter. Förinställda tider: skift 1 kl. 06:18–14:42 och skift 2 kl. 14:36–00:00. När du byter skift fylls dessa tider i. Justera dem vid behov.", "Choose the shift being measured. Default times: shift 1, 06:18–14:42; shift 2, 14:36–00:00. Changing the shift fills in these times. Adjust them if needed.", "Die gemessene Schicht auswählen. Vorgabezeiten: Schicht 1, 06:18–14:42; Schicht 2, 14:36–00:00. Beim Schichtwechsel werden diese Zeiten eingetragen. Bei Bedarf anpassen."]], "productsPerCycle": ["lblProductsCycle", ["Ange genomsnittligt antal produkter som produceras per cykel. Ofta 1, men ibland fler.", "Enter the average number of products produced per cycle. Usually 1, but sometimes more.", "Die durchschnittliche Anzahl der Produkte pro Zyklus eingeben. Meist 1, manchmal mehr."]], "startTime": ["lblStartTime", ["Ange skiftets starttid, till exempel 06:18. Start- och sluttid bestämmer skiftets längd före avdrag för planerade stopp och ställ.", "Enter the shift start time, for example 06:18. Start and end times determine shift length before deductions for planned stops and changeovers.", "Den Schichtbeginn eingeben, zum Beispiel 06:18. Start- und Endzeit bestimmen die Schichtdauer vor Abzug geplanter Stillstände und Rüstzeiten."]], "endTime": ["lblEndTime", ["Ange skiftets sluttid, till exempel 14:42. Om sluttiden ligger före starttiden räknas den som nästa dag. 00:00 betyder midnatt.", "Enter the shift end time, for example 14:42. If it is earlier than the start time, it is treated as the next day. 00:00 means midnight.", "Das Schichtende eingeben, zum Beispiel 14:42. Liegt die Endzeit vor der Startzeit, wird sie dem nächsten Tag zugeordnet. 00:00 bedeutet Mitternacht."]], "plannedStopMinutes": ["lblPlannedStop", ["Ange genomsnittlig planerad stopptid per skift i minuter, till exempel för raster, uppstart och städning. Tiden dras av från skiftets längd. Räkna inte med ställtid som anges i ställfälten.", "Enter the average planned stop time per shift in minutes, for example breaks, startup and cleaning. This is deducted from shift length. Exclude changeover time entered in the changeover fields.", "Die durchschnittliche geplante Stillstandszeit pro Schicht in Minuten eingeben, zum Beispiel für Pausen, Anlauf und Reinigung. Sie wird von der Schichtdauer abgezogen. Rüstzeiten aus den Rüstfeldern nicht zusätzlich einrechnen."]], "setupsPerShift": ["lblSetups", ["Ange normalt antal planerade ställ per skift, som ett heltal. Antalet multipliceras med den genomsnittliga tiden per ställ.", "Enter the usual number of planned changeovers per shift as a whole number. This is multiplied by the average time per changeover.", "Die übliche Anzahl geplanter Rüstvorgänge pro Schicht als ganze Zahl eingeben. Die Anzahl wird mit der durchschnittlichen Zeit pro Rüstvorgang multipliziert."]], "setupMinutes": ["lblSetupMinutes", ["Ange genomsnittlig planerad ställtid i minuter per ställ. Antal ställ × tid per ställ dras av från skiftets längd.", "Enter the average planned time in minutes per changeover. Number of changeovers × time per changeover is deducted from shift length.", "Die durchschnittliche geplante Rüstzeit in Minuten pro Rüstvorgang eingeben. Anzahl der Rüstvorgänge × Zeit pro Vorgang wird von der Schichtdauer abgezogen."]]};
+function setupFieldHelp(){Object.entries(processFieldHelp).forEach(([id,[labelId]])=>{const label=$('#'+labelId),el=$('#'+id);label.htmlFor=id;const row=document.createElement('div');row.className='field-label-row';label.before(row);row.appendChild(label);const button=document.createElement('button');button.type='button';button.className='info-btn';button.textContent='i';button.dataset.helpField=id;button.setAttribute('aria-controls',id+'Help');button.setAttribute('aria-expanded','false');const help=document.createElement('div');help.id=id+'Help';help.className='field-help hidden';el.after(help);row.appendChild(button);const described=(el.getAttribute('aria-describedby')||'').split(' ').filter(Boolean);el.setAttribute('aria-describedby',[...described,id+'Help'].join(' '));button.addEventListener('click',()=>{const expanded=button.getAttribute('aria-expanded')==='true';button.setAttribute('aria-expanded',String(!expanded));help.classList.toggle('hidden',expanded);});});}
+function updateFieldHelp(){Object.entries(processFieldHelp).forEach(([id,[labelId,texts]])=>{const button=document.querySelector('[data-help-field="'+id+'"]');if(!button)return;const label=$('#'+labelId).textContent.replace(/\*/g,'').trim();button.setAttribute('aria-label',tr('Information om ','Information about ','Information zu ')+label);button.title=button.getAttribute('aria-label');$('#'+id+'Help').textContent=texts[({sv:0,en:1,de:2})[lang]];});}
+
+let validationActive=false;
+const requiredFields=[{id:'process',label:'lblProcess'},{id:'date',label:'lblDate'},{id:'standard',label:'lblStandard'}];
+function missingRequiredFields(){return requiredFields.filter(f=>{const el=$('#'+f.id);if(f.id==='process')return !el.value.trim();if(f.id==='date')return !el.value||!el.validity.valid;return !el.value||!el.validity.valid||Number(el.value)<0;});}
+function requiredMessage(id){return id==='standard'?tr('Ange en cykeltid i sekunder eller 0 om du inte vet.','Enter a cycle time in seconds or 0 if unknown.','Eine Zykluszeit in Sekunden oder 0 eingeben, falls unbekannt.'):id==='date'?tr('Välj ett giltigt datum.','Choose a valid date.','Ein gültiges Datum auswählen.'):tr('Ange processnamnet.','Enter the process name.','Den Prozessnamen eingeben.');}
+function validateRequiredFields(focus=false){validationActive=true;const missing=missingRequiredFields();requiredFields.forEach(f=>{const el=$('#'+f.id),invalid=missing.some(m=>m.id===f.id),hint=$('#'+f.id+'Error');el.classList.toggle('field-invalid',invalid);el.setAttribute('aria-invalid',String(invalid));hint.textContent=invalid?requiredMessage(f.id):'';hint.classList.toggle('hidden',!invalid);});const alert=$('#validationAlert');alert.classList.toggle('hidden',!missing.length);alert.textContent=missing.length?tr('Fyll i de rödmarkerade fälten innan du startar: ','Complete the fields marked in red before starting: ','Vor dem Start die rot markierten Felder ausfüllen: ')+missing.map(f=>L[lang][({process:'PROCESS',date:'DATE',standard:'STANDARD'})[f.id]]).join(', ')+'.':'';if(focus&&missing.length){const el=$('#'+missing[0].id);el.focus();el.scrollIntoView?.({block:'center',behavior:'smooth'});}return !missing.length;}
+function setupRequiredFields(){requiredFields.forEach(f=>{const el=$('#'+f.id);el.required=true;el.setAttribute('aria-required','true');el.setAttribute('aria-describedby',f.id+'Error');const hint=document.createElement('div');hint.id=f.id+'Error';hint.className='field-error hidden';el.insertAdjacentElement('afterend',hint);el.addEventListener('input',()=>{if(validationActive)validateRequiredFields();});el.addEventListener('change',()=>{if(validationActive)validateRequiredFields();});});}
+
+/* ===== Timer ===== */
+function startTimer(){
+  if(running) return;
+  if(missingRequiredFields().length){openProcessModal();validateRequiredFields(true);return;}
+  running=true;
+  tStart=performance.now();
+  timerDisp.textContent='00:00.00';
+  if(tick) clearInterval(tick);
+  tick=setInterval(()=>{ timerDisp.textContent = formatMs(performance.now()-tStart); }, 50);
+  toggleBtn.textContent=L[lang].TOGGLE_LAP;
+  stopBtn.disabled=false;
+  requestWakeLock();
+  startLoop();
+  renderList();
+}
+function lap(){
+  if(!running) return;
+  const now = performance.now();
+  const elapsed = Math.max(10, now - tStart);
+  tStart = now;
+  timerDisp.textContent = '00:00.00';
+  laps.push({ms: elapsed,note:pendingCycle.note,pieces:pendingCycle.pieces,reason:pendingCycle.reason});
+  pendingCycle={note:'',pieces:1,reason:''};
+  selectedIndex = laps.length - 1;
+  if(navigator.vibrate) navigator.vibrate(25);
+  if(laps.length===20) showToast(L[lang].COMPLETE);
+  refreshUI();
+}
+function cancelCurrentTimer(){
+  if(running){
+    running=false;
+    if(tick){ clearInterval(tick); tick=null; }
+    toggleBtn.textContent=L[lang].TOGGLE_START;
+  }
+  timerDisp.textContent='00:00.00';
+  stopBtn.disabled=true;
+  pendingCycle={note:'',pieces:1,reason:''};
+  renderList();
+  stopLoop();
+  releaseWakeLock();
+}
+function toggle(){ running ? lap() : startTimer(); }
+toggleBtn.addEventListener('click', toggle);
+stopBtn.addEventListener('click', cancelCurrentTimer);
+
+async function requestWakeLock(){
+  try{ if('wakeLock' in navigator) wakeLock=await navigator.wakeLock.request('screen'); }catch(e){}
+}
+async function releaseWakeLock(){
+  try{ if(wakeLock) await wakeLock.release(); }catch(e){} finally{ wakeLock=null; }
+}
+document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible' && running) requestWakeLock(); });
+
+/* ===== Tangentbord ===== */
+window.addEventListener('keydown', e=>{
+  const ae=document.activeElement;
+  const tag=ae && ae.tagName ? ae.tagName.toUpperCase(): '';
+  if(!$('#languageModal').classList.contains('hidden')||!$('#processModal').classList.contains('hidden'))return;
+  if(e.code==='Space'){
+    if(tag==='BUTTON'||tag==='SELECT')return;
+    if(e.repeat){ e.preventDefault(); return; }
+    if(tag==='TEXTAREA' || (tag==='INPUT' && (ae.type||'').toLowerCase()!=='button')) return;
+    e.preventDefault();
+    running ? lap() : startTimer();
+  }
+  if(e.key && e.key.toLowerCase()==='s' && tag!=='TEXTAREA' && tag!=='INPUT'){
+    e.preventDefault();
+    cancelCurrentTimer();
+  }
+  if(e.key==='Delete' || e.key==='Backspace'){
+    if(tag==='TEXTAREA' || tag==='INPUT'){ return; }
+    e.preventDefault();
+    deleteSelected();
+  }
+});
+
+/* ===== Markera & radera rader ===== */
+function selectRow(ix){
+  selectedIndex=ix;
+  document.querySelectorAll('.list-row').forEach((r,i)=> r.classList.toggle('selected', i===ix));
+}
+function deleteSelected(){
+  if(selectedIndex<0 || selectedIndex>=laps.length) return;
+  const ix=selectedIndex;
+  deletedLap={lap:laps[ix],index:ix};
+  laps.splice(ix,1);
+  selectedIndex=-1;
+  refreshUI();
+  showUndoToast();
+}
+
+function showToast(message, actionText='', action=null){
+  const toast=$('#toast');
+  clearTimeout(toastTimer);
+  toast.innerHTML='';
+  const span=document.createElement('span'); span.textContent=message; toast.appendChild(span);
+  if(action){
+    const btn=document.createElement('button'); btn.className='btn small'; btn.style.marginLeft='10px'; btn.textContent=actionText;
+    btn.addEventListener('click',()=>{ action(); toast.classList.add('hidden'); }); toast.appendChild(btn);
+  }
+  toast.classList.remove('hidden');
+  toastTimer=setTimeout(()=>toast.classList.add('hidden'),4500);
+}
+function showUndoToast(){
+  showToast(L[lang].DELETED,L[lang].UNDO,()=>{
+    if(!deletedLap) return;
+    laps.splice(deletedLap.index,0,deletedLap.lap); deletedLap=null; refreshUI();
+  });
+}
+
+/* ===== Lista/KPI ===== */
+function renderList(){
+  const list=$('#list'); list.innerHTML='';
+  if(running){
+    const current=document.createElement('div');
+    current.className='list-row active-cycle selected';
+    current.innerHTML=`<div class="cell cycle"><span class="badge">${laps.length+1}</span><span class="active-tag" style="display:inline-block">${L[lang].ACTIVE}</span></div>
+      <div class="cell time"><b>${L[lang].CURRENT}</b></div>
+      <div class="pieces-cell"><div class="piece-toggle"><button class="choice ${pendingCycle.pieces===1?'active':''}" data-pending-pieces="1">${tr("1 ruta","1 panel","1 Platte")}</button><button class="choice ${pendingCycle.pieces===2?'active':''}" data-pending-pieces="2">${tr("2 rutor","2 panels","2 Platten")}</button></div></div>
+      <div class="cell problems"><div class="reason-toggle"><button class="choice ${pendingCycle.reason==='quality'?'active':''}" data-pending-reason="quality">${L[lang].QUALITY}</button><button class="choice ${pendingCycle.reason==='changeover'?'active':''}" data-pending-reason="changeover">${L[lang].CHANGEOVER}</button><button class="choice ${pendingCycle.reason==='load_unload'?'active':''}" data-pending-reason="load_unload">${L[lang].LOAD_UNLOAD}</button><button class="choice ${pendingCycle.reason==='machine'?'active':''}" data-pending-reason="machine">${L[lang].MACHINE}</button><button class="choice ${pendingCycle.reason==='other'?'active':''}" data-pending-reason="other">${L[lang].OTHER}</button></div><textarea id="pendingNote" placeholder="${L[lang].NOTE_PLACEHOLDER}"></textarea></div>
+      <div class="delete-cell"></div>`;
+    list.appendChild(current);
+    const pendingNote=current.querySelector('#pendingNote');
+    pendingNote.value=pendingCycle.note;
+    pendingNote.addEventListener('input',e=>{pendingCycle.note=e.target.value;saveState();});
+    current.querySelectorAll('[data-pending-pieces]').forEach(btn=>btn.addEventListener('click',e=>{pendingCycle.pieces=+e.currentTarget.dataset.pendingPieces;renderList();saveState();}));
+    current.querySelectorAll('[data-pending-reason]').forEach(btn=>btn.addEventListener('click',e=>{const reason=e.currentTarget.dataset.pendingReason;pendingCycle.reason=pendingCycle.reason===reason?'':reason;renderList();saveState();}));
+  }
+  const entries=laps.map((l,i)=>({l,i}));
+  if(window.innerWidth<=640) entries.reverse();
+  entries.forEach(({l,i})=>{
+    const row=document.createElement('div'); row.className='list-row';
+    if(i===selectedIndex) row.classList.add('selected');
+    const standardMs=Number(standardInput.value||0)*1000;
+    if(standardMs>0) row.classList.add(l.ms<=standardMs?'ct-green':(l.ms<=standardMs*1.2?'ct-orange':'ct-red'));
+    row.innerHTML=
+      `<div class="cell cycle"><span class="badge">${i+1}</span><span class="active-tag">${L[lang].ACTIVE}</span></div>
+       <div class="cell time"><b>${formatMs(l.ms)}</b></div>
+       <div class="pieces-cell"><div class="piece-toggle"><button class="choice ${l.pieces===1?'active':''}" data-pieces="1" data-ix="${i}">${tr("1 ruta","1 panel","1 Platte")}</button><button class="choice ${l.pieces===2?'active':''}" data-pieces="2" data-ix="${i}">${tr("2 rutor","2 panels","2 Platten")}</button></div></div>
+       <div class="cell problems">
+         <div class="reason-toggle"><button class="choice ${l.reason==='quality'?'active':''}" data-reason="quality" data-ix="${i}">${L[lang].QUALITY}</button><button class="choice ${l.reason==='changeover'?'active':''}" data-reason="changeover" data-ix="${i}">${L[lang].CHANGEOVER}</button><button class="choice ${l.reason==='load_unload'?'active':''}" data-reason="load_unload" data-ix="${i}">${L[lang].LOAD_UNLOAD}</button><button class="choice ${l.reason==='machine'?'active':''}" data-reason="machine" data-ix="${i}">${L[lang].MACHINE}</button><button class="choice ${l.reason==='other'?'active':''}" data-reason="other" data-ix="${i}">${L[lang].OTHER}</button></div>
+         <textarea data-ix="${i}" placeholder="${L[lang].NOTE_PLACEHOLDER}"></textarea>
+       </div>
+       <div class="delete-cell"><button class="delete-btn" title="${tr('Radera','Delete','Löschen')}" data-ix="${i}">🗑️</button></div>`;
+    list.appendChild(row);
+    const ta=row.querySelector('textarea'); ta.value=l.note||'';
+    row.addEventListener('click', ()=> selectRow(i));
+    ta.addEventListener('focus', ()=> selectRow(i));
+    ta.addEventListener('input', e=>{ const ix=+e.target.dataset.ix; laps[ix].note=e.target.value; saveState(); });
+  });
+  list.querySelectorAll('[data-pieces]').forEach(btn=>btn.addEventListener('click',e=>{
+    e.stopPropagation();
+    const ix=+e.currentTarget.dataset.ix;
+    laps[ix].pieces=+e.currentTarget.dataset.pieces;
+    refreshUI();
+  }));
+  list.querySelectorAll('[data-reason]').forEach(btn=>btn.addEventListener('click',e=>{
+    e.stopPropagation();
+    const ix=+e.currentTarget.dataset.ix, reason=e.currentTarget.dataset.reason;
+    laps[ix].reason=laps[ix].reason===reason?'':reason;
+    refreshUI();
+  }));
+  list.querySelectorAll('.delete-btn').forEach(btn=>btn.addEventListener('click',e=>{
+    e.stopPropagation();
+    const ix=+e.currentTarget.dataset.ix;
+    deletedLap={lap:laps[ix],index:ix};
+    laps.splice(ix,1);
+    if(selectedIndex===ix) selectedIndex=-1; else if(selectedIndex>ix) selectedIndex--;
+    refreshUI();
+    showUndoToast();
+  }));
+}
+
+function avgMs(a){return a.length? a.reduce((x,y)=>x+y,0)/a.length:0}
+function brctMs(a){ if(!a.length) return null; return avgMs([...a].sort((x,y)=>x-y).slice(0,Math.min(5,a.length))); }
+function longestMs(arr){ return arr.length ? Math.max(...arr) : 0; }
+function shortestMs(arr){ return arr.length ? Math.min(...arr) : 0; }
+function disturbanceRate(avg, br){ return (avg>0 && br!==null) ? ((avg - br)/avg*100) : 0; }
+function standardDeviation(arr){
+  if(arr.length<2) return 0;
+  const mean=avgMs(arr);
+  return Math.sqrt(arr.reduce((sum,x)=>sum+Math.pow(x-mean,2),0)/(arr.length-1));
+}
+function cycleColor(ms){
+  const standardMs=Number(standardInput.value||0)*1000;
+  if(!standardMs) return '#3b82f6';
+  if(ms<=standardMs) return '#16a34a';
+  if(ms<=standardMs*1.2) return '#f59e0b';
+  return '#dc2626';
+}
+
+function updateKPIs(){
+  const arr=laps.map(x=>x.ms), avg=avgMs(arr), br=brctMs(arr);
+  $('#kpiTakt').textContent=Number(taktInput.value)>0?num(Number(taktInput.value))+' s':'–';
+  $('#kpiAvg').textContent=arr.length?formatMs(Math.round(avg)):'00:00.00';
+  $('#kpiBrct').textContent=br!==null?formatMs(Math.round(br)):'–';
+  $('#kpiProgress').textContent=`${laps.length} / 20${laps.length>20?' +':''}`;
+  $('#kpiDist').textContent=arr.length?`${num(disturbanceRate(avg,br))} %`:'–';
+  const one=laps.filter(x=>x.pieces===1).map(x=>x.ms), two=laps.filter(x=>x.pieces===2).map(x=>x.ms);
+  $('#kpiOne').textContent=one.length?`${formatMs(Math.round(avgMs(one)))} (${one.length})`:'–';
+  $('#kpiTwo').textContent=two.length?`${formatMs(Math.round(avgMs(two)))} (${two.length})`:'–';
+}
+
+function shiftMinutes(start,end){if(!start||!end)return 0;const [sh,sm]=start.split(':').map(Number),[eh,em]=end.split(':').map(Number);let d=(eh*60+em)-(sh*60+sm);if(d<=0)d+=1440;return d}
+function processCapacity(){const avg=avgMs(laps.map(x=>x.ms))/1000,br=brctMs(laps.map(x=>x.ms)),brSec=br?br/1000:0,std=Math.max(0,Number(standardInput.value)||0),ppc=Math.max(.01,Number(processData.productsPerCycle)||1),scheduled=shiftMinutes(processData.startTime,processData.endTime),stops=Math.max(0,Number(processData.plannedStopMinutes)||0),setups=Math.max(0,Number(processData.setupsPerShift)||0)*Math.max(0,Number(processData.setupMinutes)||0),plannedMinutes=Math.max(0,scheduled-stops-setups),seconds=plannedMinutes*60,toTarget=ct=>ct>0?Math.floor(seconds/ct*ppc):0;return{avg,brSec,std,ppc,scheduled,stops,setups,plannedMinutes,standardTarget:toTarget(std),actualTarget:toTarget(avg),reasonableTarget:toTarget(brSec)}}
+function formatQty(v){return Number(v||0).toLocaleString(locale(),{maximumFractionDigits:1})}
+function updateCapacitySummary(){const x=processCapacity(),ok=laps.length&&x.plannedMinutes>0&&x.ppc>0;$('#capacitySummary').classList.toggle('hidden',!ok);$('#capCycles').textContent=ok&&x.std?formatQty(x.standardTarget):'–';$('#capProducts').textContent=ok?formatQty(x.actualTarget):'–';$('#capTarget').textContent=ok&&x.brSec?formatQty(x.reasonableTarget):'–'}
+function applyProcessDataTexts(){$('#processModalTitle').textContent=tr("Processdata och mål för aktuellt skift","Process data and current shift target","Prozessdaten und Ziel für die aktuelle Schicht");$('#lblShiftType').textContent=tr("AKTUELLT SKIFT","CURRENT SHIFT","AKTUELLE SCHICHT");$('#lblProductsCycle').textContent=tr("PRODUKTER PER CYKEL / MIX","PRODUCTS PER CYCLE / MIX","PRODUKTE PRO ZYKLUS / MIX");$('#lblAnnualDemand').textContent=tr("ÅRSVOLYM (ANTAL ENHETER/ÅR)","ANNUAL VOLUME (UNITS/YEAR)","JAHRESVOLUMEN (STÜCK/JAHR)");$('#lblWeeklyHours').textContent=tr("VECKOTAKT – KÖRBARA TIMMAR PER VECKA","WEEKLY RATE – AVAILABLE HOURS PER WEEK","VERFÜGBARE BETRIEBSSTUNDEN PRO WOCHE");$('#lblStartTime').textContent=tr("STARTTID","START TIME","STARTZEIT");$('#lblEndTime').textContent=tr("SLUTTID","END TIME","ENDZEIT");$('#lblPlannedStop').textContent=tr("PLANERAD STOPPTID (MIN)","PLANNED STOP TIME (MIN)","GEPLANTE STILLSTANDSZEIT (MIN)");$('#lblSetups').textContent=tr("PLANERAT ANTAL STÄLL","PLANNED CHANGEOVERS","GEPLANTE RÜSTVORGÄNGE");$('#lblSetupMinutes').textContent=tr("PLANERAD STÄLLTID PER STÄLL (MIN)","PLANNED MINUTES PER CHANGEOVER","GEPLANTE RÜSTZEIT PRO VORGANG (MIN)");$('#cancelProcessData').textContent=tr("Avbryt","Cancel","Abbrechen");$('#saveProcessData').textContent=tr("Spara och beräkna","Save and calculate","Speichern und berechnen");$('#capCyclesLabel').textContent=tr("Mål enligt Standard Work CT","Target from Standard Work CT","Ziel gemäß Standardzykluszeit");$('#capProductsLabel').textContent=tr("Faktiskt mål enligt Medel CT","Actual target from Average CT","Ziel gemäß mittlerer Zykluszeit");$('#capTargetLabel').textContent=tr("Rimligt mål enligt BRCT","Reasonable target from BRCT","Realistisches Ziel gemäß BRCT");updateProcessPreview()}
+function fillProcessModal(){for(const k of Object.keys(processData)){const el=$('#'+k);if(el)el.value=processData[k]??''}updateProcessPreview()}
+function readN(id,d=0){const n=Number(String($('#'+id).value||'').replace(',','.'));return Number.isFinite(n)?n:d}
+function readProcessForm(){return{shiftType:$('#shiftType').value,startTime:$('#startTime').value,endTime:$('#endTime').value,plannedStopMinutes:Math.max(0,readN('plannedStopMinutes')),setupsPerShift:Math.max(0,readN('setupsPerShift')),setupMinutes:Math.max(0,readN('setupMinutes')),productsPerCycle:Math.max(.01,readN('productsPerCycle',1)),annualDemand:Math.max(0,readN('annualDemand')),weeklyHours:Math.max(0,readN('weeklyHours'))}}
+function updateProcessPreview(){if(!$('#processPreview'))return;const old=processData;processData=readProcessForm();const x=processCapacity(),runtime=Math.floor(x.plannedMinutes/60)+' h '+Math.round(x.plannedMinutes%60)+' min';$('#processPreview').innerHTML='<b>'+tr('Planerad körtid: ','Planned runtime: ','Geplante Laufzeit: ')+runtime+'</b><br>'+[[$('#capCyclesLabel').textContent,x.std?formatQty(x.standardTarget):'–'],[$('#capProductsLabel').textContent,x.avg?formatQty(x.actualTarget):'–'],[$('#capTargetLabel').textContent,x.brSec?formatQty(x.reasonableTarget):'–']].map(v=>v[0]+': '+v[1]+' '+tr('produkter','products','Produkte')).join('<br>');processData=old}
+function applyShiftDefaults(){if($('#shiftType').value==='2'){$('#startTime').value='14:36';$('#endTime').value='00:00'}else{$('#startTime').value='06:18';$('#endTime').value='14:42'}updateProcessPreview()}
+function updateSetupSummary(){const ready=processInput.value.trim();$('#setupSummary').textContent=ready?((processInput.value||'–')+(subprocessInput.value?' · '+subprocessInput.value:'')+' · '+(displayDate(dateInput.value)||'–')+' · '+(shiftText(processData.shiftType))):(tr("Process, datum, skift, tider, mix och planerade stopp","Process, date, shift, times, mix and planned stops","Prozess, Datum, Schicht, Zeiten, Mix und geplante Stopps"))}
+function openProcessModal(){fillProcessModal();$('#processModal').classList.remove('hidden');$('#process').focus()}function closeProcessModal(){$('#processModal').classList.add('hidden')}function calculateTaktFromProcessData(){const annual=Number(processData.annualDemand)||0,weekly=Number(processData.weeklyHours)||0,mix=Math.max(.01,Number(processData.productsPerCycle)||1);taktInput.value=annual>0&&weekly>0?(weekly*45*3600/annual*mix).toFixed(1):''}function saveProcessForm(){if(!validateRequiredFields(true))return;for(const id of ['setupsPerShift','plannedStopMinutes','setupMinutes']){if(!$('#'+id).reportValidity())return;}processData=readProcessForm();calculateTaktFromProcessData();rememberSubprocess();saveState();updateSetupSummary();updateKPIs();updateCapacitySummary();drawChart();closeProcessModal()}
+
+/* ===== Diagram ===== */
+function drawChart(){
+  const dpr=window.devicePixelRatio||1;
+  const c=document.getElementById('chart');
+  const clientW=Math.max(1,c.clientWidth), clientH=Math.max(1,c.clientHeight);
+  const W=clientW*dpr, H=clientH*dpr;
+  c.width=W; c.height=H;
+
+  const isMobile = window.innerWidth <= 640;
+  const padL = (isMobile ? 40 : 64) * dpr;
+  const padR = 96*dpr, padT = 16*dpr, padB = 42*dpr;
+  const innerW=W-padL-padR, innerH=H-padT-padB;
+  const ctx=c.getContext('2d');
+  const styles=getComputedStyle(document.documentElement);
+  const ink=styles.getPropertyValue('--ink').trim()||'#0f172a';
+  const line=styles.getPropertyValue('--line').trim()||'#e2e8f0';
+  const paper=styles.getPropertyValue('--paper').trim()||'#ffffff';
+  ctx.clearRect(0,0,W,H);
+  if(innerW<=0 || innerH<=0) return;
+
+  const values = laps.map(l=>l.ms);
+  if(running){
+    const current = Math.max(0, performance.now()-tStart);
+    values.push(current);
+  }
+
+  const maxMsTmp = values.length ? Math.max(...values,10000) : 10000;
+  const maxS = Math.max(10, Math.ceil(maxMsTmp/1000/10)*10);
+  const msToY = ms => padT+innerH-(ms/(maxS*1000))*innerH;
+
+  ctx.font = `${12*dpr}px system-ui,-apple-system,Segoe UI,Inter,Arial`;
+  ctx.textBaseline = 'middle';
+  for (let s = 0; s <= maxS; s++) {
+    const y = msToY(s * 1000);
+    ctx.strokeStyle = line; ctx.lineWidth = 1 * dpr;
+    ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(W - padR, y); ctx.stroke();
+    if (s % 5 === 0) {
+      ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 1.5 * dpr;
+      ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(W - padR, y); ctx.stroke();
+      const m = Math.floor(s / 60), sec = s % 60;
+      ctx.fillStyle = ink;
+      ctx.fillText(`${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`, 4*dpr, y);
+    }
+  }
+
+  const n=values.length;
+  if(n){
+    const gap=Math.max(3*dpr, innerW/(n*20));
+    const bw=Math.max(8*dpr,(innerW-gap*(n-1))/n);
+    for(let i=0;i<n;i++){
+      const ms=values[i];
+      const x=padL+i*(bw+gap);
+      const y=msToY(ms);
+      const h=msToY(0)-y;
+      const isCurrent=running && i===laps.length;
+      ctx.fillStyle=cycleColor(ms);
+      ctx.fillRect(Math.round(x),Math.round(y),Math.floor(bw),Math.max(0,Math.round(h)));
+      const seconds=num(ms/1000);
+      ctx.font=`700 ${Math.max(9,Math.min(12,bw/dpr*.32))*dpr}px system-ui,-apple-system,Segoe UI,Inter,Arial`;
+      ctx.textAlign='center'; ctx.textBaseline='bottom';
+      const inside=h>30*dpr;
+      ctx.fillStyle=inside?'#fff':ink;
+      ctx.fillText(`${seconds}s`,x+bw/2,inside?y+Math.min(h-5*dpr,18*dpr):y-3*dpr);
+      ctx.fillStyle=ink; ctx.font=`${10*dpr}px system-ui,-apple-system,Segoe UI,Inter,Arial`;
+      ctx.textAlign='center'; ctx.textBaseline='top';
+      ctx.fillText(`${i+1}`,x+bw/2,H-padB+6*dpr);
+    }
+  }
+
+  const arr=laps.map(l=>l.ms);
+  const guides=[];
+  if(arr.length){
+    const avg=avgMs(arr);
+    guides.push({ y: msToY(avg), color:'#f97316', text:`${L[lang].KPI_AVG_SHORT} ${formatMs(Math.round(avg))}`, dash:[6*dpr,4*dpr] });
+    const br=brctMs(arr);
+    if(br!==null){
+      guides.push({ y: msToY(br), color:'#16a34a', text:`${L[lang].KPI_BRCT_SHORT} ${formatMs(Math.round(br))}`, dash:[4*dpr,3*dpr] });
+    }
+  }
+  const standardVal=Number(standardInput.value||0);
+  if(standardVal>0){
+    guides.push({y:msToY(standardVal*1000),color:'#60a5fa',text:`${L[lang].STANDARD_LABEL} ${num(standardVal)} s`,dash:[]});
+  }
+  const taktVal = Number(taktInput.value || 0);
+  if(taktVal>0){
+    guides.push({ y: msToY(taktVal*1000), color:'#a855f7', text:`${L[lang].TAKT_LABEL} ${num(taktVal)} s`, dash:[2*dpr,3*dpr] });
+  }
+
+  guides.sort((a,b)=>a.y-b.y);
+  const minSep = 16*dpr;
+  for(let i=1;i<guides.length;i++){
+    if(guides[i].y - guides[i-1].y < minSep){
+      guides[i].y = guides[i-1].y + minSep;
+    }
+  }
+  guides.forEach(g=>{
+    g.y = Math.max(12*dpr, Math.min(padT + (H-padB-padT), g.y));
+  });
+
+  guides.forEach(g=>{
+    ctx.setLineDash(g.dash||[]);
+    ctx.strokeStyle=g.color; ctx.lineWidth=1.7*dpr;
+    ctx.beginPath(); ctx.moveTo(padL, g.y); ctx.lineTo(W - padR, g.y); ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.beginPath(); ctx.moveTo(W - padR, g.y); ctx.lineTo(W - padR + 6*dpr, g.y); ctx.stroke();
+
+    const labelPadX=6*dpr, labelPadY=3*dpr;
+    ctx.font = `${12*dpr}px system-ui,-apple-system,Segoe UI,Inter,Arial`;
+    const textW = ctx.measureText(g.text).width;
+    const boxW = textW + labelPadX*2 + 4*dpr;
+    const boxH = 18*dpr;
+
+    const bx = W - padR + 8*dpr;
+    const by = g.y - boxH/2;
+
+    ctx.fillStyle = paper;
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.lineWidth = 1*dpr;
+    roundRect(ctx, bx, by, boxW, boxH, 4*dpr, true, true);
+    ctx.fillStyle = g.color;
+    ctx.fillRect(bx, by, 3*dpr, boxH);
+
+    ctx.fillStyle = ink;
+    ctx.textBaseline='middle'; ctx.textAlign='left';
+    ctx.fillText(g.text, bx + labelPadX + 3*dpr, g.y);
+  });
+}
+
+function roundRect(ctx, x, y, w, h, r, fill, stroke) {
+  if (typeof r === 'number') r = {tl:r,tr:r,br:r,bl:r};
+  ctx.beginPath();
+  ctx.moveTo(x + r.tl, y);
+  ctx.lineTo(x + w - r.tr, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r.tr);
+  ctx.lineTo(x + w, y + h - r.br);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r.br, y + h);
+  ctx.lineTo(x + r.bl, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r.bl);
+  ctx.lineTo(x, y + r.tl);
+  ctx.quadraticCurveTo(x, y, x + r.tl, y);
+  if (fill) ctx.fill();
+  if (stroke) ctx.stroke();
+}
+
+function loop(){
+  drawChart();
+  if(running) rafId = requestAnimationFrame(loop);
+  else rafId = null;
+}
+function startLoop(){
+  if(rafId==null) rafId = requestAnimationFrame(loop);
+}
+function stopLoop(){
+  if(rafId!=null){ cancelAnimationFrame(rafId); rafId=null; }
+}
+
+/* ===== Persistens ===== */
+function saveState(){
+  try{
+    const payload={
+      lang,
+      theme,
+      pendingCycle,
+      laps:laps.map(l=>({ms:l.ms,note:l.note||'',pieces:l.pieces===2?2:1,reason:l.reason||''})),
+      process:processInput.value||'',
+      subprocess:subprocessInput.value||'',
+      date:dateInput.value||'',
+      standard:standardInput.value.trim()===''?null:Number(standardInput.value),
+      takt:Number(taktInput.value)||0,
+      product:productInput.value||'',
+      boundary:boundaryInput.value||'',processData
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+  }catch(err){ console.warn('Failed to save state', err); }
+}
+function loadState(){
+  try{
+    const raw=localStorage.getItem(STORAGE_KEY)||localStorage.getItem(LEGACY_STORAGE_KEY);
+    if(!raw) return;
+    const stored=JSON.parse(raw);
+    if(stored && typeof stored==='object'){
+      if(stored.lang && L[stored.lang]) lang=stored.lang;
+      if(stored.pendingCycle && typeof stored.pendingCycle==='object'){
+        pendingCycle={note:String(stored.pendingCycle.note||''),pieces:stored.pendingCycle.pieces===2?2:1,reason:String(stored.pendingCycle.reason||'')};
+      }
+      if(Array.isArray(stored.laps)){
+        laps=stored.laps.map(item=>({ms:Number(item.ms)||0,note:item.note||'',pieces:item.pieces===2?2:1,reason:item.reason||(item.abnormal?'other':'')})).filter(item=>item.ms>0);
+      }
+      if(typeof stored.process==='string') processInput.value=stored.process;
+      if(typeof stored.subprocess==='string') subprocessInput.value=stored.subprocess;
+      if(typeof stored.date==='string') dateInput.value=stored.date;
+      if(typeof stored.standard==='number') standardInput.value=stored.standard;
+      if(typeof stored.takt==='number') taktInput.value = stored.takt || '';
+      if(typeof stored.product==='string') productInput.value=stored.product;
+      if(typeof stored.boundary==='string') boundaryInput.value=stored.boundary;
+      if(stored.processData&&typeof stored.processData==='object')processData={...processData,...stored.processData};
+    }
+  }catch(err){ console.warn('Failed to load state', err); }
+}
+
+function applyTheme(){
+  document.documentElement.dataset.theme='dark';
+  document.querySelector('meta[name="theme-color"]').content='#0b1020';
+  drawChart();
+}
+
+function rememberSubprocess(){
+  const value=subprocessInput.value.trim(); if(!value) return;
+  try{
+    const list=JSON.parse(localStorage.getItem(SUBPROCESS_HISTORY_KEY)||'[]');
+    localStorage.setItem(SUBPROCESS_HISTORY_KEY,JSON.stringify([value,...list.filter(x=>x!==value)].slice(0,20)));
+  }catch(e){}
+  renderSubprocessOptions();
+}
+function renderSubprocessOptions(){
+  let list=[]; try{ list=JSON.parse(localStorage.getItem(SUBPROCESS_HISTORY_KEY)||'[]'); }catch(e){}
+  $('#subprocessOptions').innerHTML=list.map(x=>`<option value="${String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;')}"></option>`).join('');
+}
+
+/* ===== Språkknapp ===== */
+function shiftText(v){return v==='2'?tr('2:a skift','2nd shift','2. Schicht'):tr('1:a skift','1st shift','1. Schicht');}
+function toggleLanguage(){openLanguagePicker();}
+function openLanguagePicker(){document.querySelector('.app').inert=true;$('#languageModal').classList.remove('hidden');$('#languageModal button').focus();}
+function selectLanguage(value){if(!L[value])return;lang=value;try{localStorage.setItem('dometic-language',lang);}catch(e){}document.querySelector('.app').inert=false;$('#languageModal').classList.add('hidden');setLangTexts();refreshUI();updateSetupSummary();$('#btnLang').focus();if(!processInput.value.trim())openProcessModal();}
+
+
+/* ===== DELNING / NEDLADDNING ===== */
+function buildCSVBlob() {
+  const rows=[];
+  rows.push([L[lang].PROCESS, processInput.value||'']);
+  rows.push([L[lang].SUBPROCESS, subprocessInput.value||'']);
+  rows.push([L[lang].PRODUCT, productInput.value||'']);
+  rows.push([L[lang].BOUNDARY, boundaryInput.value||'']);
+  rows.push([L[lang].DATE, dateInput.value||'']);
+  rows.push([L[lang].STANDARD,Number(standardInput.value)||0]);
+  rows.push([L[lang].TAKT,Number(taktInput.value)||0]);
+  rows.push([]);
+  rows.push([L[lang].CYCLE,L[lang].PIECES,'ms','s',L[lang].PROBLEMS,tr('Anteckning','Notes','Notizen')]);
+  laps.forEach((lap,i)=>{
+    rows.push([`${i+1}`,lap.pieces||1,Math.round(lap.ms),formatSecondsForCSV(lap.ms),reasonText(lap.reason),(lap.note||'').replace(/\n/g,' ')]);
+  });
+  const csv=rows.map(r=>r.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(lang==='en'?',':';')).join('\r\n');
+  return new Blob(['\ufeff',csv],{type:'text/csv;charset=utf-8;'});
+}
+function downloadBlob(blob, filename){
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url; a.download=filename;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+async function shareOrDownloadFile(blob, filename, mime, preferShare=true){
+  try{
+    const file = new File([blob], filename, { type: mime });
+    if (preferShare && navigator.canShare && navigator.canShare({ files:[file] })) {
+      await navigator.share({
+        files: [file],
+        title: filename,
+        text: (tr("Se bifogad fil.","See attached file.","Siehe angehängte Datei."))
+      });
+      return;
+    }
+  }catch(e){}
+  downloadBlob(blob, filename);
+}
+
+/* ===== Export CSV ===== */
+async function exportCSV(){
+  if(!laps.length){ showToast(L[lang].NO_DATA); return; }
+  rememberSubprocess();
+  const stamp = new Date().toISOString().slice(0,10);
+  const blob = buildCSVBlob();
+  const filename = `20-cycle-check-${stamp}.csv`;
+  const ask=tr('Dela filen (OK) eller ladda ner (Avbryt)?','Share file (OK) or download (Cancel)?','Datei teilen (OK) oder herunterladen (Abbrechen)?');
+  const preferShare = window.confirm(ask);
+  await shareOrDownloadFile(blob, filename, 'text/csv', preferShare);
+}
+
+/* ===== Modern Excel workbook ===== */
+async function exportXLSX(){
+  if(!laps.length){showToast(L[lang].NO_DATA);return;}
+  rememberSubprocess();
+  if(!window.ExcelJS){showToast(tr("Excel-modulen kunde inte laddas.","Excel module could not load.","Das Excel-Modul konnte nicht geladen werden."));return;}
+  const wb=new ExcelJS.Workbook();
+  wb.creator='20 Cycle Check'; wb.created=new Date();
+  const summary=wb.addWorksheet(tr("Sammanfattning","Summary","Zusammenfassung"),{views:[{showGridLines:false}]});
+  const data=wb.addWorksheet(tr("Cykeldata","Cycle data","Zyklusdaten"),{views:[{showGridLines:false,state:'frozen',ySplit:1}]});
+  const navy='172033',blue='2563EB',red='DC2626',green='16A34A',orange='F59E0B',light='F3F6FA',white='FFFFFF',muted='64748B';
+  summary.columns=[{width:3},{width:22},{width:18},{width:18},{width:18},{width:18},{width:3}];
+  summary.mergeCells('B2:F3'); const title=summary.getCell('B2'); title.value='20 CYCLE CHECK'; title.font={name:'Aptos Display',size:22,bold:true,color:{argb:white}}; title.alignment={vertical:'middle'}; title.fill={type:'pattern',pattern:'solid',fgColor:{argb:navy}};
+  summary.mergeCells('B4:F4'); summary.getCell('B4').value=`${processInput.value||'—'}  /  ${subprocessInput.value||'—'}  /  ${displayDate(dateInput.value)||'—'}`; summary.getCell('B4').font={name:'Aptos',size:11,color:{argb:'DCE5F2'}}; summary.getCell('B4').fill={type:'pattern',pattern:'solid',fgColor:{argb:navy}};
+  const arr=laps.map(l=>l.ms),avg=avgMs(arr),br=brctMs(arr),dist=disturbanceRate(avg,br);
+  const one=laps.filter(l=>l.pieces===1).map(l=>l.ms),two=laps.filter(l=>l.pieces===2).map(l=>l.ms);
+  const cards=[
+    [tr("CYKLER","CYCLES","ZYKLEN"),laps.length],
+    ['Ø CT',avg/1000],
+    ['BRCT',br===null?null:br/1000],
+    [tr("STÖRNINGSGRAD","DISTURBANCE","STÖRUNGSANTEIL"),dist/100],
+    ['Ø 1 '+(tr("RUTA","PANEL","PLATTE")),one.length?avgMs(one)/1000:null],
+    ['Ø 2 '+(tr("RUTOR","PANELS","PLATTEN")),two.length?avgMs(two)/1000:null]
+  ];
+  cards.forEach((c,i)=>{const col=2+(i%3)*2,row=6+Math.floor(i/3)*3;summary.mergeCells(row,col,row,col+1);summary.getCell(row,col).value=c[0];summary.getCell(row,col).font={name:'Aptos',size:9,bold:true,color:{argb:muted}};summary.mergeCells(row+1,col,row+1,col+1);const v=summary.getCell(row+1,col);v.value=c[1];v.font={name:'Aptos Display',size:18,bold:true,color:{argb:navy}};v.fill={type:'pattern',pattern:'solid',fgColor:{argb:light}};v.alignment={vertical:'middle'};if(i===3)v.numFmt='0.0%';else if(i!==0)v.numFmt='0.00" s"';});
+  summary.getCell('B13').value=tr("MÄTNING","MEASUREMENT","MESSUNG"); summary.getCell('B13').font={bold:true,color:{argb:white}}; summary.getCell('B13').fill={type:'pattern',pattern:'solid',fgColor:{argb:blue}};
+  const meta=[[tr("Artikel / variant","Article / variant","Artikel / Variante"),productInput.value||'—'],[tr("Mätgräns","Measurement boundary","Messgrenze"),boundaryInput.value||'—'],['Standard Work CT',Number(standardInput.value)||'—'],[tr("Takttid","Takt time","Taktzeit"),Number(taktInput.value)||'—']];
+  meta.forEach((r,i)=>{summary.getCell(14+i,2).value=r[0];summary.getCell(14+i,2).font={bold:true,color:{argb:muted}};summary.mergeCells(14+i,3,14+i,6);summary.getCell(14+i,3).value=r[1];if(i>1&&typeof r[1]==='number')summary.getCell(14+i,3).numFmt='0.0" s"';});
+  summary.getCell('B19').value=L[lang].DATE;summary.getCell('C19').value=new Date(dateInput.value+'T12:00:00');summary.getCell('C19').numFmt=({sv:'yyyy-mm-dd',en:'dd/mm/yyyy',de:'dd.mm.yyyy'})[lang];summary.getCell('B20').value=tr('Språk','Language','Sprache');summary.getCell('C20').value=({sv:'Svenska',en:'English',de:'Deutsch'})[lang];
+  data.columns=[
+    {header:tr("Cykel","Cycle","Zyklus"),key:'cycle',width:10},{header:tr("Rutor","Panels","Platten"),key:'pieces',width:10},{header:tr("Cykeltid (s)","Cycle time (s)","Zykluszeit (s)"),key:'seconds',width:16},{header:tr("Mot standard","Vs standard","Vergleich zum Standard"),key:'status',width:16},{header:tr("Avvikelse","Deviation","Abweichung"),key:'reason',width:24},{header:tr("Kommentar","Comment","Kommentar"),key:'note',width:55}
+  ];
+  const tableRows=laps.map((l,i)=>{const std=Number(standardInput.value||0)*1000;const status=!std?'—':(l.ms<=std?(tr("Inom standard","Within standard","Im Standard")):(l.ms<=std*1.2?(tr("Över standard","Above standard","Über Standard")):(tr("Mycket över","Far above","Deutlich über Standard"))));return[i+1,l.pieces||1,l.ms/1000,status,reasonText(l.reason),l.note||''];});
+  data.addTable({name:'CycleData',ref:'A1',headerRow:true,totalsRow:false,style:{theme:'TableStyleMedium2',showRowStripes:true},columns:data.columns.map(c=>({name:c.header})),rows:tableRows});
+  data.getColumn(3).numFmt='0.00" s"'; data.getRow(1).height=24;
+  data.eachRow((row,rowNo)=>{row.alignment={vertical:'middle'};row.font={name:'Aptos',size:10};if(rowNo>1){const ms=laps[rowNo-2]?.ms||0;const std=Number(standardInput.value||0)*1000;const color=!std?blue:(ms<=std?green:(ms<=std*1.2?orange:red));row.getCell(4).fill={type:'pattern',pattern:'solid',fgColor:{argb:color}};row.getCell(4).font={bold:true,color:{argb:white}};}});
+  summary.pageSetup={orientation:'landscape',paperSize:9,fitToPage:true,fitToWidth:1,fitToHeight:1,margins:{left:.3,right:.3,top:.4,bottom:.4,header:.2,footer:.2}};
+  const buffer=await wb.xlsx.writeBuffer();
+  await shareOrDownloadFile(new Blob([buffer],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),`20-cycle-check-${new Date().toISOString().slice(0,10)}.xlsx`,'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',true);
+}
+
+/* ===== Export PDF-rapport (A4 liggande) ===== */
+async function exportReportModern(){
+  if(!laps.length){showToast(L[lang].NO_DATA);return;}
+  rememberSubprocess();
+  const {jsPDF}=window.jspdf;
+  const pdf=new jsPDF({orientation:'landscape',unit:'mm',format:'a4',compress:true});
+  const W=297,H=210,M=9,navy=[23,32,51],blue=[37,99,235],muted=[100,116,139],line=[226,232,240],white=[255,255,255];
+  const arr=laps.map(l=>l.ms),avg=avgMs(arr),br=brctMs(arr),dist=disturbanceRate(avg,br);
+  const one=laps.filter(l=>l.pieces===1).map(l=>l.ms),two=laps.filter(l=>l.pieces===2).map(l=>l.ms);
+  const sec=ms=>ms==null?'--':num(ms/1000,2)+' s';
+  pdf.setFillColor(...white);pdf.rect(0,0,W,H,'F');
+  pdf.setFillColor(...navy);pdf.roundedRect(M,M,W-2*M,20,3,3,'F');
+  pdf.setFont('helvetica','bold');pdf.setFontSize(18);pdf.setTextColor(...white);pdf.text('20 CYCLE CHECK',M+6,M+8);
+  pdf.setFont('helvetica','normal');pdf.setFontSize(8.5);pdf.setTextColor(215,226,240);
+  const headerMeta=`${processInput.value||'-'}  /  ${subprocessInput.value||'-'}  /  ${displayDate(dateInput.value)||'-'}`;
+  pdf.text(headerMeta,M+6,M+14,{maxWidth:150});
+  pdf.setFontSize(8);pdf.text(`${tr("Artikel","Article","Artikel")}: ${productInput.value||'-'}`,W-M-82,M+8,{maxWidth:76});
+  pdf.text(`${tr("Mätgräns","Boundary","Messgrenze")}: ${boundaryInput.value||'-'}`,W-M-82,M+14,{maxWidth:76});
+  const cards=[
+    [tr("Antal cykler","Number of cycles","Anzahl Zyklen"),String(laps.length)],
+    [tr("Medel Cykeltid","Average cycle time","Mittlere Zykluszeit"),sec(avg)],
+    [tr("Bäst repeterbara cykeltid","Best repeatable cycle time","Beste wiederholbare Zykluszeit"),sec(br)],
+    [tr("Störningsgrad","Disturbance rate","Störungsanteil"),num(dist)+' %'],
+    [tr("Medelcykeltid 1 ruta","Average cycle time 1 panel","Mittlere Zykluszeit 1 Platte"),one.length?sec(avgMs(one)):'--'],
+    [tr("Medelcykeltid 2 rutor","Average cycle time 2 panels","Mittlere Zykluszeit 2 Platten"),two.length?sec(avgMs(two)):'--']
+  ];
+  const gap=3,cardW=(W-2*M-gap*5)/6,cardY=33;
+  cards.forEach((c,i)=>{const x=M+i*(cardW+gap);pdf.setFillColor(244,247,251);pdf.setDrawColor(...line);pdf.roundedRect(x,cardY,cardW,21,2,2,'FD');pdf.setFillColor(...blue);pdf.rect(x,cardY,1.8,21,'F');pdf.setFont('helvetica','bold');pdf.setFontSize(c[0].length>25?5.4:6.2);pdf.setTextColor(...muted);pdf.text(c[0],x+4,cardY+6,{maxWidth:cardW-6});pdf.setFontSize(14);pdf.setTextColor(...navy);pdf.text(c[1],x+4,cardY+15);});
+  const cap=processCapacity(),capY=57,capGap=3,capW=(W-2*M-capGap*2)/3,capacityCards=[[tr("Mål Standard Work CT","Standard Work CT target","Ziel gemäß Standardzykluszeit"),cap.std?formatQty(cap.standardTarget):'–'],[tr("Faktiskt mål Medel CT","Actual Average CT target","Ziel gemäß mittlerer Zykluszeit"),cap.avg?formatQty(cap.actualTarget):'–'],[tr("Rimligt mål BRCT","Reasonable BRCT target","Realistisches Ziel gemäß BRCT"),cap.brSec?formatQty(cap.reasonableTarget):'–']];capacityCards.forEach((v,i)=>{const x=M+i*(capW+capGap);pdf.setFillColor(239,246,255);pdf.setDrawColor(191,219,254);pdf.roundedRect(x,capY,capW,16,2,2,'FD');pdf.setFont('helvetica','bold');pdf.setFontSize(6.5);pdf.setTextColor(...muted);pdf.text(v[0],x+4,capY+5);pdf.setFontSize(12);pdf.setTextColor(...navy);pdf.text(v[1],x+4,capY+12)});
+  const chartX=M,chartY=77,chartW=177,chartH=118;
+  pdf.setDrawColor(...line);pdf.roundedRect(chartX,chartY,chartW,chartH,2,2,'S');
+  pdf.setFont('helvetica','bold');pdf.setFontSize(10);pdf.setTextColor(...navy);pdf.text(tr("CYKELTIDER","CYCLE TIMES","ZYKLUSZEITEN"),chartX+5,chartY+7);
+  pdf.setFont('helvetica','normal');pdf.setFontSize(7);pdf.setTextColor(...muted);
+  pdf.text(`${L[lang].STANDARD}: ${Number(standardInput.value)?num(standardInput.value):'-'} s   |   ${tr("Takttid","Takt","Takt")}: ${Number(taktInput.value)?num(taktInput.value):'-'} s`,chartX+5,chartY+12);
+  // Draw the chart as PDF vectors so bars, guide lines and labels stay sharp at any zoom.
+  const standardSec=Number(standardInput.value)||0,taktSec=Number(taktInput.value)||0;
+  const plotX=chartX+16,plotY=chartY+20,plotW=116,plotH=93,legendX=plotX+plotW+5;
+  const values=arr.map(ms=>ms/1000),guideValues=[avg/1000,br/1000,standardSec,taktSec].filter(v=>v>0);
+  const rawMax=Math.max(10,...values,...guideValues),step=rawMax<=30?5:(rawMax<=60?10:Math.ceil(rawMax/30)*5);
+  const maxSec=Math.ceil(rawMax/step)*step,yFor=s=>plotY+plotH-(s/maxSec)*plotH;
+  pdf.setFont('helvetica','normal');pdf.setFontSize(6.5);pdf.setTextColor(...muted);
+  for(let s=0;s<=maxSec;s+=step){const y=yFor(s);pdf.setDrawColor(224,230,238);pdf.setLineWidth(.22);pdf.setLineDashPattern([],0);pdf.line(plotX,y,plotX+plotW,y);pdf.text(`${s} s`,plotX-2,y+2,{align:'right'});}
+  pdf.setDrawColor(148,163,184);pdf.setLineWidth(.35);pdf.line(plotX,plotY,plotX,plotY+plotH);pdf.line(plotX,plotY+plotH,plotX+plotW,plotY+plotH);
+  const slot=plotW/laps.length,barW=Math.max(2.7,Math.min(7.2,slot*.68));
+  laps.forEach((l,i)=>{const seconds=l.ms/1000,barY=yFor(seconds),barH=plotY+plotH-barY;const color=!standardSec?[37,99,235]:(seconds<=standardSec?[74,163,68]:(seconds<=standardSec*1.2?[232,166,19]:[204,58,42]));const cx=plotX+slot*(i+.5);pdf.setFillColor(...color);pdf.roundedRect(cx-barW/2,barY,barW,barH,.45,.45,'F');pdf.setFont('helvetica','bold');pdf.setFontSize(laps.length>15?5.2:6.1);const label=`${num(seconds)} s`;if(barH>=10){pdf.setTextColor(...white);pdf.text(label,cx,barY+4.2,{align:'center'});}else{pdf.setTextColor(...navy);pdf.text(label,cx,Math.max(plotY+3,barY-1.4),{align:'center'});}pdf.setFont('helvetica','normal');pdf.setFontSize(6);pdf.setTextColor(...navy);pdf.text(String(i+1),cx,plotY+plotH+4.5,{align:'center'});});
+  const guides=[
+    {label:tr("Medel","Average","Mittelwert"),value:avg/1000,color:[232,126,22],dash:[2,1]},
+    {label:'BRCT',value:br/1000,color:[44,160,89],dash:[2,1]},
+    ...(standardSec?[{label:'Standard',value:standardSec,color:[63,129,230],dash:[]}]:[]),
+    ...(taktSec?[{label:tr("Takt","Takt","Takt"),value:taktSec,color:[145,78,229],dash:[.7,1]}]:[])
+  ];
+  guides.forEach(g=>{const y=yFor(g.value);pdf.setDrawColor(...g.color);pdf.setLineWidth(.65);pdf.setLineDashPattern(g.dash,0);pdf.line(plotX,y,plotX+plotW,y);});
+  pdf.setLineDashPattern([],0);
+  const labelItems=guides.map(g=>({...g,y:yFor(g.value)})).sort((a,b)=>a.y-b.y);
+  labelItems.forEach((g,i)=>{g.ly=Math.max(plotY+3,g.y);if(i&&g.ly<labelItems[i-1].ly+8)g.ly=labelItems[i-1].ly+8;});
+  if(labelItems.length&&labelItems[labelItems.length-1].ly>plotY+plotH-2){const shift=labelItems[labelItems.length-1].ly-(plotY+plotH-2);labelItems.forEach(g=>g.ly-=shift);}
+  labelItems.forEach(g=>{pdf.setDrawColor(...g.color);pdf.setLineWidth(.5);pdf.line(plotX+plotW,g.y,legendX-1,g.ly);pdf.setFillColor(...g.color);pdf.roundedRect(legendX,g.ly-3.3,35,6.2,1,1,'F');pdf.setFont('helvetica','bold');pdf.setFontSize(6.3);pdf.setTextColor(...white);pdf.text(`${g.label}: ${num(g.value)} s`,legendX+2,g.ly+.8,{maxWidth:31});});
+  const tableX=190,tableY=77,tableW=W-M-tableX,rowH=5.8;
+  pdf.setFillColor(...navy);pdf.roundedRect(tableX,tableY,tableW,9,2,2,'F');
+  pdf.setFont('helvetica','bold');pdf.setFontSize(7.2);pdf.setTextColor(...white);
+  pdf.text('#',tableX+3,tableY+5.8);pdf.text(tr("Rutor","Panels","Platten"),tableX+11,tableY+5.8);pdf.text(tr("Tid","Time","Zeit"),tableX+28,tableY+5.8);pdf.text(tr("Avvikelse / kommentar","Deviation / comment","Abweichung / Kommentar"),tableX+48,tableY+5.8);
+  laps.slice(0,20).forEach((l,i)=>{const y=tableY+9+i*rowH;const std=Number(standardInput.value||0)*1000;const color=!std?[37,99,235]:(l.ms<=std?[22,163,74]:(l.ms<=std*1.2?[245,158,11]:[220,38,38]));if(i%2===0){pdf.setFillColor(247,249,252);pdf.rect(tableX,y,tableW,rowH,'F');}pdf.setFillColor(...color);pdf.circle(tableX+4.3,y+rowH/2,1.2,'F');pdf.setFont('helvetica','normal');pdf.setFontSize(7);pdf.setTextColor(...navy);pdf.text(String(i+1),tableX+7,y+3.8);pdf.text(String(l.pieces||1),tableX+17,y+3.8);pdf.text(sec(l.ms),tableX+28,y+3.8);const reason=({quality:tr("Kvalitet","Quality","Qualität"),changeover:tr("Ställtid","Changeover","Rüsten"),load_unload:tr("Ladda/lossa","Load/unload","Be-/Entladen"),machine:tr("Maskinfel","Machine fault","Maschinenstörung"),other:tr("Annat","Other","Sonstiges")})[l.reason]||'';const note=[reason,l.note].filter(Boolean).join(': ');pdf.text(note||'-',tableX+48,y+3.8,{maxWidth:tableW-50});pdf.setDrawColor(235,239,245);pdf.line(tableX,y+rowH,tableX+tableW,y+rowH);});
+  pdf.setFont('helvetica','normal');pdf.setFontSize(6.5);pdf.setTextColor(...muted);
+  pdf.text((tr("Planerad körtid: ","Planned runtime: ","Geplante Laufzeit: "))+Math.floor(cap.plannedMinutes/60)+' h '+Math.round(cap.plannedMinutes%60)+' min · '+processData.startTime+'–'+processData.endTime+' · '+(tr("mix ","mix ","Mix "))+formatQty(cap.ppc),M,H-5);
+  pdf.text(new Date().toLocaleString(locale()),W-M-35,H-5);
+  const blob=pdf.output('blob');
+  await shareOrDownloadFile(blob,`20-cycle-check-report-${new Date().toISOString().slice(0,10)}.pdf`,'application/pdf',true);
+}
+
+/* ===== Reset ===== */
+function resetApp(){
+  if(!confirm(tr("Är du säker på att du vill nollställa?","Are you sure you want to reset?","Möchten Sie die Messung wirklich zurücksetzen?"))) return;
+  if(running){ cancelCurrentTimer(); }
+  laps=[]; pendingCycle={note:'',pieces:1,reason:''}; selectedIndex=-1; processInput.value=''; subprocessInput.value=''; dateInput.value=new Date().toISOString().slice(0,10); standardInput.value=''; taktInput.value=''; productInput.value=''; boundaryInput.value=''; processData={shiftType:'1',startTime:'06:18',endTime:'14:42',plannedStopMinutes:0,setupsPerShift:0,setupMinutes:0,productsPerCycle:1,annualDemand:0,weeklyHours:78};
+  refreshUI();
+}
+
+/* ===== NEW: Kundtakt-uträkning (45 veckor/år) ===== */
+function calcCustomerTaktInteractive(){const vol=window.prompt(L[lang].PROMPT_VOLUME,'');if(vol===null)return;const hrs=window.prompt(L[lang].PROMPT_HOURS,'78');if(hrs===null)return;const annual=Number(String(vol).replace(',','.')),weekly=Number(String(hrs).replace(',','.')),mix=Math.max(.01,Number(processData.productsPerCycle)||1);if(!(annual>0&&weekly>0)){window.alert(L[lang].ALERT_BAD_INPUT);return}taktInput.value=(weekly*45*3600/annual*mix).toFixed(1);saveState();drawChart()}
+
+/* ===== Refresh UI ===== */
+function refreshUI(){
+  renderList();
+  updateKPIs();
+  updateCapacitySummary();
+  drawChart();
+  saveState();
+}
+
+/* ===== Init ===== */
+function init(){
+  setupRequiredFields();
+  setupFieldHelp();
+  loadState();
+  if(!dateInput.value) dateInput.value=new Date().toISOString().slice(0,10);
+  applyTheme();
+  renderSubprocessOptions();
+  setLangTexts();
+  refreshUI();
+  updateSetupSummary();
+  timerDisp.textContent='00:00.00';
+  let preferred=new URLSearchParams(location.search).get('lang');try{preferred=preferred||localStorage.getItem('dometic-language');}catch(e){}if(L[preferred])lang=preferred;setLangTexts();refreshUI();updateSetupSummary();openLanguagePicker();
+  document.querySelectorAll('[data-language]').forEach(b=>b.addEventListener('click',()=>selectLanguage(b.dataset.language)));
+
+  document.getElementById('btnLang').addEventListener('click', toggleLanguage);
+  $('#btnProcessData').addEventListener('click',openProcessModal);$('#closeProcessModal').addEventListener('click',closeProcessModal);$('#cancelProcessData').addEventListener('click',closeProcessModal);$('#saveProcessData').addEventListener('click',saveProcessForm);$('#processModal').addEventListener('click',e=>{if(e.target.id==='processModal')closeProcessModal()});['productsPerCycle','annualDemand','weeklyHours','startTime','endTime','plannedStopMinutes','setupsPerShift','setupMinutes'].forEach(id=>$('#'+id).addEventListener('input',updateProcessPreview));$('#shiftType').addEventListener('change',applyShiftDefaults);
+  document.getElementById('btnExport').addEventListener('click', exportXLSX);
+  document.getElementById('btnReport').addEventListener('click', exportReportModern);
+  document.getElementById('btnReset').addEventListener('click', resetApp);
+  processInput.addEventListener('input', saveState);
+  subprocessInput.addEventListener('input', saveState);
+  subprocessInput.addEventListener('change', rememberSubprocess);
+  dateInput.addEventListener('input', saveState);
+  productInput.addEventListener('input', saveState);
+  boundaryInput.addEventListener('input', saveState);
+  standardInput.addEventListener('input',()=>{saveState();renderList();drawChart();});
+  taktInput.addEventListener('input', ()=>{ saveState(); renderList(); drawChart(); });
+   window.addEventListener('resize', ()=>{ renderList(); drawChart(); });
+
+  drawChart();
+}
+document.addEventListener('DOMContentLoaded', init);
+window.addEventListener('beforeunload',e=>{ if(running){ e.preventDefault(); e.returnValue=''; } });
+</script>
+</body>
+</html>
