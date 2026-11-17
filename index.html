@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#102e3d">
+  <meta name="description" content="Dometic Tidaholm – en gemensam portal för processanalys, ergonomi, produktion och information.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Dometic Apps">
+  <title>Dometic App Portal · Tidaholm</title>
+  <link rel="icon" type="image/png" href="./icon-192.png">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./styles.css">
+  <script defer src="./apps-data.js"></script>
+  <script defer src="./portal.js"></script>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Dometic App Portal">
+        <span class="brand-symbol" aria-hidden="true">D</span>
+        <span class="brand-copy"><strong>DOMETIC <span>TIDAHOLM</span></strong><small>APP PORTAL</small></span>
+      </a>
+      <div class="header-actions">
+        <label class="language-picker">
+          <span class="sr-only" id="languageLabel">Språk</span>
+          <select id="language" aria-labelledby="languageLabel">
+            <option value="sv">🇸🇪 Svenska</option>
+            <option value="en">🇬🇧 English</option>
+            <option value="de">🇩🇪 Deutsch</option>
+          </select>
+        </label>
+        <button id="installButton" class="install-button" type="button">
+          <span aria-hidden="true">↧</span><span id="installLabel">Installera app</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="heroHeading">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="live-dot"></span><span id="eyebrow">DIGITALA VERKTYG · TIDAHOLM</span></div>
+          <h1 id="heroHeading">Rätt verktyg.<span>Direkt till arbetet.</span></h1>
+          <p id="heroDescription">Mät, analysera och förbättra. Alla våra appar och arbetsverktyg samlade på ett ställe – för dator, surfplatta och mobil.</p>
+          <div class="hero-links"><a href="#applications" id="exploreLink" class="primary-cta">Utforska appar <span aria-hidden="true">↗</span></a><span id="installHint">Fungerar direkt i webbläsaren. Ingen inloggning i GitHub krävs.</span></div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="visual-chip top-chip">20 <small>CYCLES</small></div>
+          <div class="visual-center">
+            <div class="visual-circle"><span>↗</span></div>
+            <div class="visual-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="visual-chip bottom-chip">LEAN <small>TOOLS</small></div>
+        </div>
+      </section>
+
+      <section class="overview" aria-label="Portalöversikt">
+        <div class="overview-item"><span class="overview-icon">▦</span><div><strong id="appCount">17</strong><small id="appCountLabel">appar & verktyg</small></div></div>
+        <div class="overview-item"><span class="overview-icon">◎</span><div><strong>4</strong><small id="categoryCountLabel">områden</small></div></div>
+        <div class="overview-item"><span class="overview-icon">↗</span><div><strong id="platformLabel">Webb & mobil</strong><small id="platformSubLabel">samma verktyg, överallt</small></div></div>
+      </section>
+
+      <section class="applications" id="applications" aria-labelledby="sectionTitle">
+        <div class="section-head">
+          <div><div class="section-kicker" id="sectionKicker">APPBIBLIOTEK</div><h2 id="sectionTitle">Hitta ditt verktyg</h2><p id="sectionDescription">Sök efter app eller välj arbetsområde.</p></div>
+          <label class="search-wrap"><span class="search-icon" aria-hidden="true">⌕</span><span class="sr-only" id="searchLabel">Sök bland apparna</span><input id="search" type="search" placeholder="Sök app, process eller funktion…" autocomplete="off" aria-labelledby="searchLabel"></label>
+        </div>
+        <div class="filter-row" id="filters" role="group" aria-label="Filtrera arbetsområde"></div>
+        <div class="result-meta"><span id="resultCount"></span><button type="button" id="resetFilter" hidden>Rensa filter</button></div>
+        <div class="card-grid" id="cards"></div>
+        <p class="empty" id="emptyMessage" hidden>Inga appar matchar din sökning.</p>
+      </section>
+      <section class="help-strip">
+        <div class="help-icon" aria-hidden="true">✦</div>
+        <div><h2 id="helpTitle">En portal, alla verktyg.</h2><p id="helpDescription">Spara portalen på skrivbordet eller hemskärmen så hittar du tillbaka med ett tryck.</p></div>
+        <button type="button" id="installButtonBottom" class="secondary-cta">Installera <span aria-hidden="true">↗</span></button>
+      </section>
+    </main>
+    <footer class="footer">
+      <span>© Dometic Tidaholm · <span id="footerText">Digitala verktyg & kontinuerliga förbättringar</span></span>
+      <span class="footer-note" id="footerNote">Endast information avsedd för offentlig webbpublicering.</span>
+    </footer>
+  </div>
+
+  <dialog id="installDialog" class="install-dialog" aria-labelledby="dialogHeading">
+    <div class="dialog-heading"><div><span class="dialog-badge" id="dialogBadge">SNABBÅTKOMST</span><h2 id="dialogHeading">Installera Dometic App Portal</h2></div><button type="button" id="dialogClose" aria-label="Stäng" class="dialog-close">×</button></div>
+    <p id="dialogIntro">Välj anvisningen för din enhet. Portalen är fortfarande en vanlig webbplats och kräver inget program från IT.</p>
+    <div id="installInstructions" class="install-steps"></div>
+    <button type="button" id="dialogDone" class="dialog-done">Klart</button>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
