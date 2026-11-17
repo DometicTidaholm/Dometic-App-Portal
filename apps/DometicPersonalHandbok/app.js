@@ -8,7 +8,7 @@ try {const value=JSON.parse(localStorage.getItem('personalhandbok-favorites')||'
 const normalize = value => String(value??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('sv');
 const el = (tag,cls,text) => {const node=document.createElement(tag);if(cls)node.className=cls;if(text!==undefined)node.textContent=text;return node;};
 const isForm = doc => doc.kind==='form'||(!doc.kind&&/^(blanketter\/|dokument\/blanketter\/)/i.test(doc.path));
-const fileUrl = doc => doc.path.split('/').map(encodeURIComponent).join('/');
+const fileUrl = doc => (doc.path.endsWith('PERS 032  - Kontorslandskap.pptx') ? 'https://mrmartinpet.github.io/DometicPersonalHandbok/' : '') + doc.path.split('/').map(encodeURIComponent).join('/');
 const byName = (a,b) => a.title.localeCompare(b.title,'sv');
 const byRecent = (a,b) => (b.updated||'').localeCompare(a.updated||'')||byName(a,b);
 function formatDate(value){if(!value)return '';const date=new Date(value+'T12:00:00');return Number.isNaN(date.getTime())?'':date.toLocaleDateString('sv-SE',{day:'numeric',month:'short',year:'numeric'});}
