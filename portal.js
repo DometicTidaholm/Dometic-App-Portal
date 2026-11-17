@@ -71,7 +71,11 @@
   function applyLanguage(){
     const t=tr();
     document.documentElement.lang=language;
-    $("language").value=language;
+    document.querySelectorAll(".language-button").forEach(button => {
+      const selected=button.dataset.lang===language;
+      button.setAttribute("aria-pressed",String(selected));
+      button.classList.toggle("selected",selected);
+    });
     setText("eyebrow",t.eyebrow);
     const heading=$("heroHeading");
     heading.replaceChildren(document.createTextNode(t.heroFirst));
@@ -79,7 +83,6 @@
     setText("heroDescription",t.heroDescription);
     const explore=$("exploreLink");explore.replaceChildren(document.createTextNode(t.explore+" "));
     const arrow=document.createElement("span");arrow.setAttribute("aria-hidden","true");arrow.textContent="↗";explore.appendChild(arrow);
-    setText("installHint",t.hint);
     setText("appCount",String(apps.length));
     setText("appCountLabel",t.appCount);
     setText("categoryCountLabel",t.categoryCount);
@@ -89,10 +92,7 @@
     setText("searchLabel",t.searchLabel);$("search").placeholder=t.search;
     setText("resetFilter",t.clear);
     setText("emptyMessage",t.none);
-    setText("helpTitle",t.helpTitle);setText("helpDescription",t.helpDescription);
     setText("installLabel",t.install);
-    const bottom=$("installButtonBottom");bottom.replaceChildren(document.createTextNode(t.installShort+" "));
-    const bottomArrow=document.createElement("span");bottomArrow.setAttribute("aria-hidden","true");bottomArrow.textContent="↗";bottom.appendChild(bottomArrow);
     setText("footerText",t.footer);setText("footerNote",t.footerNote);
     setText("dialogBadge",t.dialogBadge);setText("dialogHeading",t.dialogTitle);setText("dialogIntro",t.dialogIntro);setText("dialogDone",t.dialogDone);
     $("dialogClose").setAttribute("aria-label",t.dialogClose);
@@ -117,6 +117,41 @@
     const terms=[app.id,app.category,app.sv.name,app.sv.description,app.en.name,app.en.description,app.de.name,app.de.description].join(" ").toLocaleLowerCase();
     return terms.includes(query);
   }
+
+  const videoText={
+    sv:{sv:"🇸🇪 Svensk film",en:"🇬🇧 Engelsk film",rtm:"▶ Se filmen om RTM",title20:"Twenty Cycle Check – introduktion",titleRtm:"RTM 3.0 – introduktion",about20:"Instruktionsfilm om processobservation med Twenty Cycle Check.",aboutRtm:"Presentationsfilm om RTM 3.0 i Tidaholm.",label:"INTRODUKTIONSFILM",close:"Stäng film"},
+    en:{sv:"🇸🇪 Swedish video",en:"🇬🇧 English video",rtm:"▶ Watch RTM video",title20:"Twenty Cycle Check – introduction",titleRtm:"RTM 3.0 – introduction",about20:"An introduction to process observations using Twenty Cycle Check.",aboutRtm:"Introduction to RTM 3.0 in Tidaholm.",label:"INTRODUCTION VIDEO",close:"Close video"},
+    de:{sv:"🇸🇪 Schwedisches Video",en:"🇬🇧 Englisches Video",rtm:"▶ RTM-Film ansehen",title20:"Twenty Cycle Check – Einführung",titleRtm:"RTM 3.0 – Einführung",about20:"Einführung in die Prozessbeobachtung mit Twenty Cycle Check.",aboutRtm:"Einführung in RTM 3.0 in Tidaholm.",label:"EINFÜHRUNGSVIDEO",close:"Video schließen"}
+  };
+  const mediaBase="https://mrmartinpet.github.io/Dometic/media/";
+  const films={
+    sv:{file:"20-cycle-check-tutorial-sv-modern-m3.mp4",caption:"20-cycle-check-tutorial-sv-modern-m3.vtt",poster:"20-cycle-check-tutorial-poster-modern-m3.jpg",lang:"sv"},
+    en:{file:"20-cycle-check-tutorial-en-morph-e2.mp4",caption:"20-cycle-check-tutorial-en-morph-e2.vtt",poster:"20-cycle-check-tutorial-poster-en-morph-e2.jpg",lang:"en"},
+    rtm:{file:"rtm-tidaholm-en.mp4",caption:"rtm-tidaholm-en.vtt",poster:"rtm-tidaholm-poster-en.jpg",lang:"en"}
+  };
+  function openFilm(key){
+    const movie=films[key],labels=videoText[language],player=$("videoPlayer"),dialog=$("videoDialog");
+    if(!movie)return;
+    player.pause();player.replaceChildren();
+    player.poster=mediaBase+movie.poster;
+    const source=document.createElement("source");source.src=mediaBase+movie.file;source.type="video/mp4";
+    const caption=document.createElement("track");caption.src=mediaBase+movie.caption;caption.kind="captions";
+    caption.srclang=movie.lang;caption.label=movie.lang==="sv"?"Svenska":"English";
+    player.append(source,caption);
+    setText("videoEyebrow",labels.label);
+    setText("videoTitle",key==="rtm"?labels.titleRtm:labels.title20);
+    setText("videoDescription",key==="rtm"?labels.aboutRtm:labels.about20);
+    $("videoClose").setAttribute("aria-label",labels.close);
+    player.load();
+    dialog.showModal();
+  }
+  function makeFilmButton(label,key){
+    const button=document.createElement("button");button.type="button";
+    button.className="video-choice";button.textContent=label;
+    button.addEventListener("click",()=>openFilm(key));
+    return button;
+  }
+
   function addCard(app){
     const t=tr();const copy=app[language]||app.sv;
     const article=document.createElement("article");article.className="app-card";article.dataset.category=app.category;
@@ -131,7 +166,16 @@
     const link=document.createElement("a");link.className="open-link";link.href=app.url;link.target="_blank";link.rel="noopener noreferrer";
     link.textContent=t.open+" ↗";link.setAttribute("aria-label",t.open+": "+copy.name);
     bottom.append(category,link);
-    article.append(top,heading,desc,bottom);
+    article.append(top,heading,desc);
+    if(app.id==="20CycleCheck"){
+      const row=document.createElement("div");row.className="video-actions";
+      row.append(makeFilmButton(videoText[language].sv,"sv"),makeFilmButton(videoText[language].en,"en"));
+      article.appendChild(row);
+    }else if(app.id==="RTM"){
+      const row=document.createElement("div");row.className="video-actions";
+      row.append(makeFilmButton(videoText[language].rtm,"rtm"));article.appendChild(row);
+    }
+    article.appendChild(bottom);
     return article;
   }
   function renderApps(){
@@ -165,13 +209,26 @@
     }else installSteps();
   }
   $("search").addEventListener("input",event=>{query=event.target.value.trim().toLocaleLowerCase();renderApps();});
-  $("language").addEventListener("change",event=>{language=translations[event.target.value]?event.target.value:"sv";try{localStorage.setItem("dometic-portal-language",language);}catch{}applyLanguage();});
+  document.querySelectorAll(".language-button").forEach(button=>{
+    button.addEventListener("click",()=>{
+      language=translations[button.dataset.lang]?button.dataset.lang:"sv";
+      try{localStorage.setItem("dometic-portal-language",language);}catch{}
+      applyLanguage();
+    });
+  });
   $("resetFilter").addEventListener("click",()=>{query="";activeCategory="all";$("search").value="";renderFilters();renderApps();});
   $("installButton").addEventListener("click",install);
-  $("installButtonBottom").addEventListener("click",install);
   $("dialogClose").addEventListener("click",()=>$("installDialog").close());
   $("dialogDone").addEventListener("click",()=>$("installDialog").close());
   $("installDialog").addEventListener("click",e=>{if(e.target===$("installDialog"))$("installDialog").close();});
+  $("videoClose").addEventListener("click",()=>$("videoDialog").close());
+  $("videoDialog").addEventListener("close",()=>{
+    const player=$("videoPlayer");
+    player.pause();player.replaceChildren();player.removeAttribute("poster");player.load();
+  });
+  $("videoDialog").addEventListener("click",event=>{
+    if(event.target===$("videoDialog"))$("videoDialog").close();
+  });
   window.addEventListener("beforeinstallprompt",event=>{event.preventDefault();deferredPrompt=event;});
   window.addEventListener("appinstalled",()=>{deferredPrompt=null;toast(tr().installed);});
   applyLanguage();

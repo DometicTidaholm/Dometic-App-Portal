@@ -43,3 +43,9 @@ https://dometictidaholm.github.io/Dometic-App-Portal/
 Repositoryt och GitHub Pages är publika. Lägg därför inte in lösenord, access tokens, företagshemligheter eller personuppgifter i denna kodbas. En installerad PWA ger snabbåtkomst – den skapar **inte** åtkomstkontroll till sidor eller filer.
 
 Inga privata repos eller interna Power BI-/Dataverse-data har kopierats till denna publika portal.
+
+## Portalens utseende och instruktionsfilmer
+- Tre språkknappar, mörkt Dometic-tema och diskret CSS-animation på startsidan.
+- De två Lean-korten har tagits bort från katalogen och deras kopior har rensats ur `apps/DometicLean/`. Originalet på personliga kontot påverkas inte.
+- Twenty Cycle Check har svenska och engelska instruktionsfilmer via portalens filmspelare; RTM har en introduktionsfilm. Filerna är för närvarande länkade till äldre portalen `MrMartinPet/Dometic/media/` och behöver flyttas separat innan originalet kan stängas.
+- Ny film om själva App Portal har inte skapats; det görs senare.

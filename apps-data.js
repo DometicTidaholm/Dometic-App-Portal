@@ -1,4 +1,4 @@
-/* Uppdatera denna lista när du lägger till en app. */
+/* Appkatalog. Varje app kan ha en egen mapp under apps/. */
 window.PORTAL_APPS = [
   {
     "id": "20CycleCheck",
@@ -197,46 +197,6 @@ window.PORTAL_APPS = [
       "description": "Flaggen und visuelle Markierungen für den Produktionsbereich gestalten."
     },
     "url": "./apps/Flagg-generator/",
-    "external": false,
-    "featured": false
-  },
-  {
-    "id": "Processkort",
-    "category": "production",
-    "icon": "🃏",
-    "sv": {
-      "name": "Processkort – Lean",
-      "description": "Träna på tio fabriksprocesser med digitala flashcards, självskattning och översikt."
-    },
-    "en": {
-      "name": "Lean Process Cards",
-      "description": "Practice ten factory processes using interactive flashcards, self-assessment and a summary."
-    },
-    "de": {
-      "name": "Lean-Prozesskarten",
-      "description": "Zehn Fabrikprozesse mit interaktiven Lernkarten und Selbsteinschätzung trainieren."
-    },
-    "url": "./apps/DometicLean/processkort/",
-    "external": false,
-    "featured": false
-  },
-  {
-    "id": "Leanverktyg",
-    "category": "production",
-    "icon": "💡",
-    "sv": {
-      "name": "Leanverktyg",
-      "description": "En samling enkla, interaktiva Lean-kort och övningar för förbättringsarbete."
-    },
-    "en": {
-      "name": "Lean Tools",
-      "description": "A collection of interactive Lean cards and exercises for continuous improvement."
-    },
-    "de": {
-      "name": "Lean-Werkzeuge",
-      "description": "Interaktive Lean-Lernkarten und Übungen zur kontinuierlichen Verbesserung."
-    },
-    "url": "./apps/DometicLean/",
     "external": false,
     "featured": false
   },

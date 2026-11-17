@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#102e3d">
+  <meta name="theme-color" content="#191f25">
   <meta name="description" content="Dometic Tidaholm – en gemensam portal för processanalys, ergonomi, produktion och information.">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -20,18 +20,15 @@
   <div class="shell">
     <header class="topbar">
       <a class="brand" href="./" aria-label="Dometic App Portal">
-        <span class="brand-symbol" aria-hidden="true">D</span>
-        <span class="brand-copy"><strong>DOMETIC <span>TIDAHOLM</span></strong><small>APP PORTAL</small></span>
+        <img class="brand-logo" src="./assets/dometic-logo-white.png" alt="Dometic">
+        <span class="brand-location">TIDAHOLM <span>APP PORTAL</span></span>
       </a>
       <div class="header-actions">
-        <label class="language-picker">
-          <span class="sr-only" id="languageLabel">Språk</span>
-          <select id="language" aria-labelledby="languageLabel">
-            <option value="sv">🇸🇪 Svenska</option>
-            <option value="en">🇬🇧 English</option>
-            <option value="de">🇩🇪 Deutsch</option>
-          </select>
-        </label>
+        <div class="language-switch" role="group" aria-label="Välj språk / Choose language / Sprache wählen">
+          <button type="button" class="language-button" data-lang="sv" lang="sv" aria-pressed="true" aria-label="Svenska"><span aria-hidden="true">🇸🇪</span><span>Svenska</span></button>
+          <button type="button" class="language-button" data-lang="en" lang="en" aria-pressed="false" aria-label="English"><span aria-hidden="true">🇬🇧</span><span>English</span></button>
+          <button type="button" class="language-button" data-lang="de" lang="de" aria-pressed="false" aria-label="Deutsch"><span aria-hidden="true">🇩🇪</span><span>Deutsch</span></button>
+        </div>
         <button id="installButton" class="install-button" type="button">
           <span aria-hidden="true">↧</span><span id="installLabel">Installera app</span>
         </button>
@@ -44,20 +41,28 @@
           <div class="eyebrow"><span class="live-dot"></span><span id="eyebrow">DIGITALA VERKTYG · TIDAHOLM</span></div>
           <h1 id="heroHeading">Rätt verktyg.<span>Direkt till arbetet.</span></h1>
           <p id="heroDescription">Mät, analysera och förbättra. Alla våra appar och arbetsverktyg samlade på ett ställe – för dator, surfplatta och mobil.</p>
-          <div class="hero-links"><a href="#applications" id="exploreLink" class="primary-cta">Utforska appar <span aria-hidden="true">↗</span></a><span id="installHint">Fungerar direkt i webbläsaren. Ingen inloggning i GitHub krävs.</span></div>
+          <div class="hero-links"><a href="#applications" id="exploreLink" class="primary-cta">Utforska appar <span aria-hidden="true">↗</span></a></div>
         </div>
         <div class="hero-visual" aria-hidden="true">
-          <div class="visual-chip top-chip">20 <small>CYCLES</small></div>
-          <div class="visual-center">
-            <div class="visual-circle"><span>↗</span></div>
-            <div class="visual-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="visual-orbit"></div>
+          <div class="visual-dashboard">
+            <div class="dash-top"><span><i class="dash-online"></i> PRODUCTION ANALYTICS</span><span class="dash-mini">LIVE</span></div>
+            <div class="dash-primary"><span class="dash-value">50<small> / h</small></span><span class="dash-trend">↗ +3.8%</span></div>
+            <div class="visual-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="dash-footer"><span>PROCESS PERFORMANCE</span><span>▰ ▰ ▰ ▰</span></div>
           </div>
-          <div class="visual-chip bottom-chip">LEAN <small>TOOLS</small></div>
+          <div class="visual-phone">
+            <span class="phone-notch"></span>
+            <span class="phone-line wide"></span><span class="phone-line"></span>
+            <div class="phone-tiles"><i></i><i></i><i></i><i></i></div>
+            <span class="phone-ring">◔</span>
+            <span class="phone-line half"></span>
+          </div>
         </div>
       </section>
 
       <section class="overview" aria-label="Portalöversikt">
-        <div class="overview-item"><span class="overview-icon">▦</span><div><strong id="appCount">17</strong><small id="appCountLabel">appar & verktyg</small></div></div>
+        <div class="overview-item"><span class="overview-icon">▦</span><div><strong id="appCount">15</strong><small id="appCountLabel">appar & verktyg</small></div></div>
         <div class="overview-item"><span class="overview-icon">◎</span><div><strong>4</strong><small id="categoryCountLabel">områden</small></div></div>
         <div class="overview-item"><span class="overview-icon">↗</span><div><strong id="platformLabel">Webb & mobil</strong><small id="platformSubLabel">samma verktyg, överallt</small></div></div>
       </section>
@@ -72,11 +77,6 @@
         <div class="card-grid" id="cards"></div>
         <p class="empty" id="emptyMessage" hidden>Inga appar matchar din sökning.</p>
       </section>
-      <section class="help-strip">
-        <div class="help-icon" aria-hidden="true">✦</div>
-        <div><h2 id="helpTitle">En portal, alla verktyg.</h2><p id="helpDescription">Spara portalen på skrivbordet eller hemskärmen så hittar du tillbaka med ett tryck.</p></div>
-        <button type="button" id="installButtonBottom" class="secondary-cta">Installera <span aria-hidden="true">↗</span></button>
-      </section>
     </main>
     <footer class="footer">
       <span>© Dometic Tidaholm · <span id="footerText">Digitala verktyg & kontinuerliga förbättringar</span></span>
@@ -89,6 +89,14 @@
     <p id="dialogIntro">Välj anvisningen för din enhet. Portalen är fortfarande en vanlig webbplats och kräver inget program från IT.</p>
     <div id="installInstructions" class="install-steps"></div>
     <button type="button" id="dialogDone" class="dialog-done">Klart</button>
+  </dialog>
+  <dialog id="videoDialog" class="video-dialog" aria-labelledby="videoTitle">
+    <div class="video-dialog-head">
+      <div><span id="videoEyebrow">INTRODUKTIONSFILM</span><h2 id="videoTitle">Film</h2></div>
+      <button id="videoClose" class="dialog-close" type="button" aria-label="Stäng film">×</button>
+    </div>
+    <video id="videoPlayer" controls playsinline preload="none"></video>
+    <p id="videoDescription">Introduktion till verktyget.</p>
   </dialog>
   <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 </body>
