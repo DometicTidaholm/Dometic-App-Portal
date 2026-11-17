@@ -34,6 +34,7 @@ https://dometictidaholm.github.io/Dometic-App-Portal/
 - **Marknad & bransch** läser sin dagligen uppdaterade `brief.json` från det gamla `MrMartinPet/Dometic`, med lokal kopia som reserv.
 - **Lunchkollen** läser uppdaterad `data.json` och nya menybilder från den gamla portalen, med lokal JSON-reserv.
 - **Frekvensanalys** använder tills vidare sina Excel-mallar från det gamla `MrMartinPet/Frekvensanalys` via GitHubs innehålls-API. Dess kopierade mallar finns även här.
+- **Personalhandboken:** Dokumentet `PERS 032 - Kontorslandskap.pptx` är större än kopieringsanslutningens gräns och hämtas därför från den befintliga publicerade personalhandboken. Den trasiga nollbyteskopian har tagits bort.
 - **RTM 3.0** öppnar fortfarande Power BI. **Dometic Fotoapp** öppnar fortfarande den befintliga Vercel-appen.
 - Schemalagda GitHub Actions från gamla portalen har **inte duplicerats** för att undvika parallella uppdateringar. Filmerna från den gamla portalens `media/` har inte flyttats till detta repo.
 - Originalrepos och befintliga webbplatser ska **behållas** tills datakällor, uppdateringar, dokument och länkar har verifierats.
