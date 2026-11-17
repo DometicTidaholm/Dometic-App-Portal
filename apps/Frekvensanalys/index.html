@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="sv" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1020">
+  <title>Frekvensanalys — Dometic</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.4/dist/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+<div class="app">
+  <header class="menubar">
+    <div class="brand">
+      <div class="brand-mark">D</div>
+      <div>
+        <div class="brand-title">Frekvensanalys</div>
+        <div class="brand-sub">Process Observation</div>
+      </div>
+    </div>
+    <div class="menu-actions">
+      <button id="themeBtn" class="btn small secondary" type="button" title="Växla tema">☀︎</button>
+      <button id="quickSaveBtnTop" class="btn small secondary quick-save-btn" type="button" disabled title="Spara en Excel-kopia direkt">💾<span class="desktop-label"> Snabbspara</span></button>
+      <button id="exportBtnTop" class="btn small secondary" type="button" disabled>Excel</button>
+      <button id="pdfBtnTop" class="btn small secondary report-btn" type="button" disabled>PDF</button>
+      <button id="finishBtn" class="btn small danger hidden" type="button" title="Avsluta analys"><span class="desktop-label">Avsluta</span><span class="mobile-label">Slut</span></button>
+      <button id="resetBtnTop" class="btn small danger" type="button"><span class="desktop-label">Nollställ</span><span class="mobile-label">Noll</span></button>
+    </div>
+  </header>
+
+  <main>
+    <section id="setupView">
+      <div class="setup-grid">
+        <article class="card setup-card">
+          <div class="eyebrow">FÖRE ANALYSEN</div>
+          <h1>Välj källa och starta</h1>
+<div class="form-grid">
+            <label class="field span-2">
+              <span>KÄLLA</span>
+              <div class="source-row">
+                <select id="sourceSelect">
+                  <option value="">Läser in Excel-filer…</option>
+                </select>
+                <button id="refreshSourcesBtn" class="btn secondary icon-only" type="button" title="Uppdatera källor">↻</button>
+              </div>
+            </label>
+            <label class="field">
+              <span>OBSERVATÖR</span>
+              <input id="leaderInput" type="text" autocomplete="name" placeholder="Namn">
+            </label>
+            <label class="field">
+              <span>FLÖDE / OMRÅDE</span>
+              <input id="flowInput" type="text" placeholder="T.ex. Flöde 1">
+            </label>
+            <label class="field">
+              <span>DATUM</span>
+              <input id="dateInput" type="date">
+            </label>
+            <div class="field source-status-field">
+              <span>STATUS</span>
+              <div id="sourceStatus" class="status-box">Välj en källa.</div>
+            </div>
+          </div>
+
+          <div class="setup-actions">
+            <button id="startBtn" class="btn primary big" type="button" disabled>Starta analys</button>
+          </div>
+        </article>
+      </div>
+    <article class="card setup-activity-card">
+      <div class="card-head setup-editor-head">
+        <div>
+          <div class="eyebrow">AKTIVITETSLISTA</div>
+          <h2>Granska och redigera innan start</h2>
+        </div>
+        <span class="pill">Ändringar gäller denna analys</span>
+      </div>
+      <div id="setupActivityEditor" class="setup-activity-editor"></div>
+    </article>
+    </section>
+
+    <section id="analysisView" hidden>
+      <div class="analysis-layout">
+        <div class="analysis-main">
+          <div class="card live-card">
+            <div class="live-top">
+              <div>
+                <div class="eyebrow">PÅGÅENDE ANALYS</div>
+                <h2 id="liveTitle">Frekvensanalys</h2>
+                <div id="sessionMeta" class="muted compact"></div>
+              </div>
+              <div class="live-actions">
+                <button id="changeActivityBtn" class="btn secondary change-activity-btn" type="button" aria-pressed="false" disabled>Ändra aktivitet</button>
+                <button id="addActivitiesBtn" class="btn secondary" type="button">+ Lägg till aktiviteter</button>
+              </div>
+            </div>
+
+            <div class="live-kpis">
+              <div class="kpi active-kpi">
+                <span>AKTIVITET</span>
+                <strong id="activeActivity">Ingen vald</strong>
+              </div>
+              <div class="kpi timer-kpi">
+                <span>AKTIVITETSTID</span>
+                <strong id="activeTimer">00:00:00.00</strong>
+              </div>
+              <div class="kpi timer-kpi">
+                <span>TOTAL ANALYS</span>
+                <strong id="sessionTimer">00:00:00.00</strong>
+              </div>
+            </div>
+          </div>
+
+          <div id="categoryTabs" class="category-tabs" role="tablist"></div>
+          <div id="activityPanel" class="card activity-panel"></div>
+        </div>
+
+        <aside class="analysis-side">
+          <div class="card side-card">
+            <div class="card-head tight">
+              <h3>Livefördelning</h3>
+              <span id="trackedShare" class="pill">0 %</span>
+            </div>
+            <div id="liveCategoryBars" class="live-bars"></div>
+          </div>
+          <div class="card side-card">
+            <div class="card-head tight"><h3>Senaste byten</h3></div>
+            <div id="recentHistory" class="recent-list muted">Ingen aktivitet registrerad ännu.</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="summaryView" hidden>
+      <div class="summary-toolbar card">
+        <div>
+          <div class="eyebrow">ANALYS KLAR</div>
+          <h1>Resultat</h1>
+          <div id="summaryMeta" class="muted compact"></div>
+        </div>
+        <div class="toolbar-actions">
+          <button id="summaryExportBtn" class="btn secondary" type="button">Exportera Excel</button>
+          <button id="newAnalysisBtn" class="btn primary" type="button">Ny analys</button>
+        </div>
+      </div>
+
+      <div class="summary-kpis">
+        <div class="card kpi summary-kpi"><span>TOTAL ANALYS</span><strong id="sumTotal">00:00:00.00</strong></div>
+        <div class="card kpi summary-kpi"><span>KLASSIFICERAD TID</span><strong id="sumTracked">00:00:00.00</strong></div>
+        <div class="card kpi summary-kpi"><span>AKTIVITETSBYTEN</span><strong id="sumSwitches">0</strong></div>
+        <div class="card kpi summary-kpi"><span>AKTIVITETER ANVÄNDA</span><strong id="sumUsed">0</strong></div>
+      </div>
+
+      <div class="summary-grid">
+        <article class="card chart-card">
+          <div class="card-head">
+            <div>
+              <div class="eyebrow">TID PER KATEGORI</div>
+              <h2>Kategorifördelning</h2>
+            </div>
+          </div>
+          <div class="chart-wrap"><canvas id="categoryChart"></canvas></div>
+        </article>
+        <article class="card ranking-card">
+          <div class="card-head">
+            <div>
+              <div class="eyebrow">AKTIVITETER</div>
+              <h2>Mest tid</h2>
+            </div>
+          </div>
+          <div id="activityRanking" class="ranking-list"></div>
+        </article>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="modalBackdrop" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <div class="eyebrow">UNDER PÅGÅENDE ANALYS</div>
+        <h2 id="modalTitle">Lägg till aktiviteter</h2>
+      </div>
+      <button id="closeModalBtn" class="modal-close" type="button" aria-label="Stäng">×</button>
+    </div>
+    <label class="field">
+      <span>KATEGORI</span>
+      <select id="addCategorySelect"></select>
+    </label>
+    <label class="field modal-textarea-field">
+      <span>AKTIVITETER — EN PER RAD</span>
+      <textarea id="newActivitiesInput" rows="7" placeholder="Exempel:&#10;Kontrollera ritning&#10;Hämta material&#10;Prata med operatör"></textarea>
+    </label>
+    <div class="modal-note">Aktiviteterna läggs till direkt i den pågående analysen. Källfilen ändras inte.</div>
+    <div class="modal-actions">
+      <button id="cancelModalBtn" class="btn secondary" type="button">Avbryt</button>
+      <button id="saveActivitiesBtn" class="btn primary" type="button">Lägg till</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
