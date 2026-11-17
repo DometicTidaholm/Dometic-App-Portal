@@ -49,3 +49,7 @@ Inga privata repos eller interna Power BI-/Dataverse-data har kopierats till den
 - De två Lean-korten har tagits bort från katalogen och deras kopior har rensats ur `apps/DometicLean/`. Originalet på personliga kontot påverkas inte.
 - Twenty Cycle Check har svenska och engelska instruktionsfilmer via portalens filmspelare; RTM har en introduktionsfilm. Filerna är för närvarande länkade till äldre portalen `MrMartinPet/Dometic/media/` och behöver flyttas separat innan originalet kan stängas.
 - Ny film om själva App Portal har inte skapats; det görs senare.
+
+## Introduktionsfilm om portalen
+- **Svensk presentationsfilm, 1:33** från ElevenLabs: `media/app-portal-intro-sv.mp4` (optimerad för GitHub Pages).
+- Filmen spelas i portalens befintliga filmfönster via knappen **Se presentationsfilmen** i välkomstfältet. Övriga instruktionsfilmer påverkas inte.

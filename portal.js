@@ -16,7 +16,7 @@
       search:"Sök app, process eller funktion…",searchLabel:"Sök bland apparna",
       resultCount:"appar visas",clear:"Rensa filter",open:"Öppna app",external:"Extern tjänst",internal:"I portalen",none:"Inga appar matchar din sökning.",
       helpTitle:"En portal, alla verktyg.",helpDescription:"Spara portalen på skrivbordet eller hemskärmen så hittar du tillbaka med ett tryck.",
-      install:"Installera app",installShort:"Installera",installed:"Appen är redan installerad",
+      install:"Installera app",introVideo:"Se presentationsfilmen",installShort:"Installera",installed:"Appen är redan installerad",
       footer:"Digitala verktyg & kontinuerliga förbättringar",footerNote:"Endast information avsedd för offentlig webbpublicering.",
       dialogBadge:"SNABBÅTKOMST",dialogTitle:"Installera Dometic App Portal",dialogIntro:"Välj anvisningen för din enhet. Portalen är en vanlig webbplats och kräver inget program från IT.",
       dialogDone:"Klart",dialogClose:"Stäng",ios:["Öppna den här sidan i Safari på iPhone eller iPad.","Tryck på Dela-knappen (fyrkant med pil upp).","Välj Lägg till på hemskärmen och sedan Lägg till."],
@@ -33,7 +33,7 @@
       search:"Search app, process or function…",searchLabel:"Search the apps",
       resultCount:"apps shown",clear:"Clear filters",open:"Open app",external:"External service",internal:"In portal",none:"No apps match your search.",
       helpTitle:"One portal. Every tool.",helpDescription:"Install a shortcut on your desktop or home screen for instant access.",
-      install:"Install app",installShort:"Install",installed:"The app is already installed",
+      install:"Install app",introVideo:"Watch introduction",installShort:"Install",installed:"The app is already installed",
       footer:"Digital tools & continuous improvement",footerNote:"Only information suitable for public web publishing.",
       dialogBadge:"QUICK ACCESS",dialogTitle:"Install Dometic App Portal",dialogIntro:"Follow the steps for your device. The portal is a normal website and requires no additional IT software.",
       dialogDone:"Done",dialogClose:"Close",ios:["Open this page in Safari on your iPhone or iPad.","Tap Share (the square with an up arrow).","Select Add to Home Screen, then Add."],
@@ -50,7 +50,7 @@
       search:"App, Prozess oder Funktion suchen…",searchLabel:"Apps durchsuchen",
       resultCount:"Apps angezeigt",clear:"Filter zurücksetzen",open:"App öffnen",external:"Externer Dienst",internal:"Im Portal",none:"Keine passenden Apps gefunden.",
       helpTitle:"Ein Portal. Alle Werkzeuge.",helpDescription:"Portal auf Desktop oder Startbildschirm speichern und mit einem Klick öffnen.",
-      install:"App installieren",installShort:"Installieren",installed:"Die App ist bereits installiert",
+      install:"App installieren",introVideo:"Präsentationsfilm ansehen",installShort:"Installieren",installed:"Die App ist bereits installiert",
       footer:"Digitale Werkzeuge & kontinuierliche Verbesserung",footerNote:"Nur Informationen für die öffentliche Webveröffentlichung.",
       dialogBadge:"SCHNELLZUGRIFF",dialogTitle:"Dometic App Portal installieren",dialogIntro:"Folgen Sie den Schritten für Ihr Gerät. Das Portal ist eine normale Website und benötigt keine zusätzliche IT-Software.",
       dialogDone:"Fertig",dialogClose:"Schließen",ios:["Diese Seite auf dem iPhone oder iPad in Safari öffnen.","Auf Teilen (Quadrat mit Pfeil nach oben) tippen.","Zum Home-Bildschirm wählen und hinzufügen."],
@@ -86,7 +86,7 @@
     setText("searchLabel",t.searchLabel);$("search").placeholder=t.search;
     setText("resetFilter",t.clear);
     setText("emptyMessage",t.none);
-    setText("installLabel",t.install);
+    setText("installLabel",t.install);setText("portalIntroButtonText",t.introVideo);
     setText("footerText",t.footer);setText("footerNote",t.footerNote);
     setText("dialogBadge",t.dialogBadge);setText("dialogHeading",t.dialogTitle);setText("dialogIntro",t.dialogIntro);setText("dialogDone",t.dialogDone);
     $("dialogClose").setAttribute("aria-label",t.dialogClose);
@@ -113,28 +113,33 @@
   }
 
   const videoText={
-    sv:{sv:"🇸🇪 Svensk film",en:"🇬🇧 Engelsk film",rtm:"▶ Se filmen om RTM",title20:"Twenty Cycle Check – introduktion",titleRtm:"RTM 3.0 – introduktion",about20:"Instruktionsfilm om processobservation med Twenty Cycle Check.",aboutRtm:"Presentationsfilm om RTM 3.0 i Tidaholm.",label:"INTRODUKTIONSFILM",close:"Stäng film"},
-    en:{sv:"🇸🇪 Swedish video",en:"🇬🇧 English video",rtm:"▶ Watch RTM video",title20:"Twenty Cycle Check – introduction",titleRtm:"RTM 3.0 – introduction",about20:"An introduction to process observations using Twenty Cycle Check.",aboutRtm:"Introduction to RTM 3.0 in Tidaholm.",label:"INTRODUCTION VIDEO",close:"Close video"},
-    de:{sv:"🇸🇪 Schwedisches Video",en:"🇬🇧 Englisches Video",rtm:"▶ RTM-Film ansehen",title20:"Twenty Cycle Check – Einführung",titleRtm:"RTM 3.0 – Einführung",about20:"Einführung in die Prozessbeobachtung mit Twenty Cycle Check.",aboutRtm:"Einführung in RTM 3.0 in Tidaholm.",label:"EINFÜHRUNGSVIDEO",close:"Video schließen"}
+    sv:{sv:"🇸🇪 Svensk film",en:"🇬🇧 Engelsk film",rtm:"▶ Se filmen om RTM",title20:"Twenty Cycle Check – introduktion",titleRtm:"RTM 3.0 – introduktion",about20:"Instruktionsfilm om processobservation med Twenty Cycle Check.",aboutRtm:"Presentationsfilm om RTM 3.0 i Tidaholm.",titlePortal:"Dometic App Portal – presentationsfilm",aboutPortal:"Svensk berättarröst · 1 minut och 33 sekunder.",label:"INTRODUKTIONSFILM",close:"Stäng film"},
+    en:{sv:"🇸🇪 Swedish video",en:"🇬🇧 English video",rtm:"▶ Watch RTM video",title20:"Twenty Cycle Check – introduction",titleRtm:"RTM 3.0 – introduction",about20:"An introduction to process observations using Twenty Cycle Check.",aboutRtm:"Introduction to RTM 3.0 in Tidaholm.",titlePortal:"Dometic App Portal – introduction",aboutPortal:"Swedish narration · 1 minute and 33 seconds.",label:"INTRODUCTION VIDEO",close:"Close video"},
+    de:{sv:"🇸🇪 Schwedisches Video",en:"🇬🇧 Englisches Video",rtm:"▶ RTM-Film ansehen",title20:"Twenty Cycle Check – Einführung",titleRtm:"RTM 3.0 – Einführung",about20:"Einführung in die Prozessbeobachtung mit Twenty Cycle Check.",aboutRtm:"Einführung in RTM 3.0 in Tidaholm.",titlePortal:"Dometic App Portal – Präsentationsfilm",aboutPortal:"Schwedische Sprecherstimme · 1 Minute und 33 Sekunden.",label:"EINFÜHRUNGSVIDEO",close:"Video schließen"}
   };
   const mediaBase="https://mrmartinpet.github.io/Dometic/media/";
   const films={
     sv:{file:"20-cycle-check-tutorial-sv-modern-m3.mp4",caption:"20-cycle-check-tutorial-sv-modern-m3.vtt",poster:"20-cycle-check-tutorial-poster-modern-m3.jpg",lang:"sv"},
     en:{file:"20-cycle-check-tutorial-en-morph-e2.mp4",caption:"20-cycle-check-tutorial-en-morph-e2.vtt",poster:"20-cycle-check-tutorial-poster-en-morph-e2.jpg",lang:"en"},
-    rtm:{file:"rtm-tidaholm-en.mp4",caption:"rtm-tidaholm-en.vtt",poster:"rtm-tidaholm-poster-en.jpg",lang:"en"}
+    rtm:{file:"rtm-tidaholm-en.mp4",caption:"rtm-tidaholm-en.vtt",poster:"rtm-tidaholm-poster-en.jpg",lang:"en"},
+    portal:{file:"app-portal-intro-sv.mp4",local:true,lang:"sv"}
   };
   function openFilm(key){
     const movie=films[key],labels=videoText[language],player=$("videoPlayer"),dialog=$("videoDialog");
     if(!movie)return;
     player.pause();player.replaceChildren();
-    player.poster=mediaBase+movie.poster;
-    const source=document.createElement("source");source.src=mediaBase+movie.file;source.type="video/mp4";
-    const caption=document.createElement("track");caption.src=mediaBase+movie.caption;caption.kind="captions";
-    caption.srclang=movie.lang;caption.label=movie.lang==="sv"?"Svenska":"English";
-    player.append(source,caption);
+    if(movie.poster){player.poster=mediaBase+movie.poster;}else{player.removeAttribute("poster");}
+    const source=document.createElement("source");
+    source.src=movie.local?"./media/"+movie.file:mediaBase+movie.file;
+    source.type="video/mp4";player.appendChild(source);
+    if(movie.caption){
+      const caption=document.createElement("track");caption.src=mediaBase+movie.caption;caption.kind="captions";
+      caption.srclang=movie.lang;caption.label=movie.lang==="sv"?"Svenska":"English";
+      player.appendChild(caption);
+    }
     setText("videoEyebrow",labels.label);
-    setText("videoTitle",key==="rtm"?labels.titleRtm:labels.title20);
-    setText("videoDescription",key==="rtm"?labels.aboutRtm:labels.about20);
+    setText("videoTitle",key==="portal"?labels.titlePortal:key==="rtm"?labels.titleRtm:labels.title20);
+    setText("videoDescription",key==="portal"?labels.aboutPortal:key==="rtm"?labels.aboutRtm:labels.about20);
     $("videoClose").setAttribute("aria-label",labels.close);
     player.load();
     dialog.showModal();
@@ -216,6 +221,7 @@
   });
   $("resetFilter").addEventListener("click",()=>{query="";activeCategory="all";$("search").value="";renderFilters();renderApps();});
   $("installButton").addEventListener("click",install);
+  $("portalIntroButton").addEventListener("click",()=>openFilm("portal"));
   $("dialogClose").addEventListener("click",()=>$("installDialog").close());
   $("dialogDone").addEventListener("click",()=>$("installDialog").close());
   $("installDialog").addEventListener("click",e=>{if(e.target===$("installDialog"))$("installDialog").close();});

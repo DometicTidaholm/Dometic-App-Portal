@@ -293,3 +293,18 @@ body{background:radial-gradient(ellipse 950px 650px at 87% -15%,#354b57 0%,trans
   filter:brightness(0) invert(1) drop-shadow(0 2px 7px rgba(0,0,0,.13)) !important;
   opacity:1;
 }
+
+/* Dometic App Portal introductory film CTA */
+.hero-film-button{
+  align-self:flex-start;display:inline-flex;align-items:center;gap:11px;margin-top:25px;
+  padding:9px 13px 9px 10px;min-height:44px;border:1px solid #a7d7df80;border-radius:11px;
+  background:#eaf4f6;color:#19394b;box-shadow:0 6px 20px #0002;
+  font-size:13px;font-weight:800;transition:transform .18s ease,background .18s ease;
+}
+.hero-film-button:hover{background:#fff;transform:translateY(-2px)}
+.hero-film-button:focus-visible{outline:3px solid #aedce7;outline-offset:4px}
+.hero-play-icon{display:grid;place-items:center;width:27px;height:27px;border-radius:7px;
+  background:#16506b;color:#fff;font-size:11px;padding-left:2px}
+.hero-film-length{font-size:11px;color:#4b6a79;padding-left:9px;border-left:1px solid #b4d1d7}
+@media(max-width:750px){.hero-film-button{margin-top:20px;font-size:12px}}
+@media(prefers-reduced-motion:reduce){.hero-film-button{transition:none}}
