@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Formulär: Kalibrering av håltolk</title>
+  <style>
+    :root { --bg:#f7f7f9; --card:#ffffff; --ink:#111; --muted:#666; --accent:#0b6efd; --ok:#0a7e07; --bad:#b00020; --grid:#e8e8ef; }
+    html, body { margin:0; padding:0; background:var(--bg); color:var(--ink); font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
+    .container { max-width:1000px; margin:24px auto; padding:0 16px 64px; }
+    .card { background:var(--card); border:1px solid var(--grid); border-radius:12px; padding:16px; box-shadow:0 1px 2px rgba(0,0,0,.04); }
+    header h1 { font-size:20px; margin:0 0 4px; }
+    header .sub { color:var(--muted); font-size:12px; }
+    h2 { font-size:16px; margin:24px 0 8px; border-bottom:1px solid var(--grid); padding-bottom:6px; }
+    .row { display:grid; grid-template-columns:repeat(12,1fr); gap:12px; margin-bottom:10px; }
+    .col-3 { grid-column:span 3; } .col-6 { grid-column:span 6; } .col-12 { grid-column:span 12; }
+    label { display:block; font-weight:600; margin-bottom:4px; }
+    input[type="text"], input[type="number"], input[type="date"], select { width:100%; padding:8px; border:1px solid var(--grid); border-radius:8px; background:#fff; box-sizing:border-box; }
+    input[readonly] { background:#f7f7fb; color:#333; }
+    table { width:100%; border-collapse:collapse; }
+    th, td { border:1px solid var(--grid); padding:6px 8px; text-align:left; }
+    th { background:#fafafe; }
+    .metrics { display:grid; grid-template-columns:repeat(2,minmax(280px,1fr)); gap:16px; }
+    .badge { display:inline-block; padding:2px 8px; border-radius:999px; font-size:12px; border:1px solid var(--grid); background:#fff; }
+    .badge.ok { color:var(--ok); border-color:var(--ok); }
+    .badge.fail { color:var(--bad); border-color:var(--bad); }
+    .actions { position:sticky; bottom:0; background:rgba(247,247,249,.9); border-top:1px solid var(--grid); padding:12px 0; backdrop-filter:blur(6px); margin-top:16px; }
+    .actions .bar { display:flex; gap:8px; justify-content:flex-end; align-items:center; }
+    button { padding:10px 14px; border:1px solid var(--grid); border-radius:10px; background:var(--accent); color:#fff; cursor:pointer; font-weight:600; }
+    .totals { color:var(--muted); font-size:12px; }
+    .grid6 { display:grid; grid-template-columns:repeat(6,1fr); gap:8px; }
+    @media print { .actions, .no-print { display:none !important; } .card { box-shadow:none; border:1px solid #ddd; } }
+    .req::after { content:" *"; color:var(--bad); font-weight:700; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form id="form" class="card" novalidate>
+      <header>
+        <h1>Formulär: Kalibrering av håltolk</h1>
+        <div class="sub">Tolerans: <strong>±0,02 mm</strong>. Underkänd om något enskilt mätvärde avviker mer än 0,02 mm från nominellt.</div>
+      </header>
+
+      <section>
+        <div class="row">
+          <div class="col-3"><label class="req" for="datum">Datum</label><input id="datum" name="datum" type="date" required /></div>
+          <div class="col-3"><label class="req" for="operator">Utförd av</label><input id="operator" name="operator" type="text" required /></div>
+          <div class="col-3"><label class="req" for="tolkId">Tolk-ID / nummer</label><input id="tolkId" name="tolkId" type="text" required /></div>
+          <div class="col-3"><label class="req" for="skjutmatt">Skjutmått (ID/serienr)</label><input id="skjutmatt" name="skjutmatt" type="text" required /></div>
+        </div>
+      </section>
+
+      <section class="metrics">
+        <div class="card">
+          <h2>Mått 1 (t.ex. GO)</h2>
+          <div class="row">
+            <div class="col-6"><label class="req" for="m1Nom">Nominellt värde (mm)</label><input id="m1Nom" name="m1Nom" type="number" step="0.01" required /></div>
+          </div>
+          <label class="req">Sex mätvärden (mm)</label>
+          <div class="grid6 no-print">
+            <input class="m1" type="number" step="0.01" required />
+            <input class="m1" type="number" step="0.01" required />
+            <input class="m1" type="number" step="0.01" required />
+            <input class="m1" type="number" step="0.01" required />
+            <input class="m1" type="number" step="0.01" required />
+            <input class="m1" type="number" step="0.01" required />
+          </div>
+          <table>
+            <tr><th>Största avvikelse</th><td><input id="m1Dev" readonly></td></tr>
+            <tr><th>Resultat</th><td><span id="m1Res" class="badge">Ej beräknat</span></td></tr>
+          </table>
+        </div>
+
+        <div class="card">
+          <h2>Mått 2 (t.ex. NO GO)</h2>
+          <div class="row">
+            <div class="col-6"><label class="req" for="m2Nom">Nominellt värde (mm)</label><input id="m2Nom" name="m2Nom" type="number" step="0.01" required /></div>
+          </div>
+          <label class="req">Sex mätvärden (mm)</label>
+          <div class="grid6 no-print">
+            <input class="m2" type="number" step="0.01" required />
+            <input class="m2" type="number" step="0.01" required />
+            <input class="m2" type="number" step="0.01" required />
+            <input class="m2" type="number" step="0.01" required />
+            <input class="m2" type="number" step="0.01" required />
+            <input class="m2" type="number" step="0.01" required />
+          </div>
+          <table>
+            <tr><th>Största avvikelse</th><td><input id="m2Dev" readonly></td></tr>
+            <tr><th>Resultat</th><td><span id="m2Res" class="badge">Ej beräknat</span></td></tr>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Visuell kontroll</h2>
+        <div class="row">
+          <div class="col-6"><label class="req" for="visual">Skador, slitage, rost</label><select id="visual" name="visual" required><option value="">Välj...</option><option>OK</option><option>Anmärkning</option></select></div>
+          <div class="col-6"><label for="comment">Kommentar</label><input id="comment" type="text" placeholder="Valfri kommentar" /></div>
+        </div>
+        <div class="row"><div class="col-6"><label class="req" for="approved">Kalibrering godkänd</label><select id="approved" required><option value="">Välj...</option><option>Ja</option><option>Nej</option></select></div></div>
+      </section>
+
+      <div class="actions">
+        <div class="bar">
+          <button type="button" id="savePdf">Spara som PDF</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const TOL = 0.02;
+    function nums(sel){return Array.from(document.querySelectorAll(sel)).map(i=>+i.value).filter(Number.isFinite);}
+    function fmt(n){return Number.isFinite(n)?n.toFixed(2):'';}
+    function calc(p){
+      const nom=+document.getElementById(p+'Nom').value;
+      const ins=document.querySelectorAll('input.'+p);
+      const vals=nums('input.'+p);
+      if(!Number.isFinite(nom)||vals.length<ins.length){document.getElementById(p+'Dev').value='';const r=document.getElementById(p+'Res');r.textContent='Ej beräknat';r.className='badge';return;}
+      const devs=vals.map(v=>v-nom);
+      let maxAbs=-1,worst=0;devs.forEach(d=>{const a=Math.abs(d);if(a>maxAbs){maxAbs=a;worst=d;}});
+      document.getElementById(p+'Dev').value=(worst>=0?'+':'')+fmt(worst)+' mm';
+      const pass=devs.every(d=>Math.abs(d)<=TOL);
+      const r=document.getElementById(p+'Res');r.textContent=pass?'Godkänd':'Underkänd';r.className='badge '+(pass?'ok':'fail');
+      if(!pass){const s=document.getElementById('approved');if(s&&s.value!=='Nej')s.value='Nej';}
+    }
+    function bind(p){document.getElementById(p+'Nom').oninput=()=>calc(p);document.querySelectorAll('input.'+p).forEach(i=>i.oninput=()=>calc(p));}
+    bind('m1');bind('m2');
+    function valid(){const f=document.getElementById('form');calc('m1');calc('m2');if(!f.reportValidity())return false;const r1=document.getElementById('m1Res').textContent,r2=document.getElementById('m2Res').textContent;return r1!=='Ej beräknat'&&r2!=='Ej beräknat';}
+    document.getElementById('savePdf').onclick=()=>{if(!valid()){alert('Fyll i alla obligatoriska fält.');return;}window.print();};
+    document.getElementById('datum').value=new Date().toISOString().slice(0,10);
+  </script>
+</body>
+</html>
