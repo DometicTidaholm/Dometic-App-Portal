@@ -1,1 +1,44 @@
-# Dometic-App-Portal
+# Dometic App Portal – Tidaholm
+
+Gemensam startsida med processanalys, ergonomi, produktionsstöd och information.
+Portal och kopierade webbappar ligger **i ett enda GitHub-repository**, i mappen `apps/`.
+
+## Publicera webbplatsen (görs en gång)
+1. Öppna [Settings → Pages](https://github.com/DometicTidaholm/Dometic-App-Portal/settings/pages).
+2. Välj **Build and deployment → Source: Deploy from a branch**.
+3. Välj **Branch: main** och **Folder: /(root)**, klicka **Save**.
+
+Webbadress efter publicering:
+https://dometictidaholm.github.io/Dometic-App-Portal/
+
+## Mappstruktur
+- `index.html` – portalens startsida.
+- `styles.css` – portalens design.
+- `apps-data.js` – alla appkort med beskrivningar på svenska, engelska och tyska.
+- `portal.js` – sökning, filtrering, språk och installationsknapp.
+- `manifest.webmanifest`, `sw.js`, `icon-192.png`, `icon-512.png` – installation på hemskärm/desktop och offline-reserv för portalens startsida.
+- `apps/<appnamn>/` – separata kopior av de offentligt publicerade webbapparna.
+
+## Lägg till eller ändra en app
+1. Lägg appens filer i en ny mapp under `apps/`. Huvudfilen ska heta `index.html`.
+2. Lägg till ett objekt i listan `window.PORTAL_APPS` i `apps-data.js` med namn, beskrivning, kategori, ikon och länk.
+3. Använd relativa länkar som `./apps/MinApp/`.
+4. Commit – startsidan uppdateras vid nästa GitHub Pages-publicering.
+
+## Installera portalen
+- **Windows / Mac:** Öppna i Edge eller Chrome och klicka på portalens **Installera app**. Om installationsdialogen inte visas finns manuella instruktioner.
+- **iPhone / iPad:** Öppna i Safari → Dela → Lägg till på hemskärmen.
+- **Android:** Öppna i Chrome → menyn → Installera app eller Lägg till på startskärmen.
+
+## Viktiga beroenden före eventuell radering av gamla repos
+- **Marknad & bransch** läser sin dagligen uppdaterade `brief.json` från det gamla `MrMartinPet/Dometic`, med lokal kopia som reserv.
+- **Lunchkollen** läser uppdaterad `data.json` och nya menybilder från den gamla portalen, med lokal JSON-reserv.
+- **Frekvensanalys** använder tills vidare sina Excel-mallar från det gamla `MrMartinPet/Frekvensanalys` via GitHubs innehålls-API. Dess kopierade mallar finns även här.
+- **RTM 3.0** öppnar fortfarande Power BI. **Dometic Fotoapp** öppnar fortfarande den befintliga Vercel-appen.
+- Schemalagda GitHub Actions från gamla portalen har **inte duplicerats** för att undvika parallella uppdateringar. Filmerna från den gamla portalens `media/` har inte flyttats till detta repo.
+- Originalrepos och befintliga webbplatser ska **behållas** tills datakällor, uppdateringar, dokument och länkar har verifierats.
+
+## Säkerhet
+Repositoryt och GitHub Pages är publika. Lägg därför inte in lösenord, access tokens, företagshemligheter eller personuppgifter i denna kodbas. En installerad PWA ger snabbåtkomst – den skapar **inte** åtkomstkontroll till sidor eller filer.
+
+Inga privata repos eller interna Power BI-/Dataverse-data har kopierats till denna publika portal.
