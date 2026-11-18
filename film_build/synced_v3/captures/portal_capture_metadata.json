@@ -1,0 +1,1679 @@
+{
+  "portal_desktop.png": {
+    "image_size_px": [
+      2880,
+      1800
+    ],
+    "viewport_css_px": {
+      "width": 1440,
+      "height": 900
+    },
+    "device_scale_factor": 2,
+    "scroll_y_css_px": 0,
+    "url": "http://127.0.0.1:8765/",
+    "full_page": false,
+    "controls_css_px": {
+      "install": {
+        "x": 1199.921875,
+        "y": 18.5,
+        "width": 166.078125,
+        "height": 42,
+        "center_x": 1282.9609375,
+        "center_y": 39.5
+      },
+      "language_sv": {
+        "x": 885.515625,
+        "y": 22,
+        "width": 98.671875,
+        "height": 35,
+        "center_x": 934.8515625,
+        "center_y": 39.5
+      },
+      "language_en": {
+        "x": 989.1875,
+        "y": 22,
+        "width": 92.140625,
+        "height": 35,
+        "center_x": 1035.2578125,
+        "center_y": 39.5
+      },
+      "language_de": {
+        "x": 1086.328125,
+        "y": 22,
+        "width": 97.59375,
+        "height": 35,
+        "center_x": 1135.125,
+        "center_y": 39.5
+      },
+      "intro_film": {
+        "x": 125,
+        "y": 441.671875,
+        "width": 281.71875,
+        "height": 47,
+        "center_x": 265.859375,
+        "center_y": 465.171875
+      },
+      "search": {
+        "x": 1006,
+        "y": 608.671875,
+        "width": 360,
+        "height": 43,
+        "center_x": 1186.0,
+        "center_y": 630.171875
+      },
+      "process_filter": {
+        "x": 182.09375,
+        "y": 676.671875,
+        "width": 128.3125,
+        "height": 39,
+        "center_x": 246.25,
+        "center_y": 696.171875
+      },
+      "ergonomics_filter": {
+        "x": 317.40625,
+        "y": 676.671875,
+        "width": 96.359375,
+        "height": 39,
+        "center_x": 365.5859375,
+        "center_y": 696.171875
+      },
+      "production_filter": {
+        "x": 420.765625,
+        "y": 676.671875,
+        "width": 143.5625,
+        "height": 39,
+        "center_x": 492.546875,
+        "center_y": 696.171875
+      },
+      "information_filter": {
+        "x": 571.328125,
+        "y": 676.671875,
+        "width": 111.640625,
+        "height": 39,
+        "center_x": 627.1484375,
+        "center_y": 696.171875
+      },
+      "first_app": {
+        "x": 75,
+        "y": 768.671875,
+        "width": 418,
+        "height": 272.046875,
+        "center_x": 284.0,
+        "center_y": 904.6953125
+      }
+    },
+    "note": null
+  },
+  "portal_full.png": {
+    "image_size_px": [
+      2880,
+      4392
+    ],
+    "viewport_css_px": {
+      "width": 1440,
+      "height": 900
+    },
+    "device_scale_factor": 2,
+    "scroll_y_css_px": 0,
+    "url": "http://127.0.0.1:8765/",
+    "full_page": true,
+    "controls_css_px": {
+      "install": {
+        "x": 1199.921875,
+        "y": 18.5,
+        "width": 166.078125,
+        "height": 42,
+        "center_x": 1282.9609375,
+        "center_y": 39.5
+      },
+      "language_sv": {
+        "x": 885.515625,
+        "y": 22,
+        "width": 98.671875,
+        "height": 35,
+        "center_x": 934.8515625,
+        "center_y": 39.5
+      },
+      "language_en": {
+        "x": 989.1875,
+        "y": 22,
+        "width": 92.140625,
+        "height": 35,
+        "center_x": 1035.2578125,
+        "center_y": 39.5
+      },
+      "language_de": {
+        "x": 1086.328125,
+        "y": 22,
+        "width": 97.59375,
+        "height": 35,
+        "center_x": 1135.125,
+        "center_y": 39.5
+      },
+      "intro_film": {
+        "x": 125,
+        "y": 441.671875,
+        "width": 281.71875,
+        "height": 47,
+        "center_x": 265.859375,
+        "center_y": 465.171875
+      },
+      "search": {
+        "x": 1006,
+        "y": 608.671875,
+        "width": 360,
+        "height": 43,
+        "center_x": 1186.0,
+        "center_y": 630.171875
+      },
+      "process_filter": {
+        "x": 182.09375,
+        "y": 676.671875,
+        "width": 128.3125,
+        "height": 39,
+        "center_x": 246.25,
+        "center_y": 696.171875
+      },
+      "ergonomics_filter": {
+        "x": 317.40625,
+        "y": 676.671875,
+        "width": 96.359375,
+        "height": 39,
+        "center_x": 365.5859375,
+        "center_y": 696.171875
+      },
+      "production_filter": {
+        "x": 420.765625,
+        "y": 676.671875,
+        "width": 143.5625,
+        "height": 39,
+        "center_x": 492.546875,
+        "center_y": 696.171875
+      },
+      "information_filter": {
+        "x": 571.328125,
+        "y": 676.671875,
+        "width": 111.640625,
+        "height": 39,
+        "center_x": 627.1484375,
+        "center_y": 696.171875
+      },
+      "first_app": {
+        "x": 75,
+        "y": 768.671875,
+        "width": 418,
+        "height": 272.046875,
+        "center_x": 284.0,
+        "center_y": 904.6953125
+      }
+    },
+    "note": null
+  },
+  "portal_en.png": {
+    "image_size_px": [
+      2880,
+      1800
+    ],
+    "viewport_css_px": {
+      "width": 1440,
+      "height": 900
+    },
+    "device_scale_factor": 2,
+    "scroll_y_css_px": 0,
+    "url": "http://127.0.0.1:8765/",
+    "full_page": false,
+    "controls_css_px": {
+      "install": {
+        "x": 1223.921875,
+        "y": 18.5,
+        "width": 142.078125,
+        "height": 42,
+        "center_x": 1294.9609375,
+        "center_y": 39.5
+      },
+      "language_sv": {
+        "x": 909.515625,
+        "y": 22,
+        "width": 98.671875,
+        "height": 35,
+        "center_x": 958.8515625,
+        "center_y": 39.5
+      },
+      "language_en": {
+        "x": 1013.1875,
+        "y": 22,
+        "width": 92.140625,
+        "height": 35,
+        "center_x": 1059.2578125,
+        "center_y": 39.5
+      },
+      "language_de": {
+        "x": 1110.328125,
+        "y": 22,
+        "width": 97.59375,
+        "height": 35,
+        "center_x": 1159.125,
+        "center_y": 39.5
+      },
+      "intro_film": {
+        "x": 125,
+        "y": 510.5625,
+        "width": 252.125,
+        "height": 47,
+        "center_x": 251.0625,
+        "center_y": 534.0625
+      },
+      "search": {
+        "x": 1006,
+        "y": 677.5625,
+        "width": 360,
+        "height": 43,
+        "center_x": 1186.0,
+        "center_y": 699.0625
+      },
+      "ergonomics_filter": {
+        "x": 317.875,
+        "y": 745.5625,
+        "width": 110.609375,
+        "height": 39,
+        "center_x": 373.1796875,
+        "center_y": 765.0625
+      },
+      "information_filter": {
+        "x": 605.265625,
+        "y": 745.5625,
+        "width": 111.640625,
+        "height": 39,
+        "center_x": 661.0859375,
+        "center_y": 765.0625
+      },
+      "first_app": {
+        "x": 75,
+        "y": 837.5625,
+        "width": 418,
+        "height": 272.046875,
+        "center_x": 284.0,
+        "center_y": 973.5859375
+      }
+    },
+    "note": null
+  },
+  "portal_de.png": {
+    "image_size_px": [
+      2880,
+      1800
+    ],
+    "viewport_css_px": {
+      "width": 1440,
+      "height": 900
+    },
+    "device_scale_factor": 2,
+    "scroll_y_css_px": 0,
+    "url": "http://127.0.0.1:8765/",
+    "full_page": false,
+    "controls_css_px": {
+      "install": {
+        "x": 1185.25,
+        "y": 18.5,
+        "width": 180.75,
+        "height": 42,
+        "center_x": 1275.625,
+        "center_y": 39.5
+      },
+      "language_sv": {
+        "x": 870.84375,
+        "y": 22,
+        "width": 98.671875,
+        "height": 35,
+        "center_x": 920.1796875,
+        "center_y": 39.5
+      },
+      "language_en": {
+        "x": 974.515625,
+        "y": 22,
+        "width": 92.140625,
+        "height": 35,
+        "center_x": 1020.5859375,
+        "center_y": 39.5
+      },
+      "language_de": {
+        "x": 1071.65625,
+        "y": 22,
+        "width": 97.59375,
+        "height": 35,
+        "center_x": 1120.453125,
+        "center_y": 39.5
+      },
+      "intro_film": {
+        "x": 125,
+        "y": 510.5625,
+        "width": 307.5625,
+        "height": 47,
+        "center_x": 278.78125,
+        "center_y": 534.0625
+      },
+      "search": {
+        "x": 1006,
+        "y": 677.5625,
+        "width": 360,
+        "height": 43,
+        "center_x": 1186.0,
+        "center_y": 699.0625
+      },
+      "ergonomics_filter": {
+        "x": 319.78125,
+        "y": 745.5625,
+        "width": 104.5,
+        "height": 39,
+        "center_x": 372.03125,
+        "center_y": 765.0625
+      },
+      "information_filter": {
+        "x": 648.828125,
+        "y": 745.5625,
+        "width": 111.640625,
+        "height": 39,
+        "center_x": 704.6484375,
+        "center_y": 765.0625
+      },
+      "first_app": {
+        "x": 75,
+        "y": 837.5625,
+        "width": 418,
+        "height": 272.046875,
+        "center_x": 284.0,
+        "center_y": 973.5859375
+      }
+    },
+    "note": null
+  },
+  "portal_card_20cyclecheck.png": {
+    "image_size_px": [
+      840,
+      550
+    ],
+    "app_id": "20CycleCheck",
+    "app_name": "Twenty Cycle Check",
+    "device_scale_factor": 2,
+    "element_bbox_css_px": {
+      "x": 510,
+      "y": 625.671875,
+      "width": 420,
+      "height": 274.046875
+    },
+    "url": "http://127.0.0.1:8765/",
+    "note": "Actual rendered portal app card, no text replacement"
+  },
+  "portal_card_steptimer.png": {
+    "image_size_px": [
+      840,
+      550
+    ],
+    "app_id": "steptimer",
+    "app_name": "Moment & tider",
+    "device_scale_factor": 2,
+    "element_bbox_css_px": {
+      "x": 74,
+      "y": 625.671875,
+      "width": 420,
+      "height": 274.046875
+    },
+    "url": "http://127.0.0.1:8765/",
+    "note": "Actual rendered portal app card, no text replacement"
+  },
+  "portal_card_frekvensanalys.png": {
+    "image_size_px": [
+      840,
+      506
+    ],
+    "app_id": "Frekvensanalys",
+    "app_name": "Frekvensanalys",
+    "device_scale_factor": 2,
+    "element_bbox_css_px": {
+      "x": 510,
+      "y": 333.71875,
+      "width": 420,
+      "height": 251.671875
+    },
+    "url": "http://127.0.0.1:8765/",
+    "note": "Actual rendered portal app card, no text replacement"
+  },
+  "portal_card_dometic-analyzemovements.png": {
+    "image_size_px": [
+      840,
+      506
+    ],
+    "app_id": "Dometic-AnalyzeMovements",
+    "app_name": "Rörelser & gångvägar",
+    "device_scale_factor": 2,
+    "element_bbox_css_px": {
+      "x": 946,
+      "y": 333.71875,
+      "width": 420,
+      "height": 251.671875
+    },
+    "url": "http://127.0.0.1:8765/",
+    "note": "Actual rendered portal app card, no text replacement"
+  },
+  "portal_card_ergonomicanalysis.png": {
+    "image_size_px": [
+      840,
+      550
+    ],
+    "app_id": "ErgonomicAnalysis",
+    "app_name": "Ergonomianalys – KIM 1",
+    "device_scale_factor": 2,
+    "element_bbox_css_px": {
+      "x": 946,
+      "y": 43.671875,
+      "width": 420,
+      "height": 274.046875
+    },
+    "url": "http://127.0.0.1:8765/",
+    "note": "Actual rendered portal app card, no text replacement"
+  },
+  "portal_card_kim2.png": {
+    "image_size_px": [
+      840,
+      472
+    ],
+    "app_id": "KIM2",
+    "app_name": "Ergonomianalys – KIM 2",
+    "device_scale_factor": 2,
+    "element_bbox_css_px": {
+      "x": 74,
+      "y": 601.390625,
+      "width": 420,
+      "height": 235
+    },
+    "url": "http://127.0.0.1:8765/",
+    "note": "Actual rendered portal app card, no text replacement"
+  },
+  "portal_card_kim3.png": {
+    "image_size_px": [
+      840,
+      472
+    ],
+    "app_id": "KIM3",
+    "app_name": "Ergonomianalys – KIM 3",
+    "device_scale_factor": 2,
+    "element_bbox_css_px": {
+      "x": 510,
+      "y": 601.390625,
+      "width": 420,
+      "height": 235
+    },
+    "url": "http://127.0.0.1:8765/",
+    "note": "Actual rendered portal app card, no text replacement"
+  },
+  "portal_card_funktionsplaneraren.png": {
+    "image_size_px": [
+      840,
+      472
+    ],
+    "app_id": "Funktionsplaneraren",
+    "app_name": "Resursfördelning",
+    "device_scale_factor": 2,
+    "element_bbox_css_px": {
+      "x": 510,
+      "y": 665.390625,
+      "width": 420,
+      "height": 235
+    },
+    "url": "http://127.0.0.1:8765/",
+    "note": "Actual rendered portal app card, no text replacement"
+  },
+  "portal_card_tolkkalibrering.png": {
+    "image_size_px": [
+      840,
+      472
+    ],
+    "app_id": "Tolkkalibrering",
+    "app_name": "Kalibrering av håltolk",
+    "device_scale_factor": 2,
+    "element_bbox_css_px": {
+      "x": 74,
+      "y": 665.390625,
+      "width": 420,
+      "height": 235
+    },
+    "url": "http://127.0.0.1:8765/",
+    "note": "Actual rendered portal app card, no text replacement"
+  },
+  "portal_card_flagg-generator.png": {
+    "image_size_px": [
+      840,
+      472
+    ],
+    "app_id": "Flagg-generator",
+    "app_name": "Flagg-generator",
+    "device_scale_factor": 2,
+    "element_bbox_css_px": {
+      "x": 946,
+      "y": 414.390625,
+      "width": 420,
+      "height": 235
+    },
+    "url": "http://127.0.0.1:8765/",
+    "note": "Actual rendered portal app card, no text replacement"
+  },
+  "portal_card_dometicpersonalhandbok.png": {
+    "image_size_px": [
+      840,
+      506
+    ],
+    "app_id": "DometicPersonalHandbok",
+    "app_name": "Personalhandbok",
+    "device_scale_factor": 2,
+    "element_bbox_css_px": {
+      "x": 74,
+      "y": 146.71875,
+      "width": 420,
+      "height": 251.671875
+    },
+    "url": "http://127.0.0.1:8765/",
+    "note": "Actual rendered portal app card, no text replacement"
+  },
+  "portal_card_market-intelligence.png": {
+    "image_size_px": [
+      840,
+      550
+    ],
+    "app_id": "market-intelligence",
+    "app_name": "Marknad & bransch",
+    "device_scale_factor": 2,
+    "element_bbox_css_px": {
+      "x": 510,
+      "y": 531.390625,
+      "width": 420,
+      "height": 274.046875
+    },
+    "url": "http://127.0.0.1:8765/",
+    "note": "Actual rendered portal app card, no text replacement"
+  },
+  "portal_card_lunchkollen.png": {
+    "image_size_px": [
+      840,
+      550
+    ],
+    "app_id": "lunchkollen",
+    "app_name": "Lunchkollen Tidaholm",
+    "device_scale_factor": 2,
+    "element_bbox_css_px": {
+      "x": 74,
+      "y": 531.390625,
+      "width": 420,
+      "height": 274.046875
+    },
+    "url": "http://127.0.0.1:8765/",
+    "note": "Actual rendered portal app card, no text replacement"
+  },
+  "portal_card_rtm.png": {
+    "image_size_px": [
+      840,
+      550
+    ],
+    "app_id": "RTM",
+    "app_name": "RTM 3.0 – Produktionsuppföljning",
+    "device_scale_factor": 2,
+    "element_bbox_css_px": {
+      "x": 946,
+      "y": 531.390625,
+      "width": 420,
+      "height": 274.046875
+    },
+    "url": "http://127.0.0.1:8765/",
+    "note": "Actual rendered portal app card, no text replacement"
+  },
+  "portal_rtm_card.png": {
+    "image_size_px": [
+      840,
+      550
+    ],
+    "app_id": "RTM",
+    "app_name": "RTM 3.0 – Produktionsuppföljning",
+    "device_scale_factor": 2,
+    "element_bbox_css_px": {
+      "x": 946,
+      "y": 531.390625,
+      "width": 420,
+      "height": 274.046875
+    },
+    "url": "http://127.0.0.1:8765/",
+    "note": "Actual rendered portal app card, no text replacement"
+  },
+  "portal_card_fotoapp.png": {
+    "image_size_px": [
+      840,
+      472
+    ],
+    "app_id": "Fotoapp",
+    "app_name": "Dometic Fotoapp",
+    "device_scale_factor": 2,
+    "element_bbox_css_px": {
+      "x": 946,
+      "y": 280.390625,
+      "width": 420,
+      "height": 235
+    },
+    "url": "http://127.0.0.1:8765/",
+    "note": "Actual rendered portal app card, no text replacement"
+  },
+  "portal_process.png": {
+    "image_size_px": [
+      2880,
+      1800
+    ],
+    "viewport_css_px": {
+      "width": 1440,
+      "height": 900
+    },
+    "device_scale_factor": 2,
+    "scroll_y_css_px": 488,
+    "url": "http://127.0.0.1:8765/",
+    "full_page": false,
+    "controls_css_px": {
+      "install": {
+        "x": 1199.921875,
+        "y": -469.5,
+        "width": 166.078125,
+        "height": 42,
+        "center_x": 1282.9609375,
+        "center_y": -448.5
+      },
+      "language_sv": {
+        "x": 885.515625,
+        "y": -466,
+        "width": 98.671875,
+        "height": 35,
+        "center_x": 934.8515625,
+        "center_y": -448.5
+      },
+      "language_en": {
+        "x": 989.1875,
+        "y": -466,
+        "width": 92.140625,
+        "height": 35,
+        "center_x": 1035.2578125,
+        "center_y": -448.5
+      },
+      "language_de": {
+        "x": 1086.328125,
+        "y": -466,
+        "width": 97.59375,
+        "height": 35,
+        "center_x": 1135.125,
+        "center_y": -448.5
+      },
+      "intro_film": {
+        "x": 125,
+        "y": -46.328125,
+        "width": 281.71875,
+        "height": 47,
+        "center_x": 265.859375,
+        "center_y": -22.828125
+      },
+      "search": {
+        "x": 1006,
+        "y": 120.671875,
+        "width": 360,
+        "height": 43,
+        "center_x": 1186.0,
+        "center_y": 142.171875
+      },
+      "process_filter": {
+        "x": 182.09375,
+        "y": 188.671875,
+        "width": 128.3125,
+        "height": 39,
+        "center_x": 246.25,
+        "center_y": 208.171875
+      },
+      "ergonomics_filter": {
+        "x": 317.40625,
+        "y": 188.671875,
+        "width": 96.359375,
+        "height": 39,
+        "center_x": 365.5859375,
+        "center_y": 208.171875
+      },
+      "production_filter": {
+        "x": 420.765625,
+        "y": 188.671875,
+        "width": 143.5625,
+        "height": 39,
+        "center_x": 492.546875,
+        "center_y": 208.171875
+      },
+      "information_filter": {
+        "x": 571.328125,
+        "y": 188.671875,
+        "width": 111.640625,
+        "height": 39,
+        "center_x": 627.1484375,
+        "center_y": 208.171875
+      },
+      "first_app": {
+        "x": 75,
+        "y": 280.671875,
+        "width": 418,
+        "height": 272.046875,
+        "center_x": 284.0,
+        "center_y": 416.6953125
+      }
+    },
+    "note": null
+  },
+  "portal_ergonomi.png": {
+    "image_size_px": [
+      2880,
+      1800
+    ],
+    "viewport_css_px": {
+      "width": 1440,
+      "height": 900
+    },
+    "device_scale_factor": 2,
+    "scroll_y_css_px": 198,
+    "url": "http://127.0.0.1:8765/",
+    "full_page": false,
+    "controls_css_px": {
+      "install": {
+        "x": 1199.921875,
+        "y": -179.5,
+        "width": 166.078125,
+        "height": 42,
+        "center_x": 1282.9609375,
+        "center_y": -158.5
+      },
+      "language_sv": {
+        "x": 885.515625,
+        "y": -176,
+        "width": 98.671875,
+        "height": 35,
+        "center_x": 934.8515625,
+        "center_y": -158.5
+      },
+      "language_en": {
+        "x": 989.1875,
+        "y": -176,
+        "width": 92.140625,
+        "height": 35,
+        "center_x": 1035.2578125,
+        "center_y": -158.5
+      },
+      "language_de": {
+        "x": 1086.328125,
+        "y": -176,
+        "width": 97.59375,
+        "height": 35,
+        "center_x": 1135.125,
+        "center_y": -158.5
+      },
+      "intro_film": {
+        "x": 125,
+        "y": 243.671875,
+        "width": 281.71875,
+        "height": 47,
+        "center_x": 265.859375,
+        "center_y": 267.171875
+      },
+      "search": {
+        "x": 1006,
+        "y": 410.671875,
+        "width": 360,
+        "height": 43,
+        "center_x": 1186.0,
+        "center_y": 432.171875
+      },
+      "process_filter": {
+        "x": 182.09375,
+        "y": 478.671875,
+        "width": 128.3125,
+        "height": 39,
+        "center_x": 246.25,
+        "center_y": 498.171875
+      },
+      "ergonomics_filter": {
+        "x": 317.40625,
+        "y": 478.671875,
+        "width": 96.359375,
+        "height": 39,
+        "center_x": 365.5859375,
+        "center_y": 498.171875
+      },
+      "production_filter": {
+        "x": 420.765625,
+        "y": 478.671875,
+        "width": 143.5625,
+        "height": 39,
+        "center_x": 492.546875,
+        "center_y": 498.171875
+      },
+      "information_filter": {
+        "x": 571.328125,
+        "y": 478.671875,
+        "width": 111.640625,
+        "height": 39,
+        "center_x": 627.1484375,
+        "center_y": 498.171875
+      },
+      "first_app": {
+        "x": 75,
+        "y": 570.671875,
+        "width": 418,
+        "height": 233,
+        "center_x": 284.0,
+        "center_y": 687.171875
+      }
+    },
+    "note": null
+  },
+  "portal_production.png": {
+    "image_size_px": [
+      2880,
+      1800
+    ],
+    "viewport_css_px": {
+      "width": 1440,
+      "height": 900
+    },
+    "device_scale_factor": 2,
+    "scroll_y_css_px": 198,
+    "url": "http://127.0.0.1:8765/",
+    "full_page": false,
+    "controls_css_px": {
+      "install": {
+        "x": 1199.921875,
+        "y": -179.5,
+        "width": 166.078125,
+        "height": 42,
+        "center_x": 1282.9609375,
+        "center_y": -158.5
+      },
+      "language_sv": {
+        "x": 885.515625,
+        "y": -176,
+        "width": 98.671875,
+        "height": 35,
+        "center_x": 934.8515625,
+        "center_y": -158.5
+      },
+      "language_en": {
+        "x": 989.1875,
+        "y": -176,
+        "width": 92.140625,
+        "height": 35,
+        "center_x": 1035.2578125,
+        "center_y": -158.5
+      },
+      "language_de": {
+        "x": 1086.328125,
+        "y": -176,
+        "width": 97.59375,
+        "height": 35,
+        "center_x": 1135.125,
+        "center_y": -158.5
+      },
+      "intro_film": {
+        "x": 125,
+        "y": 243.671875,
+        "width": 281.71875,
+        "height": 47,
+        "center_x": 265.859375,
+        "center_y": 267.171875
+      },
+      "search": {
+        "x": 1006,
+        "y": 410.671875,
+        "width": 360,
+        "height": 43,
+        "center_x": 1186.0,
+        "center_y": 432.171875
+      },
+      "process_filter": {
+        "x": 182.09375,
+        "y": 478.671875,
+        "width": 128.3125,
+        "height": 39,
+        "center_x": 246.25,
+        "center_y": 498.171875
+      },
+      "ergonomics_filter": {
+        "x": 317.40625,
+        "y": 478.671875,
+        "width": 96.359375,
+        "height": 39,
+        "center_x": 365.5859375,
+        "center_y": 498.171875
+      },
+      "production_filter": {
+        "x": 420.765625,
+        "y": 478.671875,
+        "width": 143.5625,
+        "height": 39,
+        "center_x": 492.546875,
+        "center_y": 498.171875
+      },
+      "information_filter": {
+        "x": 571.328125,
+        "y": 478.671875,
+        "width": 111.640625,
+        "height": 39,
+        "center_x": 627.1484375,
+        "center_y": 498.171875
+      },
+      "first_app": {
+        "x": 75,
+        "y": 570.671875,
+        "width": 418,
+        "height": 233,
+        "center_x": 284.0,
+        "center_y": 687.171875
+      }
+    },
+    "note": null
+  },
+  "portal_information.png": {
+    "image_size_px": [
+      2880,
+      1800
+    ],
+    "viewport_css_px": {
+      "width": 1440,
+      "height": 900
+    },
+    "device_scale_factor": 2,
+    "scroll_y_css_px": 488,
+    "url": "http://127.0.0.1:8765/",
+    "full_page": false,
+    "controls_css_px": {
+      "install": {
+        "x": 1199.921875,
+        "y": -469.5,
+        "width": 166.078125,
+        "height": 42,
+        "center_x": 1282.9609375,
+        "center_y": -448.5
+      },
+      "language_sv": {
+        "x": 885.515625,
+        "y": -466,
+        "width": 98.671875,
+        "height": 35,
+        "center_x": 934.8515625,
+        "center_y": -448.5
+      },
+      "language_en": {
+        "x": 989.1875,
+        "y": -466,
+        "width": 92.140625,
+        "height": 35,
+        "center_x": 1035.2578125,
+        "center_y": -448.5
+      },
+      "language_de": {
+        "x": 1086.328125,
+        "y": -466,
+        "width": 97.59375,
+        "height": 35,
+        "center_x": 1135.125,
+        "center_y": -448.5
+      },
+      "intro_film": {
+        "x": 125,
+        "y": -46.328125,
+        "width": 281.71875,
+        "height": 47,
+        "center_x": 265.859375,
+        "center_y": -22.828125
+      },
+      "search": {
+        "x": 1006,
+        "y": 120.671875,
+        "width": 360,
+        "height": 43,
+        "center_x": 1186.0,
+        "center_y": 142.171875
+      },
+      "process_filter": {
+        "x": 182.09375,
+        "y": 188.671875,
+        "width": 128.3125,
+        "height": 39,
+        "center_x": 246.25,
+        "center_y": 208.171875
+      },
+      "ergonomics_filter": {
+        "x": 317.40625,
+        "y": 188.671875,
+        "width": 96.359375,
+        "height": 39,
+        "center_x": 365.5859375,
+        "center_y": 208.171875
+      },
+      "production_filter": {
+        "x": 420.765625,
+        "y": 188.671875,
+        "width": 143.5625,
+        "height": 39,
+        "center_x": 492.546875,
+        "center_y": 208.171875
+      },
+      "information_filter": {
+        "x": 571.328125,
+        "y": 188.671875,
+        "width": 111.640625,
+        "height": 39,
+        "center_x": 627.1484375,
+        "center_y": 208.171875
+      },
+      "first_app": {
+        "x": 75,
+        "y": 280.671875,
+        "width": 418,
+        "height": 233,
+        "center_x": 284.0,
+        "center_y": 397.171875
+      }
+    },
+    "note": null
+  },
+  "install_desktop.png": {
+    "image_size_px": [
+      2880,
+      1800
+    ],
+    "viewport_css_px": {
+      "width": 1440,
+      "height": 900
+    },
+    "device_scale_factor": 2,
+    "scroll_y_css_px": 0,
+    "url": "http://127.0.0.1:8765/",
+    "full_page": false,
+    "controls_css_px": {
+      "close": {
+        "x": 890,
+        "y": 271.53125,
+        "width": 38,
+        "height": 38,
+        "center_x": 909.0,
+        "center_y": 290.53125
+      },
+      "done": {
+        "x": 848.0625,
+        "y": 586.46875,
+        "width": 79.9375,
+        "height": 42,
+        "center_x": 888.03125,
+        "center_y": 607.46875
+      }
+    },
+    "note": null
+  },
+  "handbook_desktop.png": {
+    "image_size_px": [
+      2880,
+      1800
+    ],
+    "viewport_css_px": {
+      "width": 1440,
+      "height": 900
+    },
+    "device_scale_factor": 2,
+    "scroll_y_css_px": 0,
+    "url": "http://127.0.0.1:8765/apps/DometicPersonalHandbok/",
+    "full_page": false,
+    "controls_css_px": {
+      "forms": {
+        "x": 634.921875,
+        "y": 17,
+        "width": 110.546875,
+        "height": 42,
+        "center_x": 690.1953125,
+        "center_y": 38.0
+      },
+      "documents": {
+        "x": 517.546875,
+        "y": 17,
+        "width": 113.375,
+        "height": 42,
+        "center_x": 574.234375,
+        "center_y": 38.0
+      },
+      "search": {
+        "x": 162,
+        "y": 237.28125,
+        "width": 1060.15625,
+        "height": 43,
+        "center_x": 692.078125,
+        "center_y": 258.78125
+      },
+      "install": {
+        "x": 1168.625,
+        "y": 16,
+        "width": 107.375,
+        "height": 44,
+        "center_x": 1222.3125,
+        "center_y": 38.0
+      }
+    },
+    "note": null
+  },
+  "handbook_full.png": {
+    "image_size_px": [
+      2880,
+      2018
+    ],
+    "viewport_css_px": {
+      "width": 1440,
+      "height": 900
+    },
+    "device_scale_factor": 2,
+    "scroll_y_css_px": 0,
+    "url": "http://127.0.0.1:8765/apps/DometicPersonalHandbok/",
+    "full_page": true,
+    "controls_css_px": {
+      "forms": {
+        "x": 634.921875,
+        "y": 17,
+        "width": 110.546875,
+        "height": 42,
+        "center_x": 690.1953125,
+        "center_y": 38.0
+      },
+      "documents": {
+        "x": 517.546875,
+        "y": 17,
+        "width": 113.375,
+        "height": 42,
+        "center_x": 574.234375,
+        "center_y": 38.0
+      },
+      "search": {
+        "x": 162,
+        "y": 237.28125,
+        "width": 1060.15625,
+        "height": 43,
+        "center_x": 692.078125,
+        "center_y": 258.78125
+      },
+      "install": {
+        "x": 1168.625,
+        "y": 16,
+        "width": 107.375,
+        "height": 44,
+        "center_x": 1222.3125,
+        "center_y": 38.0
+      }
+    },
+    "note": null
+  },
+  "handbook_forms.png": {
+    "image_size_px": [
+      2880,
+      1800
+    ],
+    "viewport_css_px": {
+      "width": 1440,
+      "height": 900
+    },
+    "device_scale_factor": 2,
+    "scroll_y_css_px": 0,
+    "url": "http://127.0.0.1:8765/apps/DometicPersonalHandbok/#blanketter",
+    "full_page": false,
+    "controls_css_px": {
+      "search": {
+        "x": 152,
+        "y": 302.78125,
+        "width": 850,
+        "height": 46,
+        "center_x": 577.0,
+        "center_y": 325.78125
+      }
+    },
+    "note": "Actual catalog has 0 forms. Empty-state UI is genuine; no fabricated forms."
+  },
+  "handbook_documents.png": {
+    "image_size_px": [
+      2880,
+      1800
+    ],
+    "viewport_css_px": {
+      "width": 1440,
+      "height": 900
+    },
+    "device_scale_factor": 2,
+    "scroll_y_css_px": 0,
+    "url": "http://127.0.0.1:8765/apps/DometicPersonalHandbok/#dokument",
+    "full_page": false,
+    "controls_css_px": {
+      "search": {
+        "x": 152,
+        "y": 231.78125,
+        "width": 850,
+        "height": 46,
+        "center_x": 577.0,
+        "center_y": 254.78125
+      }
+    },
+    "note": null
+  },
+  "resources_desktop.png": {
+    "image_size_px": [
+      2880,
+      1800
+    ],
+    "viewport_css_px": {
+      "width": 1440,
+      "height": 900
+    },
+    "device_scale_factor": 2,
+    "scroll_y_css_px": 0,
+    "url": "http://127.0.0.1:8765/apps/Funktionsplaneraren/",
+    "full_page": false,
+    "controls_css_px": {
+      "export_pdf": {
+        "x": 35,
+        "y": 180.6875,
+        "width": 273.375,
+        "height": 37,
+        "center_x": 171.6875,
+        "center_y": 199.1875
+      },
+      "add_block": {
+        "x": 35,
+        "y": 327.6875,
+        "width": 273.375,
+        "height": 37,
+        "center_x": 171.6875,
+        "center_y": 346.1875
+      },
+      "add_service": {
+        "x": 35,
+        "y": 278.6875,
+        "width": 273.375,
+        "height": 37,
+        "center_x": 171.6875,
+        "center_y": 297.1875
+      }
+    },
+    "note": null
+  },
+  "calibration_desktop.png": {
+    "image_size_px": [
+      2880,
+      1800
+    ],
+    "viewport_css_px": {
+      "width": 1440,
+      "height": 900
+    },
+    "device_scale_factor": 2,
+    "scroll_y_css_px": 0,
+    "url": "http://127.0.0.1:8765/apps/Tolkkalibrering/",
+    "full_page": false,
+    "controls_css_px": {
+      "save_pdf": {
+        "x": 1074.484375,
+        "y": 673.265625,
+        "width": 128.515625,
+        "height": 37,
+        "center_x": 1138.7421875,
+        "center_y": 691.765625
+      }
+    },
+    "note": null
+  },
+  "calibration_full.png": {
+    "image_size_px": [
+      2880,
+      1800
+    ],
+    "viewport_css_px": {
+      "width": 1440,
+      "height": 900
+    },
+    "device_scale_factor": 2,
+    "scroll_y_css_px": 0,
+    "url": "http://127.0.0.1:8765/apps/Tolkkalibrering/",
+    "full_page": true,
+    "controls_css_px": {
+      "save_pdf": {
+        "x": 1074.484375,
+        "y": 673.265625,
+        "width": 128.515625,
+        "height": 37,
+        "center_x": 1138.7421875,
+        "center_y": 691.765625
+      }
+    },
+    "note": null
+  },
+  "market_desktop.png": {
+    "image_size_px": [
+      2880,
+      1800
+    ],
+    "viewport_css_px": {
+      "width": 1440,
+      "height": 900
+    },
+    "device_scale_factor": 2,
+    "scroll_y_css_px": 0,
+    "url": "http://127.0.0.1:8765/apps/market-intelligence/",
+    "full_page": false,
+    "controls_css_px": {},
+    "note": "Actual dashboard data and dates as rendered by the app."
+  },
+  "market_full.png": {
+    "image_size_px": [
+      2880,
+      1800
+    ],
+    "viewport_css_px": {
+      "width": 1440,
+      "height": 900
+    },
+    "device_scale_factor": 2,
+    "scroll_y_css_px": 0,
+    "url": "http://127.0.0.1:8765/apps/market-intelligence/",
+    "full_page": true,
+    "controls_css_px": {},
+    "note": null
+  },
+  "lunch_desktop.png": {
+    "image_size_px": [
+      2880,
+      1800
+    ],
+    "viewport_css_px": {
+      "width": 1440,
+      "height": 900
+    },
+    "device_scale_factor": 2,
+    "scroll_y_css_px": 0,
+    "url": "http://127.0.0.1:8765/apps/lunchkollen/",
+    "full_page": false,
+    "controls_css_px": {
+      "coupons": {
+        "x": 1099.21875,
+        "y": 331.890625,
+        "width": 143.3125,
+        "height": 44,
+        "center_x": 1170.875,
+        "center_y": 353.890625
+      },
+      "search": {
+        "x": 127,
+        "y": 332.390625,
+        "width": 349,
+        "height": 43,
+        "center_x": 301.5,
+        "center_y": 353.890625
+      }
+    },
+    "note": "Actual restaurant list and menu availability for the browser's current date."
+  },
+  "lunch_full.png": {
+    "image_size_px": [
+      2880,
+      6314
+    ],
+    "viewport_css_px": {
+      "width": 1440,
+      "height": 900
+    },
+    "device_scale_factor": 2,
+    "scroll_y_css_px": 0,
+    "url": "http://127.0.0.1:8765/apps/lunchkollen/",
+    "full_page": true,
+    "controls_css_px": {},
+    "note": null
+  },
+  "portal_mobile.png": {
+    "image_size_px": [
+      1170,
+      2532
+    ],
+    "viewport_css_px": {
+      "width": 390,
+      "height": 844
+    },
+    "device_scale_factor": 3,
+    "scroll_y_css_px": 0,
+    "url": "http://127.0.0.1:8765/",
+    "full_page": false,
+    "controls_css_px": {
+      "install": {
+        "x": 287.015625,
+        "y": 53,
+        "width": 88.984375,
+        "height": 46,
+        "center_x": 331.5078125,
+        "center_y": 76.0
+      },
+      "language_sv": {
+        "x": 19,
+        "y": 58.5,
+        "width": 82.984375,
+        "height": 35,
+        "center_x": 60.4921875,
+        "center_y": 76.0
+      },
+      "language_en": {
+        "x": 106.984375,
+        "y": 58.5,
+        "width": 77.046875,
+        "height": 35,
+        "center_x": 145.5078125,
+        "center_y": 76.0
+      },
+      "language_de": {
+        "x": 189.03125,
+        "y": 58.5,
+        "width": 81.984375,
+        "height": 35,
+        "center_x": 230.0234375,
+        "center_y": 76.0
+      },
+      "intro_film": {
+        "x": 37,
+        "y": 374.453125,
+        "width": 268.625,
+        "height": 47,
+        "center_x": 171.3125,
+        "center_y": 397.953125
+      },
+      "search": {
+        "x": 14,
+        "y": 574.453125,
+        "width": 362,
+        "height": 43,
+        "center_x": 195.0,
+        "center_y": 595.953125
+      },
+      "process_filter": {
+        "x": 109.328125,
+        "y": 632.453125,
+        "width": 114.296875,
+        "height": 39,
+        "center_x": 166.4765625,
+        "center_y": 651.953125
+      },
+      "ergonomics_filter": {
+        "x": 229.625,
+        "y": 632.453125,
+        "width": 85,
+        "height": 39,
+        "center_x": 272.125,
+        "center_y": 651.953125
+      },
+      "production_filter": {
+        "x": 14,
+        "y": 677.453125,
+        "width": 128.265625,
+        "height": 39,
+        "center_x": 78.1328125,
+        "center_y": 696.953125
+      },
+      "information_filter": {
+        "x": 148.265625,
+        "y": 677.453125,
+        "width": 99,
+        "height": 39,
+        "center_x": 197.765625,
+        "center_y": 696.953125
+      },
+      "first_app": {
+        "x": 15,
+        "y": 769.453125,
+        "width": 360,
+        "height": 206.78125,
+        "center_x": 195.0,
+        "center_y": 872.84375
+      }
+    },
+    "note": null
+  },
+  "portal_mobile_full.png": {
+    "image_size_px": [
+      1170,
+      13035
+    ],
+    "viewport_css_px": {
+      "width": 390,
+      "height": 844
+    },
+    "device_scale_factor": 3,
+    "scroll_y_css_px": 0,
+    "url": "http://127.0.0.1:8765/",
+    "full_page": true,
+    "controls_css_px": {
+      "install": {
+        "x": 287.015625,
+        "y": 53,
+        "width": 88.984375,
+        "height": 46,
+        "center_x": 331.5078125,
+        "center_y": 76.0
+      },
+      "language_sv": {
+        "x": 19,
+        "y": 58.5,
+        "width": 82.984375,
+        "height": 35,
+        "center_x": 60.4921875,
+        "center_y": 76.0
+      },
+      "language_en": {
+        "x": 106.984375,
+        "y": 58.5,
+        "width": 77.046875,
+        "height": 35,
+        "center_x": 145.5078125,
+        "center_y": 76.0
+      },
+      "language_de": {
+        "x": 189.03125,
+        "y": 58.5,
+        "width": 81.984375,
+        "height": 35,
+        "center_x": 230.0234375,
+        "center_y": 76.0
+      },
+      "intro_film": {
+        "x": 37,
+        "y": 374.453125,
+        "width": 268.625,
+        "height": 47,
+        "center_x": 171.3125,
+        "center_y": 397.953125
+      },
+      "search": {
+        "x": 14,
+        "y": 574.453125,
+        "width": 362,
+        "height": 43,
+        "center_x": 195.0,
+        "center_y": 595.953125
+      },
+      "process_filter": {
+        "x": 109.328125,
+        "y": 632.453125,
+        "width": 114.296875,
+        "height": 39,
+        "center_x": 166.4765625,
+        "center_y": 651.953125
+      },
+      "ergonomics_filter": {
+        "x": 229.625,
+        "y": 632.453125,
+        "width": 85,
+        "height": 39,
+        "center_x": 272.125,
+        "center_y": 651.953125
+      },
+      "production_filter": {
+        "x": 14,
+        "y": 677.453125,
+        "width": 128.265625,
+        "height": 39,
+        "center_x": 78.1328125,
+        "center_y": 696.953125
+      },
+      "information_filter": {
+        "x": 148.265625,
+        "y": 677.453125,
+        "width": 99,
+        "height": 39,
+        "center_x": 197.765625,
+        "center_y": 696.953125
+      },
+      "first_app": {
+        "x": 15,
+        "y": 769.453125,
+        "width": 360,
+        "height": 206.78125,
+        "center_x": 195.0,
+        "center_y": 872.84375
+      }
+    },
+    "note": null
+  },
+  "install_mobile.png": {
+    "image_size_px": [
+      1170,
+      2532
+    ],
+    "viewport_css_px": {
+      "width": 390,
+      "height": 844
+    },
+    "device_scale_factor": 3,
+    "scroll_y_css_px": 0,
+    "url": "http://127.0.0.1:8765/",
+    "full_page": false,
+    "controls_css_px": {
+      "close": {
+        "x": 315.203125,
+        "y": 221.125,
+        "width": 33.796875,
+        "height": 38,
+        "center_x": 332.1015625,
+        "center_y": 240.125
+      },
+      "done": {
+        "x": 269.0625,
+        "y": 580.859375,
+        "width": 79.9375,
+        "height": 42,
+        "center_x": 309.03125,
+        "center_y": 601.859375
+      }
+    },
+    "note": null
+  },
+  "_capture_errors": []
+}

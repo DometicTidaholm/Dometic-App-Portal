@@ -1,0 +1,112 @@
+{
+  "base_url": "http://127.0.0.1:8765/",
+  "illustrative_data": true,
+  "viewport": [
+    1440,
+    900
+  ],
+  "device_scale_factor": 2,
+  "captures": [
+    {
+      "file": "cycle_desktop.png",
+      "url": "http://127.0.0.1:8765/apps/20CycleCheck/?lang=sv",
+      "full_page": false,
+      "scroll_y": 0
+    },
+    {
+      "file": "cycle_results.png",
+      "url": "http://127.0.0.1:8765/apps/20CycleCheck/?lang=sv",
+      "full_page": false,
+      "scroll_y": 0
+    },
+    {
+      "file": "cycle_results_full.png",
+      "url": "http://127.0.0.1:8765/apps/20CycleCheck/?lang=sv",
+      "full_page": true,
+      "scroll_y": 0
+    },
+    {
+      "file": "frequency_desktop.png",
+      "url": "http://127.0.0.1:8765/apps/Frekvensanalys/?lang=sv",
+      "full_page": false,
+      "scroll_y": 0
+    },
+    {
+      "file": "frequency_results.png",
+      "url": "http://127.0.0.1:8765/apps/Frekvensanalys/?lang=sv",
+      "full_page": false,
+      "scroll_y": 0
+    },
+    {
+      "file": "frequency_results_full.png",
+      "url": "http://127.0.0.1:8765/apps/Frekvensanalys/?lang=sv",
+      "full_page": true,
+      "scroll_y": 0
+    },
+    {
+      "file": "kim1_desktop.png",
+      "url": "http://127.0.0.1:8765/apps/ErgonomicAnalysis/?lang=sv",
+      "full_page": false,
+      "scroll_y": 0
+    },
+    {
+      "file": "kim1_full.png",
+      "url": "http://127.0.0.1:8765/apps/ErgonomicAnalysis/?lang=sv",
+      "full_page": true,
+      "scroll_y": 0
+    },
+    {
+      "file": "kim1_posture.png",
+      "url": "http://127.0.0.1:8765/apps/ErgonomicAnalysis/?lang=sv",
+      "full_page": false,
+      "scroll_y": 2356
+    },
+    {
+      "file": "kim2_desktop.png",
+      "url": "http://127.0.0.1:8765/apps/KIM2/?lang=sv",
+      "full_page": false,
+      "scroll_y": 0
+    },
+    {
+      "file": "kim2_full.png",
+      "url": "http://127.0.0.1:8765/apps/KIM2/?lang=sv",
+      "full_page": true,
+      "scroll_y": 0
+    },
+    {
+      "file": "kim2_equipment.png",
+      "url": "http://127.0.0.1:8765/apps/KIM2/?lang=sv",
+      "full_page": false,
+      "scroll_y": 78
+    },
+    {
+      "file": "kim3_desktop.png",
+      "url": "http://127.0.0.1:8765/apps/KIM3/?lang=sv",
+      "full_page": false,
+      "scroll_y": 0
+    },
+    {
+      "file": "kim3_full.png",
+      "url": "http://127.0.0.1:8765/apps/KIM3/?lang=sv",
+      "full_page": true,
+      "scroll_y": 0
+    },
+    {
+      "file": "kim3_posture.png",
+      "url": "http://127.0.0.1:8765/apps/KIM3/?lang=sv",
+      "full_page": false,
+      "scroll_y": 1388
+    }
+  ],
+  "errors": [
+    {
+      "task": "step",
+      "error": "Page.evaluate: ReferenceError: selectLanguage is not defined\n    at eval (eval at evaluate (:370:30), <anonymous>:1:1)\n    at eval (<anonymous>)\n    at UtilityScript.evaluate (<anonymous>:370:30)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+    },
+    {
+      "task": "movement",
+      "error": "Locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"#demo\")\n    - locator resolved to <button id=\"demo\" data-t=\"example\">Ladda exempellayout</button>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n    - waiting 20ms\n    2 × waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n      - waiting 100ms\n    19 × waiting for element to be visible, enabled and stable\n       - element is not visible\n     - retrying click action\n       - waiting 500ms\n"
+    }
+  ],
+  "frequency_chart_available": true
+}
