@@ -28,7 +28,7 @@
         ],
         "format": {
           "duration": "70.000000",
-          "size": "59935362"
+          "size": "60042244"
         }
       },
       "audio_sha256": "SHA256=2ae37f15ddb324bad20a269045a3ba33a68ff061fe42fdeef3fdbf07e2e45199"
@@ -60,12 +60,13 @@
         ],
         "format": {
           "duration": "70.000000",
-          "size": "19384748"
+          "size": "19637809"
         }
       },
       "audio_sha256": "SHA256=2ae37f15ddb324bad20a269045a3ba33a68ff061fe42fdeef3fdbf07e2e45199"
     }
   ],
   "fps": 60,
-  "expected_frames": 4200
+  "expected_frames": 4200,
+  "transition_refined": true
 }
