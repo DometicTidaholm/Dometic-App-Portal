@@ -1,0 +1,38 @@
+name: Copy original portal assets
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [portal-complete-copy-20261118]
+    paths:
+      - '.github/workflows/import-legacy-assets.yml'
+      - 'scripts/import-legacy-assets.py'
+      - 'scripts/legacy-assets.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: portal-legacy-assets-copy
+  cancel-in-progress: false
+
+jobs:
+  copy:
+    if: github.repository == 'DometicTidaholm/Dometic-App-Portal' && github.ref_name == 'portal-complete-copy-20261118'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: portal-complete-copy-20261118
+      - name: Copy and check original files
+        run: python3 scripts/import-legacy-assets.py
+      - name: Commit copied assets to the new repository
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- media bilder AppLinks.xlsx apps/DometicPersonalHandbok/dokument
+          if ! git diff --cached --quiet; then
+            git commit -m 'Copy original portal media and documents with verified checksums'
+            git push origin HEAD:portal-complete-copy-20261118
+          fi
