@@ -1,0 +1,65 @@
+name: Render 4K App Portal Film
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/render-portal-film-4k.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Install 4K rendering and browser dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq ffmpeg fonts-dejavu-core
+          python -m pip install --quiet --break-system-packages pillow playwright
+          python -m playwright install chromium --with-deps
+      - name: Download ElevenLabs v4 Kurt narration, music and SFX
+        env:
+          VOICE_URL: 'https://elevenlabsusercontent.com/database/workspace/2b4562f7b9644c1d8d0e99590f0f7631/content_generation/zZBHcnyDVXEsjWsSxuuZ/1pi0M6ydvCo2vnpI6VqZ/content.mp3?Expires=1794996000&KeyName=assets-cdn-key-1&Signature=bZHzOEh5bZPws1vcBXqW98r8ziw='
+          MUSIC_URL: 'https://elevenlabsusercontent.com/database/workspace/2b4562f7b9644c1d8d0e99590f0f7631/content_generation/1ViwsgLl066J7bFxt5wc/1J5ntDouZ1AUTvgwhjnL/content.mp3?Expires=1794996000&KeyName=assets-cdn-key-1&Signature=LgaQEohXHvRBu_3G2sCly1sooZ4='
+          LOGO_URL: 'https://elevenlabsusercontent.com/database/workspace/2b4562f7b9644c1d8d0e99590f0f7631/content_generation/hYXFMzB34XeHubxgFimZ/FKAs15l5FJnGrHD5FTa2/content.mp3?Expires=1794996000&KeyName=assets-cdn-key-1&Signature=t6icvR7-vDgjDcMwWxiSOJMJdf4='
+          SWOOSH_URL: 'https://elevenlabsusercontent.com/database/workspace/2b4562f7b9644c1d8d0e99590f0f7631/content_generation/1NVcMfkOe5p06cDJ4hL4/x8iO27MkAYh2ihZ4Gg3v/content.mp3?Expires=1794996000&KeyName=assets-cdn-key-1&Signature=A_Z95DBR5_tR4pFupFqEV4lMJ4o='
+          CLICK_URL: 'https://elevenlabsusercontent.com/database/workspace/2b4562f7b9644c1d8d0e99590f0f7631/content_generation/lNc4L9hFqQChROYahgP5/8uuk0ZoHrPVOj4Ouuyd7/content.mp3?Expires=1794996000&KeyName=assets-cdn-key-1&Signature=nqhIBypLcm3cyYoSnVqbkl-uOwo='
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 --silent --show-error "$VOICE_URL" -o /tmp/voice.mp3
+          curl --fail --location --retry 3 --silent --show-error "$MUSIC_URL" -o /tmp/music.mp3
+          curl --fail --location --retry 3 --silent --show-error "$LOGO_URL" -o /tmp/logo.mp3
+          curl --fail --location --retry 3 --silent --show-error "$SWOOSH_URL" -o /tmp/swoosh.mp3
+          curl --fail --location --retry 3 --silent --show-error "$CLICK_URL" -o /tmp/click.mp3
+          for f in /tmp/{voice,music,logo,swoosh,click}.mp3; do test "$(stat -c%s "$f")" -gt 2000; done
+          ffprobe -hide_banner -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 /tmp/voice.mp3
+      - name: Render real published apps at native 4K
+        run: python film_build/render_4k.py
+      - name: Verify and publish with original preserved
+        run: |
+          set -euo pipefail
+          test -s media/archive/app-portal-intro-sv-original-93s.mp4
+          test -s media/app-portal-intro-sv.mp4
+          python - <<'PY'
+          import json,subprocess
+          old='media/archive/app-portal-intro-sv-original-93s.mp4'
+          new='media/app-portal-intro-sv.mp4'
+          def probe(path):
+              return json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','stream=width,height,codec_type:format=duration,size','-of','json',path]))
+          a=probe(old);b=probe(new)
+          print('BACKUP',a['format']['size'])
+          print('NEW',b['format'])
+          assert 69 <= float(b['format']['duration']) <= 71
+          assert any(s.get('width')==3840 and s.get('height')==2160 for s in b['streams'])
+          assert any(s.get('codec_type')=='audio' for s in b['streams'])
+          assert int(b['format']['size'])<99000000,'GitHub 100 MB per-file limit'
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add media/app-portal-intro-sv.mp4
+          git commit -m "Replace portal intro with 70s real-app 4K Eleven v4 Kurt film"
+          git push
