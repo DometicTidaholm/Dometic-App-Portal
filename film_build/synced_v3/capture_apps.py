@@ -135,17 +135,24 @@ async def main(args):
             page = await page_for("steptimer", {"dometic-language": "sv", "steptimer_theme": "dark",
                 "steptimer_v4_setup": {"process": "Limning – exempel", "date": DATE, "steps": steps,
                                       "checks": [True, True, True]}})
-            await page.evaluate("selectLanguage('sv')")
+            # Step Timer intentionally keeps state inside an IIFE. Exercise its
+            # real public controls instead of assuming global helper functions.
+            await page.locator('#languageModal [data-language="sv"]').click()
             await shot(page, "step_setup")
             cycles = [[8.2, 6.0, 18.2, 7.3, 10.0, 6.8], [7.9, 5.8, 17.9, 7.6, 10.4, 6.5],
                       [8.1, 6.2, 18.5, 7.4, 10.1, 6.7], [8.5, 6.1, 18.0, 7.8, 10.2, 6.4],
                       [8.0, 5.9, 18.1, 7.5, 9.8, 6.6]]
-            await page.evaluate("""(sample)=>{
-                state.process='Limning – exempel';state.date='2026-11-18';
-                state.cycles=sample.map(times=>({times:times.map(t=>t*1000),valid:true,comment:''}));
-                state.currentCycle=4;state.currentStep=5;state.running=false;state.paused=false;
-                setScreen('result');renderResults();
-            }""", cycles)
+            await page.clock.install()
+            await page.locator("#btnStart").click()
+            await page.locator("#btnNext").click()
+            for cycle_index, durations in enumerate(cycles):
+                for seconds in durations:
+                    await page.clock.fast_forward(int(seconds * 1000))
+                    await page.locator("#btnNext").click()
+                if cycle_index == 2:
+                    await shot(page, "step_live")
+            await page.locator("#btnPause").click()
+            await page.locator("#btnFinish").click()
             await page.wait_for_timeout(400)
             await shot(page, "step_desktop")
             await shot(page, "step_results_full", True)
@@ -166,6 +173,7 @@ async def main(args):
         async def movement():
             page = await page_for("Dometic-AnalyzeMovements", {"movements-language": "sv"})
             await page.evaluate("chooseLanguage('sv')")
+            await page.locator('details:has(#demo) > summary').click()
             await page.locator("#demo").click()
             await page.evaluate("""()=>{
                 project.workstation='Exempel monteringscell';
