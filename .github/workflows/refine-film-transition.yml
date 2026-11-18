@@ -1,0 +1,54 @@
+name: Refine continuous montage transition
+on:
+  push:
+    branches: [film/synced-60fps-20261118]
+    paths: [.github/workflows/refine-film-transition.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  refine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install deterministic media runtime
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg fonts-open-sans
+          npm install --prefix /tmp/film-runtime @napi-rs/canvas@0.1.100
+      - name: Render the 250-frame transition section
+        env:
+          NODE_PATH: /tmp/film-runtime/node_modules
+        run: node film_build/synced_v3/render.cjs --output /tmp/film-patch --offset 37.5 --duration 4.166666666666667
+      - name: Splice on shared keyframes and verify all untouched packets
+        run: python3 film_build/synced_v3/splice_segment.py --media-dir media --patch-dir /tmp/film-patch --output-dir /tmp/film-spliced --report film_build/synced_v3/splice-report.json --in-place
+      - name: Update final render report
+        run: |
+          python3 - <<'PY'
+          import subprocess,json,pathlib
+          def probe(p):
+              return json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','stream=codec_type,codec_name,width,height,avg_frame_rate,r_frame_rate,duration,nb_frames','-show_entries','format=duration,size','-of','json',p]))
+          def audio_hash(p):
+              return subprocess.check_output(['ffmpeg','-v','error','-i',p,'-map','0:a:0','-c:a','copy','-f','hash','-hash','sha256','-'],text=True).strip()
+          expected=audio_hash('media/app-portal-intro-sv.mp4')
+          report={'source_audio_sha256':expected,'files':[],'fps':60,'expected_frames':4200,'transition_refined':True}
+          for file,width in [('media/Dometic-App-Portal-4K-60fps.mp4',3840),('media/app-portal-intro-sv-smooth-60fps.mp4',1920)]:
+              p=probe(file);v=next(s for s in p['streams'] if s['codec_type']=='video')
+              assert v['width']==width and v['avg_frame_rate']=='60/1' and int(v['nb_frames'])==4200
+              assert abs(float(p['format']['duration'])-70)<.06
+              actual=audio_hash(file);assert actual==expected
+              report['files'].append({'file':file,'probe':p,'audio_sha256':actual})
+          pathlib.Path('film_build/synced_v3/render-report.json').write_text(json.dumps(report,indent=2))
+          print(json.dumps(report,indent=2))
+          PY
+      - name: Preserve final films and validation reports
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add media/Dometic-App-Portal-4K-60fps.mp4 media/app-portal-intro-sv-smooth-60fps.mp4 film_build/synced_v3/render-report.json film_build/synced_v3/splice-report.json
+          git commit -m 'Refine montage motion and sequential titles while preserving all other video and audio packets'
+          git push origin HEAD:film/synced-60fps-20261118

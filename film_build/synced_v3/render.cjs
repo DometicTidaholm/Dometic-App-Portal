@@ -162,6 +162,7 @@ function thumb(name,kind='normal'){
   const im=image(name);fit(x,im,0,0,1440,900,false);THUMBS[key]=c;return c;
 }
 function kimMontage(t){
+  if(t>=37.98&&t<38.90)return;
   const op=envelope(t,33.65,38.32,.6);if(op<.001)return;ctx.save();ctx.globalAlpha=op;
   tracked(ctx,'ERGONOMI',96,172,20,3.5);text(ctx,'Bedöm belastningen. Hitta förbättringarna.',90,255,59,WHITE,600);
   const cards=[['KIM 1','Lyft & bärande','kim1_posture.png',34.36],['KIM 2','Skjuta & dra','kim2_equipment.png',34.82],['KIM 3','Repetitivt arbete','kim3_posture.png',35.32]];
@@ -174,6 +175,7 @@ function kimMontage(t){
   });ctx.restore();
 }
 function otherMontage(t){
+  if(t>=37.98&&t<38.90)return;
   const op=envelope(t,38.32,46.35,.6);if(op<.001)return;ctx.save();ctx.globalAlpha=op;
   tracked(ctx,'FLER VERKTYG',96,145,20,3.5);text(ctx,'Samma portal. Fler möjligheter.',90,215,57,WHITE,600);
   const cards=[['Resursplanering','resources_desktop.png',39.64],['Kalibrering','calibration_desktop.png',40.78],['Personalhandbok','handbook_desktop.png',41.72],['RTM 3.0','portal_rtm_card.png',43.06],['Marknad & bransch','market_desktop.png',43.98],['Lunchkollen','lunch_desktop.png',45.36]];
@@ -185,6 +187,34 @@ function otherMontage(t){
     text(ctx,title,x,y+186,30,active>.15?WHITE:MUTED,active>.15?600:400,'center');
     ctx.globalAlpha=op*active;ctx.strokeStyle=K;ctx.lineWidth=2;round(ctx,x-w/2-13,y-w*.3125-13,w+26,w*.625+26,15);ctx.stroke();ctx.globalAlpha=op;
   });ctx.restore();
+}
+const montageBlends=[0,1,2].map(()=>createCanvas(1440,900));
+function montageChange(t){
+  if(t<37.98||t>=38.90)return;
+  const move=ramp(t,37.98,38.90),blend=ramp(t,38.13,38.63);
+  const oldText=1-ramp(t,38.00,38.26),newText=ramp(t,38.40,38.72);
+  ctx.save();ctx.globalAlpha=oldText;
+  tracked(ctx,'ERGONOMI',96,172,20,3.5);text(ctx,'Bedöm belastningen. Hitta förbättringarna.',90,255,59,WHITE,600);
+  ctx.globalAlpha=newText;tracked(ctx,'FLER VERKTYG',96,145,20,3.5);text(ctx,'Samma portal. Fler möjligheter.',90,215,57,WHITE,600);
+  const from=[['KIM 1','Lyft & bärande','kim1_posture.png'],['KIM 2','Skjuta & dra','kim2_equipment.png'],['KIM 3','Repetitivt arbete','kim3_posture.png']];
+  const to=[['Resursplanering','resources_desktop.png'],['Kalibrering','calibration_desktop.png'],['Personalhandbok','handbook_desktop.png'],['RTM 3.0','portal_rtm_card.png'],['Marknad & bransch','market_desktop.png'],['Lunchkollen','lunch_desktop.png']];
+  // The same three panels move into the new grid; only their content dissolves.
+  // Headlines fade sequentially, so different lines never cross one another.
+  for(let i=0;i<3;i++){
+    const c=montageBlends[i],b=c.getContext('2d');b.globalAlpha=1;b.drawImage(thumb(from[i][2]),0,0);b.globalAlpha=blend;b.drawImage(thumb(to[i][1]),0,0);b.globalAlpha=1;
+    const x=lerp(370+i*590,380+i*580,move),y=lerp(550+Math.sin(t*.28+i)*4,420+Math.sin(t*.17+i)*2,move),w=lerp(517,465,move);
+    ctx.globalAlpha=1;drawGlassPanel(ctx,c,{x,y,w,h:w*.625,yaw:lerp((i-1)*-.09,(i-1)*-.055,move),roll:lerp(Math.sin(t*.13+i)*.009,Math.sin(t*.11+i)*.004,move),opacity:lerp(1,.58,move)});
+    const labelY=lerp(785,606,move);ctx.globalAlpha=oldText;
+    text(ctx,from[i][0],x,labelY,42,WHITE,600,'center');text(ctx,from[i][1],x,lerp(835,650,move),26,MUTED,400,'center');
+    ctx.fillStyle=K;round(ctx,x-55,lerp(866,676,move),110,3,1.5);ctx.fill();
+    ctx.globalAlpha=newText;text(ctx,to[i][0],x,labelY,30,MUTED,400,'center');
+  }
+  for(let i=3;i<6;i++){
+    const col=i-3,x=380+col*580,enter=ramp(t,38.20+(i-3)*.035,38.84),y=lerp(980,820,enter),w=465;
+    ctx.globalAlpha=1;drawGlassPanel(ctx,thumb(to[i][1]),{x,y:y+Math.sin(t*.17+i)*2,w,h:w*.625,yaw:(col-1)*-.055,roll:Math.sin(t*.11+i)*.004,opacity:.58*enter});
+    ctx.globalAlpha=enter;text(ctx,to[i][0],x,y+186,30,MUTED,400,'center');
+  }
+  ctx.restore();
 }
 function devicePose(t){
   const intro=ramp(t,2.9,4.3), process=envelope(t,17.9,33.6,1.1), exit=ramp(t,55.1,56.7);
@@ -213,7 +243,7 @@ function drawFrame(t){
  for(let i=0;i<3;i++){ctx.beginPath();for(let x=0;x<=1920;x+=15){const y=957+i*27+Math.sin(x*.006+t*.18+i)*12; x?ctx.lineTo(x,y):ctx.moveTo(x,y);}ctx.stroke();}ctx.restore();
  const pose=devicePose(t);if(pose.opacity>.001){drawLaptop(ctx,screenAt(t),pose);}
  const ph=ramp(t,52.1,53.5);if(ph>.001){const end=ramp(t,55,57);drawPhone(ctx,phoneAt(t),{x:lerp(1680,1570,end)+Math.sin(t*.15)*3,y:lerp(610,710,end)+90*(1-ph),w:lerp(276,225,end),yaw:lerp(.23,-.04,ph),pitch:.02,roll:-.035+Math.sin(t*.13)*.004,opacity:ph});}
- drawLogo(t);editorial(t);kimMontage(t);otherMontage(t);demoBadge(t);outro(t);
+ drawLogo(t);editorial(t);kimMontage(t);otherMontage(t);montageChange(t);demoBadge(t);outro(t);
  // Last 0.8 seconds fades cleanly with the pre-existing soundtrack's tail.
  const ending=ramp(t,69.1,70);if(ending>0){ctx.fillStyle=`rgba(2,8,13,${ending})`;ctx.fillRect(0,0,1920,1080);}
  return canvas;

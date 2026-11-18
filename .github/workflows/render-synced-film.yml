@@ -1,11 +1,6 @@
 name: Render smooth speech-synced portal film
 on:
-  push:
-    branches: [film/synced-60fps-20261118]
-    paths:
-      - film_build/synced_v3/render.cjs
-      - film_build/synced_v3/graphics.cjs
-      - .github/workflows/render-synced-film.yml
+  workflow_dispatch:
 permissions:
   contents: write
 jobs:
