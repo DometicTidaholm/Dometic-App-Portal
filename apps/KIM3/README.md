@@ -6,4 +6,4 @@ Appen beräknar kraftpoäng separat för vänster och höger hand, övriga belas
 
 ## Webbapp
 
-https://mrmartinpet.github.io/KIM3/
+https://dometictidaholm.github.io/Dometic-App-Portal/apps/KIM3/

@@ -111,7 +111,7 @@ export async function fetchWebsiteMenu(r,checkedAt,request=fetch,expected=stockW
  }
  for(const target of targets){
   try{
-   const response=await request(target.url,{cache:'no-store',signal:AbortSignal.timeout(16000),headers:{'Accept':target.name==='WordPress-API'?'application/json':'text/html,application/xhtml+xml','User-Agent':'Mozilla/5.0 (compatible; Lunchkollen/1.0; +https://github.com/MrMartinPet/Dometic)'}});
+   const response=await request(target.url,{cache:'no-store',signal:AbortSignal.timeout(16000),headers:{'Accept':target.name==='WordPress-API'?'application/json':'text/html,application/xhtml+xml','User-Agent':'Mozilla/5.0 (compatible; Lunchkollen/1.0; +https://github.com/DometicTidaholm/Dometic-App-Portal)'}});
    if(!response.ok)throw Error('HTTP '+response.status);
    let html;
    if(target.name==='WordPress-API'){

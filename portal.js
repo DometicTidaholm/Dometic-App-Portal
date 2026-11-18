@@ -117,7 +117,7 @@
     en:{sv:"🇸🇪 Swedish video",en:"🇬🇧 English video",rtm:"▶ Watch RTM video",title20:"Twenty Cycle Check – introduction",titleRtm:"RTM 3.0 – introduction",about20:"An introduction to process observations using Twenty Cycle Check.",aboutRtm:"Introduction to RTM 3.0 in Tidaholm.",titlePortal:"Dometic App Portal – introduction",aboutPortal:"Swedish narration · 1 minute and 10 seconds. Explore the portal's apps.",label:"INTRODUCTION VIDEO",close:"Close video"},
     de:{sv:"🇸🇪 Schwedisches Video",en:"🇬🇧 Englisches Video",rtm:"▶ RTM-Film ansehen",title20:"Twenty Cycle Check – Einführung",titleRtm:"RTM 3.0 – Einführung",about20:"Einführung in die Prozessbeobachtung mit Twenty Cycle Check.",aboutRtm:"Einführung in RTM 3.0 in Tidaholm.",titlePortal:"Dometic App Portal – Präsentationsfilm",aboutPortal:"Schwedische Sprecherstimme · 1 Minute und 10 Sekunden. Entdecken Sie die Apps des Portals.",label:"EINFÜHRUNGSVIDEO",close:"Video schließen"}
   };
-  const mediaBase="https://mrmartinpet.github.io/Dometic/media/";
+  const mediaBase="./media/";
   const films={
     sv:{file:"20-cycle-check-tutorial-sv-modern-m3.mp4",caption:"20-cycle-check-tutorial-sv-modern-m3.vtt",poster:"20-cycle-check-tutorial-poster-modern-m3.jpg",lang:"sv"},
     en:{file:"20-cycle-check-tutorial-en-morph-e2.mp4",caption:"20-cycle-check-tutorial-en-morph-e2.vtt",poster:"20-cycle-check-tutorial-poster-en-morph-e2.jpg",lang:"en"},
@@ -127,7 +127,7 @@
   function openFilm(key){
     const movie=films[key],labels=videoText[language],player=$("videoPlayer"),dialog=$("videoDialog");
     if(!movie)return;
-    const assetBase=movie.local?"./media/":mediaBase;
+    const assetBase=mediaBase;
     player.pause();player.replaceChildren();
     if(movie.poster){player.poster=assetBase+movie.poster;}else{player.removeAttribute("poster");}
     const source=document.createElement("source");

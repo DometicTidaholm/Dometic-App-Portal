@@ -2,7 +2,7 @@
 
 Mobilanpassad personalapp med översikt, dokument, blanketter, sökning och favoriter. Kan läggas på hemskärmen eller länkas från Dometic app-portalen. Appen öppnas direkt utan lösenordsruta.
 
-Adress: https://mrmartinpet.github.io/DometicPersonalHandbok/
+Adress: https://dometictidaholm.github.io/Dometic-App-Portal/apps/DometicPersonalHandbok/
 
 ## Dokument
 

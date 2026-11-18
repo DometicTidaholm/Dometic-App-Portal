@@ -30,14 +30,15 @@ https://dometictidaholm.github.io/Dometic-App-Portal/
 - **iPhone / iPad:** Öppna i Safari → Dela → Lägg till på hemskärmen.
 - **Android:** Öppna i Chrome → menyn → Installera app eller Lägg till på startskärmen.
 
-## Viktiga beroenden före eventuell radering av gamla repos
-- **Marknad & bransch** läser sin dagligen uppdaterade `brief.json` från det gamla `MrMartinPet/Dometic`, med lokal kopia som reserv.
-- **Lunchkollen** läser uppdaterad `data.json` och nya menybilder från den gamla portalen, med lokal JSON-reserv.
+## Innehåll och uppdateringar på organisationskontot
+- **Marknad & bransch** läser `apps/market-intelligence/brief.json` från detta organisationsrepo, med den publicerade filen som reserv. GitHub Actions uppdaterar underlaget dagligen kl. **07:00 Europe/Stockholm**, med reservkörning kl. 07:17.
+- **Lunchkollen** läser `apps/lunchkollen/data.json` från detta organisationsrepo och menybilder från appens egen `images/`-mapp. Ett separat GitHub Actions-flöde hämtar menyer på samma tider som tidigare.
 - **Frekvensanalys** hämtar Excel-mallarna från mappen `apps/Frekvensanalys/` i det nya organisationsrepot, via GitHubs publika innehålls-API.
-- **Personalhandboken:** Dokumentet `PERS 032 - Kontorslandskap.pptx` är större än kopieringsanslutningens gräns och hämtas därför från den befintliga publicerade personalhandboken. Den trasiga nollbyteskopian har tagits bort.
+- **Personalhandboken:** Alla katalogens originaldokument, inklusive `PERS 032  - Kontorslandskap.pptx`, finns i `apps/DometicPersonalHandbok/dokument/`.
+- **Instruktionsfilmer:** Filmer, undertexter och förhandsbilder finns i detta repos `media/`-mapp.
+- Schemalagda uppdateringar och deras skript finns i detta repo och skriver endast hit. De använder GitHubs automatiska token; inga personliga API-nycklar behöver kopieras. Efter en uppdatering begär flödena en ny GitHub Pages-publicering.
 - **RTM 3.0** öppnar fortfarande Power BI. **Dometic Fotoapp** öppnar fortfarande den befintliga Vercel-appen.
-- Schemalagda GitHub Actions från gamla portalen har **inte duplicerats** för att undvika parallella uppdateringar. Filmerna från den gamla portalens `media/` har inte flyttats till detta repo.
-- Originalrepos och befintliga webbplatser ska **behållas** tills datakällor, uppdateringar, dokument och länkar har verifierats.
+- Den gamla portalen, dess originalfiler och dess uppdateringsflöden har lämnats kvar oförändrade. Den nya portalens innehåll hämtas inte längre från det personliga kontot.
 
 ## Säkerhet
 Repositoryt och GitHub Pages är publika. Lägg därför inte in lösenord, access tokens, företagshemligheter eller personuppgifter i denna kodbas. En installerad PWA ger snabbåtkomst – den skapar **inte** åtkomstkontroll till sidor eller filer.
@@ -47,7 +48,7 @@ Inga privata repos eller interna Power BI-/Dataverse-data har kopierats till den
 ## Portalens utseende och instruktionsfilmer
 - Tre språkknappar, mörkt Dometic-tema och diskret CSS-animation på startsidan.
 - De två Lean-korten har tagits bort från katalogen och deras kopior har rensats ur `apps/DometicLean/`. Originalet på personliga kontot påverkas inte.
-- Twenty Cycle Check har svenska och engelska instruktionsfilmer via portalens filmspelare; RTM har en introduktionsfilm. Filerna är för närvarande länkade till äldre portalen `MrMartinPet/Dometic/media/` och behöver flyttas separat innan originalet kan stängas.
+- Twenty Cycle Check har svenska och engelska instruktionsfilmer via portalens filmspelare; RTM har en introduktionsfilm. Samtliga filer hämtas från den nya portalens egen `media/`-mapp.
 
 ## Introduktionsfilm om portalen
 - **Svensk presentationsfilm, 1:10 i Full HD, 60 bilder/s**: `media/app-portal-intro-sv-smooth-60fps.mp4` (optimerad för uppspelning i webbläsaren).

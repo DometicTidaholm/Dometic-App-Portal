@@ -510,7 +510,7 @@ dialog.addEventListener('close', () => {
 });
 
 async function loadBrief() {
-  const paths = ['https://raw.githubusercontent.com/MrMartinPet/Dometic/main/market-intelligence/brief.json', './brief.json'];
+  const paths = ['https://raw.githubusercontent.com/DometicTidaholm/Dometic-App-Portal/main/apps/market-intelligence/brief.json', './brief.json'];
   for (const path of paths) {
     try {
       const response = await fetch(path, { cache: 'no-cache', signal: AbortSignal.timeout(7000) });

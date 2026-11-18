@@ -1,0 +1,65 @@
+name: Update Lunchkollen menus
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 5-14 * * 1-5'
+    - cron: '17 17 * * 0'
+  push:
+    branches: [main]
+    paths:
+      - 'apps/lunchkollen/**'
+      - '.github/workflows/lunchkollen-refresh.yml'
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: lunchkollen-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fetch restaurant menus
+        run: node apps/lunchkollen/scripts/update.mjs
+      - name: Check menus and restaurant order
+        run: node apps/lunchkollen/scripts/check.mjs
+      - name: Commit current menus
+        id: commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add apps/lunchkollen/data.json apps/lunchkollen/images
+          git diff --cached --quiet && exit 0
+          git commit -m 'Refresh Lunchkollen menus'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              echo 'changed=true' >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            if [ "$attempt" -eq 5 ]; then
+              echo 'Could not publish menus after five attempts.' >&2
+              exit 1
+            fi
+            sleep "$((attempt * 2))"
+          done
+      - name: Publish refreshed GitHub Pages
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_API: ${{ github.api_url }}
+          GH_REPOSITORY: ${{ github.repository }}
+        run: |
+          curl --fail-with-body --silent --show-error --request POST \
+            --retry 3 --retry-delay 3 --connect-timeout 10 --max-time 30 \
+            --header "Authorization: Bearer $GH_TOKEN" \
+            --header 'Accept: application/vnd.github+json' \
+            "$GH_API/repos/$GH_REPOSITORY/pages/builds"
