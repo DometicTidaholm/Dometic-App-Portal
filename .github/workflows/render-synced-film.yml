@@ -1,0 +1,64 @@
+name: Render smooth speech-synced portal film
+on:
+  push:
+    branches: [film/synced-60fps-20261118]
+    paths:
+      - film_build/synced_v3/render.cjs
+      - film_build/synced_v3/graphics.cjs
+      - .github/workflows/render-synced-film.yml
+permissions:
+  contents: write
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install deterministic media runtime
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg fonts-open-sans
+          npm install --prefix /tmp/film-runtime @napi-rs/canvas@0.1.100
+      - name: Render native 4K60 and browser-friendly Full HD60
+        env:
+          NODE_PATH: /tmp/film-runtime/node_modules
+        run: node film_build/synced_v3/render.cjs
+      - name: Render poster and preserve captions
+        env:
+          NODE_PATH: /tmp/film-runtime/node_modules
+        run: |
+          node film_build/synced_v3/render.cjs --width 1920 --output /tmp/film-poster --frames 5.5
+          cp /tmp/film-poster/frame-5-50.png media/app-portal-intro-sv-poster.png
+          cp film_build/synced_v3/subtitles-sv.vtt media/app-portal-intro-sv.vtt
+      - name: Verify frame cadence, duration, and unchanged soundtrack
+        run: |
+          python3 - <<'PY'
+          import subprocess,json,hashlib,pathlib
+          root=pathlib.Path('.')
+          def probe(p):
+              return json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','stream=codec_type,codec_name,width,height,avg_frame_rate,r_frame_rate,duration,nb_frames','-show_entries','format=duration,size','-of','json',str(p)]))
+          def audio_hash(p):
+              return subprocess.check_output(['ffmpeg','-v','error','-i',str(p),'-map','0:a:0','-c:a','copy','-f','hash','-hash','sha256','-'],text=True).strip()
+          source='media/app-portal-intro-sv.mp4'
+          expected=audio_hash(source)
+          report={'source_audio_sha256':expected,'files':[],'fps':60,'expected_frames':4200}
+          for file,width in [('media/Dometic-App-Portal-4K-60fps.mp4',3840),('media/app-portal-intro-sv-smooth-60fps.mp4',1920)]:
+              p=probe(file);v=next(s for s in p['streams'] if s['codec_type']=='video')
+              assert v['width']==width and v['avg_frame_rate']=='60/1',v
+              assert int(v['nb_frames'])==4200,v
+              assert abs(float(p['format']['duration'])-70)<.06,p
+              actual=audio_hash(file);assert actual==expected,(file,actual,expected)
+              report['files'].append({'file':file,'probe':p,'audio_sha256':actual})
+          pathlib.Path('film_build/synced_v3/render-report.json').write_text(json.dumps(report,indent=2))
+          print(json.dumps(report,indent=2))
+          PY
+      - name: Save reviewed-output candidates on film branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add media/Dometic-App-Portal-4K-60fps.mp4 media/app-portal-intro-sv-smooth-60fps.mp4 media/app-portal-intro-sv-poster.png media/app-portal-intro-sv.vtt film_build/synced_v3/render-report.json
+          git commit -m 'Render smooth 4K60 and Full HD60 films with bit-identical approved audio'
+          git push origin HEAD:film/synced-60fps-20261118

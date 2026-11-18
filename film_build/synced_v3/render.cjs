@@ -240,8 +240,8 @@ async function main(){
  const web=path.join(OUT,'app-portal-intro-sv-smooth-60fps.mp4');
  const args=['-hide_banner','-loglevel','warning','-y','-f','rawvideo','-pixel_format','rgba','-video_size',`${WIDTH}x${HEIGHT}`,'-framerate',String(FPS),'-i','pipe:0','-i',AUDIO,
  '-filter_complex',`[0:v]format=yuv420p,split=2[master][src];[src]scale=1920:1080:flags=lanczos[web]`,
- '-map','[master]','-map','1:a:0','-c:v','libx264','-preset','fast','-crf','19','-maxrate','12M','-bufsize','24M','-threads','4','-r','60','-fps_mode','cfr','-pix_fmt','yuv420p','-color_primaries','bt709','-color_trc','bt709','-colorspace','bt709','-c:a','copy','-t',String(duration),'-movflags','+faststart',master,
- '-map','[web]','-map','1:a:0','-c:v','libx264','-preset','fast','-crf','19','-maxrate','5M','-bufsize','10M','-threads','3','-r','60','-fps_mode','cfr','-pix_fmt','yuv420p','-color_primaries','bt709','-color_trc','bt709','-colorspace','bt709','-c:a','copy','-t',String(duration),'-movflags','+faststart',web];
+ '-map','[master]','-map','1:a:0','-c:v','libx264','-preset','veryfast','-crf','18','-maxrate','10M','-bufsize','20M','-threads','4','-r','60','-fps_mode','cfr','-pix_fmt','yuv420p','-color_primaries','bt709','-color_trc','bt709','-colorspace','bt709','-c:a','copy','-t',String(duration),'-movflags','+faststart',master,
+ '-map','[web]','-map','1:a:0','-c:v','libx264','-preset','veryfast','-crf','18','-maxrate','5M','-bufsize','10M','-threads','3','-r','60','-fps_mode','cfr','-pix_fmt','yuv420p','-color_primaries','bt709','-color_trc','bt709','-colorspace','bt709','-c:a','copy','-t',String(duration),'-movflags','+faststart',web];
  const ff=spawn('ffmpeg',args,{stdio:['pipe','inherit','inherit']});let failed=false;
  ff.on('error',e=>{failed=true;console.error(e);});ff.stdin.on('error',()=>{failed=true;});
  const n=Math.round(duration*FPS),start=Date.now();
