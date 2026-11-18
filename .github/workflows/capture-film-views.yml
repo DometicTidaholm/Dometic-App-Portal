@@ -1,0 +1,40 @@
+name: Capture genuine app views for synced film
+on:
+  push:
+    branches: [film/synced-60fps-20261118]
+    paths:
+      - film_build/synced_v3/capture_*.py
+      - .github/workflows/capture-film-views.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install capture runtime
+        run: |
+          python -m pip install pillow playwright
+          python -m playwright install --with-deps chromium
+      - name: Start isolated copy of the apps
+        run: |
+          python -m http.server 8765 --bind 127.0.0.1 > /tmp/film-http.log 2>&1 &
+          for attempt in $(seq 1 20); do curl -fsS http://127.0.0.1:8765/ > /dev/null && break; sleep 1; done
+      - name: Capture portal and mobile views
+        run: python film_build/synced_v3/capture_portal.py --base-url http://127.0.0.1:8765/ --output film_build/synced_v3/captures
+      - name: Capture working app views
+        if: always()
+        run: python film_build/synced_v3/capture_apps.py --base-url http://127.0.0.1:8765/ --output film_build/synced_v3/captures
+      - name: Preserve captured source frames on this film branch
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add film_build/synced_v3/captures
+          git diff --cached --quiet || git commit -m 'Capture genuine portal and app views for speech-synced film'
+          git push origin HEAD:film/synced-60fps-20261118
