@@ -51,5 +51,10 @@ Inga privata repos eller interna Power BI-/Dataverse-data har kopierats till den
 - Ny film om själva App Portal har inte skapats; det görs senare.
 
 ## Introduktionsfilm om portalen
-- **Svensk presentationsfilm, 1:33** från ElevenLabs: `media/app-portal-intro-sv.mp4` (optimerad för GitHub Pages).
+- **Svensk presentationsfilm, 1:10 (4K)** från ElevenLabs: `media/app-portal-intro-sv.mp4` (optimerad för GitHub Pages).
 - Filmen spelas i portalens befintliga filmfönster via knappen **Se presentationsfilmen** i välkomstfältet. Övriga instruktionsfilmer påverkas inte.
+
+### Filmversioner
+- Aktuell film: `media/app-portal-intro-sv.mp4` – **3840 × 2160, 70 sekunder**, live-skärmbilder från organisationens publicerade appar, ElevenLabs v4 Kurt_speaker, instrumentalmusik och ljudeffekter.
+- Tidigare film: `media/archive/app-portal-intro-sv-original-93s.mp4` – originalet på 93 sekunder, bevarat för nedladdning.
+- Den tillfälliga bygg-workflowen med signerade ljudlänkar är borttagen efter publiceringen.
