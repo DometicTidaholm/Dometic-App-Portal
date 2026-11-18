@@ -1,6 +1,6 @@
 {
   "revision": "2026-11-18",
-  "added": 3,
+  "added": 1,
   "stories": [
     {
       "category": "industry",
@@ -538,6 +538,22 @@
       "family": "Climate & ventilation"
     },
     {
+      "id": "story-03054fa27a5e0103b273",
+      "category": "industry",
+      "family": "Vehicle market",
+      "market": "Germany",
+      "date": "2026-11-18",
+      "title": "Bulli-Doppelleben: Dieses VW-Arbeitsfahrzeug wird am Wochenende zum Camper",
+      "summary": "",
+      "links": [
+        {
+          "name": "promobil",
+          "url": "https://www.promobil.de/neuheiten/bulli-doppelleben-dieses-vw-arbeitsfahrzeug-wird-am-wochenende-zum-camper/"
+        }
+      ],
+      "language": "de"
+    },
+    {
       "id": "story-922a51c375eaa980420c",
       "category": "industry",
       "family": "Vehicle market",
@@ -826,8 +842,8 @@
     }
   ],
   "marketChecks": {
-    "China": "2026-11-18T14:56:14.919034+00:00",
-    "Europe": "2026-11-18T14:56:14.919034+00:00"
+    "China": "2026-11-18T15:14:41.097487+00:00",
+    "Europe": "2026-11-18T15:14:41.097487+00:00"
   },
-  "lastScan": "2026-11-18T14:56:14.919034+00:00"
+  "lastScan": "2026-11-18T15:14:41.097487+00:00"
 }
