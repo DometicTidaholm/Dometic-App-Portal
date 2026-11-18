@@ -1,0 +1,962 @@
+{
+  "version": 1,
+  "duration": 70.0,
+  "fps": 60,
+  "source": "voice-timing.json; ElevenLabs Scribe word timings of the already-approved final audio mix",
+  "source_sha256": "c183c7aa0ee426eb2d7797a2788f743e86569eeb80dc488a47a5fb1b311a140e",
+  "time_origin": "First audio sample of approved-audio.m4a extracted from previous published MP4. The former 100 ms voice delay is ALREADY present in these timestamps. Do not add another offset.",
+  "audio_policy": "Copy the approved AAC stream unchanged. No gain, delay, speed, re-encoding, or regenerated voice. Preserve its 70-second soundtrack.",
+  "last_spoken_word_end": 60.84,
+  "music_tail": [
+    60.84,
+    70.0
+  ],
+  "render_policy": {
+    "fps": 60,
+    "frame_time": "n / 60, for n = 0..4199",
+    "subpixel_motion": true,
+    "continuous_camera": true,
+    "no_scene_reset_at_transition": true,
+    "montage_not_rapid_cuts": [
+      "ergonomics",
+      "other_apps"
+    ],
+    "logo": "Unmodified genuine SVG at apps/market-intelligence/dometic-logo.svg, correct aspect ratio, no permanent added graphics."
+  },
+  "groups": [
+    {
+      "id": "intro",
+      "start": 0,
+      "end": 3.34,
+      "speech_start": 0.26,
+      "speech_end": 3.04,
+      "source_word_indices": [
+        0,
+        6
+      ],
+      "composition": "logo",
+      "transition_duration": 0.0,
+      "transition_rule": "Center continuous 0.36 s visual transition on group boundary. Destination app must be fully readable before its first named word; never reset camera to an unzoomed still."
+    },
+    {
+      "id": "overview",
+      "start": 3.34,
+      "end": 8.9,
+      "speech_start": 3.52,
+      "speech_end": 8.58,
+      "source_word_indices": [
+        7,
+        19
+      ],
+      "composition": "laptop_portal",
+      "transition_duration": 0.36,
+      "transition_rule": "Center continuous 0.36 s visual transition on group boundary. Destination app must be fully readable before its first named word; never reset camera to an unzoomed still."
+    },
+    {
+      "id": "categories",
+      "start": 8.9,
+      "end": 13.8,
+      "speech_start": 9.06,
+      "speech_end": 13.42,
+      "source_word_indices": [
+        20,
+        25
+      ],
+      "composition": "stable_category_selection",
+      "transition_duration": 0.36,
+      "transition_rule": "Center continuous 0.36 s visual transition on group boundary. Destination app must be fully readable before its first named word; never reset camera to an unzoomed still."
+    },
+    {
+      "id": "search_and_open",
+      "start": 13.8,
+      "end": 18.1,
+      "speech_start": 14.04,
+      "speech_end": 17.7,
+      "source_word_indices": [
+        26,
+        35
+      ],
+      "composition": "portal_search_to_cycle",
+      "transition_duration": 0.36,
+      "transition_rule": "Center continuous 0.36 s visual transition on group boundary. Destination app must be fully readable before its first named word; never reset camera to an unzoomed still."
+    },
+    {
+      "id": "cycle",
+      "start": 18.1,
+      "end": 22.8,
+      "speech_start": 18.3,
+      "speech_end": 22.5,
+      "source_word_indices": [
+        36,
+        45
+      ],
+      "composition": "persistent_device",
+      "transition_duration": 0.36,
+      "transition_rule": "Center continuous 0.36 s visual transition on group boundary. Destination app must be fully readable before its first named word; never reset camera to an unzoomed still."
+    },
+    {
+      "id": "worksteps",
+      "start": 22.8,
+      "end": 26.5,
+      "speech_start": 23.04,
+      "speech_end": 26.18,
+      "source_word_indices": [
+        46,
+        54
+      ],
+      "composition": "persistent_device",
+      "transition_duration": 0.36,
+      "transition_rule": "Center continuous 0.36 s visual transition on group boundary. Destination app must be fully readable before its first named word; never reset camera to an unzoomed still."
+    },
+    {
+      "id": "frequency",
+      "start": 26.5,
+      "end": 29.9,
+      "speech_start": 26.7,
+      "speech_end": 29.62,
+      "source_word_indices": [
+        55,
+        59
+      ],
+      "composition": "persistent_device",
+      "transition_duration": 0.36,
+      "transition_rule": "Center continuous 0.36 s visual transition on group boundary. Destination app must be fully readable before its first named word; never reset camera to an unzoomed still."
+    },
+    {
+      "id": "movement",
+      "start": 29.9,
+      "end": 33.62,
+      "speech_start": 30.1,
+      "speech_end": 33.3,
+      "source_word_indices": [
+        60,
+        66
+      ],
+      "composition": "persistent_device",
+      "transition_duration": 0.36,
+      "transition_rule": "Center continuous 0.36 s visual transition on group boundary. Destination app must be fully readable before its first named word; never reset camera to an unzoomed still."
+    },
+    {
+      "id": "ergonomics",
+      "start": 33.62,
+      "end": 38.35,
+      "speech_start": 33.74,
+      "speech_end": 38.08,
+      "source_word_indices": [
+        67,
+        77
+      ],
+      "composition": "stable_three_app_montage",
+      "transition_duration": 0.36,
+      "transition_rule": "Center continuous 0.36 s visual transition on group boundary. Destination app must be fully readable before its first named word; never reset camera to an unzoomed still."
+    },
+    {
+      "id": "other_apps",
+      "start": 38.35,
+      "end": 46.3,
+      "speech_start": 38.54,
+      "speech_end": 46.04,
+      "source_word_indices": [
+        78,
+        87
+      ],
+      "composition": "stable_six_app_montage",
+      "transition_duration": 0.36,
+      "transition_rule": "Center continuous 0.36 s visual transition on group boundary. Destination app must be fully readable before its first named word; never reset camera to an unzoomed still."
+    },
+    {
+      "id": "languages",
+      "start": 46.3,
+      "end": 49.85,
+      "speech_start": 46.56,
+      "speech_end": 49.6,
+      "source_word_indices": [
+        88,
+        94
+      ],
+      "composition": "persistent_device",
+      "transition_duration": 0.36,
+      "transition_rule": "Center continuous 0.36 s visual transition on group boundary. Destination app must be fully readable before its first named word; never reset camera to an unzoomed still."
+    },
+    {
+      "id": "install_and_devices",
+      "start": 49.85,
+      "end": 55.5,
+      "speech_start": 50.06,
+      "speech_end": 55.24,
+      "source_word_indices": [
+        95,
+        109
+      ],
+      "composition": "laptop_phone_pair",
+      "transition_duration": 0.36,
+      "transition_rule": "Center continuous 0.36 s visual transition on group boundary. Destination app must be fully readable before its first named word; never reset camera to an unzoomed still."
+    },
+    {
+      "id": "outro",
+      "start": 55.5,
+      "end": 70.0,
+      "speech_start": 55.76,
+      "speech_end": 60.84,
+      "source_word_indices": [
+        110,
+        120
+      ],
+      "composition": "exact_logo_and_portal_end_card",
+      "transition_duration": 0.36,
+      "transition_rule": "Center continuous 0.36 s visual transition on group boundary. Destination app must be fully readable before its first named word; never reset camera to an unzoomed still."
+    }
+  ],
+  "cues": [
+    {
+      "id": "welcome",
+      "kind": "phrase",
+      "start": 0.26,
+      "end": 3.04,
+      "frame_start_60fps": 16,
+      "frame_end_exclusive_60fps": 183,
+      "source_word_indices": [
+        0,
+        6
+      ],
+      "spoken_text": "Välkommen till Dometic App Portal i Tidaholm.",
+      "target": "logo",
+      "visual_action": "Fade and gently settle the unmodified genuine Dometic logo. Never add permanent arcs or logo decorations."
+    },
+    {
+      "id": "portal_name_intro",
+      "kind": "name",
+      "start": 1.08,
+      "end": 2.26,
+      "frame_start_60fps": 65,
+      "frame_end_exclusive_60fps": 136,
+      "source_word_indices": [
+        2,
+        4
+      ],
+      "spoken_text": "Dometic App Portal",
+      "target": "logo",
+      "visual_action": "Original logo fully recognizable when Dometic is spoken; App Portal caption accompanies it."
+    },
+    {
+      "id": "tidaholm",
+      "kind": "name",
+      "start": 2.46,
+      "end": 3.04,
+      "frame_start_60fps": 148,
+      "frame_end_exclusive_60fps": 183,
+      "source_word_indices": [
+        6,
+        6
+      ],
+      "spoken_text": "Tidaholm.",
+      "target": "intro_location",
+      "visual_action": "Show Tidaholm as separate caption below original logo."
+    },
+    {
+      "id": "portal_overview",
+      "kind": "phrase",
+      "start": 3.52,
+      "end": 8.58,
+      "frame_start_60fps": 211,
+      "frame_end_exclusive_60fps": 515,
+      "source_word_indices": [
+        7,
+        19
+      ],
+      "spoken_text": "Här hittar du våra digitala verktyg för att förstå, utveckla och förbättra arbetet.",
+      "target": "portal_desktop.png",
+      "visual_action": "Continuous laptop reveal; real portal home visible throughout sentence."
+    },
+    {
+      "id": "understand",
+      "kind": "emphasis",
+      "start": 5.72,
+      "end": 6.18,
+      "frame_start_60fps": 343,
+      "frame_end_exclusive_60fps": 371,
+      "source_word_indices": [
+        15,
+        15
+      ],
+      "spoken_text": "förstå,",
+      "target": "overview_verbs",
+      "visual_action": "Highlight Förstå without changing screen composition."
+    },
+    {
+      "id": "develop",
+      "kind": "emphasis",
+      "start": 6.52,
+      "end": 7.06,
+      "frame_start_60fps": 391,
+      "frame_end_exclusive_60fps": 424,
+      "source_word_indices": [
+        16,
+        16
+      ],
+      "spoken_text": "utveckla",
+      "target": "overview_verbs",
+      "visual_action": "Highlight Utveckla in the same stable composition."
+    },
+    {
+      "id": "improve",
+      "kind": "emphasis",
+      "start": 7.32,
+      "end": 8.58,
+      "frame_start_60fps": 439,
+      "frame_end_exclusive_60fps": 515,
+      "source_word_indices": [
+        18,
+        19
+      ],
+      "spoken_text": "förbättra arbetet.",
+      "target": "overview_verbs",
+      "visual_action": "Highlight Förbättra in the same stable composition."
+    },
+    {
+      "id": "categories",
+      "kind": "phrase",
+      "start": 9.06,
+      "end": 13.42,
+      "frame_start_60fps": 544,
+      "frame_end_exclusive_60fps": 806,
+      "source_word_indices": [
+        20,
+        25
+      ],
+      "spoken_text": "Välj processanalys, ergonomi, produktionsstöd eller information.",
+      "target": "portal_categories",
+      "visual_action": "Show all four real category labels together; highlight the one being spoken."
+    },
+    {
+      "id": "category_process",
+      "kind": "name",
+      "start": 9.4,
+      "end": 10.34,
+      "frame_start_60fps": 564,
+      "frame_end_exclusive_60fps": 621,
+      "source_word_indices": [
+        21,
+        21
+      ],
+      "spoken_text": "processanalys,",
+      "target": "Processanalys",
+      "visual_action": "Highlight process category, no full scene cut."
+    },
+    {
+      "id": "category_ergonomics",
+      "kind": "name",
+      "start": 10.58,
+      "end": 11.14,
+      "frame_start_60fps": 635,
+      "frame_end_exclusive_60fps": 669,
+      "source_word_indices": [
+        22,
+        22
+      ],
+      "spoken_text": "ergonomi,",
+      "target": "Ergonomi",
+      "visual_action": "Highlight ergonomics category, no full scene cut."
+    },
+    {
+      "id": "category_production",
+      "kind": "name",
+      "start": 11.42,
+      "end": 12.4,
+      "frame_start_60fps": 685,
+      "frame_end_exclusive_60fps": 744,
+      "source_word_indices": [
+        23,
+        23
+      ],
+      "spoken_text": "produktionsstöd",
+      "target": "Produktionsstöd",
+      "visual_action": "Highlight production support category, no full scene cut."
+    },
+    {
+      "id": "category_information",
+      "kind": "name",
+      "start": 12.8,
+      "end": 13.42,
+      "frame_start_60fps": 768,
+      "frame_end_exclusive_60fps": 806,
+      "source_word_indices": [
+        25,
+        25
+      ],
+      "spoken_text": "information.",
+      "target": "Information",
+      "visual_action": "Highlight information category, no full scene cut."
+    },
+    {
+      "id": "search",
+      "kind": "action",
+      "start": 14.04,
+      "end": 15.4,
+      "frame_start_60fps": 842,
+      "frame_end_exclusive_60fps": 924,
+      "source_word_indices": [
+        26,
+        29
+      ],
+      "spoken_text": "Sök efter rätt verktyg",
+      "target": "portal_search",
+      "visual_action": "Move pointer to actual search and type a real target app name."
+    },
+    {
+      "id": "open_app",
+      "kind": "action",
+      "start": 15.9,
+      "end": 17.7,
+      "frame_start_60fps": 954,
+      "frame_end_exclusive_60fps": 1062,
+      "source_word_indices": [
+        31,
+        35
+      ],
+      "spoken_text": "öppna appen direkt från kortet.",
+      "target": "portal_card_20cyclecheck.png",
+      "visual_action": "Move pointer onto the real cycle app card and open within the persistent device frame."
+    },
+    {
+      "id": "cycle",
+      "kind": "phrase",
+      "start": 18.3,
+      "end": 22.5,
+      "frame_start_60fps": 1098,
+      "frame_end_exclusive_60fps": 1350,
+      "source_word_indices": [
+        36,
+        45
+      ],
+      "spoken_text": "I 20 Cycle Check mäter du produktionscykler och upptäcker variationer.",
+      "target": "cycle_desktop.png / cycle_results.png",
+      "visual_action": "Keep cycle app visible for whole sentence, then reveal its actual example results as variations are spoken."
+    },
+    {
+      "id": "cycle_name",
+      "kind": "name",
+      "start": 18.6,
+      "end": 19.54,
+      "frame_start_60fps": 1116,
+      "frame_end_exclusive_60fps": 1173,
+      "source_word_indices": [
+        37,
+        39
+      ],
+      "spoken_text": "20 Cycle Check",
+      "target": "20 Cycle Check",
+      "visual_action": "Title and cycle app must already be fully visible at 18.60 s."
+    },
+    {
+      "id": "cycle_measure",
+      "kind": "action",
+      "start": 19.68,
+      "end": 21.1,
+      "frame_start_60fps": 1181,
+      "frame_end_exclusive_60fps": 1266,
+      "source_word_indices": [
+        40,
+        42
+      ],
+      "spoken_text": "mäter du produktionscykler",
+      "target": "cycle_desktop.png",
+      "visual_action": "Progress actual cycle display/data, with Exempeldata label."
+    },
+    {
+      "id": "cycle_variation",
+      "kind": "action",
+      "start": 21.36,
+      "end": 22.5,
+      "frame_start_60fps": 1282,
+      "frame_end_exclusive_60fps": 1350,
+      "source_word_indices": [
+        44,
+        45
+      ],
+      "spoken_text": "upptäcker variationer.",
+      "target": "cycle_results.png",
+      "visual_action": "Reveal actual result chart; maintain same device pose and continuous motion."
+    },
+    {
+      "id": "step",
+      "kind": "phrase",
+      "start": 23.04,
+      "end": 26.18,
+      "frame_start_60fps": 1382,
+      "frame_end_exclusive_60fps": 1571,
+      "source_word_indices": [
+        46,
+        54
+      ],
+      "spoken_text": "Moment och tider visar hur lång tid arbetsmoment tar.",
+      "target": "step_desktop.png",
+      "visual_action": "Show actual work step view for the complete sentence."
+    },
+    {
+      "id": "step_name",
+      "kind": "name",
+      "start": 23.04,
+      "end": 24.08,
+      "frame_start_60fps": 1382,
+      "frame_end_exclusive_60fps": 1445,
+      "source_word_indices": [
+        46,
+        48
+      ],
+      "spoken_text": "Moment och tider",
+      "target": "Moment och tider",
+      "visual_action": "Moment och tider must already be visible at 23.04 s."
+    },
+    {
+      "id": "frequency",
+      "kind": "phrase",
+      "start": 26.7,
+      "end": 29.62,
+      "frame_start_60fps": 1602,
+      "frame_end_exclusive_60fps": 1778,
+      "source_word_indices": [
+        55,
+        59
+      ],
+      "spoken_text": "Frekvensanalysen visar hur arbetstiden fördelas.",
+      "target": "frequency_results.png",
+      "visual_action": "Show real frequency app result distribution for whole sentence, labeled Exempeldata."
+    },
+    {
+      "id": "frequency_name",
+      "kind": "name",
+      "start": 26.7,
+      "end": 27.78,
+      "frame_start_60fps": 1602,
+      "frame_end_exclusive_60fps": 1667,
+      "source_word_indices": [
+        55,
+        55
+      ],
+      "spoken_text": "Frekvensanalysen",
+      "target": "Frekvensanalys",
+      "visual_action": "Frequency result and title must be visible at 26.70 s."
+    },
+    {
+      "id": "movement",
+      "kind": "phrase",
+      "start": 30.1,
+      "end": 33.3,
+      "frame_start_60fps": 1806,
+      "frame_end_exclusive_60fps": 1998,
+      "source_word_indices": [
+        60,
+        66
+      ],
+      "spoken_text": "Med rörelser och gångvägar skapar du spagettidiagram",
+      "target": "movement_desktop.png / movement_route.png",
+      "visual_action": "Keep genuine movement app visible; progressively draw real example route states."
+    },
+    {
+      "id": "movement_name",
+      "kind": "name",
+      "start": 30.3,
+      "end": 31.74,
+      "frame_start_60fps": 1818,
+      "frame_end_exclusive_60fps": 1905,
+      "source_word_indices": [
+        61,
+        63
+      ],
+      "spoken_text": "rörelser och gångvägar",
+      "target": "Rörelser och gångvägar",
+      "visual_action": "Movement app is visible before 30.30 s."
+    },
+    {
+      "id": "spaghetti",
+      "kind": "action",
+      "start": 31.82,
+      "end": 33.3,
+      "frame_start_60fps": 1909,
+      "frame_end_exclusive_60fps": 1998,
+      "source_word_indices": [
+        64,
+        66
+      ],
+      "spoken_text": "skapar du spagettidiagram",
+      "target": "movement_route.png",
+      "visual_action": "Build the route continuously rather than swapping unrelated layout stills."
+    },
+    {
+      "id": "ergonomics",
+      "kind": "phrase",
+      "start": 33.74,
+      "end": 38.08,
+      "frame_start_60fps": 2024,
+      "frame_end_exclusive_60fps": 2285,
+      "source_word_indices": [
+        67,
+        77
+      ],
+      "spoken_text": "och i KIM ett, två och tre bedömer du ergonomiska belastningsrisker.",
+      "target": "kim1_desktop.png / kim2_desktop.png / kim3_desktop.png",
+      "visual_action": "Stable three-app montage throughout; lift/highlight each KIM card on its number without rapid full-frame cuts."
+    },
+    {
+      "id": "kim1",
+      "kind": "name",
+      "start": 34,
+      "end": 34.6,
+      "frame_start_60fps": 2040,
+      "frame_end_exclusive_60fps": 2076,
+      "source_word_indices": [
+        69,
+        70
+      ],
+      "spoken_text": "KIM ett,",
+      "target": "KIM 1",
+      "visual_action": "Highlight KIM 1 in stable three-card montage. KIM starts 34.00 s; number 1 starts 34.36 s."
+    },
+    {
+      "id": "kim1_number",
+      "kind": "emphasis",
+      "start": 34.36,
+      "end": 34.6,
+      "frame_start_60fps": 2062,
+      "frame_end_exclusive_60fps": 2076,
+      "source_word_indices": [
+        70,
+        70
+      ],
+      "spoken_text": "ett,",
+      "target": "KIM 1",
+      "visual_action": "Number-specific emphasis starts 34.36 s."
+    },
+    {
+      "id": "kim2",
+      "kind": "name",
+      "start": 34.82,
+      "end": 35.12,
+      "frame_start_60fps": 2089,
+      "frame_end_exclusive_60fps": 2108,
+      "source_word_indices": [
+        71,
+        71
+      ],
+      "spoken_text": "två",
+      "target": "KIM 2",
+      "visual_action": "Highlight KIM 2 in existing montage at 34.82 s."
+    },
+    {
+      "id": "kim3",
+      "kind": "name",
+      "start": 35.32,
+      "end": 35.76,
+      "frame_start_60fps": 2119,
+      "frame_end_exclusive_60fps": 2146,
+      "source_word_indices": [
+        73,
+        73
+      ],
+      "spoken_text": "tre",
+      "target": "KIM 3",
+      "visual_action": "Highlight KIM 3 in existing montage at 35.32 s."
+    },
+    {
+      "id": "ergonomics_risks",
+      "kind": "phrase",
+      "start": 35.84,
+      "end": 38.08,
+      "frame_start_60fps": 2150,
+      "frame_end_exclusive_60fps": 2285,
+      "source_word_indices": [
+        74,
+        77
+      ],
+      "spoken_text": "bedömer du ergonomiska belastningsrisker.",
+      "target": "ergonomics_group",
+      "visual_action": "Keep all three KIM apps visible and settle motion for the risk description."
+    },
+    {
+      "id": "other_apps",
+      "kind": "phrase",
+      "start": 38.54,
+      "end": 46.04,
+      "frame_start_60fps": 2312,
+      "frame_end_exclusive_60fps": 2763,
+      "source_word_indices": [
+        78,
+        87
+      ],
+      "spoken_text": "Portalen samlar också resursplanering, kalibrering, personalhandbok, RTM, marknadsinformation och lunchkollen.",
+      "target": "other_apps_montage",
+      "visual_action": "Show six real app cards/views together; each gets a subtle highlight as its name is spoken. Do not create a new scene every second."
+    },
+    {
+      "id": "resources",
+      "kind": "name",
+      "start": 39.64,
+      "end": 40.7,
+      "frame_start_60fps": 2378,
+      "frame_end_exclusive_60fps": 2442,
+      "source_word_indices": [
+        81,
+        81
+      ],
+      "spoken_text": "resursplanering,",
+      "target": "resources_desktop.png",
+      "visual_action": "Highlight resursplanering at 39.64 s."
+    },
+    {
+      "id": "calibration",
+      "kind": "name",
+      "start": 40.78,
+      "end": 41.64,
+      "frame_start_60fps": 2447,
+      "frame_end_exclusive_60fps": 2499,
+      "source_word_indices": [
+        82,
+        82
+      ],
+      "spoken_text": "kalibrering,",
+      "target": "calibration_desktop.png",
+      "visual_action": "Highlight kalibrering at 40.78 s."
+    },
+    {
+      "id": "handbook",
+      "kind": "name",
+      "start": 41.72,
+      "end": 42.72,
+      "frame_start_60fps": 2503,
+      "frame_end_exclusive_60fps": 2564,
+      "source_word_indices": [
+        83,
+        83
+      ],
+      "spoken_text": "personalhandbok,",
+      "target": "handbook_desktop.png",
+      "visual_action": "Highlight Personalhandbok at 41.72 s; show real handbook overview, not the empty forms view."
+    },
+    {
+      "id": "rtm",
+      "kind": "name",
+      "start": 43.06,
+      "end": 43.9,
+      "frame_start_60fps": 2584,
+      "frame_end_exclusive_60fps": 2634,
+      "source_word_indices": [
+        84,
+        84
+      ],
+      "spoken_text": "RTM,",
+      "target": "portal_rtm_card.png",
+      "visual_action": "Highlight actual RTM portal card at 43.06 s; do not invent an authenticated dashboard."
+    },
+    {
+      "id": "market",
+      "kind": "name",
+      "start": 43.98,
+      "end": 45.18,
+      "frame_start_60fps": 2639,
+      "frame_end_exclusive_60fps": 2711,
+      "source_word_indices": [
+        85,
+        85
+      ],
+      "spoken_text": "marknadsinformation",
+      "target": "market_desktop.png",
+      "visual_action": "Highlight actual market view at 43.98 s."
+    },
+    {
+      "id": "lunch",
+      "kind": "name",
+      "start": 45.36,
+      "end": 46.04,
+      "frame_start_60fps": 2722,
+      "frame_end_exclusive_60fps": 2763,
+      "source_word_indices": [
+        87,
+        87
+      ],
+      "spoken_text": "lunchkollen.",
+      "target": "lunch_desktop.png",
+      "visual_action": "Highlight actual Lunchkollen at 45.36 s."
+    },
+    {
+      "id": "languages",
+      "kind": "phrase",
+      "start": 46.56,
+      "end": 49.6,
+      "frame_start_60fps": 2794,
+      "frame_end_exclusive_60fps": 2976,
+      "source_word_indices": [
+        88,
+        94
+      ],
+      "spoken_text": "Växla enkelt mellan svenska, engelska och tyska.",
+      "target": "portal_desktop.png / portal_en.png / portal_de.png",
+      "visual_action": "Keep device and camera continuous while changing actual portal language states."
+    },
+    {
+      "id": "language_sv",
+      "kind": "name",
+      "start": 47.74,
+      "end": 48.38,
+      "frame_start_60fps": 2864,
+      "frame_end_exclusive_60fps": 2903,
+      "source_word_indices": [
+        91,
+        91
+      ],
+      "spoken_text": "svenska,",
+      "target": "portal_desktop.png",
+      "visual_action": "Swedish portal and svenska selection active at 47.74 s."
+    },
+    {
+      "id": "language_en",
+      "kind": "name",
+      "start": 48.5,
+      "end": 49.02,
+      "frame_start_60fps": 2910,
+      "frame_end_exclusive_60fps": 2942,
+      "source_word_indices": [
+        92,
+        92
+      ],
+      "spoken_text": "engelska",
+      "target": "portal_en.png",
+      "visual_action": "English portal and English selection active at 48.50 s."
+    },
+    {
+      "id": "language_de",
+      "kind": "name",
+      "start": 49.18,
+      "end": 49.6,
+      "frame_start_60fps": 2951,
+      "frame_end_exclusive_60fps": 2976,
+      "source_word_indices": [
+        94,
+        94
+      ],
+      "spoken_text": "tyska.",
+      "target": "portal_de.png",
+      "visual_action": "German portal and Deutsch selection active at 49.18 s."
+    },
+    {
+      "id": "install",
+      "kind": "action",
+      "start": 50.06,
+      "end": 51.7,
+      "frame_start_60fps": 3004,
+      "frame_end_exclusive_60fps": 3102,
+      "source_word_indices": [
+        95,
+        98
+      ],
+      "spoken_text": "Klicka på installera app",
+      "target": "install_desktop.png",
+      "visual_action": "Move pointer then show the genuine installation helper in time with installera app."
+    },
+    {
+      "id": "install_button",
+      "kind": "name",
+      "start": 50.62,
+      "end": 51.7,
+      "frame_start_60fps": 3037,
+      "frame_end_exclusive_60fps": 3102,
+      "source_word_indices": [
+        97,
+        98
+      ],
+      "spoken_text": "installera app",
+      "target": "Installera app",
+      "visual_action": "Actual Swedish installation control/action at 50.62 s. Return portal to Swedish before this scene."
+    },
+    {
+      "id": "accessibility",
+      "kind": "phrase",
+      "start": 51.78,
+      "end": 55.24,
+      "frame_start_60fps": 3107,
+      "frame_end_exclusive_60fps": 3315,
+      "source_word_indices": [
+        99,
+        109
+      ],
+      "spoken_text": "så får du portalen nära till hands på datorn eller mobilen.",
+      "target": "desktop_phone_pair",
+      "visual_action": "Bring real phone viewport into the stable composition beside laptop/desktop."
+    },
+    {
+      "id": "desktop",
+      "kind": "name",
+      "start": 53.92,
+      "end": 54.5,
+      "frame_start_60fps": 3235,
+      "frame_end_exclusive_60fps": 3270,
+      "source_word_indices": [
+        107,
+        107
+      ],
+      "spoken_text": "datorn",
+      "target": "desktop_device",
+      "visual_action": "Subtly favor desktop at 53.92 s without removing phone."
+    },
+    {
+      "id": "mobile",
+      "kind": "name",
+      "start": 54.78,
+      "end": 55.24,
+      "frame_start_60fps": 3287,
+      "frame_end_exclusive_60fps": 3315,
+      "source_word_indices": [
+        109,
+        109
+      ],
+      "spoken_text": "mobilen.",
+      "target": "portal_mobile.png",
+      "visual_action": "Favor phone at 54.78 s; real mobile viewport, not a squeezed desktop screenshot."
+    },
+    {
+      "id": "portal_name_outro",
+      "kind": "name",
+      "start": 55.76,
+      "end": 57.08,
+      "frame_start_60fps": 3346,
+      "frame_end_exclusive_60fps": 3425,
+      "source_word_indices": [
+        110,
+        112
+      ],
+      "spoken_text": "Dometic App Portal.",
+      "target": "logo",
+      "visual_action": "Exact original logo returns as voice says Dometic App Portal at 55.76 s."
+    },
+    {
+      "id": "tagline",
+      "kind": "phrase",
+      "start": 57.52,
+      "end": 59.2,
+      "frame_start_60fps": 3451,
+      "frame_end_exclusive_60fps": 3552,
+      "source_word_indices": [
+        113,
+        116
+      ],
+      "spoken_text": "Från analys till förbättring.",
+      "target": "Från analys till förbättring.",
+      "visual_action": "Reveal the full phrase beginning 57.52 s."
+    },
+    {
+      "id": "all_in_one",
+      "kind": "phrase",
+      "start": 59.7,
+      "end": 60.84,
+      "frame_start_60fps": 3582,
+      "frame_end_exclusive_60fps": 3651,
+      "source_word_indices": [
+        117,
+        120
+      ],
+      "spoken_text": "Allt på ett ställe.",
+      "target": "Allt på ett ställe.",
+      "visual_action": "Complete end card with this phrase beginning 59.70 s."
+    }
+  ]
+}

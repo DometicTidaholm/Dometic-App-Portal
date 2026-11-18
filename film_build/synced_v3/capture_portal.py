@@ -125,6 +125,32 @@ def main() -> None:
             capture(page, filename, selectors=portal_controls)
 
         page.get_by_role("button", name="Alla appar", exact=True).click()
+
+        # Two captures of the same real search state. Both start at document top;
+        # the full image and recorded document anchor allow a stable library crop
+        # even when filtering shortens the page and the browser clamps scrolling.
+        page.locator("#search").fill("cycle")
+        page.get_by_role("heading", name="Twenty Cycle Check", exact=True).wait_for()
+        page.locator("#search").blur()
+        page.evaluate("window.scrollTo(0,0)")
+        page.wait_for_timeout(250)
+        search_controls = {
+            "search": "#search",
+            "twenty_cycle_card": ".app-card:has(h3:text-is('Twenty Cycle Check'))",
+            "twenty_cycle_open": "a[aria-label='Öppna app: Twenty Cycle Check']",
+        }
+        search_state = {
+            "query": page.locator("#search").input_value(),
+            "matching_app_names": page.locator("#cards h3").all_text_contents(),
+            "library_document_css_px": page.locator("#applications").evaluate(
+                "el => {const r=el.getBoundingClientRect(); return {x:r.x+window.scrollX, y:r.y+window.scrollY, width:r.width, height:r.height};}"),
+        }
+        for name, full in [("portal_search.png", False), ("portal_search_full.png", True)]:
+            capture(page, name, full=full, selectors=search_controls,
+                    note="Actual search 'cycle', all matching cards preserved. Both captures use scrollY=0; use the document library anchor for matching crops.")
+            records[name]["search_state"] = search_state
+        page.locator("#search").fill("")
+        page.locator("#search").blur()
         page.evaluate("window.scrollTo(0,0)")
         page.locator("#installButton").click()
         page.locator("#installDialog[open]").wait_for(timeout=5000)
@@ -187,7 +213,7 @@ def main() -> None:
 
     records["_capture_errors"] = errors
     (out / "portal_capture_metadata.json").write_text(json.dumps(records, ensure_ascii=False, indent=2))
-    contact_names = ["portal_desktop.png", "portal_process.png", "portal_ergonomi.png",
+    contact_names = ["portal_desktop.png", "portal_process.png", "portal_search.png", "portal_ergonomi.png",
                      "install_desktop.png", "portal_mobile.png", "install_mobile.png",
                      "handbook_desktop.png", "handbook_forms.png", "handbook_documents.png",
                      "resources_desktop.png", "calibration_desktop.png", "market_desktop.png",

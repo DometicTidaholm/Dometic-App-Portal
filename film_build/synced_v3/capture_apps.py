@@ -188,6 +188,7 @@ async def main(args):
                 ];save();render();window.scrollTo(0,0);
             }""")
             await shot(page, "movement_desktop")
+            await shot(page, "movement_desktop_full", True)
             # Position markers and every path are drawn by the real app. Sample
             # observations progressively reveal the diagram for video compositing.
             route = [0, 1, 2, 1, 3, 4, 0, 1, 3, 4, 0, 1, 2, 1, 3, 4]
@@ -202,6 +203,7 @@ async def main(args):
                     project.observedCycles=3;save();render();window.scrollTo(0,0);
                 }""", {"route": route, "count": count})
                 await shot(page, f"movement_route_{idx:02d}")
+                await shot(page, f"movement_route_{idx:02d}_full", True)
                 if idx == 5:
                     await shot(page, "movement_route")
                     await shot(page, "movement_route_full", True)
