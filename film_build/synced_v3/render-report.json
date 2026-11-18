@@ -1,0 +1,72 @@
+{
+  "source_audio_sha256": "SHA256=2ae37f15ddb324bad20a269045a3ba33a68ff061fe42fdeef3fdbf07e2e45199",
+  "files": [
+    {
+      "file": "media/Dometic-App-Portal-4K-60fps.mp4",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 3840,
+            "height": 2160,
+            "r_frame_rate": "60/1",
+            "avg_frame_rate": "60/1",
+            "duration": "70.000000",
+            "nb_frames": "4200"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "duration": "70.000000",
+            "nb_frames": "3283"
+          }
+        ],
+        "format": {
+          "duration": "70.000000",
+          "size": "60042244"
+        }
+      },
+      "audio_sha256": "SHA256=2ae37f15ddb324bad20a269045a3ba33a68ff061fe42fdeef3fdbf07e2e45199"
+    },
+    {
+      "file": "media/app-portal-intro-sv-smooth-60fps.mp4",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "r_frame_rate": "60/1",
+            "avg_frame_rate": "60/1",
+            "duration": "70.000000",
+            "nb_frames": "4200"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "duration": "70.000000",
+            "nb_frames": "3283"
+          }
+        ],
+        "format": {
+          "duration": "70.000000",
+          "size": "19637809"
+        }
+      },
+      "audio_sha256": "SHA256=2ae37f15ddb324bad20a269045a3ba33a68ff061fe42fdeef3fdbf07e2e45199"
+    }
+  ],
+  "fps": 60,
+  "expected_frames": 4200,
+  "transition_refined": true
+}

@@ -113,27 +113,28 @@
   }
 
   const videoText={
-    sv:{sv:"🇸🇪 Svensk film",en:"🇬🇧 Engelsk film",rtm:"▶ Se filmen om RTM",title20:"Twenty Cycle Check – introduktion",titleRtm:"RTM 3.0 – introduktion",about20:"Instruktionsfilm om processobservation med Twenty Cycle Check.",aboutRtm:"Presentationsfilm om RTM 3.0 i Tidaholm.",titlePortal:"Dometic App Portal – presentationsfilm",aboutPortal:"Svensk berättarröst · 1 minut och 10 sekunder. Riktiga appvyer i 4K.",label:"INTRODUKTIONSFILM",close:"Stäng film"},
-    en:{sv:"🇸🇪 Swedish video",en:"🇬🇧 English video",rtm:"▶ Watch RTM video",title20:"Twenty Cycle Check – introduction",titleRtm:"RTM 3.0 – introduction",about20:"An introduction to process observations using Twenty Cycle Check.",aboutRtm:"Introduction to RTM 3.0 in Tidaholm.",titlePortal:"Dometic App Portal – introduction",aboutPortal:"Swedish narration · 1 minute and 10 seconds. Real app screens in 4K.",label:"INTRODUCTION VIDEO",close:"Close video"},
-    de:{sv:"🇸🇪 Schwedisches Video",en:"🇬🇧 Englisches Video",rtm:"▶ RTM-Film ansehen",title20:"Twenty Cycle Check – Einführung",titleRtm:"RTM 3.0 – Einführung",about20:"Einführung in die Prozessbeobachtung mit Twenty Cycle Check.",aboutRtm:"Einführung in RTM 3.0 in Tidaholm.",titlePortal:"Dometic App Portal – Präsentationsfilm",aboutPortal:"Schwedische Sprecherstimme · 1 Minute und 10 Sekunden. Echte App-Ansichten in 4K.",label:"EINFÜHRUNGSVIDEO",close:"Video schließen"}
+    sv:{sv:"🇸🇪 Svensk film",en:"🇬🇧 Engelsk film",rtm:"▶ Se filmen om RTM",title20:"Twenty Cycle Check – introduktion",titleRtm:"RTM 3.0 – introduktion",about20:"Instruktionsfilm om processobservation med Twenty Cycle Check.",aboutRtm:"Presentationsfilm om RTM 3.0 i Tidaholm.",titlePortal:"Dometic App Portal – presentationsfilm",aboutPortal:"Svensk berättarröst · 1 minut och 10 sekunder. Utforska portalens appar.",label:"INTRODUKTIONSFILM",close:"Stäng film"},
+    en:{sv:"🇸🇪 Swedish video",en:"🇬🇧 English video",rtm:"▶ Watch RTM video",title20:"Twenty Cycle Check – introduction",titleRtm:"RTM 3.0 – introduction",about20:"An introduction to process observations using Twenty Cycle Check.",aboutRtm:"Introduction to RTM 3.0 in Tidaholm.",titlePortal:"Dometic App Portal – introduction",aboutPortal:"Swedish narration · 1 minute and 10 seconds. Explore the portal's apps.",label:"INTRODUCTION VIDEO",close:"Close video"},
+    de:{sv:"🇸🇪 Schwedisches Video",en:"🇬🇧 Englisches Video",rtm:"▶ RTM-Film ansehen",title20:"Twenty Cycle Check – Einführung",titleRtm:"RTM 3.0 – Einführung",about20:"Einführung in die Prozessbeobachtung mit Twenty Cycle Check.",aboutRtm:"Einführung in RTM 3.0 in Tidaholm.",titlePortal:"Dometic App Portal – Präsentationsfilm",aboutPortal:"Schwedische Sprecherstimme · 1 Minute und 10 Sekunden. Entdecken Sie die Apps des Portals.",label:"EINFÜHRUNGSVIDEO",close:"Video schließen"}
   };
   const mediaBase="https://mrmartinpet.github.io/Dometic/media/";
   const films={
     sv:{file:"20-cycle-check-tutorial-sv-modern-m3.mp4",caption:"20-cycle-check-tutorial-sv-modern-m3.vtt",poster:"20-cycle-check-tutorial-poster-modern-m3.jpg",lang:"sv"},
     en:{file:"20-cycle-check-tutorial-en-morph-e2.mp4",caption:"20-cycle-check-tutorial-en-morph-e2.vtt",poster:"20-cycle-check-tutorial-poster-en-morph-e2.jpg",lang:"en"},
     rtm:{file:"rtm-tidaholm-en.mp4",caption:"rtm-tidaholm-en.vtt",poster:"rtm-tidaholm-poster-en.jpg",lang:"en"},
-    portal:{file:"app-portal-intro-sv.mp4",local:true,lang:"sv"}
+    portal:{file:"app-portal-intro-sv-smooth-60fps.mp4",caption:"app-portal-intro-sv.vtt",poster:"app-portal-intro-sv-poster.png",local:true,lang:"sv"}
   };
   function openFilm(key){
     const movie=films[key],labels=videoText[language],player=$("videoPlayer"),dialog=$("videoDialog");
     if(!movie)return;
+    const assetBase=movie.local?"./media/":mediaBase;
     player.pause();player.replaceChildren();
-    if(movie.poster){player.poster=mediaBase+movie.poster;}else{player.removeAttribute("poster");}
+    if(movie.poster){player.poster=assetBase+movie.poster;}else{player.removeAttribute("poster");}
     const source=document.createElement("source");
-    source.src=movie.local?"./media/"+movie.file:mediaBase+movie.file;
+    source.src=assetBase+movie.file;
     source.type="video/mp4";player.appendChild(source);
     if(movie.caption){
-      const caption=document.createElement("track");caption.src=mediaBase+movie.caption;caption.kind="captions";
+      const caption=document.createElement("track");caption.src=assetBase+movie.caption;caption.kind="captions";
       caption.srclang=movie.lang;caption.label=movie.lang==="sv"?"Svenska":"English";
       player.appendChild(caption);
     }

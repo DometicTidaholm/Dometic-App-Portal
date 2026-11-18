@@ -48,13 +48,17 @@ Inga privata repos eller interna Power BI-/Dataverse-data har kopierats till den
 - Tre språkknappar, mörkt Dometic-tema och diskret CSS-animation på startsidan.
 - De två Lean-korten har tagits bort från katalogen och deras kopior har rensats ur `apps/DometicLean/`. Originalet på personliga kontot påverkas inte.
 - Twenty Cycle Check har svenska och engelska instruktionsfilmer via portalens filmspelare; RTM har en introduktionsfilm. Filerna är för närvarande länkade till äldre portalen `MrMartinPet/Dometic/media/` och behöver flyttas separat innan originalet kan stängas.
-- Ny film om själva App Portal har inte skapats; det görs senare.
 
 ## Introduktionsfilm om portalen
-- **Svensk presentationsfilm, 1:10 (4K)** från ElevenLabs: `media/app-portal-intro-sv.mp4` (optimerad för GitHub Pages).
+- **Svensk presentationsfilm, 1:10 i Full HD, 60 bilder/s**: `media/app-portal-intro-sv-smooth-60fps.mp4` (optimerad för uppspelning i webbläsaren).
+- **4K-version, 60 bilder/s**: `media/Dometic-App-Portal-4K-60fps.mp4`.
 - Filmen spelas i portalens befintliga filmfönster via knappen **Se presentationsfilmen** i välkomstfältet. Övriga instruktionsfilmer påverkas inte.
+- Riktiga appvyer visas i animerade dator- och telefonramar. Originalets Dometic-logga används oförändrad. Mätvärden i demonstrationerna är märkta som exempeldata.
+- Bildväxlingar följer den godkända berättarröstens ordtider. Hela ljudspåret, inklusive musik och effekter, har kopierats utan omkodning eller tidsförskjutning från den föregående 70-sekundersfilmen.
+- Svenska undertexter kan väljas i spelaren. Filmerna har konstant bildfrekvens och MP4-huvudet i början för snabb uppstart.
 
 ### Filmversioner
-- Aktuell film: `media/app-portal-intro-sv.mp4` – **3840 × 2160, 70 sekunder**, live-skärmbilder från organisationens publicerade appar, ElevenLabs v4 Kurt_speaker, instrumentalmusik och ljudeffekter.
+- Aktuell film: `media/app-portal-intro-sv-smooth-60fps.mp4` – **1920 × 1080, 60 bilder/s, 70 sekunder**. Motsvarande 4K-fil finns ovan.
+- Föregående 70-sekundersfilm: `media/app-portal-intro-sv.mp4` – bevarad som källa till den godkända voiceovern.
 - Tidigare film: `media/archive/app-portal-intro-sv-original-93s.mp4` – originalet på 93 sekunder, bevarat för nedladdning.
 - Den tillfälliga bygg-workflowen med signerade ljudlänkar är borttagen efter publiceringen.

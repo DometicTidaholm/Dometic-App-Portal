@@ -1,0 +1,51 @@
+{
+  "method": "IDR-aligned stream-copy concat; unchanged original AAC",
+  "files": [
+    {
+      "file": "Dometic-App-Portal-4K-60fps.mp4",
+      "output": "/tmp/film-spliced/Dometic-App-Portal-4K-60fps.mp4",
+      "identity_test": false,
+      "start_frame": 2250,
+      "end_frame_exclusive": 2500,
+      "start_seconds": 37.5,
+      "end_seconds": 41.666666666666664,
+      "replacement_frames": 250,
+      "total_frames": 4200,
+      "fps": 60,
+      "duration": 70.0,
+      "time_base": "1/15360",
+      "ticks_per_frame": 256,
+      "extradata_hash": "SHA256:ba7185a168c2cf82d2f6cbbd33ed4885bd110139eeec6ca7359055cc58f779c5",
+      "original_video_packets_preserved": 3950,
+      "modified_packets_in_replacement_gop": 250,
+      "identical_aac_packets": 3283,
+      "audio_sha256": "SHA256=2ae37f15ddb324bad20a269045a3ba33a68ff061fe42fdeef3fdbf07e2e45199",
+      "pts_exact_60fps": true,
+      "dts_identical_to_original": true,
+      "size_bytes": 60042244
+    },
+    {
+      "file": "app-portal-intro-sv-smooth-60fps.mp4",
+      "output": "/tmp/film-spliced/app-portal-intro-sv-smooth-60fps.mp4",
+      "identity_test": false,
+      "start_frame": 2250,
+      "end_frame_exclusive": 2500,
+      "start_seconds": 37.5,
+      "end_seconds": 41.666666666666664,
+      "replacement_frames": 250,
+      "total_frames": 4200,
+      "fps": 60,
+      "duration": 70.0,
+      "time_base": "1/15360",
+      "ticks_per_frame": 256,
+      "extradata_hash": "SHA256:520557fff1b159deb3d5bc8b6c4d9a10b27c8048c54bcc676b27621c7789e2ad",
+      "original_video_packets_preserved": 3950,
+      "modified_packets_in_replacement_gop": 250,
+      "identical_aac_packets": 3283,
+      "audio_sha256": "SHA256=2ae37f15ddb324bad20a269045a3ba33a68ff061fe42fdeef3fdbf07e2e45199",
+      "pts_exact_60fps": true,
+      "dts_identical_to_original": true,
+      "size_bytes": 19637809
+    }
+  ]
+}
