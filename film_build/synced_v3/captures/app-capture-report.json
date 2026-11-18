@@ -74,9 +74,21 @@
       "scroll_y": 0
     },
     {
+      "file": "movement_desktop_full.png",
+      "url": "http://127.0.0.1:8765/apps/Dometic-AnalyzeMovements/?lang=sv",
+      "full_page": true,
+      "scroll_y": 0
+    },
+    {
       "file": "movement_route_00.png",
       "url": "http://127.0.0.1:8765/apps/Dometic-AnalyzeMovements/?lang=sv",
       "full_page": false,
+      "scroll_y": 0
+    },
+    {
+      "file": "movement_route_00_full.png",
+      "url": "http://127.0.0.1:8765/apps/Dometic-AnalyzeMovements/?lang=sv",
+      "full_page": true,
       "scroll_y": 0
     },
     {
@@ -86,9 +98,21 @@
       "scroll_y": 0
     },
     {
+      "file": "movement_route_01_full.png",
+      "url": "http://127.0.0.1:8765/apps/Dometic-AnalyzeMovements/?lang=sv",
+      "full_page": true,
+      "scroll_y": 0
+    },
+    {
       "file": "movement_route_02.png",
       "url": "http://127.0.0.1:8765/apps/Dometic-AnalyzeMovements/?lang=sv",
       "full_page": false,
+      "scroll_y": 0
+    },
+    {
+      "file": "movement_route_02_full.png",
+      "url": "http://127.0.0.1:8765/apps/Dometic-AnalyzeMovements/?lang=sv",
+      "full_page": true,
       "scroll_y": 0
     },
     {
@@ -98,15 +122,33 @@
       "scroll_y": 0
     },
     {
+      "file": "movement_route_03_full.png",
+      "url": "http://127.0.0.1:8765/apps/Dometic-AnalyzeMovements/?lang=sv",
+      "full_page": true,
+      "scroll_y": 0
+    },
+    {
       "file": "movement_route_04.png",
       "url": "http://127.0.0.1:8765/apps/Dometic-AnalyzeMovements/?lang=sv",
       "full_page": false,
       "scroll_y": 0
     },
     {
+      "file": "movement_route_04_full.png",
+      "url": "http://127.0.0.1:8765/apps/Dometic-AnalyzeMovements/?lang=sv",
+      "full_page": true,
+      "scroll_y": 0
+    },
+    {
       "file": "movement_route_05.png",
       "url": "http://127.0.0.1:8765/apps/Dometic-AnalyzeMovements/?lang=sv",
       "full_page": false,
+      "scroll_y": 0
+    },
+    {
+      "file": "movement_route_05_full.png",
+      "url": "http://127.0.0.1:8765/apps/Dometic-AnalyzeMovements/?lang=sv",
+      "full_page": true,
       "scroll_y": 0
     },
     {

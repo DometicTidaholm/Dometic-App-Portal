@@ -1079,6 +1079,114 @@
     },
     "note": null
   },
+  "portal_search.png": {
+    "image_size_px": [
+      2880,
+      1800
+    ],
+    "viewport_css_px": {
+      "width": 1440,
+      "height": 900
+    },
+    "device_scale_factor": 2,
+    "scroll_y_css_px": 0,
+    "url": "http://127.0.0.1:8765/",
+    "full_page": false,
+    "controls_css_px": {
+      "search": {
+        "x": 1006,
+        "y": 608.671875,
+        "width": 360,
+        "height": 43,
+        "center_x": 1186.0,
+        "center_y": 630.171875
+      },
+      "twenty_cycle_card": {
+        "x": 510,
+        "y": 767.671875,
+        "width": 420,
+        "height": 274.046875,
+        "center_x": 720.0,
+        "center_y": 904.6953125
+      },
+      "twenty_cycle_open": {
+        "x": 511,
+        "y": 768.671875,
+        "width": 418,
+        "height": 272.046875,
+        "center_x": 720.0,
+        "center_y": 904.6953125
+      }
+    },
+    "note": "Actual search 'cycle', all matching cards preserved. Both captures use scrollY=0; use the document library anchor for matching crops.",
+    "search_state": {
+      "query": "cycle",
+      "matching_app_names": [
+        "Moment & tider",
+        "Twenty Cycle Check"
+      ],
+      "library_document_css_px": {
+        "x": 74,
+        "y": 543.671875,
+        "width": 1292,
+        "height": 528.046875
+      }
+    }
+  },
+  "portal_search_full.png": {
+    "image_size_px": [
+      2880,
+      2274
+    ],
+    "viewport_css_px": {
+      "width": 1440,
+      "height": 900
+    },
+    "device_scale_factor": 2,
+    "scroll_y_css_px": 0,
+    "url": "http://127.0.0.1:8765/",
+    "full_page": true,
+    "controls_css_px": {
+      "search": {
+        "x": 1006,
+        "y": 608.671875,
+        "width": 360,
+        "height": 43,
+        "center_x": 1186.0,
+        "center_y": 630.171875
+      },
+      "twenty_cycle_card": {
+        "x": 510,
+        "y": 767.671875,
+        "width": 420,
+        "height": 274.046875,
+        "center_x": 720.0,
+        "center_y": 904.6953125
+      },
+      "twenty_cycle_open": {
+        "x": 511,
+        "y": 768.671875,
+        "width": 418,
+        "height": 272.046875,
+        "center_x": 720.0,
+        "center_y": 904.6953125
+      }
+    },
+    "note": "Actual search 'cycle', all matching cards preserved. Both captures use scrollY=0; use the document library anchor for matching crops.",
+    "search_state": {
+      "query": "cycle",
+      "matching_app_names": [
+        "Moment & tider",
+        "Twenty Cycle Check"
+      ],
+      "library_document_css_px": {
+        "x": 74,
+        "y": 543.671875,
+        "width": 1292,
+        "height": 528.046875
+      }
+    }
+  },
   "install_desktop.png": {
     "image_size_px": [
       2880,
