@@ -4,8 +4,8 @@
   "short_name": "Dometic Apps",
   "description": "Dometic Tidaholm – digitala verktyg för processanalys, ergonomi och produktion.",
   "lang": "sv",
-  "start_url": "./",
-  "scope": "./",
+  "start_url": "./index.html",
+  "scope": "./index.html",
   "display": "standalone",
   "background_color": "#f7fafb",
   "theme_color": "#102e3d",
@@ -22,5 +22,8 @@
       "type": "image/png",
       "purpose": "any"
     }
-  ]
+  ],
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  }
 }
