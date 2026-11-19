@@ -1,5 +1,11 @@
 (() => {
   "use strict";
+  // Canonical homepage URL: only index.html belongs to the installed portal's PWA scope.
+  // The directory URL can still be shared; normalize it without a network redirect.
+  if (location.pathname.endsWith("/")) {
+    const home = new URL("./index.html", location.href);
+    history.replaceState(history.state, "", home.pathname + location.search + location.hash);
+  }
   const apps = Array.isArray(window.PORTAL_APPS) ? window.PORTAL_APPS : [];
   const categories = {
     sv: {all:"Alla appar",process:"Processanalys",ergonomi:"Ergonomi",production:"Produktionsstöd",info:"Information"},
