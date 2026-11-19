@@ -78,7 +78,7 @@ function renderReader(doc){
   $('#download').hidden=true;$('#share').hidden=true;$('#reader-favorite').hidden=true;$('#print-pdf').hidden=false;
   $('#reader-note').textContent='Fyll i original-PDF:en och välj Skriv ut. Stäng blanketten när du är klar. Inga uppgifter sparas av handboken.';
   const content=$('#reader-content');content.replaceChildren();
-  const frame=document.createElement('iframe');frame.src=fileUrl(doc)+'#toolbar=0&navpanes=0&scrollbar=1';frame.title='Original-PDF: Ansökan om ledighet';frame.className='kiosk-form-frame';frame.setAttribute('referrerpolicy','no-referrer');content.append(frame);
+  const frame=document.createElement('iframe');frame.src=fileUrl(doc)+'?v=logo-fix-20261119#toolbar=0&navpanes=0&scrollbar=1';frame.title='Original-PDF: Ansökan om ledighet';frame.className='kiosk-form-frame';frame.setAttribute('referrerpolicy','no-referrer');content.append(frame);
   if(!$('#reader').open)$('#reader').showModal();$('#reader').scrollTop=0;state.highlight=null;return;
  }
  $('#download').hidden=false;$('#share').hidden=false;$('#reader-favorite').hidden=false;$('#print-pdf').hidden=true;
