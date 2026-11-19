@@ -852,6 +852,810 @@
       "size": 11885,
       "blocks": [],
       "text": "Ansökan om ledighet. Fyll i namn, ledighetsperiod, orsak, datum och beslut."
+    },
+    {
+      "id": "f3c7793765d1c075",
+      "title": "PERS 002 - Anställning",
+      "kind": "document",
+      "category": "Anställning",
+      "format": "DOCX",
+      "path": "dokument/Anställning/PERS 002 - Anställning.docx",
+      "updated": "2026-11-19",
+      "size": 60926,
+      "blocks": [
+        {
+          "type": "table",
+          "rows": [
+            [
+              "Distribution:\nLedningssystem",
+              "Utfärdare:\nGabriella H",
+              "Godkänd:",
+              "CH\n"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Anställning"
+        },
+        {
+          "type": "paragraph",
+          "text": "Företaget omfattas av Teknikavtalet IF Metall för arbetare samt Teknikavtalet Unionen/Sveriges Ingenjörer/Ledarna för tjänstemän"
+        },
+        {
+          "type": "paragraph",
+          "text": "Arbetare – Teknikavtalet IF Metall"
+        },
+        {
+          "type": "paragraph",
+          "text": "Följande anställningsformer används:"
+        },
+        {
+          "type": "paragraph",
+          "text": "Tillsvidareanställning – anställningen gäller utan fastställt slutdatum."
+        },
+        {
+          "type": "paragraph",
+          "text": "Visstidsanställning – anställning som gäller under en på förhand bestämd tid eller under den tid som krävs för att slutföra det arbete som anställningen avser."
+        },
+        {
+          "type": "paragraph",
+          "text": "Enligt företagets aktuella material för Teknikavtalet IF Metall kan visstidsanställning utan lokal överenskommelse användas under 1–12 månader."
+        },
+        {
+          "type": "paragraph",
+          "text": "När den överenskomna tiden löper ut upphör visstidsanställningen enligt reglerna i kollektivavtalet, om parterna inte har kommit överens om fortsatt anställning."
+        },
+        {
+          "type": "paragraph",
+          "text": "Tjänstemän – Teknikavtalet Unionen/Sveriges Ingenjörer/Ledarna"
+        },
+        {
+          "type": "paragraph",
+          "text": "För tjänstemän kan anställning ske tills vidare eller för viss tid."
+        },
+        {
+          "type": "paragraph",
+          "text": "Visstidsanställning ska som huvudregel vara skriftlig. Arbetsgivaren och tjänstemannen kan träffa avtal om visstidsanställning om minst en månad och högst 24 månaders anställningstid under en treårsperiod."
+        },
+        {
+          "type": "paragraph",
+          "text": "Under de första sex månadernas sammanlagda anställningstid finns särskilda regler i kollektivavtalet om möjligheten att avsluta en visstidsanställning genom skriftlig underrättelse."
+        },
+        {
+          "type": "paragraph",
+          "text": "Uppföljningssamtal"
+        },
+        {
+          "type": "paragraph",
+          "text": "Efter tre månaders anställning ska ett uppföljningssamtal genomföras med medarbetaren."
+        },
+        {
+          "type": "paragraph",
+          "text": "Arbetare: ansvarig chef genomför samtalet med stöd av PERS Blankett 032."
+        },
+        {
+          "type": "paragraph",
+          "text": "Tjänstemän: ansvarig chef och HR genomför samtalet med stöd av PERS Blankett 033."
+        },
+        {
+          "type": "paragraph",
+          "text": "Syftet med samtalet är att följa upp den första tiden i anställningen och skapa möjlighet för både chef och medarbetare att lyfta frågor kring introduktion, arbetsuppgifter och anställningen"
+        },
+        {
+          "type": "paragraph",
+          "text": "Egen uppsägning"
+        },
+        {
+          "type": "paragraph",
+          "text": "En medarbetare som önskar avsluta sin anställning ska rekommenderas att lämna uppsägningen skriftligen till närmaste chef. Blankett PERS Blankett 013 används."
+        },
+        {
+          "type": "paragraph",
+          "text": "Uppsägningstiden börjar löpa när arbetsgivaren har tagit emot uppsägningen."
+        },
+        {
+          "type": "paragraph",
+          "text": "Arbetare"
+        },
+        {
+          "type": "paragraph",
+          "text": "Vid egen uppsägning gäller uppsägningstid enligt Teknikavtalet IF Metall och tillämpliga regler för anställningen."
+        },
+        {
+          "type": "paragraph",
+          "text": "Tjänstemän"
+        },
+        {
+          "type": "paragraph",
+          "text": "För tjänstemän regleras uppsägningstiden av Teknikavtalet Unionen/Sveriges Ingenjörer/Ledarna samt, i förekommande fall, det individuella anställningsavtalet."
+        }
+      ],
+      "text": "Distribution:\nLedningssystem Utfärdare:\nGabriella H Godkänd: CH\n\nAnställning\nFöretaget omfattas av Teknikavtalet IF Metall för arbetare samt Teknikavtalet Unionen/Sveriges Ingenjörer/Ledarna för tjänstemän\nArbetare – Teknikavtalet IF Metall\nFöljande anställningsformer används:\nTillsvidareanställning – anställningen gäller utan fastställt slutdatum.\nVisstidsanställning – anställning som gäller under en på förhand bestämd tid eller under den tid som krävs för att slutföra det arbete som anställningen avser.\nEnligt företagets aktuella material för Teknikavtalet IF Metall kan visstidsanställning utan lokal överenskommelse användas under 1–12 månader.\nNär den överenskomna tiden löper ut upphör visstidsanställningen enligt reglerna i kollektivavtalet, om parterna inte har kommit överens om fortsatt anställning.\nTjänstemän – Teknikavtalet Unionen/Sveriges Ingenjörer/Ledarna\nFör tjänstemän kan anställning ske tills vidare eller för viss tid.\nVisstidsanställning ska som huvudregel vara skriftlig. Arbetsgivaren och tjänstemannen kan träffa avtal om visstidsanställning om minst en månad och högst 24 månaders anställningstid under en treårsperiod.\nUnder de första sex månadernas sammanlagda anställningstid finns särskilda regler i kollektivavtalet om möjligheten att avsluta en visstidsanställning genom skriftlig underrättelse.\nUppföljningssamtal\nEfter tre månaders anställning ska ett uppföljningssamtal genomföras med medarbetaren.\nArbetare: ansvarig chef genomför samtalet med stöd av PERS Blankett 032.\nTjänstemän: ansvarig chef och HR genomför samtalet med stöd av PERS Blankett 033.\nSyftet med samtalet är att följa upp den första tiden i anställningen och skapa möjlighet för både chef och medarbetare att lyfta frågor kring introduktion, arbetsuppgifter och anställningen\nEgen uppsägning\nEn medarbetare som önskar avsluta sin anställning ska rekommenderas att lämna uppsägningen skriftligen till närmaste chef. Blankett PERS Blankett 013 används.\nUppsägningstiden börjar löpa när arbetsgivaren har tagit emot uppsägningen.\nArbetare\nVid egen uppsägning gäller uppsägningstid enligt Teknikavtalet IF Metall och tillämpliga regler för anställningen.\nTjänstemän\nFör tjänstemän regleras uppsägningstiden av Teknikavtalet Unionen/Sveriges Ingenjörer/Ledarna samt, i förekommande fall, det individuella anställningsavtalet.",
+      "warning": null
+    },
+    {
+      "id": "82cd736bc07d3192",
+      "title": "PERS 004 - Arbetstid",
+      "kind": "document",
+      "category": "Arbetstid",
+      "format": "DOCX",
+      "path": "dokument/Arbetstid/PERS 004 - Arbetstid.docx",
+      "updated": "2026-11-19",
+      "size": 61162,
+      "blocks": [
+        {
+          "type": "table",
+          "rows": [
+            [
+              "Distribution:\nNätet",
+              "Utfärdare:\nGabriella",
+              "Godkänd:",
+              "GH\n"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Arbetstid"
+        },
+        {
+          "type": "paragraph",
+          "text": "Företaget tillämpar dagtid och två-skifts arbete kombinerat med ständig natt samt helgarbete vid behov."
+        },
+        {
+          "type": "paragraph",
+          "text": "Alla medarbetare ansvarar för att följa gällande arbetstidsregler och registrera arbetad tid korrekt. Arbetstid ska förläggas enligt fastställt schema eller överenskommelse med närmaste chef. Avvikelser från ordinarie arbetstid, såsom övertid, frånvaro eller tjänsteresor, ska godkännas av ansvarig chef."
+        },
+        {
+          "type": "paragraph",
+          "text": "Tider\t\t\t\tRaster"
+        },
+        {
+          "type": "paragraph",
+          "text": "1:a skift \tmå – fr\t06.18 – 14.42\t\t09.00-09.18 eller 09:18-09:36 Betald paus"
+        },
+        {
+          "type": "paragraph",
+          "text": "12.00-12.24 eller 12:24-12:48 Obetald rast"
+        },
+        {
+          "type": "paragraph",
+          "text": "2:a skift\t\tmå- to\t14.36 – 00.00\t\t17.30-17.54 eller 17:30-17:54 Obetald rast"
+        },
+        {
+          "type": "paragraph",
+          "text": "21.00-21.18 eller 21:18-21:36 Betald paus"
+        },
+        {
+          "type": "paragraph",
+          "text": "Natt\tsö\t22.06 – 06.24\t\t\t00.00-00.18 eller 00:18-00:36  obetald rast (endast söndag)"
+        },
+        {
+          "type": "paragraph",
+          "text": "må – to\t23.54 – 06.24\t\t\t03.00-03.18 eller 03:18-03:36  Betald paus"
+        },
+        {
+          "type": "paragraph",
+          "text": "Dagtid produktionen\tmå-fr\t07.00 – 16.00\t\t09.00-09.18 Betald paus 12.00-13.00 Obetald rast"
+        },
+        {
+          "type": "paragraph",
+          "text": "Dagtid kontor  \t\tmå-fr\t07.30 – 16.30\t\t09.00-09.18 Betald paus 12.00-13.00 Obetald rast"
+        },
+        {
+          "type": "paragraph",
+          "text": "Företaget tillämpar årsarbetstid"
+        },
+        {
+          "type": "paragraph",
+          "text": "Dagtid = 2 080 timmar per kalenderår"
+        },
+        {
+          "type": "paragraph",
+          "text": "2-skift = 1 976 timmar per kalenderår"
+        },
+        {
+          "type": "paragraph",
+          "text": "Nattskift = 1 768 timmar per kalenderår"
+        },
+        {
+          "type": "paragraph",
+          "text": "Avvikelse från ordinarie skiftgång görs endast i undantagsfall, exempelvis för ensamstående med hemmaboende barn eller vid uppvisande av läkarintyg eller annan överenskommelse.  Överenskommelse mellan företaget och medarbetaren krävs."
+        },
+        {
+          "type": "paragraph",
+          "text": "Företaget använder Monitor som tidsrapporteringssystem"
+        },
+        {
+          "type": "paragraph",
+          "text": "Felaktig eller utebliven registrering av arbetstid kan påverka löneutbetalning, ersättningar och företagets lagstadgade rapportering."
+        },
+        {
+          "type": "paragraph",
+          "text": "Medvetet felaktig rapportering betraktas som ett brott mot företagets regler och kan leda till arbetsrättsliga åtgärder."
+        }
+      ],
+      "text": "Distribution:\nNätet Utfärdare:\nGabriella Godkänd: GH\n\nArbetstid\nFöretaget tillämpar dagtid och två-skifts arbete kombinerat med ständig natt samt helgarbete vid behov.\nAlla medarbetare ansvarar för att följa gällande arbetstidsregler och registrera arbetad tid korrekt. Arbetstid ska förläggas enligt fastställt schema eller överenskommelse med närmaste chef. Avvikelser från ordinarie arbetstid, såsom övertid, frånvaro eller tjänsteresor, ska godkännas av ansvarig chef.\nTider\t\t\t\tRaster\n1:a skift \tmå – fr\t06.18 – 14.42\t\t09.00-09.18 eller 09:18-09:36 Betald paus\n12.00-12.24 eller 12:24-12:48 Obetald rast\n2:a skift\t\tmå- to\t14.36 – 00.00\t\t17.30-17.54 eller 17:30-17:54 Obetald rast\n21.00-21.18 eller 21:18-21:36 Betald paus\nNatt\tsö\t22.06 – 06.24\t\t\t00.00-00.18 eller 00:18-00:36  obetald rast (endast söndag)\nmå – to\t23.54 – 06.24\t\t\t03.00-03.18 eller 03:18-03:36  Betald paus\nDagtid produktionen\tmå-fr\t07.00 – 16.00\t\t09.00-09.18 Betald paus 12.00-13.00 Obetald rast\nDagtid kontor  \t\tmå-fr\t07.30 – 16.30\t\t09.00-09.18 Betald paus 12.00-13.00 Obetald rast\nFöretaget tillämpar årsarbetstid\nDagtid = 2 080 timmar per kalenderår\n2-skift = 1 976 timmar per kalenderår\nNattskift = 1 768 timmar per kalenderår\nAvvikelse från ordinarie skiftgång görs endast i undantagsfall, exempelvis för ensamstående med hemmaboende barn eller vid uppvisande av läkarintyg eller annan överenskommelse.  Överenskommelse mellan företaget och medarbetaren krävs.\nFöretaget använder Monitor som tidsrapporteringssystem\nFelaktig eller utebliven registrering av arbetstid kan påverka löneutbetalning, ersättningar och företagets lagstadgade rapportering.\nMedvetet felaktig rapportering betraktas som ett brott mot företagets regler och kan leda till arbetsrättsliga åtgärder.",
+      "warning": null
+    },
+    {
+      "id": "f9ba9662d9a1044c",
+      "title": "Dometic Code of Conduct – Information från chefer",
+      "kind": "document",
+      "category": "Policyer",
+      "format": "PDF",
+      "path": "dokument/Policyer/Dometic Code of Conduct - Info from managers_SV.pdf",
+      "updated": "2026-11-19",
+      "size": 1017127,
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Sida 1"
+        },
+        {
+          "type": "paragraph",
+          "text": "DOMETICS UPPFÖRANDEKOD\nINFORMATION TILL ALLA ANSTÄLLDA"
+        },
+        {
+          "type": "heading",
+          "text": "Sida 2"
+        },
+        {
+          "type": "paragraph",
+          "text": "Vi strävar efter att\ndriva vårt företag\npå ett hållbart sätt!\nVad detta innebär\npå Dometic"
+        },
+        {
+          "type": "paragraph",
+          "text": "2"
+        },
+        {
+          "type": "heading",
+          "text": "Sida 3"
+        },
+        {
+          "type": "paragraph",
+          "text": "DOMETICs\nuppförandekod"
+        },
+        {
+          "type": "paragraph",
+          "text": "Att vara ett ansvarstagande och hållbart\nföretag innebär att vi bryr oss om och\nhar tydliga principer när det gäller;\n•"
+        },
+        {
+          "type": "paragraph",
+          "text": "Mänskliga rättigheter och anställning"
+        },
+        {
+          "type": "paragraph",
+          "text": "•"
+        },
+        {
+          "type": "paragraph",
+          "text": "Hälsa och säkerhet"
+        },
+        {
+          "type": "paragraph",
+          "text": "•"
+        },
+        {
+          "type": "paragraph",
+          "text": "Affärsetik"
+        },
+        {
+          "type": "paragraph",
+          "text": "•"
+        },
+        {
+          "type": "paragraph",
+          "text": "Miljö"
+        },
+        {
+          "type": "paragraph",
+          "text": "Dessa principer gäller inom alla våra\nenheter, för alla anställda och även\nför alla våra leverantörer. De finns\nsammanfattade i Dometics uppförandekod."
+        },
+        {
+          "type": "heading",
+          "text": "Sida 4"
+        },
+        {
+          "type": "paragraph",
+          "text": "VAD ÄR EN UPPFÖRANDEKOD?\n Det är ett dokument som ger vägledning om vilka uppföranden som förväntas när man\narbetar på och för ett företag, en organisation eller till och med inom ett visst yrke.\n Det ger vägledning om vad som uppfattas som rätt och fel och sätter upp reglerna\nför sättet vi arbetar på.\n Det bygger på principer, värderingar och standarder som företaget anser är avgörande\nför en affärsetik och en moral man kan stå för.\n Det hjälper anställda och chefer att agera på ett sätt vi kan stå för, inte bara nu utan\näven i framtiden"
+        },
+        {
+          "type": "paragraph",
+          "text": "2016-11-24"
+        },
+        {
+          "type": "heading",
+          "text": "Sida 5"
+        },
+        {
+          "type": "paragraph",
+          "text": "VAD SÄGER DOMETICS\nUPPFÖRANDEKOD?\n Vi är en ansvarstagande arbetsgivare och affärspartner.\nVår verksamhet exploaterar inte någon, varken direkt\neller indirekt.\n Alla våra affärsrelationer ska byggas på en långsiktig vision\noch hälsosam grund. Vi förväntar oss att våra leverantörer\noch entreprenörer följer etiska principer som liknar\nvår uppförandekod.\n Som anställda upprätthåller vi hög etisk standard som är\ni linje med vår uppförandekod inom alla verksamhetsområden."
+        },
+        {
+          "type": "paragraph",
+          "text": "5"
+        },
+        {
+          "type": "heading",
+          "text": "Sida 6"
+        },
+        {
+          "type": "paragraph",
+          "text": "VAD BASERAS DOMETICS\nUPPFÖRANDEKOD PÅ?\n• Dometics kärnvärden; Dometics sätt\n• Internationella och nationella bestämmelser\n• Internationella standarder och avtal om etiska\növerväganden inom näringsliv och samhälle"
+        },
+        {
+          "type": "heading",
+          "text": "Sida 7"
+        },
+        {
+          "type": "paragraph",
+          "text": "DOMETICS SÄTT\n1. Vi sätter hälsa och säkerhet främst, agerar med hög integritet och har\nen hög etisk standard inom allt vad vi gör.\n2. Vi är hängivna våra produkter och deras kvalitet och vi lägger vikt vid detaljer.\n3. Vi är snabba och tillmötesgående mot våra kunder men vi vet när vi ska säga Nej.\n4. Vi förstår våra produkters slutkonsumenter.\n5. Vi fokuserar på vad som är bäst för företaget i sin helhet.\n6. Vi är resultatdrivna och strävar alltid efter kontinuerliga förbättringar.\n7. Vi håller vårt ord och arbetar som ett lag."
+        },
+        {
+          "type": "heading",
+          "text": "Sida 8"
+        },
+        {
+          "type": "paragraph",
+          "text": "VI DELAR DESSA PRINCIPER!\n Dometic är medlem i FN:s Global\nCompact, FN:s initiativ för hållbara\naffärsprinciper\n Vi stödjer de allmänna principerna i FN:s\nGlobal Compact eftersom vi tror på dem\n Vi delar detta med mer än"
+        },
+        {
+          "type": "paragraph",
+          "text": "13 000\nandra internationella medlemsföretag som,\nliksom vi, driver sin verksamhet efter\nhållbara affärsstandarder och principer"
+        },
+        {
+          "type": "paragraph",
+          "text": "8"
+        },
+        {
+          "type": "heading",
+          "text": "Sida 9"
+        },
+        {
+          "type": "paragraph",
+          "text": "HJÄLP OSS ATT AGERA RÄTT!"
+        },
+        {
+          "type": "paragraph",
+          "text": "Om du tror, eller är orolig för, att Dometic\noch/eller någon av våra anställda agerar\npå ett sätt som inte är i linje med Dometics\nuppförandekod: Gör oss uppmärksamma\npå problemet eller situationen så att vi\nkan hjälpa varandra att se till att vi följer\nuppförandekoden och agerar på rätt sätt!"
+        },
+        {
+          "type": "paragraph",
+          "text": "9"
+        },
+        {
+          "type": "heading",
+          "text": "Sida 10"
+        },
+        {
+          "type": "paragraph",
+          "text": "VEM KONTAKTAR JAG OM JAG\nMISSTÄNKER NÅGOT?\nMisstänker du att något bryter mot vår uppförandekod? Då ber vi dig att:\n Kontakta och diskutera problemet med din närmaste chef, och/eller\n Kontakta och diskutera med personalavdelningens representant"
+        },
+        {
+          "type": "paragraph",
+          "text": "Uppförandekoden är viktig för Dometic och dess intressenter. Ingen anställd ska utsättas för hämnd,\nhot eller trakasserier för att denne tar upp problem eller ifrågasätter om andra följer uppförandekoden\neller uppför sig korrekt.\nOm du har några frågor om affärsmetoder du ser i samband med någon verksamhet där Dometic är\ninblandade, finns det interna resurser tillgängliga som stöd. Dessutom, om du misstänker att något du\nsett eller hört bryter mot Dometics uppförandekod, tala då ut med andra på Dometic, som din chef\neller någon representant för personalfrågor eller juridiska frågor."
+        },
+        {
+          "type": "paragraph",
+          "text": "10"
+        },
+        {
+          "type": "heading",
+          "text": "Sida 11"
+        },
+        {
+          "type": "paragraph",
+          "text": "SPEAKUP LINE FÖR DOMETICS\nUPPFÖRANDEKOD\nOm du i samband med någon verksamhet där Dometic är involverade misstänker att någon har gjort något,\neller är på väg att göra något, som allvarligt bryter mot Dometics uppförandekod, uppmanar vi dig att rapportera\ndetta till Dometics:"
+        },
+        {
+          "type": "paragraph",
+          "text": "SpeakUp Line\nSpeakUp Line ska användas i allvarliga lägen som gäller brott mot Dometics uppförandekod. Lägen där\ndu känner att du kanske inte kan diskutera problemet med din närmaste chef eller personalavdelningens\nrepresentant. SpeakUp Line ger dig möjlighet att rapportera problem som bryter mot uppförandekoden:\n\n\n\n"
+        },
+        {
+          "type": "paragraph",
+          "text": "Kostnadsfritt på telefon eller internet\nPå ditt språk\nNär det passar dig, dygnet runt alla dagar i veckan\nMed namn eller helt anonymt"
+        },
+        {
+          "type": "paragraph",
+          "text": "SpeakUp Line sköts på entreprenad och rapporter handläggs och registreras av denna externa leverantör\nsom i sin tur informerar personalansvariga och juridiskt ansvariga"
+        },
+        {
+          "type": "paragraph",
+          "text": "11"
+        },
+        {
+          "type": "heading",
+          "text": "Sida 12"
+        },
+        {
+          "type": "paragraph",
+          "text": "HUR TAR JAG KONTAKT MED\nDOMETICS SpeakUp LINE\n Du hittar e-postadressen och kostnadsfria telefonnummer\npå vårt intranät\n Du kommer att få ett personligt kort att ha i plånboken, med ett\nlokalt nummer dit du kan ringa och lämna meddelanden anonymt"
+        },
+        {
+          "type": "paragraph",
+          "text": "12"
+        },
+        {
+          "type": "heading",
+          "text": "Sida 13"
+        },
+        {
+          "type": "paragraph",
+          "text": "Tack så mycket!"
+        },
+        {
+          "type": "paragraph",
+          "text": "VI GÖR\nSKILLNAD"
+        }
+      ],
+      "text": "Sida 1\nDOMETICS UPPFÖRANDEKOD\nINFORMATION TILL ALLA ANSTÄLLDA\nSida 2\nVi strävar efter att\ndriva vårt företag\npå ett hållbart sätt!\nVad detta innebär\npå Dometic\n2\nSida 3\nDOMETICs\nuppförandekod\nAtt vara ett ansvarstagande och hållbart\nföretag innebär att vi bryr oss om och\nhar tydliga principer när det gäller;\n•\nMänskliga rättigheter och anställning\n•\nHälsa och säkerhet\n•\nAffärsetik\n•\nMiljö\nDessa principer gäller inom alla våra\nenheter, för alla anställda och även\nför alla våra leverantörer. De finns\nsammanfattade i Dometics uppförandekod.\nSida 4\nVAD ÄR EN UPPFÖRANDEKOD?\n Det är ett dokument som ger vägledning om vilka uppföranden som förväntas när man\narbetar på och för ett företag, en organisation eller till och med inom ett visst yrke.\n Det ger vägledning om vad som uppfattas som rätt och fel och sätter upp reglerna\nför sättet vi arbetar på.\n Det bygger på principer, värderingar och standarder som företaget anser är avgörande\nför en affärsetik och en moral man kan stå för.\n Det hjälper anställda och chefer att agera på ett sätt vi kan stå för, inte bara nu utan\näven i framtiden\n2016-11-24\nSida 5\nVAD SÄGER DOMETICS\nUPPFÖRANDEKOD?\n Vi är en ansvarstagande arbetsgivare och affärspartner.\nVår verksamhet exploaterar inte någon, varken direkt\neller indirekt.\n Alla våra affärsrelationer ska byggas på en långsiktig vision\noch hälsosam grund. Vi förväntar oss att våra leverantörer\noch entreprenörer följer etiska principer som liknar\nvår uppförandekod.\n Som anställda upprätthåller vi hög etisk standard som är\ni linje med vår uppförandekod inom alla verksamhetsområden.\n5\nSida 6\nVAD BASERAS DOMETICS\nUPPFÖRANDEKOD PÅ?\n• Dometics kärnvärden; Dometics sätt\n• Internationella och nationella bestämmelser\n• Internationella standarder och avtal om etiska\növerväganden inom näringsliv och samhälle\nSida 7\nDOMETICS SÄTT\n1. Vi sätter hälsa och säkerhet främst, agerar med hög integritet och har\nen hög etisk standard inom allt vad vi gör.\n2. Vi är hängivna våra produkter och deras kvalitet och vi lägger vikt vid detaljer.\n3. Vi är snabba och tillmötesgående mot våra kunder men vi vet när vi ska säga Nej.\n4. Vi förstår våra produkters slutkonsumenter.\n5. Vi fokuserar på vad som är bäst för företaget i sin helhet.\n6. Vi är resultatdrivna och strävar alltid efter kontinuerliga förbättringar.\n7. Vi håller vårt ord och arbetar som ett lag.\nSida 8\nVI DELAR DESSA PRINCIPER!\n Dometic är medlem i FN:s Global\nCompact, FN:s initiativ för hållbara\naffärsprinciper\n Vi stödjer de allmänna principerna i FN:s\nGlobal Compact eftersom vi tror på dem\n Vi delar detta med mer än\n13 000\nandra internationella medlemsföretag som,\nliksom vi, driver sin verksamhet efter\nhållbara affärsstandarder och principer\n8\nSida 9\nHJÄLP OSS ATT AGERA RÄTT!\nOm du tror, eller är orolig för, att Dometic\noch/eller någon av våra anställda agerar\npå ett sätt som inte är i linje med Dometics\nuppförandekod: Gör oss uppmärksamma\npå problemet eller situationen så att vi\nkan hjälpa varandra att se till att vi följer\nuppförandekoden och agerar på rätt sätt!\n9\nSida 10\nVEM KONTAKTAR JAG OM JAG\nMISSTÄNKER NÅGOT?\nMisstänker du att något bryter mot vår uppförandekod? Då ber vi dig att:\n Kontakta och diskutera problemet med din närmaste chef, och/eller\n Kontakta och diskutera med personalavdelningens representant\nUppförandekoden är viktig för Dometic och dess intressenter. Ingen anställd ska utsättas för hämnd,\nhot eller trakasserier för att denne tar upp problem eller ifrågasätter om andra följer uppförandekoden\neller uppför sig korrekt.\nOm du har några frågor om affärsmetoder du ser i samband med någon verksamhet där Dometic är\ninblandade, finns det interna resurser tillgängliga som stöd. Dessutom, om du misstänker att något du\nsett eller hört bryter mot Dometics uppförandekod, tala då ut med andra på Dometic, som din chef\neller någon representant för personalfrågor eller juridiska frågor.\n10\nSida 11\nSPEAKUP LINE FÖR DOMETICS\nUPPFÖRANDEKOD\nOm du i samband med någon verksamhet där Dometic är involverade misstänker att någon har gjort något,\neller är på väg att göra något, som allvarligt bryter mot Dometics uppförandekod, uppmanar vi dig att rapportera\ndetta till Dometics:\nSpeakUp Line\nSpeakUp Line ska användas i allvarliga lägen som gäller brott mot Dometics uppförandekod. Lägen där\ndu känner att du kanske inte kan diskutera problemet med din närmaste chef eller personalavdelningens\nrepresentant. SpeakUp Line ger dig möjlighet att rapportera problem som bryter mot uppförandekoden:\n\n\n\n\nKostnadsfritt på telefon eller internet\nPå ditt språk\nNär det passar dig, dygnet runt alla dagar i veckan\nMed namn eller helt anonymt\nSpeakUp Line sköts på entreprenad och rapporter handläggs och registreras av denna externa leverantör\nsom i sin tur informerar personalansvariga och juridiskt ansvariga\n11\nSida 12\nHUR TAR JAG KONTAKT MED\nDOMETICS SpeakUp LINE\n Du hittar e-postadressen och kostnadsfria telefonnummer\npå vårt intranät\n Du kommer att få ett personligt kort att ha i plånboken, med ett\nlokalt nummer dit du kan ringa och lämna meddelanden anonymt\n12\nSida 13\nTack så mycket!\nVI GÖR\nSKILLNAD",
+      "warning": null
+    },
+    {
+      "id": "273febb417bb609c",
+      "title": "Dometic SpeakUp Line",
+      "kind": "document",
+      "category": "Policyer",
+      "format": "PDF",
+      "path": "dokument/Policyer/Dometic-SpeakUp-Line.pdf",
+      "updated": "2026-11-19",
+      "size": 133227,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Nr."
+        },
+        {
+          "type": "paragraph",
+          "text": "1\n2\n3\n4\n5\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29"
+        },
+        {
+          "type": "paragraph",
+          "text": "Country"
+        },
+        {
+          "type": "paragraph",
+          "text": "AUSTRALIA\nAUSTRIA\nBELGIUM\nBRAZIL\nCHINA NORTH\nCHINA SOUTH\nDENMARK\nFINLAND\nFRANCE\nGERMANY\nHONG KONG\nHUNGARY\nITALY\nJAPAN\nMEXICO\nNETHERLANDS\nNEW ZEALAND\nNORWAY\nPOLAND\nPORTUGAL\nRUSSIA\nSINGAPORE\nSLOVAKIA\nSOUTH AFRICA\nSPAIN\nSWEDEN\nSWITZERLAND\nUNITED ARAB EM\nUNITED KINGDOM\nUSA"
+        },
+        {
+          "type": "paragraph",
+          "text": "Freephone Number*"
+        },
+        {
+          "type": "paragraph",
+          "text": "Webservice URL (general URL:\nwww.speakupfeedback.eu/web/3uchac/)"
+        },
+        {
+          "type": "paragraph",
+          "text": "Access code*"
+        },
+        {
+          "type": "paragraph",
+          "text": "1800452051\n0800-295175\n0800-71365\n08008919678\n108007440179\n108004400179\n80885638\n08001-13031\n0800-908810\n0800-1801733\n800963161\n0680981359\n800-787639\n0120 774878\n018001234618\n0800 0222931\n0800450436\n800-18333\n008004411739\n800-831528\n810 800 2626 9902\n1800-8232206\n0800004529\n0800991526\n900-973174\n020-798813\n0800-561422\n80004412727\n0800-1693502\n1-866-2506706"
+        },
+        {
+          "type": "paragraph",
+          "text": "www.speakupfeedback.eu/web/3uchac/au\nwww.speakupfeedback.eu/web/3uchac/at\nwww.speakupfeedback.eu/web/3uchac/be\nwww.speakupfeedback.eu/web/3uchac/br\nwww.speakupfeedback.eu/web/3uchac/cn\nwww.speakupfeedback.eu/web/3uchac/cn\nwww.speakupfeedback.eu/web/3uchac/dk\nwww.speakupfeedback.eu/web/3uchac/fi\nwww.speakupfeedback.eu/web/3uchac/fr\nwww.speakupfeedback.eu/web/3uchac/de\nwww.speakupfeedback.eu/web/3uchac/hk\nwww.speakupfeedback.eu/web/3uchac/hu\nwww.speakupfeedback.eu/web/3uchac/it\nwww.speakupfeedback.eu/web/3uchac/jp\nwww.speakupfeedback.eu/web/3uchac/mx\nwww.speakupfeedback.eu/web/3uchac/nl\nwww.speakupfeedback.eu/web/3uchac/nz\nwww.speakupfeedback.eu/web/3uchac/no\nwww.speakupfeedback.eu/web/3uchac/pl\nwww.speakupfeedback.eu/web/3uchac/pt\nwww.speakupfeedback.eu/web/3uchac/ru\nwww.speakupfeedback.eu/web/3uchac/sg\nwww.speakupfeedback.eu/web/3uchac/sk\nwww.speakupfeedback.eu/web/3uchac/za\nwww.speakupfeedback.eu/web/3uchac/es\nwww.speakupfeedback.eu/web/3uchac/se\nwww.speakupfeedback.eu/web/3uchac/ch\nwww.speakupfeedback.eu/web/3uchac/ae\nwww.speakupfeedback.eu/web/3uchac/gb\nwww.speakupfeedback.eu/web/3uchac/us"
+        },
+        {
+          "type": "paragraph",
+          "text": "49908\n68752\n40598\n94535\n11826\n11826\n13841\n96421\n70059\n16953\n84162\n45509\n69345\n85904\n94166\n40662\n92970\n71902\n63216\n54729\n20474\n37790\n41794\n58021\n45773\n24671\n62341\n11258\n94443\n22340"
+        },
+        {
+          "type": "paragraph",
+          "text": "Client Specific Language Options\nOption 1"
+        },
+        {
+          "type": "paragraph",
+          "text": "English\nGerman\nFlemish\nBrazilian-Portuguese\nSimplified Mandarin\nSimplified Mandarin\nDanish\nFinnish\nFrench\nGerman\nSimplified Cantonese\nHungarian\nItalian\nJapanese\nLatin-American Spanish\nDutch\nEnglish\nNorwegian\nPolish\nPortuguese\nRussian\nEnglish\nSlovak\nEnglish\nSpanish\nSwedish\nGerman\nArabic\nEnglish\nEnglish US"
+        },
+        {
+          "type": "paragraph",
+          "text": "Option 2"
+        },
+        {
+          "type": "paragraph",
+          "text": "English\nFrench\nEnglish US\nSimplified Cantonese\nSimplified Cantonese\nEnglish\nEnglish\nEnglish\nEnglish\nSimplified Mandarin\nEnglish\nEnglish\nEnglish\nEnglish US\nEnglish"
+        },
+        {
+          "type": "paragraph",
+          "text": "Option 3"
+        },
+        {
+          "type": "paragraph",
+          "text": "Option 4"
+        },
+        {
+          "type": "paragraph",
+          "text": "English\nEnglish\nEnglish"
+        },
+        {
+          "type": "paragraph",
+          "text": "English"
+        },
+        {
+          "type": "paragraph",
+          "text": "English\nEnglish\nEnglish\nEnglish\nMalay\nEnglish\nEnglish\nEnglish\nFrench\nEnglish\nLatin-American Spanish"
+        },
+        {
+          "type": "paragraph",
+          "text": "Italian"
+        },
+        {
+          "type": "paragraph",
+          "text": "English"
+        }
+      ],
+      "text": "Nr.\n1\n2\n3\n4\n5\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\nCountry\nAUSTRALIA\nAUSTRIA\nBELGIUM\nBRAZIL\nCHINA NORTH\nCHINA SOUTH\nDENMARK\nFINLAND\nFRANCE\nGERMANY\nHONG KONG\nHUNGARY\nITALY\nJAPAN\nMEXICO\nNETHERLANDS\nNEW ZEALAND\nNORWAY\nPOLAND\nPORTUGAL\nRUSSIA\nSINGAPORE\nSLOVAKIA\nSOUTH AFRICA\nSPAIN\nSWEDEN\nSWITZERLAND\nUNITED ARAB EM\nUNITED KINGDOM\nUSA\nFreephone Number*\nWebservice URL (general URL:\nwww.speakupfeedback.eu/web/3uchac/)\nAccess code*\n1800452051\n0800-295175\n0800-71365\n08008919678\n108007440179\n108004400179\n80885638\n08001-13031\n0800-908810\n0800-1801733\n800963161\n0680981359\n800-787639\n0120 774878\n018001234618\n0800 0222931\n0800450436\n800-18333\n008004411739\n800-831528\n810 800 2626 9902\n1800-8232206\n0800004529\n0800991526\n900-973174\n020-798813\n0800-561422\n80004412727\n0800-1693502\n1-866-2506706\nwww.speakupfeedback.eu/web/3uchac/au\nwww.speakupfeedback.eu/web/3uchac/at\nwww.speakupfeedback.eu/web/3uchac/be\nwww.speakupfeedback.eu/web/3uchac/br\nwww.speakupfeedback.eu/web/3uchac/cn\nwww.speakupfeedback.eu/web/3uchac/cn\nwww.speakupfeedback.eu/web/3uchac/dk\nwww.speakupfeedback.eu/web/3uchac/fi\nwww.speakupfeedback.eu/web/3uchac/fr\nwww.speakupfeedback.eu/web/3uchac/de\nwww.speakupfeedback.eu/web/3uchac/hk\nwww.speakupfeedback.eu/web/3uchac/hu\nwww.speakupfeedback.eu/web/3uchac/it\nwww.speakupfeedback.eu/web/3uchac/jp\nwww.speakupfeedback.eu/web/3uchac/mx\nwww.speakupfeedback.eu/web/3uchac/nl\nwww.speakupfeedback.eu/web/3uchac/nz\nwww.speakupfeedback.eu/web/3uchac/no\nwww.speakupfeedback.eu/web/3uchac/pl\nwww.speakupfeedback.eu/web/3uchac/pt\nwww.speakupfeedback.eu/web/3uchac/ru\nwww.speakupfeedback.eu/web/3uchac/sg\nwww.speakupfeedback.eu/web/3uchac/sk\nwww.speakupfeedback.eu/web/3uchac/za\nwww.speakupfeedback.eu/web/3uchac/es\nwww.speakupfeedback.eu/web/3uchac/se\nwww.speakupfeedback.eu/web/3uchac/ch\nwww.speakupfeedback.eu/web/3uchac/ae\nwww.speakupfeedback.eu/web/3uchac/gb\nwww.speakupfeedback.eu/web/3uchac/us\n49908\n68752\n40598\n94535\n11826\n11826\n13841\n96421\n70059\n16953\n84162\n45509\n69345\n85904\n94166\n40662\n92970\n71902\n63216\n54729\n20474\n37790\n41794\n58021\n45773\n24671\n62341\n11258\n94443\n22340\nClient Specific Language Options\nOption 1\nEnglish\nGerman\nFlemish\nBrazilian-Portuguese\nSimplified Mandarin\nSimplified Mandarin\nDanish\nFinnish\nFrench\nGerman\nSimplified Cantonese\nHungarian\nItalian\nJapanese\nLatin-American Spanish\nDutch\nEnglish\nNorwegian\nPolish\nPortuguese\nRussian\nEnglish\nSlovak\nEnglish\nSpanish\nSwedish\nGerman\nArabic\nEnglish\nEnglish US\nOption 2\nEnglish\nFrench\nEnglish US\nSimplified Cantonese\nSimplified Cantonese\nEnglish\nEnglish\nEnglish\nEnglish\nSimplified Mandarin\nEnglish\nEnglish\nEnglish\nEnglish US\nEnglish\nOption 3\nOption 4\nEnglish\nEnglish\nEnglish\nEnglish\nEnglish\nEnglish\nEnglish\nEnglish\nMalay\nEnglish\nEnglish\nEnglish\nFrench\nEnglish\nLatin-American Spanish\nItalian\nEnglish",
+      "warning": null
+    },
+    {
+      "id": "6f260f4a3ae05f8f",
+      "title": "Dometic Code of Conduct 2024",
+      "kind": "document",
+      "category": "Policyer",
+      "format": "PDF",
+      "path": "dokument/Policyer/Dometic_CoC_2024_SV.pdf",
+      "updated": "2026-11-19",
+      "size": 504939,
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Sida 1"
+        },
+        {
+          "type": "paragraph",
+          "text": "VÅR\nUPPFÖRANDEKOD"
+        },
+        {
+          "type": "heading",
+          "text": "Sida 3"
+        },
+        {
+          "type": "paragraph",
+          "text": "VARMT HJÄRTA OCH RENT\nSAMVETE\nDometic är ett växande, multinationellt bolag som vill\nvara ett ansvarsfullt företag, en ansvarsfull arbetsgivare\noch en ansvarsfull affärspartner oavsett var i världen vi\nverkar. Det är inte bara viktigt för själva företaget och\nvåra medarbetare, utan även för våra kunder, delägare\noch andra intressenter.\nDometics policyer och verksamhetsprinciper enligt\nden här uppförandekoden är en grundläggande del\nav vår strategi och fungerar som vägledning för var och\nen av oss. Det är otroligt viktigt att vi förblir ett pålitligt\nföretag och behåller vår ledande ställning när det gäller\nhållbarhet. All vår verksamhet ska bedrivas på ett he-"
+        },
+        {
+          "type": "paragraph",
+          "text": "derligt sätt med respekt för affärsetiska principer, människan och miljön. Genom att agera på ett transparent\noch korrekt sätt visar vi att vi har ett varmt hjärta och ett\nrent samvete.\nGenom att agera på ett transparent och korrekt sätt\nvisar vi att vi har ett varmt hjärta och ett rent samvete.\nDet är, och kommer alltid att vara, en förutsättning för\nDometics framgång och anseende på marknaden."
+        },
+        {
+          "type": "paragraph",
+          "text": "Juan Vargues,\nvd och koncernchef"
+        },
+        {
+          "type": "paragraph",
+          "text": "DOMETICS UPPFÖRANDEKOD | 3"
+        },
+        {
+          "type": "heading",
+          "text": "Sida 4"
+        },
+        {
+          "type": "paragraph",
+          "text": "KÄRNVÄRDEN\nVåra fyra kärnvärden ger vägledning om vilka vi är och vad vi representerar. De hjälper oss att anpassa prioriteringar\noch möjliggör decentraliserat beslutsfattande, samtidigt som vi skapar en gemensam ONE Dometic-kultur."
+        },
+        {
+          "type": "paragraph",
+          "text": "TOGETHER WE BUILD OUR FUTURE\nVi vinner som ett lag.\nVi är ONE Dometic.\nVi inspirerar till personlig utveckling genom en\npositiv feedback kultur."
+        },
+        {
+          "type": "paragraph",
+          "text": "WE PLAY TO WIN\nVi är passionerade och tävlingsinriktade.\nVi strävar efter att vara bäst.\nVi har roligt när vi levererar resultat."
+        },
+        {
+          "type": "paragraph",
+          "text": "WE EMBRACE CHANGE\nVi är nyfikna, samarbetsinriktade och konsumentdrivna.\nVi lär oss av våra misstag.\nVi är innovativa och förbättrar."
+        },
+        {
+          "type": "paragraph",
+          "text": "WE WALK THE TALK\nVi gör det vi säger.\nVi gör rätt för oss.\nVi bryr oss om vår personal och vår planet."
+        },
+        {
+          "type": "paragraph",
+          "text": "För att stödja Dometics förändringsresa och för att hjälpa oss att\nbemästra ständigt föränderliga\naffärsbehov, genomgick vi under\n2023 en grundlig process för att\nuppdatera våra kärnvärden. Processen tog över sex månader och omfattade över 70 personer i Dometics\nglobala organisation.\nSyftet är att bygga en ONE\nDometic-kultur, för att stärka våra\nledare och förbättra kommunikationen och förtroendet mellan\nsegment och funktioner. Dessutom\nvill vi möjliggöra decentraliserat\nbeslutsfattande och öka utförandehastighet, vilket säkerställer att våra\ngrundläggande värderingar stöder\nföretagets syfte, vision och varumärkets strategi."
+        },
+        {
+          "type": "heading",
+          "text": "Sida 5"
+        },
+        {
+          "type": "paragraph",
+          "text": "1 | INTRODUKTION TILL\nUPPFÖRANDEKODEN\n1.1 | VÄGLEDANDE PRINCIPER\nPrinciperna i vår uppförandekod baseras på våra\nkärnvärden, vår hållbarhetsplattform, nationell och\ninternationell lagstiftning, standarder och initiativ, inklusive FN:s Global Compact, FN:s allmänna förklaring\nom de mänskliga rättigheterna, ILO:s (International\nLabour Organization) deklaration om grundläggande\nprinciper och rättigheter på arbetet, Rio-deklarationen\nom miljö och utveckling samt FN:s konvention mot\nkorruption.\nDometic deltar i FN:s Global Compact, världens\nstörsta initiativ för företagsansvar. Som deltagare har\nDometic åtagit sig att göra Global Compact-initiativet\noch dess principer till en del av Dometics strategi,\nkultur och dagliga verksamhet.\nVåra kärnvärden återspeglar Dometics själ och hjärta.\nDe definierar vad som krävs för att arbeta på Dometic\noch hur vi gör saker. De tydliggör hur vi ska interagera\nmed kunder och kollegor världen över. Våra gemensamma värderingar är en ledstjärna för oss i varje steg\nav vår fortsatta utveckling och tillväxt."
+        },
+        {
+          "type": "paragraph",
+          "text": "1.2 | TILLÄMPNING AV\nUPPFÖRANDEKODEN\nKraven i denna uppförandekod gäller alla Dometics\nmedarbetare, chefer och styrelseledamöter, på alla\nmarknader och vid alla tidpunkter. Chefer på alla nivåer\nansvarar för att uppförandekoden tillämpas.\nSom medarbetare ska du ha kännedom om uppförandekoden och alltid följa riktlinjerna i den. Därutöver\nska alla medarbetare följa Dometics uppförandekod,\npolicyer, riktlinjer och anvisningar samt tillämpliga lagar\noch bestämmelser. Om så inte görs kan disciplinära\nåtgärder vidtas, t.ex. skriftlig varning eller i yttersta fall\nuppsägning.\nAlla Dometics affärspartners ska efterleva Dometics\nuppförandekod för affärspartners fullt ut."
+        },
+        {
+          "type": "paragraph",
+          "text": "1.3 | LAGEFTERLEVNAD\nAlla Dometic-företag ska följa de lagar och bestämmelser som är tillämpliga på deras verksamheter och\nanställningar i de länder där de verkar. Kraven i denna\nuppförandekod ska dock respekteras och efterlevas\näven när de är mer långtgående än tillämpliga nationella bestämmelser."
+        },
+        {
+          "type": "paragraph",
+          "text": "DOMETICS UPPFÖRANDEKOD | 5"
+        },
+        {
+          "type": "heading",
+          "text": "Sida 6"
+        },
+        {
+          "type": "paragraph",
+          "text": "2 | MÄNNISKOR\n2.1 | LIKA MÖJLIGHETER\nOCH INGEN DISKRIMINERING\nDometic erbjuder lika möjligheter för alla. Lika möjligheter innebär att alla anställda ska behandlas enligt\nderas förmågor och kvalifikationer i varje anställningsrelaterade beslut, inklusive men inte begränsat till anställning, befordran, ersättning, utbildning, friställningar\noch uppsägning.\nAlla typer av diskriminering eller trakasserier mot\nanställda på grund av personliga aspekter som kön,\netnicitet, hudfärg, ålder, sexuell läggning, trosuppfattning, nationalitet, funktionsnedsättning, graviditet eller\nanställda med familjeansvar är förbjudna."
+        },
+        {
+          "type": "paragraph",
+          "text": "2.2 | ARBETSTID OCH\nRÄTTVIS KOMPENSATION\nDometic har ett ansvarsfullt förhållningssätt när det\ngällerlön, arbetstider, övertid och förmåner. Våra medarbetares ersättning ska ligga i linje med eller överstiga\nde lagstadgade minimilönerna i respektive jurisdiktion."
+        },
+        {
+          "type": "paragraph",
+          "text": "2.3 | TRAKASSERIER\nDometic tolererar inte någon form av våld, trakasserier,\nhot och omänskligt eller förnedrande beteende. Ett\nbekräftat klagomål om sådant beteende ska resultera i\ndisciplinära åtgärder, inklusive uppsägning av anställning."
+        },
+        {
+          "type": "paragraph",
+          "text": "2.4 | FÖRENINGSFRIHET\nDometic respekterar medarbetarnas rätt att bilda,\nansluta sig till eller avstå från att gå med i löntagarorganisationer. Ingen medarbetare ska diskrimineras på\ngrund av att han eller hon utövar dessa rättigheter."
+        },
+        {
+          "type": "paragraph",
+          "text": "2.5 | SÄKER ARBETSPLATS\nAlla Dometics arbetsplatser ska vara säkra och hälsosamma arbetsplatser. Vi arbetar aktivt för att förhindra\narbetsrelaterade olyckor och arbetsrelaterad ohälsa.\nAlla osäkra förhållanden, olyckor och arbetsrelaterade\nskador och all arbetsrelaterad ohälsa ska rapporteras\nså att utvecklingen kan följas och förbättringsåtgärder\nvidtas. Alla medarbetare och all visstidsanställd personal ska erhålla nödvändig utbildning och säkerhetsutrustning."
+        },
+        {
+          "type": "paragraph",
+          "text": "2.6 | INGET BARNARBETE ELLER\nTVÅNGSARBETE\nDometic stöder och respekterar internationellt\nvedertagna mänskliga rättigheter. Vi tolererar inte barnarbete* eller någon form av modernt slaveri i form av\nt.ex. tvångsarbete eller skuldslaveri, fysisk eller psykisk\nbestraffning eller människohandel."
+        },
+        {
+          "type": "paragraph",
+          "text": "*\u0007Minimiåldern för en anställd är 15 år eller lägsta ålder för att lämna skolan, beroende på vilket som är det äldsta. I enlighet med internationella konventioner\nbekräftar vi att en person är ett barn upp till 18 år. Det innebär att vi erkänner varje barns rättigheter att skyddas från ekonomiskt\nutnyttjande och från att utföra arbete som är farligt eller skadligt för barnets fysiska eller mentala hälsa eller som stör barnets utbildning."
+        },
+        {
+          "type": "paragraph",
+          "text": "6 | DOMETICS UPPFÖRANDEKOD"
+        },
+        {
+          "type": "heading",
+          "text": "Sida 7"
+        },
+        {
+          "type": "paragraph",
+          "text": "DOMETICS UPPFÖRANDEKOD | 7"
+        },
+        {
+          "type": "heading",
+          "text": "Sida 8"
+        },
+        {
+          "type": "paragraph",
+          "text": "3 | ETIK\n3.1 | KORRUPTIONSBEKÄMPNING"
+        },
+        {
+          "type": "paragraph",
+          "text": "3.3 | KONKURRENS PÅ LIKA VILLKOR"
+        },
+        {
+          "type": "paragraph",
+          "text": "Dometic har nolltolerans mot alla former av korruption och ekonomiska oegentligheter, inklusive mutor,\notillåten provision, smörjpengar, bedrägeri och penningtvätt.\nDometic ska interagera med sina affärspartners på\nett rättvist sätt. Den som företräder Dometic får inte\nerbjuda eller ta emot gåvor, förmåner, ersättning eller\nrepresentation till/från affärspartners som strider mot\ntillämplig lag eller kan uppfattas som otillbörliga försök\natt påverka affärsbeslut eller på annat sätt påverka mottagarnas agerande eller arbetsutövande.\nGåvor, måltider och representation får endast\nerbjudas och tas emot om de är måttliga, förekommer\nvid enstaka tillfällen, utgör rimlig uppskattning för en\nlegitim affärsrelation och erbjuds öppet inom ramen för\nordinarie verksamhet. Medarbetare får aldrig erbjuda\neller ta emot gåvor, resor, betalningar eller representation i utbyte mot gynnsamma beslut eller affärsfördelar.\nÄnnu hårdare regler kan gälla när vi interagerar med\nmedarbetare inom eller företrädare för offentlig sektor.\nOm du är osäker på vad som är tillåtet bör du rådgöra\nmed din chef."
+        },
+        {
+          "type": "paragraph",
+          "text": "Dometic stöder principerna för fri företagsamhet och\nkonkurrens på lika villkor som grunden för affärsutveckling och innovation. Dometic vill konkurrera på\nmarknaden på ett sätt som är både etiskt och rättvist,\nutan att ägna sig åt olämpliga aktiviteter eller använda\notillbörliga affärsmetoder."
+        },
+        {
+          "type": "paragraph",
+          "text": "3.2 | BOKFÖRING OCH\nREDOVISNING\nBokföringen ska avspegla alla transaktioner och deras\nkaraktär på ett korrekt och inte vilseledande sätt.\nDometic ska se till att företagets ekonomiska redovisning alltid är transparent och att alla betalningar erläggs\nav behöriga medarbetare utifrån korrekt och godkänd\ndokumentation samt av befogade affärsmässiga skäl."
+        },
+        {
+          "type": "paragraph",
+          "text": "8 | DOMETICS UPPFÖRANDEKOD"
+        },
+        {
+          "type": "paragraph",
+          "text": "3.4 | INGA INTRESSEKONFLIKTER\nDometics medarbetare får inte, varken mot eller utan\nersättning, delta i aktiviteter utanför Dometic som kan\nstå i strid mot eller verka stå i strid mot Dometics intressen utan föregående skriftligt godkännande från medarbetarens chef eller dennas överordnade. Dometics\nmedarbetare ska omedelbart informera om situationer\neller transaktioner som rimligen kan förväntas ge upphov till intressekonflikter."
+        },
+        {
+          "type": "paragraph",
+          "text": "3.5 | POLITISKT ENGAGEMANG\nDometic intar en strikt neutral ställning i förhållande till\npolitiska partier och kandidater och ska därmed inte ge\nnågra bidrag eller penningdonationer, varken direkt\neller indirekt, till politiska partier, kommittéer eller\nenskilda politiker.\nMedarbetare får inte ge politiska bidrag å Dometics\nvägnar eller genom användning av företagets tillgångar\neller resurser."
+        },
+        {
+          "type": "paragraph",
+          "text": "3.6 | EFTERLEVNAD AV\nHANDELSREGLER\nDometic ska säkerställa att all handel och export som\nbedrivs av Dometic överensstämmer med tillämpliga\nexport- och importregler, bojkottförbud, handelsembargon och sanktioner, inklusive bestämmelser om\ndubbla användningsområden."
+        },
+        {
+          "type": "heading",
+          "text": "Sida 9"
+        },
+        {
+          "type": "paragraph",
+          "text": "3.7 | PRODUKTER"
+        },
+        {
+          "type": "paragraph",
+          "text": "3.8 | SPONSORER"
+        },
+        {
+          "type": "paragraph",
+          "text": "Dometic ska säkerställa att våra produkter är säkra och\ndesignade, utvecklade, tillverkade, marknadsförda och\nsålda i enlighet med gällande lagar, förordningar och\nbranschstandarder.\nDometic ska presentera sina produkter och tjänster\npå ett korrekt och informativt sätt."
+        },
+        {
+          "type": "paragraph",
+          "text": "När vi samtycker till sponsring, strävar vi efter att göra\ndet inom områden som gynnar vår verksamhet och\ndrift. Eventuella sponsorskap eller donationer ska göras\ni enlighet med uppförandekoden och godkännas i\nförväg av våra segmentschefer eller, om tillämpligt,\nför hela Dometic-koncernen, av vd:n för Dometickoncernen."
+        },
+        {
+          "type": "paragraph",
+          "text": "DOMETICS UPPFÖRANDEKOD | 9"
+        },
+        {
+          "type": "heading",
+          "text": "Sida 10"
+        },
+        {
+          "type": "paragraph",
+          "text": "4 | MILJÖ\n4.1 | MILJÖPÅVERKAN"
+        },
+        {
+          "type": "paragraph",
+          "text": "4.2 | ANSVARSFULLT RESANDE"
+        },
+        {
+          "type": "paragraph",
+          "text": "Dometic åtar sig att nyttja naturresurser på ett ansvarsfullt sätt och främja hållbar utveckling. Åtagandet\ninnebär att identifiera och adressera miljöpåverkan\nfrån vår verksamhet och våra värdekedjor. Vi åtar oss att\nvidta proaktiva åtgärder för att förebygga, mildra och\nåtgärda eventuella negativa effekter på omgivande\nsamhällen, naturresurser, klimat och miljön som helhet.\nVi prioriterar effektiv användning av material och\nenergi i hela vår verksamhet, inklusive inköp, produktdesign, tillverkning, kontorsaktiviteter, upphandlingar,\nlogistik och bortskaffande av våra produkter. Alla anställda spelar en viktig roll i vår kontinuerliga förbättring\nav vår miljöprestanda."
+        },
+        {
+          "type": "paragraph",
+          "text": "För att minska företagets miljöpåverkan ska\nDometics affärsresor i möjligaste mån ersättas med\nvirtuella mötesalternativ. Vid affärsresor väljer vi de\nlämpligaste transportmedlen utifrån aspekter som\ntidsåtgång, kostnad, säkerhet och miljöpåverkan."
+        },
+        {
+          "type": "paragraph",
+          "text": "10 | DOMETICS UPPFÖRANDEKOD"
+        },
+        {
+          "type": "heading",
+          "text": "Sida 11"
+        },
+        {
+          "type": "paragraph",
+          "text": "5 | SKYDD AV\nINFORMATION\n5.1 | KONFIDENTIELL INFORMATION"
+        },
+        {
+          "type": "paragraph",
+          "text": "5.2 | INSIDERINFORMATION"
+        },
+        {
+          "type": "paragraph",
+          "text": "Dometics konfidentiella information ska skyddas och\nfår inte yppas för obehörig tredje part eller allmänheten. Konfidentiell information är information som inte\när offentlig. Det kan handla om t.ex. affärshemligheter,\naffärsrelaterad information, finansiella uppgifter samt\ninformation som rör produktutveckling, marknadsföring, innovationer och tillverkningsmetoder eller\nmedarbetarnas personuppgifter (t.ex. uppgifter om lön\neller patientjournaler). Konfidentiell information som\nanförtros Dometic av affärspartner eller tredje part ska\nbehandlas med samma aktsamhet som Dometic tillämpar på sin egen konfidentiella information."
+        },
+        {
+          "type": "paragraph",
+          "text": "Dometic är noterat på Nasdaq Stockholm. Varje\nanställd på Dometic kan då och då komma i kontakt\nmed insiderinformation. För att säkerställa att sådan\ninformation hanteras på rätt sätt ska alla medarbetare\nfölja Dometics informationspolicy och insiderpolicy.\nInsiderhandel och olagligt yppande av insiderinformation är strängt förbjuden."
+        },
+        {
+          "type": "paragraph",
+          "text": "5.3 | SEKRETESS\nDometic respekterar varje individs personliga integritet\noch skyddet av personuppgifter. Dometic vidtar lämpliga åtgärder för att skydda sina medarbetares, kunders\noch affärspartners personuppgifter enligt Dometics\npolicy för hantering av personuppgifter."
+        },
+        {
+          "type": "paragraph",
+          "text": "DOMETICS UPPFÖRANDEKOD | 11"
+        },
+        {
+          "type": "heading",
+          "text": "Sida 12"
+        },
+        {
+          "type": "paragraph",
+          "text": "6 | RAPPORTERING\nAlla överträdelser av uppförandekoden eller tillämpliga lagar och bestämmelser ska rapporteras enligt följande:\n• Till närmsta chef;\n• Om du inte känner dig bekväm med att prata med din närmaste chef bör du\nvända dig till din chefs chef eller till HR-avdelningen, beroende på vad som är\nlämpligast;\n• Om ovanstående inte är möjligt, eller om du inte känner dig bekväm med att\nrapportera dina misstankar enligt ovan, bör du rapportera saken via Dometics\nSpeakUp-kanal.\n• All rapportering kan göras anonymt utan risk för repressalier mot rapportören.\nEn beskrivning av SpeakUp-förfarandet finns tillgänglig på Dometics intranät."
+        },
+        {
+          "type": "heading",
+          "text": "Sida 13"
+        },
+        {
+          "type": "paragraph",
+          "text": "Antogs av styrelsen för\nDometic Group AB (publ) den 18 april 2024."
+        }
+      ],
+      "text": "Sida 1\nVÅR\nUPPFÖRANDEKOD\nSida 3\nVARMT HJÄRTA OCH RENT\nSAMVETE\nDometic är ett växande, multinationellt bolag som vill\nvara ett ansvarsfullt företag, en ansvarsfull arbetsgivare\noch en ansvarsfull affärspartner oavsett var i världen vi\nverkar. Det är inte bara viktigt för själva företaget och\nvåra medarbetare, utan även för våra kunder, delägare\noch andra intressenter.\nDometics policyer och verksamhetsprinciper enligt\nden här uppförandekoden är en grundläggande del\nav vår strategi och fungerar som vägledning för var och\nen av oss. Det är otroligt viktigt att vi förblir ett pålitligt\nföretag och behåller vår ledande ställning när det gäller\nhållbarhet. All vår verksamhet ska bedrivas på ett he-\nderligt sätt med respekt för affärsetiska principer, människan och miljön. Genom att agera på ett transparent\noch korrekt sätt visar vi att vi har ett varmt hjärta och ett\nrent samvete.\nGenom att agera på ett transparent och korrekt sätt\nvisar vi att vi har ett varmt hjärta och ett rent samvete.\nDet är, och kommer alltid att vara, en förutsättning för\nDometics framgång och anseende på marknaden.\nJuan Vargues,\nvd och koncernchef\nDOMETICS UPPFÖRANDEKOD | 3\nSida 4\nKÄRNVÄRDEN\nVåra fyra kärnvärden ger vägledning om vilka vi är och vad vi representerar. De hjälper oss att anpassa prioriteringar\noch möjliggör decentraliserat beslutsfattande, samtidigt som vi skapar en gemensam ONE Dometic-kultur.\nTOGETHER WE BUILD OUR FUTURE\nVi vinner som ett lag.\nVi är ONE Dometic.\nVi inspirerar till personlig utveckling genom en\npositiv feedback kultur.\nWE PLAY TO WIN\nVi är passionerade och tävlingsinriktade.\nVi strävar efter att vara bäst.\nVi har roligt när vi levererar resultat.\nWE EMBRACE CHANGE\nVi är nyfikna, samarbetsinriktade och konsumentdrivna.\nVi lär oss av våra misstag.\nVi är innovativa och förbättrar.\nWE WALK THE TALK\nVi gör det vi säger.\nVi gör rätt för oss.\nVi bryr oss om vår personal och vår planet.\nFör att stödja Dometics förändringsresa och för att hjälpa oss att\nbemästra ständigt föränderliga\naffärsbehov, genomgick vi under\n2023 en grundlig process för att\nuppdatera våra kärnvärden. Processen tog över sex månader och omfattade över 70 personer i Dometics\nglobala organisation.\nSyftet är att bygga en ONE\nDometic-kultur, för att stärka våra\nledare och förbättra kommunikationen och förtroendet mellan\nsegment och funktioner. Dessutom\nvill vi möjliggöra decentraliserat\nbeslutsfattande och öka utförandehastighet, vilket säkerställer att våra\ngrundläggande värderingar stöder\nföretagets syfte, vision och varumärkets strategi.\nSida 5\n1 | INTRODUKTION TILL\nUPPFÖRANDEKODEN\n1.1 | VÄGLEDANDE PRINCIPER\nPrinciperna i vår uppförandekod baseras på våra\nkärnvärden, vår hållbarhetsplattform, nationell och\ninternationell lagstiftning, standarder och initiativ, inklusive FN:s Global Compact, FN:s allmänna förklaring\nom de mänskliga rättigheterna, ILO:s (International\nLabour Organization) deklaration om grundläggande\nprinciper och rättigheter på arbetet, Rio-deklarationen\nom miljö och utveckling samt FN:s konvention mot\nkorruption.\nDometic deltar i FN:s Global Compact, världens\nstörsta initiativ för företagsansvar. Som deltagare har\nDometic åtagit sig att göra Global Compact-initiativet\noch dess principer till en del av Dometics strategi,\nkultur och dagliga verksamhet.\nVåra kärnvärden återspeglar Dometics själ och hjärta.\nDe definierar vad som krävs för att arbeta på Dometic\noch hur vi gör saker. De tydliggör hur vi ska interagera\nmed kunder och kollegor världen över. Våra gemensamma värderingar är en ledstjärna för oss i varje steg\nav vår fortsatta utveckling och tillväxt.\n1.2 | TILLÄMPNING AV\nUPPFÖRANDEKODEN\nKraven i denna uppförandekod gäller alla Dometics\nmedarbetare, chefer och styrelseledamöter, på alla\nmarknader och vid alla tidpunkter. Chefer på alla nivåer\nansvarar för att uppförandekoden tillämpas.\nSom medarbetare ska du ha kännedom om uppförandekoden och alltid följa riktlinjerna i den. Därutöver\nska alla medarbetare följa Dometics uppförandekod,\npolicyer, riktlinjer och anvisningar samt tillämpliga lagar\noch bestämmelser. Om så inte görs kan disciplinära\nåtgärder vidtas, t.ex. skriftlig varning eller i yttersta fall\nuppsägning.\nAlla Dometics affärspartners ska efterleva Dometics\nuppförandekod för affärspartners fullt ut.\n1.3 | LAGEFTERLEVNAD\nAlla Dometic-företag ska följa de lagar och bestämmelser som är tillämpliga på deras verksamheter och\nanställningar i de länder där de verkar. Kraven i denna\nuppförandekod ska dock respekteras och efterlevas\näven när de är mer långtgående än tillämpliga nationella bestämmelser.\nDOMETICS UPPFÖRANDEKOD | 5\nSida 6\n2 | MÄNNISKOR\n2.1 | LIKA MÖJLIGHETER\nOCH INGEN DISKRIMINERING\nDometic erbjuder lika möjligheter för alla. Lika möjligheter innebär att alla anställda ska behandlas enligt\nderas förmågor och kvalifikationer i varje anställningsrelaterade beslut, inklusive men inte begränsat till anställning, befordran, ersättning, utbildning, friställningar\noch uppsägning.\nAlla typer av diskriminering eller trakasserier mot\nanställda på grund av personliga aspekter som kön,\netnicitet, hudfärg, ålder, sexuell läggning, trosuppfattning, nationalitet, funktionsnedsättning, graviditet eller\nanställda med familjeansvar är förbjudna.\n2.2 | ARBETSTID OCH\nRÄTTVIS KOMPENSATION\nDometic har ett ansvarsfullt förhållningssätt när det\ngällerlön, arbetstider, övertid och förmåner. Våra medarbetares ersättning ska ligga i linje med eller överstiga\nde lagstadgade minimilönerna i respektive jurisdiktion.\n2.3 | TRAKASSERIER\nDometic tolererar inte någon form av våld, trakasserier,\nhot och omänskligt eller förnedrande beteende. Ett\nbekräftat klagomål om sådant beteende ska resultera i\ndisciplinära åtgärder, inklusive uppsägning av anställning.\n2.4 | FÖRENINGSFRIHET\nDometic respekterar medarbetarnas rätt att bilda,\nansluta sig till eller avstå från att gå med i löntagarorganisationer. Ingen medarbetare ska diskrimineras på\ngrund av att han eller hon utövar dessa rättigheter.\n2.5 | SÄKER ARBETSPLATS\nAlla Dometics arbetsplatser ska vara säkra och hälsosamma arbetsplatser. Vi arbetar aktivt för att förhindra\narbetsrelaterade olyckor och arbetsrelaterad ohälsa.\nAlla osäkra förhållanden, olyckor och arbetsrelaterade\nskador och all arbetsrelaterad ohälsa ska rapporteras\nså att utvecklingen kan följas och förbättringsåtgärder\nvidtas. Alla medarbetare och all visstidsanställd personal ska erhålla nödvändig utbildning och säkerhetsutrustning.\n2.6 | INGET BARNARBETE ELLER\nTVÅNGSARBETE\nDometic stöder och respekterar internationellt\nvedertagna mänskliga rättigheter. Vi tolererar inte barnarbete* eller någon form av modernt slaveri i form av\nt.ex. tvångsarbete eller skuldslaveri, fysisk eller psykisk\nbestraffning eller människohandel.\n*\u0007Minimiåldern för en anställd är 15 år eller lägsta ålder för att lämna skolan, beroende på vilket som är det äldsta. I enlighet med internationella konventioner\nbekräftar vi att en person är ett barn upp till 18 år. Det innebär att vi erkänner varje barns rättigheter att skyddas från ekonomiskt\nutnyttjande och från att utföra arbete som är farligt eller skadligt för barnets fysiska eller mentala hälsa eller som stör barnets utbildning.\n6 | DOMETICS UPPFÖRANDEKOD\nSida 7\nDOMETICS UPPFÖRANDEKOD | 7\nSida 8\n3 | ETIK\n3.1 | KORRUPTIONSBEKÄMPNING\n3.3 | KONKURRENS PÅ LIKA VILLKOR\nDometic har nolltolerans mot alla former av korruption och ekonomiska oegentligheter, inklusive mutor,\notillåten provision, smörjpengar, bedrägeri och penningtvätt.\nDometic ska interagera med sina affärspartners på\nett rättvist sätt. Den som företräder Dometic får inte\nerbjuda eller ta emot gåvor, förmåner, ersättning eller\nrepresentation till/från affärspartners som strider mot\ntillämplig lag eller kan uppfattas som otillbörliga försök\natt påverka affärsbeslut eller på annat sätt påverka mottagarnas agerande eller arbetsutövande.\nGåvor, måltider och representation får endast\nerbjudas och tas emot om de är måttliga, förekommer\nvid enstaka tillfällen, utgör rimlig uppskattning för en\nlegitim affärsrelation och erbjuds öppet inom ramen för\nordinarie verksamhet. Medarbetare får aldrig erbjuda\neller ta emot gåvor, resor, betalningar eller representation i utbyte mot gynnsamma beslut eller affärsfördelar.\nÄnnu hårdare regler kan gälla när vi interagerar med\nmedarbetare inom eller företrädare för offentlig sektor.\nOm du är osäker på vad som är tillåtet bör du rådgöra\nmed din chef.\nDometic stöder principerna för fri företagsamhet och\nkonkurrens på lika villkor som grunden för affärsutveckling och innovation. Dometic vill konkurrera på\nmarknaden på ett sätt som är både etiskt och rättvist,\nutan att ägna sig åt olämpliga aktiviteter eller använda\notillbörliga affärsmetoder.\n3.2 | BOKFÖRING OCH\nREDOVISNING\nBokföringen ska avspegla alla transaktioner och deras\nkaraktär på ett korrekt och inte vilseledande sätt.\nDometic ska se till att företagets ekonomiska redovisning alltid är transparent och att alla betalningar erläggs\nav behöriga medarbetare utifrån korrekt och godkänd\ndokumentation samt av befogade affärsmässiga skäl.\n8 | DOMETICS UPPFÖRANDEKOD\n3.4 | INGA INTRESSEKONFLIKTER\nDometics medarbetare får inte, varken mot eller utan\nersättning, delta i aktiviteter utanför Dometic som kan\nstå i strid mot eller verka stå i strid mot Dometics intressen utan föregående skriftligt godkännande från medarbetarens chef eller dennas överordnade. Dometics\nmedarbetare ska omedelbart informera om situationer\neller transaktioner som rimligen kan förväntas ge upphov till intressekonflikter.\n3.5 | POLITISKT ENGAGEMANG\nDometic intar en strikt neutral ställning i förhållande till\npolitiska partier och kandidater och ska därmed inte ge\nnågra bidrag eller penningdonationer, varken direkt\neller indirekt, till politiska partier, kommittéer eller\nenskilda politiker.\nMedarbetare får inte ge politiska bidrag å Dometics\nvägnar eller genom användning av företagets tillgångar\neller resurser.\n3.6 | EFTERLEVNAD AV\nHANDELSREGLER\nDometic ska säkerställa att all handel och export som\nbedrivs av Dometic överensstämmer med tillämpliga\nexport- och importregler, bojkottförbud, handelsembargon och sanktioner, inklusive bestämmelser om\ndubbla användningsområden.\nSida 9\n3.7 | PRODUKTER\n3.8 | SPONSORER\nDometic ska säkerställa att våra produkter är säkra och\ndesignade, utvecklade, tillverkade, marknadsförda och\nsålda i enlighet med gällande lagar, förordningar och\nbranschstandarder.\nDometic ska presentera sina produkter och tjänster\npå ett korrekt och informativt sätt.\nNär vi samtycker till sponsring, strävar vi efter att göra\ndet inom områden som gynnar vår verksamhet och\ndrift. Eventuella sponsorskap eller donationer ska göras\ni enlighet med uppförandekoden och godkännas i\nförväg av våra segmentschefer eller, om tillämpligt,\nför hela Dometic-koncernen, av vd:n för Dometickoncernen.\nDOMETICS UPPFÖRANDEKOD | 9\nSida 10\n4 | MILJÖ\n4.1 | MILJÖPÅVERKAN\n4.2 | ANSVARSFULLT RESANDE\nDometic åtar sig att nyttja naturresurser på ett ansvarsfullt sätt och främja hållbar utveckling. Åtagandet\ninnebär att identifiera och adressera miljöpåverkan\nfrån vår verksamhet och våra värdekedjor. Vi åtar oss att\nvidta proaktiva åtgärder för att förebygga, mildra och\nåtgärda eventuella negativa effekter på omgivande\nsamhällen, naturresurser, klimat och miljön som helhet.\nVi prioriterar effektiv användning av material och\nenergi i hela vår verksamhet, inklusive inköp, produktdesign, tillverkning, kontorsaktiviteter, upphandlingar,\nlogistik och bortskaffande av våra produkter. Alla anställda spelar en viktig roll i vår kontinuerliga förbättring\nav vår miljöprestanda.\nFör att minska företagets miljöpåverkan ska\nDometics affärsresor i möjligaste mån ersättas med\nvirtuella mötesalternativ. Vid affärsresor väljer vi de\nlämpligaste transportmedlen utifrån aspekter som\ntidsåtgång, kostnad, säkerhet och miljöpåverkan.\n10 | DOMETICS UPPFÖRANDEKOD\nSida 11\n5 | SKYDD AV\nINFORMATION\n5.1 | KONFIDENTIELL INFORMATION\n5.2 | INSIDERINFORMATION\nDometics konfidentiella information ska skyddas och\nfår inte yppas för obehörig tredje part eller allmänheten. Konfidentiell information är information som inte\när offentlig. Det kan handla om t.ex. affärshemligheter,\naffärsrelaterad information, finansiella uppgifter samt\ninformation som rör produktutveckling, marknadsföring, innovationer och tillverkningsmetoder eller\nmedarbetarnas personuppgifter (t.ex. uppgifter om lön\neller patientjournaler). Konfidentiell information som\nanförtros Dometic av affärspartner eller tredje part ska\nbehandlas med samma aktsamhet som Dometic tillämpar på sin egen konfidentiella information.\nDometic är noterat på Nasdaq Stockholm. Varje\nanställd på Dometic kan då och då komma i kontakt\nmed insiderinformation. För att säkerställa att sådan\ninformation hanteras på rätt sätt ska alla medarbetare\nfölja Dometics informationspolicy och insiderpolicy.\nInsiderhandel och olagligt yppande av insiderinformation är strängt förbjuden.\n5.3 | SEKRETESS\nDometic respekterar varje individs personliga integritet\noch skyddet av personuppgifter. Dometic vidtar lämpliga åtgärder för att skydda sina medarbetares, kunders\noch affärspartners personuppgifter enligt Dometics\npolicy för hantering av personuppgifter.\nDOMETICS UPPFÖRANDEKOD | 11\nSida 12\n6 | RAPPORTERING\nAlla överträdelser av uppförandekoden eller tillämpliga lagar och bestämmelser ska rapporteras enligt följande:\n• Till närmsta chef;\n• Om du inte känner dig bekväm med att prata med din närmaste chef bör du\nvända dig till din chefs chef eller till HR-avdelningen, beroende på vad som är\nlämpligast;\n• Om ovanstående inte är möjligt, eller om du inte känner dig bekväm med att\nrapportera dina misstankar enligt ovan, bör du rapportera saken via Dometics\nSpeakUp-kanal.\n• All rapportering kan göras anonymt utan risk för repressalier mot rapportören.\nEn beskrivning av SpeakUp-förfarandet finns tillgänglig på Dometics intranät.\nSida 13\nAntogs av styrelsen för\nDometic Group AB (publ) den 18 april 2024.",
+      "warning": null
     }
   ]
 }
