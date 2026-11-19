@@ -53,7 +53,7 @@ function render(){
  document.querySelectorAll('[data-view]').forEach(button=>{const active=button.dataset.view===state.view;button.classList.toggle('active',active);if(active)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');});
  $('#overview').hidden=state.view!=='home';$('#library').hidden=state.view==='home';renderOverview();
  if(state.view==='home')return;
- const info={documents:['PERSONALHANDBOKEN','Dokument','Rutiner och information för din arbetsdag.'],forms:['LADDA NER OCH FYLL I','Blanketter','Hitta och hämta blanketten du behöver.'],favorites:['SPARAT PÅ DEN HÄR ENHETEN','Mina favoriter','Dina sparade dokument och blanketter.'],search:['SÖK I HELA PERSONALAPPEN','Sökresultat','Sök bland både dokument och blanketter.']}[state.view];
+ const info={documents:['PERSONALHANDBOKEN','Dokument','Rutiner och information för din arbetsdag.'],forms:['FYLL I OCH SKRIV UT','Blanketter','Öppna blanketten, fyll i på skärmen och skriv ut.'],favorites:['SPARAT PÅ DEN HÄR ENHETEN','Mina favoriter','Dina sparade dokument och blanketter.'],search:['SÖK I HELA PERSONALAPPEN','Sökresultat','Sök bland både dokument och blanketter.']}[state.view];
  $('#section-eyebrow').textContent=info[0];$('#section-title').textContent=info[1];$('#section-description').textContent=info[2];$('#forms-info').hidden=state.view!=='forms';
  $('#search').placeholder=state.view==='forms'?'Sök blankett eller ämne…':state.view==='favorites'?'Sök bland dina favoriter…':'Sök dokument, ämne eller ord…';
  if($('#search').value!==state.query)$('#search').value=state.query;$('#format').value=state.format;$('#sort').value=state.sort;
