@@ -75,13 +75,13 @@ function renderReader(doc){
  $('#download').href=fileUrl(doc);$('#download').download=doc.path.split('/').pop();$('#download').textContent=isForm(doc)?'Hämta blankett ↗':'Hämta original ↗';$('#share').textContent='Kopiera länk';
  $('#reader-note').textContent=isForm(doc)?'Hämta originalfilen för att fylla i blanketten. Textvyn visar inte alla fält och all formatering.':'Textvy · Bilder, diagram och fullständig formatering visas i originalfilen.';
  if(doc.id==='pers021-ledighetsansokan'){
-  $('#download').hidden=true;$('#share').hidden=true;$('#reader-favorite').hidden=true;
-  $('#reader-note').textContent='Original-PDF visas här. Fyll i och skriv ut med PDF-visarens utskriftsfunktion (Ctrl+P kan skriva ut hela sidan). Stäng för att tömma vyn. Inga uppgifter sparas av handboken.';
+  $('#download').hidden=true;$('#share').hidden=true;$('#reader-favorite').hidden=true;$('#print-pdf').hidden=false;
+  $('#reader-note').textContent='Fyll i original-PDF:en och välj Skriv ut. Stäng blanketten när du är klar. Inga uppgifter sparas av handboken.';
   const content=$('#reader-content');content.replaceChildren();
   const frame=document.createElement('iframe');frame.src=fileUrl(doc)+'#toolbar=0&navpanes=0&scrollbar=1';frame.title='Original-PDF: Ansökan om ledighet';frame.className='kiosk-form-frame';frame.setAttribute('referrerpolicy','no-referrer');content.append(frame);
   if(!$('#reader').open)$('#reader').showModal();$('#reader').scrollTop=0;state.highlight=null;return;
  }
- $('#download').hidden=false;$('#share').hidden=false;$('#reader-favorite').hidden=false;
+ $('#download').hidden=false;$('#share').hidden=false;$('#reader-favorite').hidden=false;$('#print-pdf').hidden=true;
  updateReaderFavorite();const content=$('#reader-content');content.replaceChildren();if(doc.warning)content.append(el('p','reading-note',doc.warning));
  for(const [index,block] of (doc.blocks||[]).entries()){const matched=state.highlight?.id===doc.id&&state.highlight.index===index;if(block.type==='table'){const wrap=el('div','table-wrap');const table=el('table');table.setAttribute('aria-label','Tabell från '+doc.title);for(const row of block.rows){const tr=el('tr');for(const cell of row)tr.append(el('td','',cell));table.append(tr);}wrap.append(table);if(matched)wrap.classList.add('reader-match');content.append(wrap);}else{const node=el(block.type==='heading'?'h3':'p');if(matched){node.classList.add('reader-match');highlighted(node,block.text,state.highlight.terms);}else node.textContent=block.text;content.append(node);}}
  if(!$('#reader').open)$('#reader').showModal();const matchNode=content.querySelector('.reader-match');if(matchNode)requestAnimationFrame(()=>matchNode.scrollIntoView({block:'center'}));else $('#reader').scrollTop=0;state.highlight=null;
@@ -171,6 +171,7 @@ $('#clear-filters').onclick=clearFilters;$('#reset').onclick=()=>state.error?loa
 $('#close-reader').onclick=()=>$('#reader').close();
 $('#reader').addEventListener('close',()=>{$('#reader-content').replaceChildren();if(suppressReaderClose){suppressReaderClose=false;return;}state.current=null;if(location.hash.startsWith('#dokument/')){if(history.state?.handbookReader&&history.state.readerOrigin)history.back();else{history.replaceState({handbookPage:true},'',returnHash);route();}}});
 $('#reader-favorite').onclick=()=>state.current&&saveFavorite(state.current.id);
+$('#print-pdf').onclick=()=>{const frame=$('#reader-content iframe.kiosk-form-frame');if(!frame)return;try{frame.contentWindow.focus();frame.contentWindow.print();}catch(error){toast('Utskrift kunde inte startas automatiskt. Använd skrivarikonen i PDF-visaren.');}};
 $('#share').onclick=async()=>{try{await navigator.clipboard.writeText(location.href);$('#share').textContent='Länk kopierad';setTimeout(()=>$('#share').textContent='Kopiera länk',2000);}catch{$('#share').textContent='Kopiera adressen i adressfältet';}};
 let installPrompt=null;
 const standalone=()=>window.matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
