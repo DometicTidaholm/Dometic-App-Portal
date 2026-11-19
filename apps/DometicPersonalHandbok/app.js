@@ -76,9 +76,9 @@ function renderReader(doc){
  $('#reader-note').textContent=isForm(doc)?'Hämta originalfilen för att fylla i blanketten. Textvyn visar inte alla fält och all formatering.':'Textvy · Bilder, diagram och fullständig formatering visas i originalfilen.';
  if(doc.id==='pers021-ledighetsansokan'){
   $('#download').hidden=true;$('#share').hidden=true;$('#reader-favorite').hidden=true;
-  $('#reader-note').textContent='Fyll i direkt här och skriv ut. Inga uppgifter sparas. Stäng för att rensa.';
+  $('#reader-note').textContent='Original-PDF visas här. Fyll i och skriv ut med PDF-visarens utskriftsfunktion (Ctrl+P kan skriva ut hela sidan). Stäng för att tömma vyn. Inga uppgifter sparas av handboken.';
   const content=$('#reader-content');content.replaceChildren();
-  const frame=document.createElement('iframe');frame.src='blanketter/ledighetsansokan-kiosk.html';frame.title='Ifyllbar ledighetsansökan';frame.className='kiosk-form-frame';frame.setAttribute('referrerpolicy','no-referrer');content.append(frame);
+  const frame=document.createElement('iframe');frame.src=fileUrl(doc)+'#toolbar=0&navpanes=0&scrollbar=1';frame.title='Original-PDF: Ansökan om ledighet';frame.className='kiosk-form-frame';frame.setAttribute('referrerpolicy','no-referrer');content.append(frame);
   if(!$('#reader').open)$('#reader').showModal();$('#reader').scrollTop=0;state.highlight=null;return;
  }
  $('#download').hidden=false;$('#share').hidden=false;$('#reader-favorite').hidden=false;
