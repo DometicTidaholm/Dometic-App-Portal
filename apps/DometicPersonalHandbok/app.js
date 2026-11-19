@@ -1,11 +1,12 @@
 'use strict';
 const $ = selector => document.querySelector(selector);
 const state = {docs:[],view:'home',category:'Alla',query:'',format:'all',sort:'az',loaded:false,error:false,current:null,highlight:null};
-const pageNames = {home:'oversikt',documents:'rutiner',forms:'blanketter',search:'sok'};
+const pageNames = {home:'oversikt',documents:'rutiner',forms:'blanketter',policies:'policyer',search:'sok'};
 let returnHash='#oversikt', suppressReaderClose=false;
 const normalize = value => String(value??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('sv');
 const el = (tag,cls,text) => {const node=document.createElement(tag);if(cls)node.className=cls;if(text!==undefined)node.textContent=text;return node;};
 const isForm = doc => doc.kind==='form'||(!doc.kind&&/^(blanketter\/|dokument\/blanketter\/)/i.test(doc.path));
+const isPolicy = doc => !isForm(doc)&&doc.category==='Policyer';
 const fileUrl = doc => doc.path.split('/').map(encodeURIComponent).join('/');
 const byName = (a,b) => a.title.localeCompare(b.title,'sv');
 const byRecent = (a,b) => (b.updated||'').localeCompare(a.updated||'')||byName(a,b);
@@ -16,7 +17,7 @@ function toast(message){$('#toast').textContent=message;$('#toast').classList.ad
 function pageHash(view=state.view,filters=state){const params=new URLSearchParams();if(filters.query)params.set('q',filters.query);if(filters.category&&filters.category!=='Alla')params.set('kategori',filters.category);if(filters.format&&filters.format!=='all')params.set('filtyp',filters.format);if(filters.sort&&filters.sort!=='az')params.set('sort',filters.sort);return '#'+pageNames[view]+(params.size?'?'+params:'');}
 function navigate(view,filters={}){const next=pageHash(view,{query:'',category:'Alla',format:'all',sort:'az',...filters});if(location.hash!==next)history.pushState({handbookPage:true},'',next);route();window.scrollTo({top:0,behavior:'instant'});}
 function updateFilters(){const next=pageHash();history.replaceState({handbookPage:true},'',next);returnHash=next;render();}
-function viewDocuments(){if(state.error)return [];if(state.view==='forms')return state.docs.filter(isForm);if(state.view==='search')return state.docs;return state.docs.filter(d=>!isForm(d));}
+function viewDocuments(){if(state.error)return [];if(state.view==='forms')return state.docs.filter(isForm);if(state.view==='policies')return state.docs.filter(isPolicy);if(state.view==='search')return state.docs;return state.docs.filter(d=>!isForm(d)&&!isPolicy(d));}
 function categoryButtons(base){const counts=new Map();base.forEach(doc=>counts.set(doc.category,(counts.get(doc.category)||0)+1));const names=['Alla',...Array.from(counts.keys()).sort((a,b)=>a.localeCompare(b,'sv'))];$('#categories').replaceChildren(...names.map(name=>{const button=el('button','chip'+(state.category===name?' active':''),name);button.type='button';button.setAttribute('aria-pressed',String(state.category===name));button.append(el('span','',name==='Alla'?String(base.length):String(counts.get(name))));button.onclick=()=>{state.category=name;updateFilters();};return button;}));}
 function matches(doc){const type=doc.format.toLowerCase();const formats={word:['doc','docx'],powerpoint:['ppt','pptx'],excel:['xls','xlsx'],pdf:['pdf']};return (state.category==='Alla'||doc.category===state.category)&&(state.format==='all'||formats[state.format]?.includes(type))&&normalize(state.query).split(/\s+/).filter(Boolean).every(word=>normalize(doc.title+' '+doc.category+' '+(doc.text||'')).includes(word));}
 function documentCard(doc,compact=false){
@@ -35,13 +36,13 @@ function documentCard(doc,compact=false){
  return card;
 }
 function renderOverview(){
- const routines=state.docs.filter(doc=>!isForm(doc));const forms=state.docs.filter(isForm);
- for(const [selector,count] of [['#nav-count',routines.length],['#forms-count',forms.length],['#home-doc-count',routines.length],['#home-form-count',forms.length]])$(selector).textContent=count;
+ const routines=state.docs.filter(doc=>!isForm(doc)&&!isPolicy(doc));const forms=state.docs.filter(isForm);const policies=state.docs.filter(isPolicy);
+ for(const [selector,count] of [['#nav-count',routines.length],['#policy-count',policies.length],['#forms-count',forms.length],['#home-doc-count',routines.length],['#home-policy-count',policies.length],['#home-form-count',forms.length]])$(selector).textContent=count;
  $('#home-status').hidden=state.loaded&&!state.error;$('#home-status').textContent=state.error?'Dokumenten kunde inte hämtas. Kontrollera din anslutning.':'Läser in handboken…';$('#home-retry').hidden=!state.error;$('#home-retry').disabled=!state.loaded;
- const counts=new Map();routines.forEach(doc=>counts.set(doc.category,(counts.get(doc.category)||0)+1));
+ const counts=new Map();state.docs.forEach(doc=>counts.set(doc.category,(counts.get(doc.category)||0)+1));
  $('#home-categories').replaceChildren(...Array.from(counts.entries()).sort(([a],[b])=>a.localeCompare(b,'sv')).map(([name,count],index)=>{
   const key=normalize(name);const style=key.includes('arbetsmiljo')?['shield','blue']:key.includes('halsa')||key.includes('forman')?['heart','teal']:key.includes('lon')||key.includes('ersattning')?['wallet','amber']:['folder',['blue','teal','amber','violet'][index%4]];
-  const button=el('button','category-card tone-'+style[1]);button.type='button';const pictogram=el('span','category-icon');pictogram.append(icon(style[0]));const copy=el('span','category-copy');copy.append(el('strong','',name),el('span','',count+' rutiner'));const arrow=el('span','category-arrow');arrow.append(icon('chevron'));button.append(pictogram,copy,arrow);button.onclick=()=>navigate('documents',{category:name});return button;
+  const button=el('button','category-card tone-'+style[1]);button.type='button';const pictogram=el('span','category-icon');pictogram.append(icon(style[0]));const copy=el('span','category-copy');copy.append(el('strong','',name),el('span','',count+' dokument'));const arrow=el('span','category-arrow');arrow.append(icon('chevron'));button.append(pictogram,copy,arrow);button.onclick=()=>navigate(name==='Policyer'?'policies':name==='Blanketter'?'forms':'documents');return button;
  }));
 }
 function render(){
@@ -49,12 +50,12 @@ function render(){
  $('#overview').hidden=state.view!=='home';$('#library').hidden=state.view==='home';renderOverview();
  if($('#search').value!==state.query)$('#search').value=state.query;
  if(state.view==='home')return;
- const info={documents:['PERSONALHANDBOKEN','Rutiner','Rutiner och information för din arbetsdag.'],forms:['FYLL I OCH SKRIV UT','Blanketter','Öppna blanketten, fyll i på skärmen och skriv ut.'],search:['SÖK I HELA PERSONALAPPEN','Sökresultat','Sök bland både rutiner och blanketter.']}[state.view];
+ const info={documents:['PERSONALHANDBOKEN','Rutiner','Rutiner och information för din arbetsdag.'],policies:['PERSONALHANDBOKEN','Policyer','Policyer och Code of Conduct.'],forms:['FYLL I OCH SKRIV UT','Blanketter','Öppna blanketten, fyll i på skärmen och skriv ut.'],search:['SÖK I HELA PERSONALAPPEN','Sökresultat','Sök bland rutiner, policyer och blanketter.']}[state.view];
  $('#section-eyebrow').textContent=info[0];$('#section-title').textContent=info[1];$('#section-description').textContent=info[2];$('#forms-info').hidden=state.view!=='forms';
  if($('#search').value!==state.query)$('#search').value=state.query;$('#format').value=state.format;$('#sort').value=state.sort;
  const base=viewDocuments();const docs=base.filter(matches).sort(state.sort==='recent'?byRecent:byName);categoryButtons(base);
- const noun=state.view==='forms'?'blanketter':state.view==='search'?'filer':'rutiner';$('#total').textContent=base.length+' '+noun;
- $('#results-count').textContent=!state.loaded?'Läser in…':state.error?'Dokumenten kunde inte hämtas':docs.length+(state.view==='forms'?(docs.length===1?' blankett':' blanketter'):state.view==='search'?(docs.length===1?' fil':' filer'):(docs.length===1?' rutin':' rutiner'))+(state.query?' matchar sökningen':'');
+ const noun=state.view==='policies'?'policyer':state.view==='forms'?'blanketter':state.view==='search'?'filer':'rutiner';$('#total').textContent=base.length+' '+noun;
+ $('#results-count').textContent=!state.loaded?'Läser in…':state.error?'Dokumenten kunde inte hämtas':docs.length+(state.view==='policies'?(docs.length===1?' policy':' policyer'):state.view==='forms'?(docs.length===1?' blankett':' blanketter'):state.view==='search'?(docs.length===1?' fil':' filer'):(docs.length===1?' rutin':' rutiner'))+(state.query?' matchar sökningen':'');
  $('#documents').replaceChildren(...docs.map(doc=>documentCard(doc)));const filtered=Boolean(state.query||state.category!=='Alla'||state.format!=='all');$('#clear-filters').hidden=!filtered;
  $('#empty').hidden=!state.loaded||docs.length>0;$('#reset').hidden=true;
  if(state.error){$('#empty-title').textContent='Handboken kunde inte hämtas';$('#empty-text').textContent='Kontrollera din anslutning och försök igen.';$('#reset').hidden=false;$('#reset').textContent='Försök igen';}
