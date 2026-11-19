@@ -29,3 +29,6 @@ dialog{background:#fff;color:var(--text);border:1px solid #cfdee5;border-radius:
 }
 @media(max-width:360px){main{padding-left:13px;padding-right:13px}.brand-text{font-size:12px}.portal-link{font-size:10px}.header-inner{gap:10px;padding:0 13px}.welcome-row h1{font-size:29px}.quick-card{padding:13px}.section-heading h2{font-size:16px}.section-head h1{font-size:28px}.total-pill{font-size:9px}.doc-copy strong{font-size:11px}.file-icon{width:31px;height:38px}.doc-open{gap:8px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+/* Offentlig dator: isolerad formulärvy */
+#reader:has(.kiosk-form-frame){width:min(1050px,98vw);max-width:98vw;height:96vh;max-height:96vh}#reader:has(.kiosk-form-frame) .reader-body{padding-bottom:0}#reader:has(.kiosk-form-frame) #reader-content{margin:0} .kiosk-form-frame{display:block;width:100%;height:calc(96vh - 220px);min-height:520px;border:0;background:#fff}@media(max-width:700px){.kiosk-form-frame{height:calc(96vh - 200px);min-height:460px}}
