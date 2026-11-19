@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#142d38">
-  <meta name="description" content="Dometic Tidaholms personalhandbok. Hitta rutiner, hämta blanketter och spara dina favoriter.">
+  <meta name="description" content="Dometic Tidaholms personalhandbok. Hitta rutiner, hämta blanketter.">
   <title>Personalhandbok · Dometic Tidaholm</title>
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="style.css?v=20261119-kiosk2">
-  <script src="app.js?v=20261119-logo-fix" defer></script>
+  <link rel="stylesheet" href="style.css?v=20261119-rutiner">
+  <script src="app.js?v=20261119-rutiner" defer></script>
 <style>.install-action{margin-left:auto;white-space:nowrap;padding:10px 14px;font-size:12px}.install-tile{cursor:pointer}#install-from-help{margin:10px 0 6px}@media(max-width:720px){.install-action{font-size:11px;padding:9px 10px;margin-left:auto}.portal-link{display:none}}</style>
 </head>
 <body>
@@ -18,7 +18,6 @@
   <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></symbol>
   <symbol id="i-documents" viewBox="0 0 24 24"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8Zm0 0v5h5M9 12h6m-6 4h6"/></symbol>
   <symbol id="i-forms" viewBox="0 0 24 24"><path d="M9 4H6a2 2 0 0 0-2 2v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V6a2 2 0 0 0-2-2h-3M9 3h6v4H9Zm-1 9h.01M11 12h5m-8 4h.01M11 16h5"/></symbol>
-  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9Z"/></symbol>
   <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
   <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v4h16v-4"/></symbol>
@@ -39,9 +38,8 @@
       <a class="brand" href="#oversikt" data-view="home" aria-label="Personalhandbok, startsida"><span class="brand-mark">D</span><span class="brand-text">DOMETIC<small>TIDAHOLM</small></span></a>
       <nav class="header-nav" aria-label="Huvudmeny">
         <a class="nav active" href="#oversikt" data-view="home">Översikt</a>
-        <a class="nav" href="#dokument" data-view="documents">Dokument <b id="nav-count">–</b></a>
+        <a class="nav" href="#rutiner" data-view="documents">Rutiner <b id="nav-count">–</b></a>
         <a class="nav" href="#blanketter" data-view="forms">Blanketter <b id="forms-count">–</b></a>
-        <a class="nav" href="#favoriter" data-view="favorites">Favoriter <b id="fav-count">–</b></a>
       </nav>
       <a class="portal-link" href="../../">← Appportalen</a>
       <button id="install-app" class="primary install-action" type="button">Installera app</button>
@@ -49,43 +47,30 @@
     </div>
   </header>
   <main id="main" tabindex="-1">
+    <div class="global-search" role="search"><div class="search-box"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><label class="sr-only" for="search">Sök bland rutiner och blanketter</label><input id="search" type="search" placeholder="Sök bland rutiner och blanketter…" autocomplete="off"><kbd aria-hidden="true">/</kbd></div></div>
     <section id="overview" aria-labelledby="overview-title">
       <div class="welcome-row">
         <div><span class="eyebrow">FÖR DIG SOM JOBBAR I TIDAHOLM</span><h1 id="overview-title">Personalhandbok</h1><p class="page-intro">Rutiner, blanketter och information för din arbetsdag.</p></div>
         <span class="date-label" id="today-date"></span>
       </div>
-      <form id="home-search-form" class="home-search" role="search">
-        <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
-        <label class="sr-only" for="home-search">Sök bland dokument och blanketter</label>
-        <input id="home-search" type="search" placeholder="Vad letar du efter? Sök bland dokument och blanketter…" autocomplete="off" required>
-        <button class="primary" type="submit">Sök <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
-      </form>
       <div class="load-status"><p id="home-status" role="status" aria-live="polite">Läser in handboken…</p><button class="text-button" id="home-retry" hidden>Försök igen</button></div>
       <div class="quick-links" aria-label="Genvägar">
-        <a class="quick-card" data-view="documents" href="#dokument"><span class="quick-icon tone-blue"><svg class="icon" aria-hidden="true"><use href="#i-documents"/></svg></span><span class="quick-copy"><strong>Dokument <b id="home-doc-count">–</b></strong><span>Rutiner och information</span></span><svg class="icon quick-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="quick-card" data-view="documents" href="#rutiner"><span class="quick-icon tone-blue"><svg class="icon" aria-hidden="true"><use href="#i-documents"/></svg></span><span class="quick-copy"><strong>Rutiner <b id="home-doc-count">–</b></strong><span>Rutiner och information</span></span><svg class="icon quick-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <a class="quick-card" data-view="forms" href="#blanketter"><span class="quick-icon tone-teal"><svg class="icon" aria-hidden="true"><use href="#i-forms"/></svg></span><span class="quick-copy"><strong>Blanketter <b id="home-form-count">–</b></strong><span>Hitta och hämta blanketter</span></span><svg class="icon quick-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        <a class="quick-card" data-view="favorites" href="#favoriter"><span class="quick-icon tone-amber"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg></span><span class="quick-copy"><strong>Favoriter <b id="home-fav-count">–</b></strong><span>Dina sparade dokument</span></span><svg class="icon quick-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
       <div class="overview-grid">
         <div class="overview-main">
           <section class="topics" aria-labelledby="topics-title"><div class="section-heading"><h2 id="topics-title">Hitta efter ämne</h2><span class="subtle">Personalrutiner</span></div><div id="home-categories" class="category-grid"></div></section>
-          <section class="recent-section" aria-labelledby="recent-title"><div class="section-heading"><h2 id="recent-title">Senast uppdaterat</h2><a class="text-link" data-view="documents" href="#dokument">Alla dokument <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div><div id="home-recent" class="recent-list"></div><p id="recent-empty" class="subtle" hidden>Inga dokument att visa.</p><p class="section-note">Datumet visar när filen senast ändrades.</p></section>
         </div>
         <aside class="overview-side">
-          <section class="ask-panel" aria-labelledby="ask-title">
-            <span class="panel-symbol"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg></span><span class="eyebrow">FRÅGA HANDBOKEN</span><h2 id="ask-title">Hitta svar i rutinerna</h2><p>Skriv en fråga eller några sökord. Du får textutdrag med länk till rutinen.</p>
-            <form id="ask-form"><label class="sr-only" for="question">Din fråga</label><input id="question" type="search" required minlength="3" placeholder="Till exempel: friskvård belopp" autocomplete="off"><button class="primary" type="submit">Hitta svar <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button></form>
-            <div class="question-examples" aria-label="Exempel på sökningar"><button data-question="Friskvård">Friskvård</button><button data-question="Arbetskläder">Arbetskläder</button><button data-question="Förmånscykel">Förmånscykel</button></div>
-            <div id="answer" class="answer" role="status" aria-live="polite" hidden></div><small>Läs alltid hela rutinen när du behöver mer information.</small>
-          </section>
           <button class="install-tile" id="install-tile" type="button"><span class="install-icon"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span><span><strong>Handboken i mobilen</strong><span>Lägg till på hemskärmen</span></span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button>
         </aside>
       </div>
     </section>
     <section id="library" class="library" aria-labelledby="section-title" hidden>
-      <div class="section-head"><div><span class="eyebrow" id="section-eyebrow">PERSONALHANDBOK</span><h1 id="section-title">Dokument</h1><p class="page-intro" id="section-description">Rutiner och information för din arbetsdag.</p></div><span class="total-pill" id="total">– dokument</span></div>
+      <div class="section-head"><div><span class="eyebrow" id="section-eyebrow">PERSONALHANDBOK</span><h1 id="section-title">Rutiner</h1><p class="page-intro" id="section-description">Rutiner och information för din arbetsdag.</p></div><span class="total-pill" id="total">– rutiner</span></div>
       <div id="forms-info" class="forms-info" hidden><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg><p>Öppna blanketten och fyll i den på skärmen. Skriv ut och stäng när du är klar. Inga uppgifter sparas av appen.</p></div>
-      <div class="toolbar"><div class="search-box"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><label class="sr-only" for="search">Sök i listan</label><input id="search" type="search" placeholder="Sök på namn, ämne eller innehåll…" autocomplete="off"><kbd aria-hidden="true">/</kbd></div><div class="select-row"><label class="sr-only" for="format">Filtyp</label><select id="format"><option value="all">Alla filtyper</option><option value="word">Word</option><option value="pdf">PDF</option><option value="excel">Excel</option><option value="powerpoint">PowerPoint</option></select><label class="sr-only" for="sort">Sortering</label><select id="sort"><option value="az">Namn A–Ö</option><option value="recent">Senast uppdaterade</option></select></div></div>
+      <div class="toolbar"><div class="select-row"><label class="sr-only" for="format">Filtyp</label><select id="format"><option value="all">Alla filtyper</option><option value="word">Word</option><option value="pdf">PDF</option><option value="excel">Excel</option><option value="powerpoint">PowerPoint</option></select><label class="sr-only" for="sort">Sortering</label><select id="sort"><option value="az">Namn A–Ö</option><option value="recent">Senast uppdaterade</option></select></div></div>
       <div id="categories" class="categories" role="group" aria-label="Filtrera kategori"></div>
       <div class="list-toolbar"><p id="results-count" role="status" aria-live="polite">Läser in dokument…</p><button class="text-button" id="clear-filters" hidden>Rensa filter</button></div>
       <div id="documents" class="documents"></div>
@@ -93,11 +78,12 @@
     </section>
     <footer><span>DOMETIC <span class="footer-dot">·</span> TIDAHOLM</span><button class="text-button install-help">Om personalhandboken</button></footer>
   </main>
-  <nav class="mobile-nav" aria-label="Mobilmeny"><a href="#oversikt" class="active" data-view="home"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>Översikt</a><a href="#dokument" data-view="documents"><svg class="icon" aria-hidden="true"><use href="#i-documents"/></svg>Dokument</a><a href="#blanketter" data-view="forms"><svg class="icon" aria-hidden="true"><use href="#i-forms"/></svg>Blanketter</a><a href="#favoriter" data-view="favorites"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg>Favoriter</a></nav>
+  <nav class="mobile-nav" aria-label="Mobilmeny"><a href="#oversikt" class="active" data-view="home"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>Översikt</a><a href="#rutiner" data-view="documents"><svg class="icon" aria-hidden="true"><use href="#i-documents"/></svg>Rutiner</a><a href="#blanketter" data-view="forms"><svg class="icon" aria-hidden="true"><use href="#i-forms"/></svg>Blanketter</a></nav>
 </div>
-<dialog id="reader" aria-labelledby="reader-title"><div class="reader-head"><button id="close-reader" class="secondary">← Tillbaka</button><button id="reader-favorite" class="secondary">☆ Spara</button></div><div class="reader-body"><span class="eyebrow" id="reader-meta"></span><h2 id="reader-title"></h2><div class="reader-actions"><button id="print-pdf" class="primary" type="button" hidden>Skriv ut</button><a id="download" class="primary" download>Hämta original</a><button id="share" class="secondary">Kopiera länk</button></div><p class="reading-note" id="reader-note">Textvy · Bilder, diagram och fullständig formatering visas i originalfilen.</p><div id="reader-content"></div></div></dialog>
-<dialog id="help" aria-labelledby="help-title"><button id="close-help" class="close" aria-label="Stäng"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button><span class="eyebrow">PERSONALHANDBOK</span><h2 id="help-title">Det du behöver i arbetsdagen.</h2><p>På översikten hittar du genvägar, kategorier och de senast ändrade dokumenten. Blanketter har en egen sida där du kan söka och hämta originalfiler.</p><h3>Lägg till på hemskärmen</h3><p id="install-instructions">Välj Installera app för att komma igång.</p><button id="install-from-help" class="primary" type="button">Installera app</button><p><strong>iPhone:</strong> öppna i Safari, tryck på Dela och välj Lägg till på hemskärmen.</p><p><strong>Android:</strong> öppna webbläsarens meny och välj Installera app eller Lägg till på startskärmen.</p><h3>Dokument och favoriter</h3><p>Word (.docx) och PowerPoint (.pptx) får en sökbar textvy. PDF, Excel och äldre Officefiler kan sökas på namn och kategori och hämtas i original. Favoriter sparas på den här enheten.</p></dialog>
+<dialog id="reader" aria-labelledby="reader-title"><div class="reader-head"><button id="close-reader" class="secondary">← Tillbaka</button></div><div class="reader-body"><span class="eyebrow" id="reader-meta"></span><h2 id="reader-title"></h2><div class="reader-actions"><button id="print-pdf" class="primary" type="button" hidden>Skriv ut</button><a id="download" class="primary" download>Hämta original</a><button id="share" class="secondary">Kopiera länk</button></div><p class="reading-note" id="reader-note">Textvy · Bilder, diagram och fullständig formatering visas i originalfilen.</p><div id="reader-content"></div></div></dialog>
+<dialog id="help" aria-labelledby="help-title"><button id="close-help" class="close" aria-label="Stäng"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button><span class="eyebrow">PERSONALHANDBOK</span><h2 id="help-title">Det du behöver i arbetsdagen.</h2><p>På översikten hittar du genvägar och kategorier. Det gemensamma sökfältet söker bland både rutiner och blanketter medan du skriver.</p><h3>Lägg till på hemskärmen</h3><p id="install-instructions">Välj Installera app för att komma igång.</p><button id="install-from-help" class="primary" type="button">Installera app</button><p><strong>iPhone:</strong> öppna i Safari, tryck på Dela och välj Lägg till på hemskärmen.</p><p><strong>Android:</strong> öppna webbläsarens meny och välj Installera app eller Lägg till på startskärmen.</p><h3>Rutiner och blanketter</h3><p>Word (.docx) och PowerPoint (.pptx) får en sökbar textvy. PDF, Excel och äldre Officefiler kan sökas på namn och kategori och hämtas i original.</p></dialog>
 <div id="toast" role="status" aria-live="polite"></div>
 <noscript><p class="noscript">Aktivera JavaScript för att söka och läsa personalhandboken.</p></noscript>
 </body>
 </html>
+

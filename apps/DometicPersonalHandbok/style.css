@@ -32,3 +32,6 @@ dialog{background:#fff;color:var(--text);border:1px solid #cfdee5;border-radius:
 
 /* Offentlig dator: isolerad formulärvy */
 #reader:has(.kiosk-form-frame){width:min(1050px,98vw);max-width:98vw;height:96vh;max-height:96vh}#reader:has(.kiosk-form-frame) .reader-body{padding-bottom:0}#reader:has(.kiosk-form-frame) #reader-content{margin:0} .kiosk-form-frame{display:block;width:100%;height:calc(96vh - 220px);min-height:520px;border:0;background:#fff}@media(max-width:700px){.kiosk-form-frame{height:calc(96vh - 200px);min-height:460px}}
+
+
+.global-search{margin-bottom:24px}.global-search .search-box{max-width:none}.quick-links{grid-template-columns:repeat(2,minmax(0,1fr))}.overview-grid{grid-template-columns:1fr}.overview-side{display:block;max-width:420px}.toolbar{justify-content:flex-end}.mobile-nav{grid-template-columns:repeat(3,1fr)}@media(max-width:720px){.quick-links{grid-template-columns:1fr}.global-search .search-box input{font-size:16px}.global-search{margin-bottom:22px}}
