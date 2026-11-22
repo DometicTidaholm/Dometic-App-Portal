@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-20T21:50:12.072Z",
+  "checkedAt": "2026-11-22T22:30:22.852Z",
   "restaurants": [
     {
       "id": "jives",
@@ -59,15 +59,16 @@
         "includes": "måltidsdryck, kaffe & kaka",
         "note": "Fredagsdessert ingår inte vid avhämtning eller utkörning."
       },
-      "state": "parsed",
-      "snapshot": false,
-      "checkedAt": "2026-11-20T21:50:12.072Z",
+      "state": "snapshot",
+      "snapshot": true,
+      "checkedAt": "2026-11-22T22:30:22.852Z",
       "menuFetchedAt": "2026-11-20T21:50:12.072Z",
-      "lastFetchError": null,
+      "lastFetchError": "Webbsida: fetch failed",
       "fetchSource": "Webbsida",
       "rank": 1,
       "imageData": [],
-      "upcomingImageData": []
+      "upcomingImageData": [],
+      "upcomingMenu": null
     },
     {
       "id": "ehns",
@@ -131,11 +132,11 @@
       "imageData": [],
       "imageWeek": 47,
       "imageYear": 2026,
-      "state": "parsed",
-      "snapshot": false,
-      "checkedAt": "2026-11-20T21:50:12.072Z",
+      "state": "snapshot",
+      "snapshot": true,
+      "checkedAt": "2026-11-22T22:30:22.852Z",
       "menuFetchedAt": "2026-11-20T21:50:12.072Z",
-      "lastFetchError": null,
+      "lastFetchError": "Ingen ny verifierad Facebook-meny hittades",
       "rank": 2,
       "upcomingImageData": []
     },
@@ -164,7 +165,7 @@
       "imageYear": 2026,
       "state": "image",
       "snapshot": true,
-      "checkedAt": "2026-11-20T21:50:12.072Z",
+      "checkedAt": "2026-11-22T22:30:22.852Z",
       "menuFetchedAt": "2026-11-20T14:03:59.631Z",
       "lastFetchError": "Ingen ny verifierad Facebook-meny hittades",
       "rank": 3,
@@ -183,7 +184,7 @@
       "daily": false,
       "menu": null,
       "state": "general",
-      "checkedAt": "2026-11-20T21:50:12.072Z",
+      "checkedAt": "2026-11-22T22:30:22.852Z",
       "dessert": "Dessert ingår enligt turistinformationen. Sort anges inte.",
       "includes": "Allmän information – dagens exakta bufférätter och pris är inte bekräftade.",
       "rank": 4,
@@ -203,7 +204,7 @@
       "daily": false,
       "state": "general",
       "menu": null,
-      "checkedAt": "2026-11-20T21:50:12.072Z",
+      "checkedAt": "2026-11-22T22:30:22.852Z",
       "rank": 5,
       "imageData": [],
       "upcomingImageData": []
@@ -222,7 +223,7 @@
       "facebook": "https://www.facebook.com/fyranhuset/",
       "state": "general",
       "menu": null,
-      "checkedAt": "2026-11-20T21:50:12.072Z",
+      "checkedAt": "2026-11-22T22:30:22.852Z",
       "rank": 6,
       "imageData": [],
       "upcomingImageData": []
@@ -286,8 +287,8 @@
       },
       "state": "parsed",
       "snapshot": false,
-      "checkedAt": "2026-11-20T21:50:12.072Z",
-      "menuFetchedAt": "2026-11-20T21:50:12.072Z",
+      "checkedAt": "2026-11-22T22:30:22.852Z",
+      "menuFetchedAt": "2026-11-22T22:30:22.852Z",
       "lastFetchError": null,
       "fetchSource": "WordPress-API",
       "rank": 7,
@@ -307,7 +308,7 @@
       "daily": false,
       "menu": null,
       "state": "general",
-      "checkedAt": "2026-11-20T21:50:12.072Z",
+      "checkedAt": "2026-11-22T22:30:22.852Z",
       "images": [
         "https://www.turbinentidaholm.se/images/2026/05/06/meny-2026-pizza-m.m-sommar-rtt.jpg",
         "https://www.turbinentidaholm.se/images/2026/05/06/meny-2026-sommar-mackor-m.m.-rtt.jpg"
@@ -331,7 +332,7 @@
       "daily": false,
       "state": "general",
       "menu": null,
-      "checkedAt": "2026-11-20T21:50:12.072Z",
+      "checkedAt": "2026-11-22T22:30:22.852Z",
       "rank": 9,
       "imageData": [],
       "upcomingImageData": []
@@ -349,7 +350,7 @@
       "daily": false,
       "state": "general",
       "menu": null,
-      "checkedAt": "2026-11-20T21:50:12.072Z",
+      "checkedAt": "2026-11-22T22:30:22.852Z",
       "rank": 10,
       "imageData": [],
       "upcomingImageData": []
@@ -367,7 +368,7 @@
       "daily": false,
       "state": "general",
       "menu": null,
-      "checkedAt": "2026-11-20T21:50:12.072Z",
+      "checkedAt": "2026-11-22T22:30:22.852Z",
       "rank": 11,
       "imageData": [],
       "upcomingImageData": []
@@ -385,7 +386,7 @@
       "daily": false,
       "state": "general",
       "menu": null,
-      "checkedAt": "2026-11-20T21:50:12.072Z",
+      "checkedAt": "2026-11-22T22:30:22.852Z",
       "rank": 12,
       "imageData": [],
       "upcomingImageData": []
@@ -403,7 +404,7 @@
       "daily": false,
       "state": "general",
       "menu": null,
-      "checkedAt": "2026-11-20T21:50:12.072Z",
+      "checkedAt": "2026-11-22T22:30:22.852Z",
       "rank": 13,
       "imageData": [],
       "upcomingImageData": []
@@ -422,7 +423,7 @@
       "facebook": "https://www.facebook.com/atitathaifood/",
       "state": "general",
       "menu": null,
-      "checkedAt": "2026-11-20T21:50:12.072Z",
+      "checkedAt": "2026-11-22T22:30:22.852Z",
       "rank": 14,
       "imageData": [],
       "upcomingImageData": []
