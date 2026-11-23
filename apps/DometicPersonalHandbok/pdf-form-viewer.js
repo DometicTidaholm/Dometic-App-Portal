@@ -15,6 +15,8 @@ const state = { loading: null, pdf: null, fields: null, pages: [], layers: [], r
 let printStyle = null;
 let printURLs = [];
 let resizeTimer;
+let ignoredPrintTimer;
+let printStarted = false;
 
 function notify(type, detail = {}) {
   if (embedded) window.parent.postMessage({ type, ...detail }, location.origin);
@@ -31,6 +33,15 @@ function clearPrintPages() {
   printStyle?.remove();
   printStyle = null;
   delete document.body.dataset.printReady;
+}
+function finishPrint({ clearPages = true } = {}) {
+  clearTimeout(ignoredPrintTimer);
+  if (clearPages) clearPrintPages();
+  if (!state.printing) return;
+  state.printing = false;
+  printButton.disabled = !state.ready;
+  delete document.body.dataset.printing;
+  notify('pdf-form-print-finished');
 }
 function documentURL() {
   const supplied = parameters.get('file');
@@ -147,6 +158,7 @@ async function renderPages() {
 async function printPDF() {
   if (!state.ready || state.printing || state.destroyed) return;
   state.printing = true;
+  printStarted = false;
   printButton.disabled = true;
   document.body.dataset.printing = 'true';
   notify('pdf-form-printing');
@@ -203,21 +215,31 @@ async function printPDF() {
     notify('pdf-form-print-prepared', { pages: state.pages.length });
     window.focus();
     window.print();
-    // Keep image URLs alive until afterprint (Safari's print() may return early).
+    // Nonblocking print dialogs keep the lock and image URLs until afterprint.
+    // A browser may ignore print() entirely and fire neither lifecycle event.
+    if (state.printing && !printStarted) {
+      ignoredPrintTimer = setTimeout(() => {
+        if (state.printing && !printStarted && !window.matchMedia('print').matches) {
+          // Unlock a suppressed print request without destroying prepared pages.
+          finishPrint({ clearPages: false });
+        }
+      }, 2000);
+    }
   } catch (error) {
     status('Utskriften kunde inte förberedas. Försök igen.', true);
     notify('pdf-form-error', { message: 'Utskriften kunde inte förberedas.' });
-    clearPrintPages();
+    finishPrint();
     console.error('PDF print preparation failed', error);
-  } finally {
-    state.printing = false;
-    printButton.disabled = !state.ready;
-    delete document.body.dataset.printing;
-    notify('pdf-form-print-finished');
   }
 }
 
-window.addEventListener('afterprint', clearPrintPages);
+window.addEventListener('beforeprint', () => {
+  if (state.printing) {
+    printStarted = true;
+    clearTimeout(ignoredPrintTimer);
+  }
+});
+window.addEventListener('afterprint', () => finishPrint());
 window.addEventListener('message', event => {
   if (event.origin === location.origin && event.source === window.parent && event.data?.type === 'print-pdf') void printPDF();
 });
@@ -238,6 +260,7 @@ window.addEventListener('resize', () => {
 window.addEventListener('pagehide', () => {
   state.destroyed = true;
   clearTimeout(resizeTimer);
+  clearTimeout(ignoredPrintTimer);
   clearPrintPages();
   state.layers.forEach(layer => layer.destroy());
   state.layers = [];

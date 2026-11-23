@@ -10,8 +10,9 @@
   <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="stylesheet" href="style.css?v=20261119-rutiner">
-  <script src="app.js?v=20261123-blanketter" defer></script>
-<style>.install-action{margin-left:auto;white-space:nowrap;padding:10px 14px;font-size:12px}.install-tile{cursor:pointer}#install-from-help{margin:10px 0 6px}@media(max-width:720px){.install-action{font-size:11px;padding:9px 10px;margin-left:auto}.portal-link{display:none}} .quick-links{grid-template-columns:repeat(3,minmax(0,1fr))}.mobile-nav{grid-template-columns:repeat(4,minmax(0,1fr))}@media(max-width:720px){.quick-links{grid-template-columns:1fr}.header-nav .nav{padding-left:7px;padding-right:7px}}</style>
+  <script src="app.js?v=20261123-upplarning-formular" defer></script>
+<style>.install-action{margin-left:auto;white-space:nowrap;padding:10px 14px;font-size:12px}.install-tile{cursor:pointer}#install-from-help{margin:10px 0 6px}@media(max-width:720px){.install-action{font-size:11px;padding:9px 10px;margin-left:auto}.portal-link{display:none}} .quick-links{grid-template-columns:repeat(2,minmax(0,1fr))}.mobile-nav{grid-template-columns:repeat(5,minmax(0,1fr))}@media(max-width:720px){.quick-links{grid-template-columns:1fr}.header-nav .nav{padding-left:7px;padding-right:7px}}</style>
+<style>@media(min-width:721px) and (max-width:1200px){.header-inner{flex-wrap:wrap;gap:8px 16px;padding-top:10px;padding-bottom:10px}.header-nav{order:1;width:100%;margin-left:0}.header-inner .portal-link{margin-left:auto}.install-action{margin-left:0}}</style>
 </head>
 <body>
 <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -41,6 +42,7 @@
         <a class="nav" href="#rutiner" data-view="documents">Rutiner <b id="nav-count">–</b></a>
         <a class="nav" href="#policyer" data-view="policies">Policyer <b id="policy-count">–</b></a>
         <a class="nav" href="#blanketter" data-view="forms">Blanketter <b id="forms-count">–</b></a>
+        <a class="nav" href="#upplarningsdokument" data-view="training">Upplärningsdokument <b id="training-count">–</b></a>
       </nav>
       <a class="portal-link" href="../../">← Appportalen</a>
       <button id="install-app" class="primary install-action" type="button">Installera app</button>
@@ -48,17 +50,18 @@
     </div>
   </header>
   <main id="main" tabindex="-1">
-    <div class="global-search" role="search"><div class="search-box"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><label class="sr-only" for="search">Sök bland rutiner, policyer och blanketter</label><input id="search" type="search" placeholder="Sök bland rutiner, policyer och blanketter…" autocomplete="off"><kbd aria-hidden="true">/</kbd></div></div>
+    <div class="global-search" role="search"><div class="search-box"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><label class="sr-only" for="search">Sök bland rutiner, policyer, blanketter och upplärningsdokument</label><input id="search" type="search" placeholder="Sök bland rutiner, policyer, blanketter och upplärningsdokument…" autocomplete="off"><kbd aria-hidden="true">/</kbd></div></div>
     <section id="overview" aria-labelledby="overview-title">
       <div class="welcome-row">
-        <div><span class="eyebrow">FÖR DIG SOM JOBBAR I TIDAHOLM</span><h1 id="overview-title">Personalhandbok</h1><p class="page-intro">Rutiner, blanketter och information för din arbetsdag.</p></div>
+        <div><span class="eyebrow">FÖR DIG SOM JOBBAR I TIDAHOLM</span><h1 id="overview-title">Personalhandbok</h1><p class="page-intro">Rutiner, policyer, blanketter och upplärningsdokument för din arbetsdag.</p></div>
         <span class="date-label" id="today-date"></span>
       </div>
       <div class="load-status"><p id="home-status" role="status" aria-live="polite">Läser in handboken…</p><button class="text-button" id="home-retry" hidden>Försök igen</button></div>
       <div class="quick-links" aria-label="Genvägar">
         <a class="quick-card" data-view="documents" href="#rutiner"><span class="quick-icon tone-blue"><svg class="icon" aria-hidden="true"><use href="#i-documents"/></svg></span><span class="quick-copy"><strong>Rutiner <b id="home-doc-count">–</b></strong><span>Rutiner och information</span></span><svg class="icon quick-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <a class="quick-card" data-view="policies" href="#policyer"><span class="quick-icon tone-blue"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span><span class="quick-copy"><strong>Policyer <b id="home-policy-count">–</b></strong><span>Policyer och Code of Conduct</span></span></a>
-        <a class="quick-card" data-view="forms" href="#blanketter"><span class="quick-icon tone-teal"><svg class="icon" aria-hidden="true"><use href="#i-forms"/></svg></span><span class="quick-copy"><strong>Blanketter <b id="home-form-count">–</b></strong><span>Hitta och hämta blanketter</span></span><svg class="icon quick-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="quick-card" data-view="forms" href="#blanketter"><span class="quick-icon tone-teal"><svg class="icon" aria-hidden="true"><use href="#i-forms"/></svg></span><span class="quick-copy"><strong>Blanketter <b id="home-form-count">–</b></strong><span>Fyll i och skriv ut blanketter</span></span><svg class="icon quick-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="quick-card" data-view="training" href="#upplarningsdokument"><span class="quick-icon tone-violet"><svg class="icon" aria-hidden="true"><use href="#i-documents"/></svg></span><span class="quick-copy"><strong>Upplärningsdokument <b id="home-training-count">–</b></strong><span>Checklistor och instruktioner</span></span></a>
       </div>
       <div class="overview-grid">
         <div class="overview-main">
@@ -71,7 +74,7 @@
     </section>
     <section id="library" class="library" aria-labelledby="section-title" hidden>
       <div class="section-head"><div><span class="eyebrow" id="section-eyebrow">PERSONALHANDBOK</span><h1 id="section-title">Rutiner</h1><p class="page-intro" id="section-description">Rutiner och information för din arbetsdag.</p></div><span class="total-pill" id="total">– rutiner</span></div>
-      <div id="forms-info" class="forms-info" hidden><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg><p>Blanketter märkta Ifyllbar kan fyllas i i en PDF-läsare. Övriga skriver du ut och fyller i för hand. Inga uppgifter sparas av appen.</p></div>
+      <div id="forms-info" class="forms-info" hidden><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg><p>Blanketter märkta Ifyllbar fyller du i här i appen och skriver ut. Övriga fylls i för hand efter utskrift. Uppgifterna tas bort när du stänger blanketten.</p></div>
       <div class="toolbar"><div class="select-row"><label class="sr-only" for="format">Filtyp</label><select id="format"><option value="all">Alla filtyper</option><option value="word">Word</option><option value="pdf">PDF</option><option value="excel">Excel</option><option value="powerpoint">PowerPoint</option></select><label class="sr-only" for="sort">Sortering</label><select id="sort"><option value="az">Namn A–Ö</option><option value="recent">Senast uppdaterade</option></select></div></div>
       <div id="categories" class="categories" role="group" aria-label="Filtrera kategori"></div>
       <div class="list-toolbar"><p id="results-count" role="status" aria-live="polite">Läser in dokument…</p><button class="text-button" id="clear-filters" hidden>Rensa filter</button></div>
@@ -80,10 +83,10 @@
     </section>
     <footer><span>DOMETIC <span class="footer-dot">·</span> TIDAHOLM</span><button class="text-button install-help">Om personalhandboken</button></footer>
   </main>
-  <nav class="mobile-nav" aria-label="Mobilmeny"><a href="#oversikt" class="active" data-view="home"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>Översikt</a><a href="#rutiner" data-view="documents"><svg class="icon" aria-hidden="true"><use href="#i-documents"/></svg>Rutiner</a><a href="#policyer" data-view="policies"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>Policyer</a><a href="#blanketter" data-view="forms"><svg class="icon" aria-hidden="true"><use href="#i-forms"/></svg>Blanketter</a></nav>
+  <nav class="mobile-nav" aria-label="Mobilmeny"><a href="#oversikt" class="active" data-view="home"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>Översikt</a><a href="#rutiner" data-view="documents"><svg class="icon" aria-hidden="true"><use href="#i-documents"/></svg>Rutiner</a><a href="#policyer" data-view="policies"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>Policyer</a><a href="#blanketter" data-view="forms"><svg class="icon" aria-hidden="true"><use href="#i-forms"/></svg>Blanketter</a><a href="#upplarningsdokument" data-view="training"><svg class="icon" aria-hidden="true"><use href="#i-documents"/></svg>Upplärning</a></nav>
 </div>
 <dialog id="reader" aria-labelledby="reader-title"><div class="reader-head"><button id="close-reader" class="secondary">← Tillbaka</button></div><div class="reader-body"><span class="eyebrow" id="reader-meta"></span><h2 id="reader-title"></h2><div class="reader-actions"><button id="print-pdf" class="primary" type="button" hidden>Skriv ut</button><a id="download" class="primary" download>Hämta original</a><button id="share" class="secondary">Kopiera länk</button></div><p class="reading-note" id="reader-note">Textvy · Bilder, diagram och fullständig formatering visas i originalfilen.</p><div id="reader-content"></div></div></dialog>
-<dialog id="help" aria-labelledby="help-title"><button id="close-help" class="close" aria-label="Stäng"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button><span class="eyebrow">PERSONALHANDBOK</span><h2 id="help-title">Det du behöver i arbetsdagen.</h2><p>På översikten hittar du genvägar och kategorier. Det gemensamma sökfältet söker bland både rutiner, policyer och blanketter medan du skriver.</p><h3>Lägg till på hemskärmen</h3><p id="install-instructions">Välj Installera app för att komma igång.</p><button id="install-from-help" class="primary" type="button">Installera app</button><p><strong>iPhone:</strong> öppna i Safari, tryck på Dela och välj Lägg till på hemskärmen.</p><p><strong>Android:</strong> öppna webbläsarens meny och välj Installera app eller Lägg till på startskärmen.</p><h3>Rutiner och blanketter</h3><p>Word (.docx) och PowerPoint (.pptx) får en sökbar textvy. PDF, Excel och äldre Officefiler kan sökas på namn och kategori och hämtas i original.</p></dialog>
+<dialog id="help" aria-labelledby="help-title"><button id="close-help" class="close" aria-label="Stäng"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button><span class="eyebrow">PERSONALHANDBOK</span><h2 id="help-title">Det du behöver i arbetsdagen.</h2><p>På översikten hittar du genvägar och kategorier. Det gemensamma sökfältet söker bland rutiner, policyer, blanketter och upplärningsdokument medan du skriver.</p><h3>Lägg till på hemskärmen</h3><p id="install-instructions">Välj Installera app för att komma igång.</p><button id="install-from-help" class="primary" type="button">Installera app</button><p><strong>iPhone:</strong> öppna i Safari, tryck på Dela och välj Lägg till på hemskärmen.</p><p><strong>Android:</strong> öppna webbläsarens meny och välj Installera app eller Lägg till på startskärmen.</p><h3>Rutiner och blanketter</h3><p>Rutiner och policyer kan läsas och hämtas i original. Upplärningsdokument finns som vanliga PDF:er. Blanketter öppnas för ifyllning och utskrift; de har ingen nedladdningsknapp i appen.</p></dialog>
 <div id="toast" role="status" aria-live="polite"></div>
 <noscript><p class="noscript">Aktivera JavaScript för att söka och läsa personalhandboken.</p></noscript>
 </body>

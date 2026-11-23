@@ -1,12 +1,13 @@
 'use strict';
 const $ = selector => document.querySelector(selector);
 const state = {docs:[],view:'home',category:'Alla',query:'',format:'all',sort:'az',loaded:false,error:false,current:null,highlight:null};
-const pageNames = {home:'oversikt',documents:'rutiner',forms:'blanketter',policies:'policyer',search:'sok'};
+const pageNames = {home:'oversikt',documents:'rutiner',forms:'blanketter',policies:'policyer',training:'upplarningsdokument',search:'sok'};
 let returnHash='#oversikt', suppressReaderClose=false;
 const normalize = value => String(value??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('sv');
 const el = (tag,cls,text) => {const node=document.createElement(tag);if(cls)node.className=cls;if(text!==undefined)node.textContent=text;return node;};
 const isForm = doc => doc.kind==='form'||(!doc.kind&&/^(blanketter\/|dokument\/blanketter\/)/i.test(doc.path));
 const isPolicy = doc => !isForm(doc)&&doc.category==='Policyer';
+const isTraining = doc => doc.kind==='training'||doc.category==='Upplärningsdokument';
 const fileUrl = doc => doc.path.split('/').map(encodeURIComponent).join('/')+(doc.sha256?'?v='+encodeURIComponent(doc.sha256.slice(0,16)):'');
 const byName = (a,b) => a.title.localeCompare(b.title,'sv');
 const byRecent = (a,b) => (b.updated||'').localeCompare(a.updated||'')||byName(a,b);
@@ -17,7 +18,7 @@ function toast(message){$('#toast').textContent=message;$('#toast').classList.ad
 function pageHash(view=state.view,filters=state){const params=new URLSearchParams();if(filters.query)params.set('q',filters.query);if(filters.category&&filters.category!=='Alla')params.set('kategori',filters.category);if(filters.format&&filters.format!=='all')params.set('filtyp',filters.format);if(filters.sort&&filters.sort!=='az')params.set('sort',filters.sort);return '#'+pageNames[view]+(params.size?'?'+params:'');}
 function navigate(view,filters={}){const next=pageHash(view,{query:'',category:'Alla',format:'all',sort:'az',...filters});if(location.hash!==next)history.pushState({handbookPage:true},'',next);route();window.scrollTo({top:0,behavior:'instant'});}
 function updateFilters(){const next=pageHash();history.replaceState({handbookPage:true},'',next);returnHash=next;render();}
-function viewDocuments(){if(state.error)return [];if(state.view==='forms')return state.docs.filter(isForm);if(state.view==='policies')return state.docs.filter(isPolicy);if(state.view==='search')return state.docs;return state.docs.filter(d=>!isForm(d)&&!isPolicy(d));}
+function viewDocuments(){if(state.error)return [];if(state.view==='forms')return state.docs.filter(isForm);if(state.view==='policies')return state.docs.filter(isPolicy);if(state.view==='training')return state.docs.filter(isTraining);if(state.view==='search')return state.docs;return state.docs.filter(d=>!isForm(d)&&!isPolicy(d)&&!isTraining(d));}
 function categoryButtons(base){const counts=new Map();base.forEach(doc=>counts.set(doc.category,(counts.get(doc.category)||0)+1));const names=['Alla',...Array.from(counts.keys()).sort((a,b)=>a.localeCompare(b,'sv'))];$('#categories').replaceChildren(...names.map(name=>{const button=el('button','chip'+(state.category===name?' active':''),name);button.type='button';button.setAttribute('aria-pressed',String(state.category===name));button.append(el('span','',name==='Alla'?String(base.length):String(counts.get(name))));button.onclick=()=>{state.category=name;updateFilters();};return button;}));}
 function matches(doc){const type=doc.format.toLowerCase();const formats={word:['doc','docx'],powerpoint:['ppt','pptx'],excel:['xls','xlsx'],pdf:['pdf']};return (state.category==='Alla'||doc.category===state.category)&&(state.format==='all'||formats[state.format]?.includes(type))&&normalize(state.query).split(/\s+/).filter(Boolean).every(word=>normalize(doc.title+' '+doc.category+' '+(doc.text||'')).includes(word));}
 function documentCard(doc,compact=false){
@@ -32,17 +33,16 @@ function documentCard(doc,compact=false){
  if(isForm(doc)&&state.view==='search')copy.append(el('span','type-badge','Blankett'));
  if(!compact&&state.query.trim()){const term=normalize(state.query).trim().split(/\s+/)[0];const text=doc.text||'';const at=normalize(text).indexOf(term);if(at>=0){const start=Math.max(0,at-40);copy.append(el('p','snippet',(start?'…':'')+text.slice(start,start+160)+(text.length>start+160?'…':'')));}}
  open.append(copy);open.onclick=()=>openDocument(doc.id);card.append(open);
- if(isForm(doc)&&!compact&&doc.id!=='pers021-ledighetsansokan'){const download=el('a','download-link','Hämta');download.prepend(icon('download'));download.href=fileUrl(doc);download.download=doc.path.split('/').pop();download.setAttribute('aria-label','Hämta blankett: '+doc.title);card.append(download);}
  return card;
 }
 function renderOverview(){
- const routines=state.docs.filter(doc=>!isForm(doc)&&!isPolicy(doc));const forms=state.docs.filter(isForm);const policies=state.docs.filter(isPolicy);
- for(const [selector,count] of [['#nav-count',routines.length],['#policy-count',policies.length],['#forms-count',forms.length],['#home-doc-count',routines.length],['#home-policy-count',policies.length],['#home-form-count',forms.length]])$(selector).textContent=count;
+ const routines=state.docs.filter(doc=>!isForm(doc)&&!isPolicy(doc)&&!isTraining(doc));const forms=state.docs.filter(isForm);const policies=state.docs.filter(isPolicy);const training=state.docs.filter(isTraining);
+ for(const [selector,count] of [['#nav-count',routines.length],['#policy-count',policies.length],['#forms-count',forms.length],['#training-count',training.length],['#home-doc-count',routines.length],['#home-policy-count',policies.length],['#home-form-count',forms.length],['#home-training-count',training.length]])$(selector).textContent=count;
  $('#home-status').hidden=state.loaded&&!state.error;$('#home-status').textContent=state.error?'Dokumenten kunde inte hämtas. Kontrollera din anslutning.':'Läser in handboken…';$('#home-retry').hidden=!state.error;$('#home-retry').disabled=!state.loaded;
  const counts=new Map();state.docs.forEach(doc=>counts.set(doc.category,(counts.get(doc.category)||0)+1));
  $('#home-categories').replaceChildren(...Array.from(counts.entries()).sort(([a],[b])=>a.localeCompare(b,'sv')).map(([name,count],index)=>{
   const key=normalize(name);const style=key.includes('arbetsmiljo')?['shield','blue']:key.includes('halsa')||key.includes('forman')?['heart','teal']:key.includes('lon')||key.includes('ersattning')?['wallet','amber']:['folder',['blue','teal','amber','violet'][index%4]];
-  const button=el('button','category-card tone-'+style[1]);button.type='button';const pictogram=el('span','category-icon');pictogram.append(icon(style[0]));const copy=el('span','category-copy');copy.append(el('strong','',name),el('span','',count+' dokument'));const arrow=el('span','category-arrow');arrow.append(icon('chevron'));button.append(pictogram,copy,arrow);button.onclick=()=>navigate(name==='Policyer'?'policies':name==='Blanketter'?'forms':'documents');return button;
+  const button=el('button','category-card tone-'+style[1]);button.type='button';const pictogram=el('span','category-icon');pictogram.append(icon(style[0]));const copy=el('span','category-copy');copy.append(el('strong','',name),el('span','',count+' dokument'));const arrow=el('span','category-arrow');arrow.append(icon('chevron'));button.append(pictogram,copy,arrow);button.onclick=()=>navigate(name==='Policyer'?'policies':name==='Blanketter'?'forms':name==='Upplärningsdokument'?'training':'documents');return button;
  }));
 }
 function render(){
@@ -50,32 +50,37 @@ function render(){
  $('#overview').hidden=state.view!=='home';$('#library').hidden=state.view==='home';renderOverview();
  if($('#search').value!==state.query)$('#search').value=state.query;
  if(state.view==='home')return;
- const info={documents:['PERSONALHANDBOKEN','Rutiner','Rutiner och information för din arbetsdag.'],policies:['PERSONALHANDBOKEN','Policyer','Policyer och Code of Conduct.'],forms:['FYLL I OCH SKRIV UT','Blanketter','Öppna eller hämta blanketter för ifyllning och utskrift.'],search:['SÖK I HELA PERSONALAPPEN','Sökresultat','Sök bland rutiner, policyer och blanketter.']}[state.view];
+ const info={documents:['PERSONALHANDBOKEN','Rutiner','Rutiner och information för din arbetsdag.'],policies:['PERSONALHANDBOKEN','Policyer','Policyer och Code of Conduct.'],forms:['FYLL I OCH SKRIV UT','Blanketter','Fyll i blanketten direkt på skärmen och skriv ut.'],training:['INTRODUKTION OCH UPPLÄRNING','Upplärningsdokument','Checklistor och instruktioner för introduktion och upplärning.'],search:['SÖK I HELA PERSONALAPPEN','Sökresultat','Sök bland rutiner, policyer, blanketter och upplärningsdokument.']}[state.view];
  $('#section-eyebrow').textContent=info[0];$('#section-title').textContent=info[1];$('#section-description').textContent=info[2];$('#forms-info').hidden=state.view!=='forms';
  if($('#search').value!==state.query)$('#search').value=state.query;$('#format').value=state.format;$('#sort').value=state.sort;
  const base=viewDocuments();const docs=base.filter(matches).sort(state.sort==='recent'?byRecent:byName);categoryButtons(base);
- const noun=state.view==='policies'?'policyer':state.view==='forms'?'blanketter':state.view==='search'?'filer':'rutiner';$('#total').textContent=base.length+' '+noun;
- $('#results-count').textContent=!state.loaded?'Läser in…':state.error?'Dokumenten kunde inte hämtas':docs.length+(state.view==='policies'?(docs.length===1?' policy':' policyer'):state.view==='forms'?(docs.length===1?' blankett':' blanketter'):state.view==='search'?(docs.length===1?' fil':' filer'):(docs.length===1?' rutin':' rutiner'))+(state.query?' matchar sökningen':'');
+ const noun=state.view==='policies'?'policyer':state.view==='forms'?'blanketter':state.view==='training'?'upplärningsdokument':state.view==='search'?'filer':'rutiner';$('#total').textContent=base.length+' '+noun;
+ $('#results-count').textContent=!state.loaded?'Läser in…':state.error?'Dokumenten kunde inte hämtas':docs.length+(state.view==='policies'?(docs.length===1?' policy':' policyer'):state.view==='forms'?(docs.length===1?' blankett':' blanketter'):state.view==='training'?' upplärningsdokument':state.view==='search'?(docs.length===1?' fil':' filer'):(docs.length===1?' rutin':' rutiner'))+(state.query?' matchar sökningen':'');
  $('#documents').replaceChildren(...docs.map(doc=>documentCard(doc)));const filtered=Boolean(state.query||state.category!=='Alla'||state.format!=='all');$('#clear-filters').hidden=!filtered;
  $('#empty').hidden=!state.loaded||docs.length>0;$('#reset').hidden=true;
  if(state.error){$('#empty-title').textContent='Handboken kunde inte hämtas';$('#empty-text').textContent='Kontrollera din anslutning och försök igen.';$('#reset').hidden=false;$('#reset').textContent='Försök igen';}
- else if(state.view==='forms'&&!base.length){$('#empty-title').textContent='Inga blanketter publicerade ännu';$('#empty-text').textContent='Här samlas blanketter som du kan öppna och hämta. De visas när de har lagts till.';}
+ else if(state.view==='forms'&&!base.length){$('#empty-title').textContent='Inga blanketter publicerade ännu';$('#empty-text').textContent='Här samlas blanketter som du kan öppna och skriva ut.';}
  else if(!base.length){$('#empty-title').textContent='Inga dokument publicerade ännu';$('#empty-text').textContent='Här samlas rutiner och information när de har lagts till.';}
  else{$('#empty-title').textContent=state.view==='forms'?'Inga blanketter hittades':'Inga dokument hittades';$('#empty-text').textContent='Prova ett annat sökord eller rensa dina filter.';$('#reset').hidden=false;$('#reset').textContent='Rensa filter';}
 }
 function openDocument(id,highlight=null){const hash='#dokument/'+id;state.highlight=highlight;const origin=state.current?(history.state?.readerOrigin||returnHash):pageHash();if(location.hash!==hash){const record={handbookReader:true,readerOrigin:origin};if(state.current)history.replaceState(record,'',hash);else history.pushState(record,'',hash);}returnHash=origin;route();}
 function renderReader(doc){
  state.current=doc;$('#reader-title').textContent=doc.title;$('#reader-meta').textContent=[isForm(doc)?'Blankett':null,doc.category,doc.format,formatDate(doc.updated)].filter(Boolean).join(' · ');
- $('#download').href=fileUrl(doc);$('#download').download=doc.path.split('/').pop();$('#download').textContent=isForm(doc)?'Hämta blankett ↗':'Hämta original ↗';$('#share').textContent='Kopiera länk';
- $('#reader-note').textContent=isForm(doc)?'Hämta originalfilen för att fylla i blanketten. Textvyn visar inte alla fält och all formatering.':'Textvy · Bilder, diagram och fullständig formatering visas i originalfilen.';
+ $('#download').href=isForm(doc)?'#':fileUrl(doc);$('#download').download=doc.path.split('/').pop();$('#download').textContent='Hämta original';$('#share').textContent='Kopiera länk';
+ $('#reader-note').textContent=isForm(doc)?'Öppna blanketten och skriv ut när du är klar.':'Textvy · Bilder, diagram och fullständig formatering visas i originalfilen.';
  if(isForm(doc)&&doc.format.toUpperCase()==='PDF'){
-  $('#download').hidden=doc.id==='pers021-ledighetsansokan';$('#share').hidden=doc.id==='pers021-ledighetsansokan';$('#print-pdf').hidden=false;
-  $('#reader-note').textContent=doc.fillable?'Fyll i original-PDF:en och välj Skriv ut. Stäng blanketten när du är klar. Inga uppgifter sparas av handboken.':'Skriv ut blanketten och fyll i den för hand. Den här PDF:en saknar ifyllbara formulärfält.';
+  $('#download').hidden=true;$('#share').hidden=true;$('#print-pdf').hidden=false;$('#print-pdf').disabled=true;
+  $('#reader-note').textContent=doc.fillable?'Fyll i blanketten här och välj Skriv ut. Uppgifterna tas bort när du stänger blanketten.':'Skriv ut blanketten och fyll i den för hand. Den här PDF:en saknar ifyllbara formulärfält.';
   const content=$('#reader-content');content.replaceChildren();
-  const frame=document.createElement('iframe');frame.src=fileUrl(doc)+'#toolbar=1&navpanes=0&scrollbar=1';frame.title='Original-PDF: '+doc.title;frame.className='kiosk-form-frame';frame.setAttribute('referrerpolicy','no-referrer');content.append(frame);
+  const frame=document.createElement('iframe');const params=new URLSearchParams({file:fileUrl(doc),title:doc.title,embedded:'1'});frame.src='pdf-form-viewer.html?'+params;frame.title='Blankett: '+doc.title;frame.className='kiosk-form-frame';frame.dataset.formViewer='true';frame.setAttribute('referrerpolicy','no-referrer');content.append(frame);
   if(!$('#reader').open)$('#reader').showModal();$('#reader').scrollTop=0;state.highlight=null;return;
  }
- $('#download').hidden=false;$('#share').hidden=false;$('#print-pdf').hidden=true;
+ $('#download').hidden=isForm(doc);$('#share').hidden=isForm(doc);$('#print-pdf').hidden=true;$('#print-pdf').disabled=false;
+ if(isTraining(doc)&&doc.format.toUpperCase()==='PDF'){
+  $('#reader-note').textContent='Upplärningsdokument i PDF-format. Dokumentet kan läsas och skrivas ut.';
+  const content=$('#reader-content');content.replaceChildren();const frame=document.createElement('iframe');frame.src=fileUrl(doc)+'#toolbar=1&navpanes=0&scrollbar=1';frame.title=doc.title;frame.className='kiosk-form-frame';frame.setAttribute('referrerpolicy','no-referrer');content.append(frame);
+  if(!$('#reader').open)$('#reader').showModal();$('#reader').scrollTop=0;state.highlight=null;return;
+ }
  const content=$('#reader-content');content.replaceChildren();if(doc.warning)content.append(el('p','reading-note',doc.warning));
  for(const [index,block] of (doc.blocks||[]).entries()){const matched=state.highlight?.id===doc.id&&state.highlight.index===index;if(block.type==='table'){const wrap=el('div','table-wrap');const table=el('table');table.setAttribute('aria-label','Tabell från '+doc.title);for(const row of block.rows){const tr=el('tr');for(const cell of row)tr.append(el('td','',cell));table.append(tr);}wrap.append(table);if(matched)wrap.classList.add('reader-match');content.append(wrap);}else{const node=el(block.type==='heading'?'h3':'p');if(matched){node.classList.add('reader-match');node.textContent=block.text;}else node.textContent=block.text;content.append(node);}}
  if(!$('#reader').open)$('#reader').showModal();const matchNode=content.querySelector('.reader-match');if(matchNode)requestAnimationFrame(()=>matchNode.scrollIntoView({block:'center'}));else $('#reader').scrollTop=0;state.highlight=null;
@@ -88,7 +93,7 @@ function route(){
   const doc=state.docs.find(item=>item.id===match[1]);
   if(!doc){toast('Dokumentet finns inte längre i handboken.');history.replaceState({handbookPage:true},'',returnHash);route();return;}
   const origin=history.state?.readerOrigin;
-  if(origin){returnHash=origin;parsePage(origin);}else if(!state.current){parsePage(isForm(doc)?'#blanketter':'#dokument');returnHash=pageHash();}
+  if(origin){returnHash=origin;parsePage(origin);}else if(!state.current){parsePage(isForm(doc)?'#blanketter':isTraining(doc)?'#upplarningsdokument':isPolicy(doc)?'#policyer':'#rutiner');returnHash=pageHash();}
   render();renderReader(doc);return;
  }
  if($('#reader').open){$('#reader-content').replaceChildren();suppressReaderClose=true;$('#reader').close();}state.current=null;
@@ -107,7 +112,8 @@ function clearFilters(){state.query='';state.category='Alla';state.format='all';
 $('#clear-filters').onclick=clearFilters;$('#reset').onclick=()=>state.error?load():clearFilters();$('#home-retry').onclick=load;
 $('#close-reader').onclick=()=>$('#reader').close();
 $('#reader').addEventListener('close',()=>{$('#reader-content').replaceChildren();if(suppressReaderClose){suppressReaderClose=false;return;}state.current=null;if(location.hash.startsWith('#dokument/')){if(history.state?.handbookReader&&history.state.readerOrigin)history.back();else{history.replaceState({handbookPage:true},'',returnHash);route();}}});
-$('#print-pdf').onclick=()=>{const frame=$('#reader-content iframe.kiosk-form-frame');if(!frame)return;try{frame.contentWindow.focus();frame.contentWindow.print();}catch(error){toast('Utskrift kunde inte startas automatiskt. Använd skrivarikonen i PDF-visaren.');}};
+$('#print-pdf').onclick=()=>{const frame=$('#reader-content iframe[data-form-viewer]');if(!frame)return;frame.contentWindow.postMessage({type:'print-pdf'},location.origin);};
+window.addEventListener('message',event=>{const frame=$('#reader-content iframe[data-form-viewer]');if(!frame||event.origin!==location.origin||event.source!==frame.contentWindow)return;const type=event.data?.type;if(type==='pdf-form-ready'||type==='pdf-form-print-finished'){$('#print-pdf').disabled=false;$('#print-pdf').textContent='Skriv ut';}else if(type==='pdf-form-loading'||type==='pdf-form-printing'){$('#print-pdf').disabled=true;$('#print-pdf').textContent=type==='pdf-form-printing'?'Förbereder utskrift…':'Skriv ut';}else if(type==='pdf-form-error'){$('#print-pdf').disabled=true;$('#print-pdf').textContent='Skriv ut';toast(event.data.message||'Blanketten kunde inte öppnas. Stäng den och försök igen.');}});
 $('#share').onclick=async()=>{try{await navigator.clipboard.writeText(location.href);$('#share').textContent='Länk kopierad';setTimeout(()=>$('#share').textContent='Kopiera länk',2000);}catch{$('#share').textContent='Kopiera adressen i adressfältet';}};
 let installPrompt=null;
 const standalone=()=>window.matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
@@ -133,7 +139,7 @@ if(standalone()){$('#install-app').hidden=true;$('#install-tile').hidden=true;}
 document.querySelectorAll('.install-help').forEach(button=>button.onclick=()=>$('#help').showModal());$('#close-help').onclick=()=>$('#help').close();
 document.querySelectorAll('a[href="#main"]').forEach(link=>link.addEventListener('click',event=>{event.preventDefault();$('#main').focus();$('#main').scrollIntoView({block:'start'});}));
 window.addEventListener('popstate',route);window.addEventListener('hashchange',route);
-document.addEventListener('keydown',event=>{if(event.key==='/'&&!['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)&&!document.querySelector('dialog[open]')){event.preventDefault();$('#search').focus();}});
+document.addEventListener('keydown',event=>{if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='p'&&state.current&&isForm(state.current)) {event.preventDefault();if(!$('#print-pdf').disabled)$('#print-pdf').click();return;}if(event.key==='/'&&!['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)&&!document.querySelector('dialog[open]')){event.preventDefault();$('#search').focus();}});
 $('#today-date').textContent=new Date().toLocaleDateString('sv-SE',{weekday:'long',day:'numeric',month:'long'});
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).catch(()=>{});
 parsePage(location.hash);load();
