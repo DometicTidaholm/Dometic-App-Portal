@@ -2,6 +2,10 @@ name: Update Lunchkollen menus
 on:
   workflow_dispatch:
   schedule:
+    # Extra scans at 06:00, 07:00 and 08:00 on Mondays, Swedish local time.
+    # A named time zone keeps these times fixed across daylight-saving changes.
+    - cron: '0 6,7,8 * * 1'
+      timezone: 'Europe/Stockholm'
     - cron: '17 5-14 * * 1-5'
     - cron: '17 17 * * 0'
   push:

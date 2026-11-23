@@ -8,7 +8,7 @@ The first six restaurants accept Dometic lunch coupons according to Martin's sup
 
 ## Updates
 
-`lunchkollen-refresh.yml` runs at minute 17 each hour from 05:00 through 14:00 UTC on weekdays, and at 17:17 UTC on Sundays. GitHub schedules may be delayed and can become inactive after 60 days without repository activity. Manual runs are available from Actions. The update commits data.json and explicitly requests a Pages build, because GITHUB_TOKEN commits do not trigger Pages builds on their own.
+`lunchkollen-refresh.yml` adds early Monday scans at **06:00, 07:00 and 08:00 Europe/Stockholm**, including automatic summer/winter time adjustment. The existing scans remain at minute 17 each hour from 05:00 through 14:00 UTC on weekdays, and at 17:17 UTC on Sundays. GitHub schedules may be delayed and can become inactive after 60 days without repository activity. Manual runs are available from Actions. The update commits data.json and explicitly requests a Pages build, because GITHUB_TOKEN commits do not trigger Pages builds on their own.
 
 Jives and Helliden: text menus are read from the original websites. Facebook: known current-week posts are read through public embeds; the updater also looks for numeric and pfbid post links through the public page, mobile page and public Page Plugin timeline, then validates the ISO week and publication date. Facebook public access is not guaranteed, so a new post may still require updating the known post reference in scripts/sources.mjs. Unverified old menus remain hidden for the current week. If no current menu is available, the app links to the restaurant's Facebook **profile/page**, not a stale weekly post. A copy-link fallback is available when the Facebook mobile app opens its home feed.
 
