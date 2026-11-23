@@ -7,7 +7,7 @@ const normalize = value => String(value??'').normalize('NFD').replace(/[\u0300-\
 const el = (tag,cls,text) => {const node=document.createElement(tag);if(cls)node.className=cls;if(text!==undefined)node.textContent=text;return node;};
 const isForm = doc => doc.kind==='form'||(!doc.kind&&/^(blanketter\/|dokument\/blanketter\/)/i.test(doc.path));
 const isPolicy = doc => !isForm(doc)&&doc.category==='Policyer';
-const fileUrl = doc => doc.path.split('/').map(encodeURIComponent).join('/');
+const fileUrl = doc => doc.path.split('/').map(encodeURIComponent).join('/')+(doc.sha256?'?v='+encodeURIComponent(doc.sha256.slice(0,16)):'');
 const byName = (a,b) => a.title.localeCompare(b.title,'sv');
 const byRecent = (a,b) => (b.updated||'').localeCompare(a.updated||'')||byName(a,b);
 function formatDate(value){if(!value)return '';const date=new Date(value+'T12:00:00');return Number.isNaN(date.getTime())?'':date.toLocaleDateString('sv-SE',{day:'numeric',month:'short',year:'numeric'});}
@@ -25,9 +25,9 @@ function documentCard(doc,compact=false){
  const open=el('button','doc-open');open.type='button';open.setAttribute('aria-label','Öppna '+doc.title);
  const type=doc.format.toUpperCase();const kind=type.startsWith('PPT')?'ppt':type.startsWith('XLS')?'excel':type==='PDF'?'pdf':'word';
  open.append(el('span','file-icon '+kind,kind==='ppt'?'P':kind==='excel'?'X':kind==='pdf'?'PDF':'W'));
- const copy=el('div','doc-copy');const code=doc.title.match(/^(PERS\s*\d+)\s*[-–—]?\s*/i);const title=code?doc.title.slice(code[0].length)||doc.title:doc.title;
+ const copy=el('div','doc-copy');const code=doc.title.match(/^(PERS\s*(?:Blankett\s*)?\d+)\s*[-–—]?\s*/i);const title=code?doc.title.slice(code[0].length)||doc.title:doc.title;
  copy.append(el('strong','',title));
- const meta=[code?.[1],doc.category,doc.format];if(isForm(doc)){const size=fileSize(doc.size);if(size)meta.push(size);}else if(doc.updated)meta.push(formatDate(doc.updated));
+ const meta=[code?.[1],doc.category,doc.format];if(isForm(doc)){if(typeof doc.fillable==='boolean')meta.push(doc.fillable?'Ifyllbar':'För utskrift');const size=fileSize(doc.size);if(size)meta.push(size);}else if(doc.updated)meta.push(formatDate(doc.updated));
  copy.append(el('p','',meta.filter(Boolean).join(' · ')));
  if(isForm(doc)&&state.view==='search')copy.append(el('span','type-badge','Blankett'));
  if(!compact&&state.query.trim()){const term=normalize(state.query).trim().split(/\s+/)[0];const text=doc.text||'';const at=normalize(text).indexOf(term);if(at>=0){const start=Math.max(0,at-40);copy.append(el('p','snippet',(start?'…':'')+text.slice(start,start+160)+(text.length>start+160?'…':'')));}}
@@ -50,7 +50,7 @@ function render(){
  $('#overview').hidden=state.view!=='home';$('#library').hidden=state.view==='home';renderOverview();
  if($('#search').value!==state.query)$('#search').value=state.query;
  if(state.view==='home')return;
- const info={documents:['PERSONALHANDBOKEN','Rutiner','Rutiner och information för din arbetsdag.'],policies:['PERSONALHANDBOKEN','Policyer','Policyer och Code of Conduct.'],forms:['FYLL I OCH SKRIV UT','Blanketter','Öppna blanketten, fyll i på skärmen och skriv ut.'],search:['SÖK I HELA PERSONALAPPEN','Sökresultat','Sök bland rutiner, policyer och blanketter.']}[state.view];
+ const info={documents:['PERSONALHANDBOKEN','Rutiner','Rutiner och information för din arbetsdag.'],policies:['PERSONALHANDBOKEN','Policyer','Policyer och Code of Conduct.'],forms:['FYLL I OCH SKRIV UT','Blanketter','Öppna eller hämta blanketter för ifyllning och utskrift.'],search:['SÖK I HELA PERSONALAPPEN','Sökresultat','Sök bland rutiner, policyer och blanketter.']}[state.view];
  $('#section-eyebrow').textContent=info[0];$('#section-title').textContent=info[1];$('#section-description').textContent=info[2];$('#forms-info').hidden=state.view!=='forms';
  if($('#search').value!==state.query)$('#search').value=state.query;$('#format').value=state.format;$('#sort').value=state.sort;
  const base=viewDocuments();const docs=base.filter(matches).sort(state.sort==='recent'?byRecent:byName);categoryButtons(base);
@@ -68,11 +68,11 @@ function renderReader(doc){
  state.current=doc;$('#reader-title').textContent=doc.title;$('#reader-meta').textContent=[isForm(doc)?'Blankett':null,doc.category,doc.format,formatDate(doc.updated)].filter(Boolean).join(' · ');
  $('#download').href=fileUrl(doc);$('#download').download=doc.path.split('/').pop();$('#download').textContent=isForm(doc)?'Hämta blankett ↗':'Hämta original ↗';$('#share').textContent='Kopiera länk';
  $('#reader-note').textContent=isForm(doc)?'Hämta originalfilen för att fylla i blanketten. Textvyn visar inte alla fält och all formatering.':'Textvy · Bilder, diagram och fullständig formatering visas i originalfilen.';
- if(doc.id==='pers021-ledighetsansokan'){
-  $('#download').hidden=true;$('#share').hidden=true;$('#print-pdf').hidden=false;
-  $('#reader-note').textContent='Fyll i original-PDF:en och välj Skriv ut. Stäng blanketten när du är klar. Inga uppgifter sparas av handboken.';
+ if(isForm(doc)&&doc.format.toUpperCase()==='PDF'){
+  $('#download').hidden=doc.id==='pers021-ledighetsansokan';$('#share').hidden=doc.id==='pers021-ledighetsansokan';$('#print-pdf').hidden=false;
+  $('#reader-note').textContent=doc.fillable?'Fyll i original-PDF:en och välj Skriv ut. Stäng blanketten när du är klar. Inga uppgifter sparas av handboken.':'Skriv ut blanketten och fyll i den för hand. Den här PDF:en saknar ifyllbara formulärfält.';
   const content=$('#reader-content');content.replaceChildren();
-  const frame=document.createElement('iframe');frame.src=fileUrl(doc)+'?v=logo-fix-20261119#toolbar=0&navpanes=0&scrollbar=1';frame.title='Original-PDF: Ansökan om ledighet';frame.className='kiosk-form-frame';frame.setAttribute('referrerpolicy','no-referrer');content.append(frame);
+  const frame=document.createElement('iframe');frame.src=fileUrl(doc)+'#toolbar=1&navpanes=0&scrollbar=1';frame.title='Original-PDF: '+doc.title;frame.className='kiosk-form-frame';frame.setAttribute('referrerpolicy','no-referrer');content.append(frame);
   if(!$('#reader').open)$('#reader').showModal();$('#reader').scrollTop=0;state.highlight=null;return;
  }
  $('#download').hidden=false;$('#share').hidden=false;$('#print-pdf').hidden=true;
