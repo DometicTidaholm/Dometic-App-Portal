@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <title>Blankett</title>
+  <link rel="stylesheet" href="vendor/pdfjs/pdf_viewer.css">
+  <link rel="stylesheet" href="pdf-form-viewer.css?v=20261123">
+  <script type="module" src="pdf-form-viewer.js?v=20261123"></script>
+</head>
+<body>
+  <header id="viewer-toolbar">
+    <span id="viewer-title">Blankett</span>
+    <button id="viewer-print" type="button" disabled>Skriv ut</button>
+  </header>
+  <p id="viewer-status" role="status" aria-live="polite">Öppnar blanketten…</p>
+  <main id="pdf-pages" aria-label="Blankettens sidor" aria-busy="true"></main>
+  <div id="print-pages" aria-hidden="true"></div>
+  <noscript>Aktivera JavaScript för att fylla i och skriva ut blanketten.</noscript>
+</body>
+</html>
