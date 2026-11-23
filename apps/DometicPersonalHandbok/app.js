@@ -33,6 +33,10 @@ function documentCard(doc,compact=false){
  if(isForm(doc)&&state.view==='search')copy.append(el('span','type-badge','Blankett'));
  if(!compact&&state.query.trim()){const term=normalize(state.query).trim().split(/\s+/)[0];const text=doc.text||'';const at=normalize(text).indexOf(term);if(at>=0){const start=Math.max(0,at-40);copy.append(el('p','snippet',(start?'…':'')+text.slice(start,start+160)+(text.length>start+160?'…':'')));}}
  open.append(copy);open.onclick=()=>openDocument(doc.id);card.append(open);
+ const actions=el('div','doc-actions');
+ if(doc.format.toUpperCase()==='PDF'||(doc.blocks||[]).length>0){const print=el('button','doc-quick-action','Skriv ut');print.type='button';print.setAttribute('aria-label','Skriv ut '+doc.title);print.onclick=()=>quickPrint(doc);actions.append(print);}
+ if(isForm(doc)&&doc.fillable===true){const fill=el('button','doc-quick-action fill','Fyll i');fill.type='button';fill.setAttribute('aria-label','Fyll i '+doc.title);fill.onclick=()=>openDocument(doc.id);actions.append(fill);}
+ if(actions.childElementCount)card.append(actions);
  return card;
 }
 function renderOverview(){
@@ -114,6 +118,45 @@ $('#close-reader').onclick=()=>$('#reader').close();
 $('#reader').addEventListener('close',()=>{$('#reader-content').replaceChildren();if(suppressReaderClose){suppressReaderClose=false;return;}state.current=null;if(location.hash.startsWith('#dokument/')){if(history.state?.handbookReader&&history.state.readerOrigin)history.back();else{history.replaceState({handbookPage:true},'',returnHash);route();}}});
 $('#print-pdf').onclick=()=>{const frame=$('#reader-content iframe[data-form-viewer]');if(!frame)return;frame.contentWindow.postMessage({type:'print-pdf'},location.origin);};
 window.addEventListener('message',event=>{const frame=$('#reader-content iframe[data-form-viewer]');if(!frame||event.origin!==location.origin||event.source!==frame.contentWindow)return;const type=event.data?.type;if(type==='pdf-form-ready'||type==='pdf-form-print-finished'){$('#print-pdf').disabled=false;$('#print-pdf').textContent='Skriv ut';}else if(type==='pdf-form-loading'||type==='pdf-form-printing'){$('#print-pdf').disabled=true;$('#print-pdf').textContent=type==='pdf-form-printing'?'Förbereder utskrift…':'Skriv ut';}else if(type==='pdf-form-error'){$('#print-pdf').disabled=true;$('#print-pdf').textContent='Skriv ut';toast(event.data.message||'Blanketten kunde inte öppnas. Stäng den och försök igen.');}});
+
+let quickPrintDoc=null,quickPrintSerial=0,quickPrintAuto=false;
+const quickStatus=(s,e=false)=>{const n=$('#quick-print-status');n.textContent=s;n.classList.toggle('error',e);};
+function printTextMarkup(doc){
+ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const html=(doc.blocks||[]).map(b=>b.type==='table'?'<table>'+(b.rows||[]).map(row=>'<tr>'+row.map(cell=>'<td>'+esc(cell)+'</td>').join('')+'</tr>').join('')+'</table>':b.type==='heading'?'<h2>'+esc(b.text)+'</h2>':'<p>'+esc(b.text)+'</p>').join('');
+ return '<!doctype html><html lang="sv"><head><meta charset="utf-8"><title>'+esc(doc.title)+'</title><style>@page{size:A4;margin:14mm}body{font:11pt/1.45 Arial,sans-serif;color:#19313c}h1{font-size:18pt;border-bottom:1px solid #cdd6d9;padding-bottom:9px}h2{font-size:13pt;margin-top:20px;break-after:avoid}p{white-space:pre-wrap;overflow-wrap:anywhere}table{border-collapse:collapse;width:100%;font-size:9pt;margin:12px 0}tr{break-inside:avoid}td{border:1px solid #cbd8dc;padding:5px;white-space:pre-wrap;overflow-wrap:anywhere}</style></head><body><h1>'+esc(doc.title)+'</h1><p>'+esc(doc.category)+' · Textutskrift från personalhandboken</p>'+html+'</body></html>';
+}
+function quickPrintGo(){
+ const frame=$('#quick-print-host iframe');if(!frame||!quickPrintDoc)return;
+ $('#quick-print-go').disabled=true;quickStatus('Öppnar utskriftsdialogen…');
+ if(quickPrintDoc.format.toUpperCase()==='PDF')frame.contentWindow.postMessage({type:'print-pdf'},location.origin);
+ else{try{frame.contentWindow.focus();frame.contentWindow.print();quickStatus('Utskriftsdialogen har öppnats.');}catch{quickStatus('Kunde inte öppna utskriften.',true);}finally{$('#quick-print-go').disabled=false;}}
+}
+function quickPrint(doc){
+ if(doc.format.toUpperCase()!=='PDF'&&!(doc.blocks||[]).length){toast('Ingen utskriftsversion tillgänglig.');return;}
+ const token=++quickPrintSerial;quickPrintDoc=doc;quickPrintAuto=false;
+ $('#quick-print-title').textContent=doc.title;
+ $('#quick-print-info').textContent=doc.format.toUpperCase()==='PDF'?'PDF:en skrivs ut härifrån utan att öppna originalet.':'Textutskrift. Bilder och sidlayout kan avvika från originalet.';
+ quickStatus('Förbereder utskrift…');$('#quick-print-go').disabled=true;
+ if(!$('#quick-print-dialog').open)$('#quick-print-dialog').showModal();
+ const frame=document.createElement('iframe');frame.title='Utskrift av '+doc.title;frame.setAttribute('referrerpolicy','no-referrer');
+ if(doc.format.toUpperCase()==='PDF'){frame.dataset.quickPrintViewer='true';frame.src='pdf-form-viewer.html?'+new URLSearchParams({file:fileUrl(doc),title:doc.title,embedded:'1'});}
+ else{frame.addEventListener('load',()=>{if(token!==quickPrintSerial||!$('#quick-print-dialog').open)return;$('#quick-print-go').disabled=false;if(!quickPrintAuto){quickPrintAuto=true;quickPrintGo();}},{once:true});frame.srcdoc=printTextMarkup(doc);}
+ $('#quick-print-host').replaceChildren(frame);
+}
+$('#quick-print-close').onclick=()=>$('#quick-print-dialog').close();
+$('#quick-print-go').onclick=quickPrintGo;
+$('#quick-print-dialog').addEventListener('close',()=>{++quickPrintSerial;quickPrintDoc=null;$('#quick-print-host').replaceChildren();});
+window.addEventListener('message',event=>{
+ const frame=$('#quick-print-host iframe[data-quick-print-viewer]');
+ if(!frame||!quickPrintDoc||event.origin!==location.origin||event.source!==frame.contentWindow)return;
+ const t=event.data?.type;
+ if(t==='pdf-form-ready'){$('#quick-print-go').disabled=false;if(!quickPrintAuto){quickPrintAuto=true;quickPrintGo();}}
+ else if(t==='pdf-form-printing'){quickStatus('Förbereder utskriftsdialogen…');$('#quick-print-go').disabled=true;}
+ else if(t==='pdf-form-print-prepared')quickStatus('Utskriftsdialogen öppnas…');
+ else if(t==='pdf-form-print-finished'){quickStatus('Utskriftsdialogen har stängts.');$('#quick-print-go').disabled=false;}
+ else if(t==='pdf-form-error'){quickStatus(event.data.message||'Utskriften misslyckades.',true);$('#quick-print-go').disabled=false;}
+});
 $('#share').onclick=async()=>{try{await navigator.clipboard.writeText(location.href);$('#share').textContent='Länk kopierad';setTimeout(()=>$('#share').textContent='Kopiera länk',2000);}catch{$('#share').textContent='Kopiera adressen i adressfältet';}};
 let installPrompt=null;
 const standalone=()=>window.matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;

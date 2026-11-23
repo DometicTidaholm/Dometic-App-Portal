@@ -47,9 +47,10 @@ function documentURL() {
   const supplied = parameters.get('file');
   if (!supplied) throw new Error('Ingen blankett har valts.');
   const url = new URL(supplied, location.href);
-  const allowed = new URL('./blanketter/', location.href);
-  if (url.origin !== location.origin || !url.pathname.startsWith(allowed.pathname) || !/\.pdf$/i.test(url.pathname)) {
-    throw new Error('Blankettens adress är inte giltig.');
+  const allowedPaths = ['blanketter', 'upplarningsdokument', 'dokument']
+    .map(folder => new URL('./' + folder + '/', location.href).pathname);
+  if (url.origin !== location.origin || !allowedPaths.some(prefix => url.pathname.startsWith(prefix)) || !/\.pdf$/i.test(url.pathname)) {
+    throw new Error('Dokumentets adress är inte giltig.');
   }
   url.hash = '';
   return url;
