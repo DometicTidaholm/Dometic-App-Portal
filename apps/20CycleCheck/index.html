@@ -63,6 +63,10 @@
   .pill{padding:8px 10px;border:1px solid var(--line);border-radius:9px;background:var(--paper);font-size:var(--fs-sm)}
   .pill b{display:block;margin-top:2px;font-size:15px}
   .chart-wrap{padding:6px}
+  .measurement-results{margin-top:8px;scroll-margin-top:8px}
+  .measurement-results .chart-header{border-bottom:0}
+  .measurement-results-link{align-self:flex-end;margin:6px 10px 0;padding:4px 0;color:var(--muted);font-size:var(--fs-sm);text-decoration:none;font-weight:600}
+  .measurement-results-link:hover{text-decoration:underline;color:var(--accent)}
   canvas{width:100%;height:360px;display:block}
 
   .list-head,.list-row{display:grid;grid-template-columns:48px 92px 110px 1fr 40px;gap:8px;align-items:center}
@@ -179,8 +183,8 @@
 
   <!-- Diagram + KPI + Lista -->
   <div class="wrap">
-    <div class="card chart-card">
-      <div class="chart-header pad">
+    <div class="card chart-card" id="measurementChart">
+      <div class="chart-header pad" id="resultCards">
         <h3 id="resultsTitle" class="chart-title">Resultat</h3>
         <div class="kpis">
           <div class="pill"><span id="kpiTaktLabel">Takttid</span> <b id="kpiTakt">–</b></div>
@@ -193,6 +197,7 @@
         </div>
         <div id="capacitySummary" class="capacity-summary hidden"><div class="pill"><span id="capCyclesLabel">Cykler/skift</span><b id="capCycles">–</b></div><div class="pill"><span id="capProductsLabel">Produkter/skift</span><b id="capProducts">–</b></div><div class="pill"><span id="capTargetLabel">Rimligt mål</span><b id="capTarget">–</b></div></div>
       </div>
+      <a id="measurementResultsLink" class="measurement-results-link hidden" href="#measurementResults">Resultat ↓</a>
       <div class="chart-wrap">
         <canvas id="chart" height="360"></canvas>
       </div>
@@ -209,6 +214,7 @@
       <div id="list" class="list"></div>
     </div>
   </div>
+  <section id="measurementResults" class="card measurement-results hidden" aria-labelledby="resultsTitle"></section>
 </div>
 <div id="processModal" class="modal-backdrop hidden" role="dialog" aria-modal="true"><div class="modal"><div class="modal-head"><h2 id="processModalTitle">Processdata och skiftmål</h2><button id="closeProcessModal" class="modal-close">×</button></div><div id="validationAlert" class="validation-alert hidden" role="alert" aria-live="assertive"></div><div class="process-grid">
 <div><label id="lblProcess">PROCESS</label><input id="process" type="text" placeholder="Ange processnamn…"></div><div><label id="lblSubprocess">UNDERPROCESS</label><input id="subprocess" type="text" list="subprocessOptions" placeholder="Välj eller skriv…" autocomplete="off"><datalist id="subprocessOptions"></datalist></div><div><label id="lblDate">DATUM</label><input id="date" type="date"></div><div><label id="lblStandard">STANDARD WORK CT</label><input id="standard" type="number" min="0" step="0.1" placeholder="sek"><div id="colorRule" style="font-size:11px;color:var(--muted);margin-top:4px">Grön ≤ standard · Orange ≤ +20 % · Röd &gt; +20 %</div></div><div><label id="lblAnnualDemand">ÅRSVOLYM (ANTAL ENHETER/ÅR)</label><input id="annualDemand" type="number" min="0" step="1" inputmode="numeric" placeholder="t.ex. 100000"></div><div><label id="lblWeeklyHours">VECKOTAKT – KÖRBARA TIMMAR PER VECKA</label><input id="weeklyHours" type="number" min="0" step="0.1" inputmode="decimal" placeholder="t.ex. 78"></div>
@@ -326,6 +332,7 @@ function setLangTexts(){
   $('#btnReport').textContent=L[lang].REPORT;
   $('#btnReset').textContent=L[lang].RESET;
   $('#resultsTitle').textContent=L[lang].RESULTS_TITLE;
+  $('#measurementResultsLink').textContent=L[lang].RESULTS_TITLE+' ↓';
   $('#kpiTaktLabel').textContent=tr("Takttid","Takt time","Taktzeit");
   $('#kpiProgressLabel').textContent=L[lang].KPI_PROGRESS;
   $('#kpiAvgLabel').textContent=L[lang].KPI_AVG;
@@ -367,11 +374,20 @@ function validateRequiredFields(focus=false){validationActive=true;const missing
 function setupRequiredFields(){requiredFields.forEach(f=>{const el=$('#'+f.id);el.required=true;el.setAttribute('aria-required','true');el.setAttribute('aria-describedby',f.id+'Error');const hint=document.createElement('div');hint.id=f.id+'Error';hint.className='field-error hidden';el.insertAdjacentElement('afterend',hint);el.addEventListener('input',()=>{if(validationActive)validateRequiredFields();});el.addEventListener('change',()=>{if(validationActive)validateRequiredFields();});});}
 
 /* ===== Timer ===== */
+function updateMeasurementLayout(){
+  const results=$('#measurementResults'), cards=$('#resultCards'), chart=$('#measurementChart');
+  if(running){results.appendChild(cards);results.classList.remove('hidden');}
+  else{chart.prepend(cards);results.classList.add('hidden');}
+  $('#measurementResultsLink').classList.toggle('hidden',!running);
+  drawChart();
+}
 function startTimer(){
   if(running) return;
   if(missingRequiredFields().length){openProcessModal();validateRequiredFields(true);return;}
   running=true;
   tStart=performance.now();
+  updateMeasurementLayout();
+  if(window.innerWidth<=640) $('#measurementChart').scrollIntoView({block:'start',behavior:'instant'});
   timerDisp.textContent='00:00.00';
   if(tick) clearInterval(tick);
   tick=setInterval(()=>{ timerDisp.textContent = formatMs(performance.now()-tStart); }, 50);
@@ -397,6 +413,7 @@ function lap(){
 function cancelCurrentTimer(){
   if(running){
     running=false;
+    updateMeasurementLayout();
     if(tick){ clearInterval(tick); tick=null; }
     toggleBtn.textContent=L[lang].TOGGLE_START;
   }
