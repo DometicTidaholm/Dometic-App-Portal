@@ -548,7 +548,7 @@ function renderList(){
     current.querySelectorAll('[data-pending-reason]').forEach(btn=>btn.addEventListener('click',e=>{const reason=e.currentTarget.dataset.pendingReason;pendingCycle.reason=pendingCycle.reason===reason?'':reason;renderList();saveState();}));
   }
   const entries=laps.map((l,i)=>({l,i}));
-  if(window.innerWidth<=640) entries.reverse();
+  entries.reverse();
   entries.forEach(({l,i})=>{
     const row=document.createElement('div'); row.className='list-row';
     row.dataset.lapIndex=i;
