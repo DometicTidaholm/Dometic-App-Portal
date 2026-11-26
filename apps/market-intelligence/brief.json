@@ -1,6 +1,6 @@
 {
   "revision": "2026-11-26",
-  "added": 1,
+  "added": 4,
   "stories": [
     {
       "category": "industry",
@@ -538,6 +538,38 @@
       "family": "Climate & ventilation"
     },
     {
+      "id": "story-551ee60947ce8738ce3f",
+      "category": "industry",
+      "family": "Vehicle market",
+      "market": "China",
+      "date": "2026-11-26",
+      "title": "20万内，能升顶、能越野！艺程依维柯得意A35宿营车，小车身大玩法",
+      "summary": "",
+      "links": [
+        {
+          "name": "21RV",
+          "url": "https://www.21rv.com/c/dc3uvg4cgpns73f96apg"
+        }
+      ],
+      "language": "zh-CN"
+    },
+    {
+      "id": "story-39d2e570cda26124a367",
+      "category": "industry",
+      "family": "Vehicle market",
+      "market": "Germany",
+      "date": "2026-11-26",
+      "title": "Dusche unter der Arbeitsfläche: Erfinderischer Camper von Van Mania",
+      "summary": "",
+      "links": [
+        {
+          "name": "promobil",
+          "url": "https://www.promobil.de/neuheiten/dusche-unter-der-arbeitsflaeche-erfinderischer-camper-von-van-mania/"
+        }
+      ],
+      "language": "de"
+    },
+    {
       "id": "story-14712b3f3a0b7d2f29be",
       "category": "industry",
       "family": "Vehicle market",
@@ -552,6 +584,22 @@
         }
       ],
       "language": "de"
+    },
+    {
+      "id": "story-fa9e3d834959e5a1c655",
+      "category": "industry",
+      "family": "Vehicle market",
+      "market": "China",
+      "date": "2026-11-25",
+      "title": "超稳！半价拿下进口级品质英式拖挂，爱科双轴英式拖挂房车阿纳塔尔675",
+      "summary": "",
+      "links": [
+        {
+          "name": "21RV",
+          "url": "https://www.21rv.com/c/dc2khhscgpns73f968gg"
+        }
+      ],
+      "language": "zh-CN"
     },
     {
       "id": "story-3b054917de1d313a095b",
@@ -613,6 +661,22 @@
         {
           "name": "21RV",
           "url": "https://www.21rv.com/c/dc2j8l4cgpns73f96840"
+        }
+      ],
+      "language": "zh-CN"
+    },
+    {
+      "id": "story-a40c7bdcd2accd4b507b",
+      "category": "industry",
+      "family": "Vehicle market",
+      "market": "China",
+      "date": "2026-11-23",
+      "title": "专访｜北京房车露营自驾旅游协会秘书长刘小龙：明晰市场机遇，锚定华北落地路径",
+      "summary": "",
+      "links": [
+        {
+          "name": "21RV",
+          "url": "https://www.21rv.com/c/dc1utlscgpns73f966sg"
         }
       ],
       "language": "zh-CN"
@@ -1065,8 +1129,8 @@
     }
   ],
   "marketChecks": {
-    "China": "2026-11-25T16:23:21.446768+00:00",
-    "Europe": "2026-11-26T15:57:26.508653+00:00"
+    "China": "2026-11-26T16:54:36.686171+00:00",
+    "Europe": "2026-11-26T16:54:36.686171+00:00"
   },
-  "lastScan": "2026-11-26T15:57:26.508653+00:00"
+  "lastScan": "2026-11-26T16:54:36.686171+00:00"
 }
